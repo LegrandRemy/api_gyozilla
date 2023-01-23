@@ -1,5 +1,3 @@
-Je fais quelque chose, bisous sur les fesses à vous 8) 
-
 npx sequelize-cli model:generate --name Roles --attributes id:integer,type:string
 
 npx sequelize-cli model:generate --name Contract_types --attributes id:integer,type:string
@@ -32,7 +30,7 @@ npx sequelize-cli model:generate --name Product_Ressources --attributes id_:inte
 
 npx sequelize-cli model:generate --name Product_Categories --attributes id_:integer,id_products:integer,id_categories:integer
 
-npx sequelize-cli model:generate --name Products --attributes id_:integer,working,string,price:string,reference:string,id_receipts
+npx sequelize-cli model:generate --name Products --attributes id_:integer,working:string,price:string,reference:string,id_receipts:integer
 
 npx sequelize-cli model:generate --name Products_Orders --attributes id_:integer,id_products:integer,id_orders:integer
 
