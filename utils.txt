@@ -16,10 +16,16 @@ npx sequelize-cli model:generate --name Alert --attributes id:int,alert:string
 
 npx sequelize-cli model:generate --name Suppliers --attributes id:int,contact_name:string,adress:string,phone:string,email:string,compagny:string
 
-npx sequelize-cli model:generate --name Suppliers --attributes id:int,contact_name:string,adress:string,phone:string,email:string,compagny:string
-
 npx sequelize-cli model:generate --name Meetings --attributes id:int,end_hour:string,start_hour:string
 
 npx sequelize-cli model:generate --name Hourly_type --attributes id:int,name:string
 
 npx sequelize-cli model:generate --name Step --attributes id:int,step:string
+
+npx sequelize-cli model:generate --name Hourlies --attributes id:int,_start:string,_end:string
+
+npx sequelize-cli model:generate --name Users_Hourlies --attributes id:int,id_users:int,id_hourlies:int
+
+npx sequelize-cli model:generate --name Users_Ratings --attributes id:int,id_users:int,id_ratings:int
+
+npx sequelize-cli model:generate --name Users_meetings --attributes id:int,id_users:int,id_meetings:int
