@@ -1,4 +1,4 @@
-Je fais quelque chose, bisous sur les fesses à vous 8)
+Je fais quelque chose, bisous sur les fesses à vous 8) 
 
 npx sequelize-cli model:generate --name Roles --attributes id:int,type:string
 
