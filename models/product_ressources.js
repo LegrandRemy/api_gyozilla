@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Product_Ressources.init({
-    id_: DataTypes.INTEGER,
+    id: DataTypes.INTEGER,
     id_products: DataTypes.INTEGER,
     id_ressources: DataTypes.INTEGER
   }, {
