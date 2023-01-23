@@ -24,19 +24,19 @@ npx sequelize-cli model:generate --name Measurement_Units --attributes id:intege
 
 npx sequelize-cli model:generate --name Ressources --attributes id:integer,working,string,price:string,reference:string,id_alerts:integer,id_ressources_types:integer
 
-npx sequelize-cli model:generate --name Ressources_Suppliers --attributes id_:integer,id_ressources:integer,id_suppliers:integer
+npx sequelize-cli model:generate --name Ressources_Suppliers --attributes id:integer,id_ressources:integer,id_suppliers:integer
 
-npx sequelize-cli model:generate --name Product_Ressources --attributes id_:integer,id_products:integer,id_ressources:integer
+npx sequelize-cli model:generate --name Product_Ressources --attributes id:integer,id_products:integer,id_ressources:integer
 
-npx sequelize-cli model:generate --name Product_Categories --attributes id_:integer,id_products:integer,id_categories:integer
+npx sequelize-cli model:generate --name Product_Categories --attributes id:integer,id_products:integer,id_categories:integer
 
-npx sequelize-cli model:generate --name Products --attributes id_:integer,working,string,price:string,reference:string,id_receipts
+npx sequelize-cli model:generate --name Products --attributes id:integer,working,string,price:string,reference:string,id_receipts
 
-npx sequelize-cli model:generate --name Products_Orders --attributes id_:integer,id_products:integer,id_orders:integer
+npx sequelize-cli model:generate --name Products_Orders --attributes id:integer,id_products:integer,id_orders:integer
 
-npx sequelize-cli model:generate --name Orders --attributes id_:integer,status:string,payement_at:string,price:string,id_steps:integer,id_sales_revenues:integer,id_users:integer
+npx sequelize-cli model:generate --name Orders --attributes id:integer,status:string,payement_at:string,price:string,id_steps:integer,id_sales_revenues:integer,id_users:integer
 
-npx sequelize-cli model:generate --name Users --attributes id_:integer,lastname:string,firstname:string,email:string,phone:string,adress:string,zipcode:string,city:string,hiring_date:date,salary:string,fidelitypointegers:string,id_contract_types:integer,id_roles:integer
+npx sequelize-cli model:generate --name Users --attributes id:integer,lastname:string,firstname:string,email:string,phone:string,adress:string,zipcode:string,city:string,hiring_date:date,salary:string,fidelitypointegers:string,id_contract_types:integer,id_roles:integer
 
 npx sequelize-cli model:generate --name Step --attributes id:integer,step:string
 
