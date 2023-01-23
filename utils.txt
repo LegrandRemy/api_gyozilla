@@ -1,3 +1,5 @@
+Je fais quelque chose, bisous sur les fesses à vous 8)
+
 npx sequelize-cli model:generate --name Roles --attributes id:int,type:string
 
 npx sequelize-cli model:generate --name Contract_types --attributes id:int,type:string
