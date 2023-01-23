@@ -14,5 +14,10 @@ npx sequelize-cli model:generate --name Ressources_types --attributes id:int,typ
 
 npx sequelize-cli model:generate --name Alert --attributes id:int,alert:string
 
-npx sequelize-cli model:generate --name Suppliers --attributes id:int,alert:string
+npx sequelize-cli model:generate --name Suppliers --attributes id:int,contact_name:string,adress:string,phone:string,email:string,compagny:string
 
+npx sequelize-cli model:generate --name Suppliers --attributes id:int,contact_name:string,adress:string,phone:string,email:string,compagny:string
+
+npx sequelize-cli model:generate --name Meetings --attributes id:int,end_hour:string,start_hour:string
+
+npx sequelize-cli model:generate --name Hourly_type --attributes id:int,name:string
