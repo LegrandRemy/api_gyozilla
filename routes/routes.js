@@ -1,1 +1,1 @@
-const usersRoute = require('./users');
+exports.usersRoute = require('./users');

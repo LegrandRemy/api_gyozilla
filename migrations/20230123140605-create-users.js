@@ -40,10 +40,10 @@ module.exports = {
         type: Sequelize.STRING
       },
       id_contract_types: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       id_roles: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       createdAt: {
         allowNull: false,
