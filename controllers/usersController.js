@@ -2,12 +2,19 @@
 const db = require('../models/index');
 const User = db['Users'];
 
-exports.is_existByMail = async (req,res)=> {
-    try {
-        
-    } catch (error) {
-        
-    }
+exports.is_exist = async (email) => {
+    User.findOne({
+        $or: [
+            {email: email}
+        ]
+    }, (err, user) => {
+        if (err) throw err;
+        if (user) {
+            return true;
+        } else {
+            return false;
+        }
+    });
 }
 
 exports.getAllUsers = async (req, res) => {
