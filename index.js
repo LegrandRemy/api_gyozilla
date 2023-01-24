@@ -1,4 +1,14 @@
-const { usersRoute, suppliersRoute } = require('./routes/routes')
+const {
+  usersRoute,
+  suppliersRoute,
+  alertsRoute,
+  contract_typesRoute,
+  categoriesRoute,
+  users_meetingsRoute,
+  stepsRoute,
+  rolesRoute,
+  sales_revenuesRoute,
+} = require('./routes/routes')
 const express = require('express')
 const app = express()
 const port = 3000
@@ -21,6 +31,13 @@ const specs = swaggerJsdoc(options)
 app.use(express.json())
 app.use(usersRoute)
 app.use(suppliersRoute)
+app.use(alertsRoute)
+app.use(contract_typesRoute)
+app.use(categoriesRoute)
+app.use(users_meetingsRoute)
+app.use(stepsRoute)
+app.use(sales_revenuesRoute)
+app.use(rolesRoute)
 app.get('/', (req, res) => res.send('API Gyozilla'))
 
 app.listen(port, () => console.log(`Toto part au ski avec Martine  ${port}!`))

@@ -1,21 +1,6 @@
 const db = require('../models/index')
 const Alert = db['Alerts']
 
-// exports.is_exist = async (email) => {
-//     User.findOne({
-//         $or: [
-//             {email: email}
-//         ]
-//     }, (err, user) => {
-//         if (err) throw err;
-//         if (user) {
-//             return true;
-//         } else {
-//             return false;
-//         }
-//     });
-// }
-
 exports.getAllAlerts = async (req, res) => {
   try {
     const alerts = await Alert.findAll()
