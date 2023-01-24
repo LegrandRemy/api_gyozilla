@@ -55,8 +55,10 @@ exports.createUser = async (req, res) => {
 
 exports.updateUser = async (req, res) => {
   try {
-    const updatedUser = await User.findByPk(req.params.id, req.body, {
-      new: true,
+    const updatedUser = await User.update(req.body, {
+      where: {
+        id: req.params.id,
+      },
     })
     res.status(201).json({ message: 'updated', data: updatedUser })
   } catch (error) {
