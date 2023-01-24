@@ -14,7 +14,6 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Ressources_types.init({
-    id: DataTypes.INTEGER,
     type: DataTypes.STRING
   }, {
     sequelize,

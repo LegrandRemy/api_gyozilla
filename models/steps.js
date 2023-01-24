@@ -14,7 +14,6 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Steps.init({
-    id: DataTypes.INTEGER,
     step: DataTypes.STRING
   }, {
     sequelize,

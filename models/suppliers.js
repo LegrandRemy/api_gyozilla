@@ -14,7 +14,6 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Suppliers.init({
-    id: DataTypes.INTEGER,
     contact_name: DataTypes.STRING,
     adress: DataTypes.STRING,
     phone: DataTypes.STRING,

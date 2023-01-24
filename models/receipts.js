@@ -14,7 +14,6 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Receipts.init({
-    id: DataTypes.INTEGER,
     wording: DataTypes.STRING,
     reference: DataTypes.INTEGER,
     id_step: DataTypes.INTEGER

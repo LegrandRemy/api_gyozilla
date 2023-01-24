@@ -14,7 +14,6 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Measurement_Units.init({
-    id: DataTypes.INTEGER,
     unity: DataTypes.STRING,
     id_ressources: DataTypes.INTEGER
   }, {

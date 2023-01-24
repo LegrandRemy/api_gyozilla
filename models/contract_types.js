@@ -14,7 +14,6 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Contract_types.init({
-    id: DataTypes.INTEGER,
     type: DataTypes.STRING
   }, {
     sequelize,

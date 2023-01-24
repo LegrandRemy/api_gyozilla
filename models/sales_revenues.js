@@ -14,7 +14,6 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Sales_Revenues.init({
-    id: DataTypes.INTEGER,
     ca: DataTypes.STRING
   }, {
     sequelize,

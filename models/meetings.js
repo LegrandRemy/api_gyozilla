@@ -14,7 +14,6 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Meetings.init({
-    id: DataTypes.INTEGER,
     end_hour: DataTypes.STRING,
     start_hour: DataTypes.STRING
   }, {

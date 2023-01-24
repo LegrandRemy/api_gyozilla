@@ -14,7 +14,6 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Alerts.init({
-    id: DataTypes.INTEGER,
     alert: DataTypes.STRING
   }, {
     sequelize,
