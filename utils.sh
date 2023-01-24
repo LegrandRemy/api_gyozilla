@@ -11,7 +11,9 @@ npx sequelize-cli model:generate --name Meetings --attributes end_hour:string,st
 npx sequelize-cli model:generate --name Hourly_types --attributes name:string
 npx sequelize-cli model:generate --name Steps --attributes step:string
 npx sequelize-cli model:generate --name Measurement_Units --attributes unity:string,id_ressources:integer
+
 npx sequelize-cli model:generate --name Ressources --attributes working:string,price:string,reference:string,id_alerts:integer,id_ressources_types:integer
+
 npx sequelize-cli model:generate --name Ressources_Suppliers --attributes id_ressources:integer,id_suppliers:integer
 npx sequelize-cli model:generate --name Product_Ressources --attributes id_products:integer,id_ressources:integer
 npx sequelize-cli model:generate --name Product_Categories --attributes id_products:integer,id_categories:integer
