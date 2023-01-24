@@ -7,8 +7,8 @@ module.exports = {
       'Users',
       [
         {
-          lastName: 'Legrand',
-          firstName: 'Rémy',
+          lastname: 'Legrand',
+          firstname: 'Rémy',
           email: 'example@example.com',
           phone: '0627662711',
           adress: '69 Rue de la poupée qui tousse',
