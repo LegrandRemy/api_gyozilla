@@ -16,66 +16,68 @@ const Alert = db['Alerts']
 //     });
 // }
 
-exports.getAlerts = async (req, res) => {
+exports.getAllAlerts = async (req, res) => {
   try {
     const alerts = await Alert.findAll()
     res.status(200).json(alerts)
   } catch (error) {
     res.status(500).json({
       message: 'Impossible de récupérer les alertes',
+      error: error.message,
     })
   }
 }
 
 exports.getAlert = async (req, res) => {
   try {
-    const alert = await Alert.findById(req.params.id)
+    const alert = await Alert.findByPk(req.params.id)
     res.status(200).json(alert)
   } catch (error) {
     res.status(500).json({
       message: "Impossible de récupérer l'alerte",
+      error: error.message,
     })
   }
 }
 
 exports.createAlert = async (req, res) => {
   try {
-    const newAlert = new Alert(req.body)
-    await newAlert.save()
-    res.status(201).json(newAlert)
+    const newAlert = await Alert.create(req.body)
+    res.status(201).json({ message: 'created', data: newAlert })
   } catch (error) {
     res.status(500).json({
       message: "L'alerte n'a pas été créée",
+      error: error.message,
     })
   }
 }
 
 exports.updateAlert = async (req, res) => {
   try {
-    const updatedAlert = await Alert.findByIdAndUpdate(
-      req.params.id,
-      req.body,
-      {
-        new: true,
+    const updatedAlert = await Alert.update(req.body, {
+      where: {
+        id: req.params.id,
       },
-    )
-    res.status(200).json(updatedAlert)
+    })
+    res.status(201).json({ message: 'updated', data: updatedAlert })
   } catch (error) {
     res.status(500).json({
       message: "L'alerte n'a pas été mise à jour",
+      error: error.message,
     })
   }
 }
 
 exports.deleteAlert = async (req, res) => {
   try {
-    await Alert.findByIdAndDelete(req.params.id)
+    await Alert.findByPk(req.params.id)
     res.status(200).json({
       message: "L'alerte a été supprimée",
     })
   } catch (error) {
     res.status(500).json({
       message: "L'alerte n'a pas été supprimée",
+      error: error.message,
     })
   }
 }

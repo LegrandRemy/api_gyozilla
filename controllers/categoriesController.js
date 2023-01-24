@@ -16,66 +16,68 @@ const Category = db['Categories']
 //     });
 // }
 
-exports.getCategories = async (req, res) => {
+exports.getAllCategories = async (req, res) => {
   try {
     const categories = await Category.findAll()
     res.status(200).json(categories)
   } catch (error) {
     res.status(500).json({
       message: 'Impossible de récupérer les catégories',
+      error: error.message,
     })
   }
 }
 
 exports.getCategory = async (req, res) => {
   try {
-    const category = await Category.findById(req.params.id)
+    const category = await Category.findByPk(req.params.id)
     res.status(200).json(category)
   } catch (error) {
     res.status(500).json({
       message: 'Impossible de récupérer la catégorie',
+      error: error.message,
     })
   }
 }
 
 exports.createCategory = async (req, res) => {
   try {
-    const newCategory = new Category(req.body)
-    await newCategory.save()
-    res.status(201).json(newUser)
+    const newCategory = await Category.create(req.body)
+    res.status(201).json({ message: 'created', data: newCategory })
   } catch (error) {
     res.status(500).json({
-      message: "La catégorie n'a pas été créé",
+      message: "La catégorie n'a pas été créée",
+      error: error.message,
     })
   }
 }
 
 exports.updateCategory = async (req, res) => {
   try {
-    const updatedCategory = await Category.findByIdAndUpdate(
-      req.params.id,
-      req.body,
-      {
-        new: true,
+    const updatedCategory = await Category.update(req.body, {
+      where: {
+        id: req.params.id,
       },
-    )
-    res.status(200).json(updatedCategory)
+    })
+    res.status(201).json({ message: 'updated', data: updatedCategory })
   } catch (error) {
     res.status(500).json({
       message: "La catégorie n'a pas été mise à jour",
+      error: error.message,
     })
   }
 }
 
 exports.deleteCategory = async (req, res) => {
   try {
-    await Category.findByIdAndDelete(req.params.id)
+    await Category.findByPk(req.params.id)
     res.status(200).json({
       message: 'La catégorie a été supprimée',
     })
   } catch (error) {
     res.status(500).json({
       message: "La catégorie n'a pas été supprimée",
+      error: error.message,
     })
   }
 }
