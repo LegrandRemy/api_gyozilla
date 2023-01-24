@@ -1,3 +1,5 @@
 exports.usersRoute = require('./users')
-exports.alertRoute = require('/alerts')
-exports.alertRoute = require('./categories')
+exports.alertsRoute = require('/alerts')
+exports.categoriesRoute = require('./categories')
+exports.contract_typesRoute = require('./contract_types')
+exports.hourly_typesRoute = require('./hourly_types')
