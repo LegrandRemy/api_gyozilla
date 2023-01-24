@@ -41,9 +41,17 @@ module.exports = {
       },
       id_contract_types: {
         type: Sequelize.INTEGER,
+        references: {
+          model: 'contract_types',
+          key: 'id',
+        },
       },
       id_roles: {
         type: Sequelize.INTEGER,
+        references: {
+          model: 'roles',
+          key: 'id',
+        },
       },
       createdAt: {
         allowNull: false,
