@@ -2,7 +2,7 @@
  * @swagger
  * components:
  *   schemas:
- *     Users:
+ *     users:
  *       type: object
  *       required:
  *         - 
@@ -57,12 +57,12 @@
 /**
  * @swagger
  * tags:
- *   name: Users
+ *   name: users
  *   description: API pour les utilisateurs
- * /users:
+ * /api/users:
  *   get:
  *     summary: Liste tous les utilisateurs
- *     tags: [Users]
+ *     tags: [users]
  *     parameters:
  *       - in: path
  *         name: id
@@ -138,29 +138,29 @@
  *             schema:
  *               type: array
  *               items:
- *                 $ref: '#/components/schemas/Users'
+ *                 $ref: '#/components/schemas/users'
  *   post:
  *     summary: Créer un nouvel utilisateur
- *     tags: [Users]
+ *     tags: [users]
  *     requestBody:
  *       required: true
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/Users'
+ *             $ref: '#/components/schemas/users'
  *     responses:
  *       200:
  *         description: L'utilisateur créé.
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/Users'
+ *               $ref: '#/components/schemas/users'
  *       500:
  *         description: Une erreur est survenue.
- * /users/{id}:
+ * /api/users/{id}:
  *   get:
  *     summary: Récupérer l'utilisateur par l'id
- *     tags: [Users]
+ *     tags: [users]
  *     parameters:
  *       - in: path
  *         name: id
@@ -174,12 +174,12 @@
  *         contens:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/Users'
+ *               $ref: '#/components/schemas/users'
  *       404:
  *         description: L'utilisateur n'a pas été trouvé.
  *   put:
  *    summary: Mise à jour de l'utilisateur par son id
- *    tags: [Users]
+ *    tags: [users]
  *    parameters:
  *      - in: path
  *        name: id
@@ -192,21 +192,21 @@
  *      content:
  *        application/json:
  *          schema:
- *            $ref: '#/components/schemas/Users'
+ *            $ref: '#/components/schemas/users'
  *    responses:
  *      200:
  *        description: L'utilisateur a été mis à jour
  *        content:
  *          application/json:
  *            schema:
- *              $ref: '#/components/schemas/Users'
+ *              $ref: '#/components/schemas/users'
  *      404:
  *        description: L'utilisateur n'a pas été trouvé.
  *      500:
  *        description: Une erreur est survenue.
  *   delete:
  *     summary: Supprimer un utilisateur par son id
- *     tags: [Users]
+ *     tags: [users]
  *     parameters:
  *       - in: path
  *         name: id
@@ -226,7 +226,7 @@ const express = require('express');
 const router = express.Router();
 const userController = require('../controllers/usersController');
 
-router.get('/api/users', userController.getAllUsers);
+router.get('/api/users/', userController.getAllUsers);
 router.get('/api/users/:id', userController.getUser);
 router.post('/api/users', userController.createUser);
 router.put('/api/users/:id', userController.updateUser);

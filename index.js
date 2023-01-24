@@ -25,7 +25,7 @@ app.use(usersRoute);
 app.get("/", (req, res) => res.send("API Gyozilla"));
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
 app.use(
-    "/api-docs",
+    "/api",
     swaggerUi.serve,
     swaggerUi.setup(specs, { explorer: true })
 );
