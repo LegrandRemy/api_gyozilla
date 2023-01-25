@@ -63,7 +63,7 @@ exports.updateProduct_category = async (req, res) => {
     res.status(201).json({ message: 'updated', data: updatedProduct_category })
   } catch (error) {
     res.status(500).json({
-      message: "La catégorie de produit n'a pas été mis à jour",
+      message: "La catégorie de produit n'a pas été mise à jour",
       error: error.message,
     })
   }
@@ -73,11 +73,11 @@ exports.deleteProduct_category = async (req, res) => {
   try {
     await Product_category.findByPk(req.params.id)
     res.status(200).json({
-      message: "La catégorie n'a pas été supprimée",
+      message: 'La catégorie de produit a été supprimée',
     })
   } catch (error) {
     res.status(500).json({
-      message: "La catégorie n'a pas été supprimée",
+      message: "La catégorie de produit n'a pas été supprimée",
       error: error.message,
     })
   }
