@@ -7,14 +7,14 @@
  *       required:
  *         - 
  *       properties:
- *         username:
+ *         email:
  *           type: string
  *           description: Nom d'utilisateur de l'utilisateur
  *         password:
  *           type: string
  *           description: Mot de passe de l'utilisateur
  *       example:
- *         username: Robert
+ *         email: Robert
  *         password: LePlusFort
  */
 
@@ -34,11 +34,11 @@
  *              schema:
  *                type: "object"
  *                properties:
- *                  username:
+ *                  email:
  *                    type: "string"
  *                  password:
  *                    type: "string"
- *                required: ["username", "password"]
+ *                required: ["email", "password"]
  *     responses:
  *       200:
  *         description: Le token d'authentification

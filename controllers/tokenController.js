@@ -1,12 +1,13 @@
+require('dotenv').config
 const jwt = require('jsonwebtoken');
 
 exports.getToken = async (req, res) => {
     try {
         const payload = {
-            username: req.body.username,
+            username: req.body.email,
             password: req.body.password
         };
-        const secret = 'E.(GQ98pO"Fv(3mHRmj_Xai(#}"b3=';
+        const secret = process.env.JWT_SECRET;
         const options = { expiresIn: '24h' };
         const token = jwt.sign(payload, secret, options);
         req.session.token = token;
@@ -29,7 +30,7 @@ exports.verifyToken = (req, res, next) => {
         });
     }
     try {
-        const decoded = jwt.verify(token, 'E.(GQ98pO"Fv(3mHRmj_Xai(#}"b3=');
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);
         req.user = decoded;
         next();
     } catch (error) {
