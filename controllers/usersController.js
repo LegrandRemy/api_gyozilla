@@ -6,7 +6,11 @@ const { Op } = require('sequelize')
 exports.is_exist = async (email) => {
   User.findOne(
     {
-      $or: [{ email: email }],
+      $where: [
+        {
+          email: email,
+        },
+      ],
     },
     (err, user) => {
       if (err) throw err
@@ -97,7 +101,7 @@ exports.getAllUsers = async (req, res) => {
 exports.getUser = async (req, res) => {
   try {
     const user = await User.findByPk(req.params.id)
-    if (user !== null) {
+    if (user) {
       res.status(200).json(user)
     } else {
       res.status(404).json({
@@ -115,7 +119,10 @@ exports.getUser = async (req, res) => {
 exports.createUser = async (req, res) => {
   try {
     const newUser = await User.create(req.body)
-    res.status(201).json({ message: 'created', data: newUser })
+    res.status(201).json({
+      message: 'created',
+      data: newUser,
+    })
   } catch (error) {
     res.status(500).json({
       message: "L'utilisateur n'a pas été créé",

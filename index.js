@@ -1,6 +1,7 @@
 const {
     tokenRoute,
     usersRoute,
+    authRoute,
     suppliersRoute,
     alertsRoute,
     contract_typesRoute,
@@ -25,6 +26,7 @@ const {
 } = require('./routes/routes')
 const express = require('express')
 const app = express()
+
 const port = 3000
 const swaggerJsdoc = require('swagger-jsdoc')
 const swaggerUi = require('swagger-ui-express')
@@ -65,6 +67,7 @@ app.use(session({
 }));
 app.use(tokenRoute);
 app.use(usersRoute)
+app.use(authRoute);
 app.use(suppliersRoute)
 app.use(alertsRoute)
 app.use(contract_typesRoute)

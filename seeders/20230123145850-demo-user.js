@@ -7,6 +7,7 @@ module.exports = {
       'Users',
       [
         {
+          id: '1',
           lastname: 'Legrand',
           firstname: 'Rémy',
           password: 'ilesttropfort',
