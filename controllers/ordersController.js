@@ -19,7 +19,7 @@ const Order = db['Orders']
 
 exports.getAllOrders = async (req, res) => {
   try {
-    const orders = await User.findAll()
+    const orders = await Order.findAll()
     res.status(200).json(orders)
   } catch (error) {
     res.status(500).json({
