@@ -14,63 +14,63 @@ module.exports = (sequelize, DataTypes) => {
   Users.init(
     {
       lastname: {
-        type:DataTypes.STRING,
-        validate:{
+        type: DataTypes.STRING,
+        validate: {
           notEmpty: true,
-        }
+        },
       },
       firstname: {
         type: DataTypes.STRING,
-        validate:{
+        validate: {
           notEmpty: true,
-        }
+        },
       },
       email: {
         type: DataTypes.STRING,
         validate: {
           notEmpty: true,
-          isEmail: true
-        }
+          isEmail: true,
+        },
       },
       password: {
         type: DataTypes.STRING,
         validate: {
           notEmpty: true,
-        }
+        },
       },
       phone: {
         type: DataTypes.STRING,
         validate: {
           notEmpty: true,
-        }
-      }, 
+        },
+      },
       adress: {
         type: DataTypes.STRING,
         validate: {
           notEmpty: true,
-        }
+        },
       },
       zipcode: {
         type: DataTypes.STRING,
         validate: {
           notEmpty: true,
-        }
+        },
       },
       city: {
         type: DataTypes.STRING,
         validate: {
           notEmpty: true,
-        }
+        },
       },
       hiring_date: {
         type: DataTypes.DATE,
         validate: {
-          isDate: true
-        }
-      }, 
+          isDate: true,
+        },
+      },
       salary: {
         type: DataTypes.STRING,
-      }, 
+      },
       fidelitypoints: {
         type: DataTypes.STRING,
       },
@@ -78,6 +78,9 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
       },
       id_roles: {
+        type: DataTypes.INTEGER,
+      },
+      id_meetings: {
         type: DataTypes.INTEGER,
       },
     },
