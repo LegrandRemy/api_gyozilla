@@ -1,7 +1,7 @@
 const {
     tokenRoute,
-    authRoute,
     usersRoute,
+    authRoute,
     suppliersRoute,
     alertsRoute,
     contract_typesRoute,
@@ -66,8 +66,8 @@ app.use(session({
     cookie: { secure: true }
 }));
 app.use(tokenRoute);
-app.use(authRoute);
 app.use(usersRoute)
+app.use(authRoute);
 app.use(suppliersRoute)
 app.use(alertsRoute)
 app.use(contract_typesRoute)

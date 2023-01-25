@@ -94,7 +94,7 @@ exports.getAllUsers = async (req, res) => {
 exports.getUser = async (req, res) => {
   try {
     const user = await User.findByPk(req.params.id)
-    if (user !== null) {
+    if (user) {
       res.status(200).json(user);
     } else {
       res.status(404).json({

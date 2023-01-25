@@ -13,16 +13,23 @@ const options = {
 //Register Form
 router.post('/api/users/register', async (req, res) => {
     bcrypt.hash(req.body.password, 10, async (err, hash) => {
-            if (err) return res.status(500).json({
-                message: 'Erreur serveur'
-            });
-            let data = {
-                ...req.body,
-                password: hash
-            }
-            try {
-            const email_isExist = await User.findOne( {email: req.body.email} );
-            if (email_isExist) return res.status(401).send({message: 'L\'adresse email existe déjà'});
+        if (err) return res.status(500).json({
+            message: 'Erreur serveur'
+        });
+        let data = {
+            ...req.body,
+            password: hash
+        }
+        try {
+            const email_isExist = await User.findOne(
+                {
+                    where: { email: req.body.email }
+                },
+                {
+                    email: req.body.email
+                }
+            );
+            if (email_isExist) return res.status(401).send({ message: 'L\'adresse email existe déjà' });
             const newUser = await User.create(data);
             res.json({
                 message: 'Création',
@@ -46,8 +53,8 @@ router.post('/api/users/login', async (req, res) => {
             }
         });
         //On verifie si l'email existe
-        if (!user) return res.status(400).send({message:'L\'email n\'existe pas'});
-    
+        if (!user) return res.status(400).send({ message: 'L\'email n\'existe pas' });
+
         //On contrôle le mp en post et celui hasher
         bcrypt.compare(req.body.password, user.password, (err, result) => {
             if (err) {
@@ -61,12 +68,12 @@ router.post('/api/users/login', async (req, res) => {
                 });
             }
         })
-    
+
         //On créée le token en lui assignant le user.id, la clef presente dans .env et la durée d'expiration
-        const token = jwt.sign({id: user.id}, process.env.JWT_SECRET, options);
-        res.send({token: token});
+        const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, options);
+        res.send({ token: token });
     } catch (error) {
-        res.send({error:error.message});
+        res.send({ error: error.message });
     }
 })
 
