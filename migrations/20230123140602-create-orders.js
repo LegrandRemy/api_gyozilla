@@ -13,7 +13,7 @@ module.exports = {
         type: Sequelize.STRING,
       },
       payement_at: {
-        type: Sequelize.STRING,
+        type: Sequelize.DATE,
       },
       price: {
         type: Sequelize.STRING,

@@ -13,8 +13,8 @@ module.exports = (sequelize, DataTypes) => {
   }
   Meetings.init(
     {
-      end_hour: DataTypes.STRING,
-      start_hour: DataTypes.STRING,
+      end_hour: DataTypes.DATE,
+      start_hour: DataTypes.DATE,
     },
     {
       sequelize,

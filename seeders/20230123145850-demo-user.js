@@ -8,10 +8,11 @@ module.exports = {
       [
         {
           lastname: 'Legrand',
-          firstname: 'Toto',
-          email: 'toto@lamanu.com',
-          phone: '0669785412',
-          adress: '69 Rue de la biere brassee',
+          firstname: 'Rémy',
+          password: 'ilesttropfort',
+          email: 'example@example.com',
+          phone: '0627662711',
+          adress: '69 Rue de la poupée qui tousse',
           zipcode: '80260',
           city: 'Chez Wam',
           hiring_date: new Date(),
