@@ -5,9 +5,9 @@ const { auth } = require('../helpers/verifyToken');
 
 
 router.get('/api/users', auth, userController.getAllUsers);
-router.get('/api/users/:id', userController.getUser);
-router.post('/api/users', userController.createUser);
-router.put('/api/users/:id', userController.updateUser);
-router.delete('/api/users/:id', userController.deleteUser);
+router.get('/api/users/:id',auth, userController.getUser);
+router.post('/api/users',auth, userController.createUser);
+router.put('/api/users/:id',auth, userController.updateUser);
+router.delete('/api/users/:id',auth, userController.deleteUser);
 
 module.exports = router;

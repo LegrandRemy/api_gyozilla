@@ -21,6 +21,8 @@ router.post('/api/users/register', async (req, res) => {
                 password: hash
             }
             try {
+            const email_isExist = await User.findOne( {email: req.body.email} );
+            if (email_isExist) return res.status(401).send({message: 'L\'adresse email existe déjà'});
             const newUser = await User.create(data);
             res.json({
                 message: 'Création',
