@@ -1,5 +1,5 @@
-const db = require('../models/index')
-const User = db['Users']
+const db = require('../models/index');
+const User = db['Users'];
 
 exports.is_exist = async (email) => {
     User.findOne({
