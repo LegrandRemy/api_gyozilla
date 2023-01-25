@@ -4,23 +4,23 @@ const measurement_unitController = require('../controllers/measurement_unitsCont
 
 router.get(
   '/api/measurement_units',
-  measurement_unitController.getAllmeasurement_units,
+  measurement_unitController.getAllMeasurement_units,
 )
 router.get(
   '/api/measurement_units/:id',
-  measurement_unitController.getmeasurement_unit,
+  measurement_unitController.getMeasurement_unit,
 )
 router.post(
   '/api/measurement_units',
-  measurement_unitController.createmeasurement_unit,
+  measurement_unitController.createMeasurement_unit,
 )
 router.put(
   '/api/measurement_units/:id',
-  measurement_unitController.updatemeasurement_unit,
+  measurement_unitController.updateMeasurement_unit,
 )
 router.delete(
   '/api/measurement_units/:id',
-  measurement_unitController.deletemeasurement_unit,
+  measurement_unitController.deleteMeasurement_unit,
 )
 
 module.exports = router

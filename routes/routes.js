@@ -5,7 +5,7 @@ const alertsRoute = require('./alerts')
 const categoriesRoute = require('./categories')
 const contract_typesRoute = require('./contract_types')
 const hourly_typesRoute = require('./hourly_types')
-const measurementUnitsRoute = require('./measurementUnits')
+const measurement_unitsRoute = require('./measurement_units')
 const meetingsRoute = require('./meetings')
 const ordersRoute = require('./orders')
 const product_categoriesRoute = require('./product_categories')
@@ -29,7 +29,7 @@ module.exports = {
     categoriesRoute,
     contract_typesRoute,
     hourly_typesRoute,
-    measurementUnitsRoute,
+    measurement_unitsRoute,
     meetingsRoute,
     ordersRoute,
     product_categoriesRoute,

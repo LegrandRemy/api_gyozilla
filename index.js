@@ -6,7 +6,7 @@ const {
     contract_typesRoute,
     categoriesRoute,
     hourly_typesRoute,
-    measurementUnitsRoute,
+    measurement_unitsRoute,
     meetingsRoute,
     ordersRoute,
     product_categoriesRoute,
@@ -70,7 +70,7 @@ app.use(alertsRoute)
 app.use(contract_typesRoute)
 app.use(categoriesRoute)
 app.use(hourly_typesRoute)
-app.use(measurementUnitsRoute)
+app.use(measurement_unitsRoute)
 app.use(meetingsRoute)
 app.use(ordersRoute)
 app.use(product_categoriesRoute)
@@ -93,5 +93,3 @@ app.use(
     swaggerUi.serve,
     swaggerUi.setup(specs, { explorer: false })
 );
-
-console.log(new DateTime)
