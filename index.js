@@ -5,6 +5,13 @@ const {
     alertsRoute,
     contract_typesRoute,
     categoriesRoute,
+    hourly_typesRoute,
+    measurementUnitsRoute,
+    meetingsRoute,
+    ordersRoute,
+    product_categoriesRoute,
+    product_ordersRoute,
+    product_ressourcesRoute,
     users_meetingsRoute,
     stepsRoute,
     rolesRoute,
@@ -62,6 +69,13 @@ app.use(suppliersRoute)
 app.use(alertsRoute)
 app.use(contract_typesRoute)
 app.use(categoriesRoute)
+app.use(hourly_typesRoute)
+app.use(measurementUnitsRoute)
+app.use(meetingsRoute)
+app.use(ordersRoute)
+app.use(product_categoriesRoute)
+app.use(product_ordersRoute)
+app.use(product_ressourcesRoute)
 app.use(users_meetingsRoute)
 app.use(stepsRoute)
 app.use(sales_revenuesRoute)
