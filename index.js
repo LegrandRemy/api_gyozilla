@@ -93,3 +93,5 @@ app.use(
     swaggerUi.serve,
     swaggerUi.setup(specs, { explorer: false })
 );
+
+console.log(new DateTime)
