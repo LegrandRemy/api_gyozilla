@@ -8,6 +8,12 @@ const {
   stepsRoute,
   rolesRoute,
   sales_revenuesRoute,
+  ressourcesRoute,
+  ressources_typesRoute,
+  ressources_suppliersRoute,
+  ratingsRoute,
+  receiptsRoute,
+  productsRoute,
 } = require('./routes/routes')
 const express = require('express')
 const app = express()
@@ -38,6 +44,12 @@ app.use(users_meetingsRoute)
 app.use(stepsRoute)
 app.use(sales_revenuesRoute)
 app.use(rolesRoute)
+app.use(ressourcesRoute)
+app.use(ressources_typesRoute)
+app.use(ressources_suppliersRoute)
+app.use(receiptsRoute)
+app.use(ratingsRoute)
+app.use(productsRoute)
 app.get('/', (req, res) => res.send('API Gyozilla'))
 
 app.listen(port, () => console.log(`Toto part au ski avec Martine  ${port}!`))
