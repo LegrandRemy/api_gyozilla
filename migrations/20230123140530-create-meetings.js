@@ -17,10 +17,10 @@ module.exports = {
         },
       },
       end_hour: {
-        type: Sequelize.STRING,
+        type: Sequelize.DATE,
       },
       start_hour: {
-        type: Sequelize.STRING,
+        type: Sequelize.DATE,
       },
       createdAt: {
         allowNull: false,
