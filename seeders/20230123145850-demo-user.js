@@ -9,6 +9,7 @@ module.exports = {
         {
           lastname: 'Legrand',
           firstname: 'Rémy',
+          password: 'ilesttropfort',
           email: 'example@example.com',
           phone: '0627662711',
           adress: '69 Rue de la poupée qui tousse',
@@ -16,8 +17,8 @@ module.exports = {
           city: 'Le Puy Sans Fond',
           hiring_date: new Date(),
           salary: 1,
-          id_contract_types: 2,
-          id_roles: 1,
+          id_contract_types: null,
+          id_roles: null,
           createdAt: new Date(),
           updatedAt: new Date(),
         },

@@ -8,7 +8,6 @@ module.exports = {
       [
         {
           contact_name: 'Jean Mouloud',
-          adress: '666 Rue de la lave en fusion',
           phone: '0627662711',
           email: 'eldiablo@jelivre.com',
           compagny: 'Les producteurs du centre de la terre',

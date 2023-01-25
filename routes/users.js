@@ -40,6 +40,12 @@
  *         fidelitypoints:
  *           type: string
  *           description: Points de fidélité du client si client
+ *         contract_types:
+ *           type: int
+ *           description: Type de contrat de l'employé
+ *         roles:
+ *           type: int
+ *           description: Role de l'employé
  *       example:
  *         id: 1
  *         lastname: Robert
@@ -52,6 +58,8 @@
  *         hiring_date: 2020-05-20
  *         salary: 1800
  *         fidelitypoints: 50
+ *         contract_types: 1
+ *         roles: 1
  */
 
 /**
@@ -61,75 +69,89 @@
  *   description: API pour les utilisateurs
  * /api/users:
  *   get:
- *     summary: Liste tous les utilisateurs
+ *     security:
+ *       - bearerAuth: []
+ *     summary: Lister tous les utilisateurs
  *     tags: [users]
  *     parameters:
- *       - in: path
+ *       - in: query
  *         name: id
  *         schema:
  *           type: int
  *         required: false
  *         description: id de l'utilisateur
- *       - in: path
+ *       - in: query
  *         name: lastname
  *         schema:
  *           type: string
  *         required: false
  *         description: nom de l'utilisateur
- *       - in: path
+ *       - in: query
  *         name: firstname
  *         schema:
  *           type: string
  *         required: false
  *         description: prénom de l'utilisateur
- *       - in: path
+ *       - in: query
  *         name: email
  *         schema:
  *           type: string
  *         required: false
  *         description: Email de l'utilisateur
- *       - in: path
+ *       - in: query
  *         name: phone
  *         schema:
  *           type: string
  *         required: false
  *         description: Téléphone de l'utilisateur
- *       - in: path
+ *       - in: query
  *         name: adress
  *         schema:
  *           type: string
  *         required: false
  *         description: Adresse de l'utilisateur
- *       - in: path
+ *       - in: query
  *         name: zipcode
  *         schema:
  *           type: string
  *         required: false
  *         description: Code postal de l'utilisateur
- *       - in: path
+ *       - in: query
  *         name: city
  *         schema:
  *           type: string
  *         required: false
  *         description: Ville de l'utilisateur
- *       - in: path
+ *       - in: query
  *         name: hiring_date
  *         schema:
  *           type: string
  *         required: false
  *         description: Date d'embauche de l'employé
- *       - in: path
+ *       - in: query
  *         name: salary
  *         schema:
  *           type: string
  *         required: false
  *         description: Salaire de l'employé
- *       - in: path
+ *       - in: query
  *         name: fidelitypoints
  *         schema:
  *           type: string
  *         required: false
  *         description: Points de fidélité de l'utilisateur
+ *       - in: query
+ *         name: contract_types
+ *         schema:
+ *           type: int
+ *         required: false
+ *         description: Type de contract de l'employé
+ *       - in: query
+ *         name: roles
+ *         schema:
+ *           type: int
+ *         required: false
+ *         description: Role de l'employé
  *     responses:
  *       200:
  *         description: La liste de tous les utilisateurs
@@ -155,7 +177,7 @@
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/users'
- *       500:
+ *       404:
  *         description: Une erreur est survenue.
  * /api/users/{id}:
  *   get:
@@ -171,13 +193,13 @@
  *     responses:
  *       200:
  *         description: Utilisateur par l'id
- *         contens:
+ *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/users'
  *       404:
  *         description: L'utilisateur n'a pas été trouvé.
- *   put:
+ *   patch:
  *    summary: Mise à jour de l'utilisateur par son id
  *    tags: [users]
  *    parameters:
@@ -214,7 +236,7 @@
  *           type: string
  *         required: true
  *         description: id de l'utilisateur
- *
+ *  
  *     responses:
  *       200:
  *         description: L'utilisateur a été supprimé.
@@ -225,11 +247,12 @@
 const express = require('express');
 const router = express.Router();
 const userController = require('../controllers/usersController');
+const { verifyToken } = require("../controllers/tokenController");
 
-router.get('/api/users/', userController.getAllUsers);
-router.get('/api/users/:id', userController.getUser);
-router.post('/api/users', userController.createUser);
-router.put('/api/users/:id', userController.updateUser);
-router.delete('/api/users/:id', userController.deleteUser);
+router.get("/api/users/", verifyToken, userController.getAllUsers);
+router.get('/api/users/:id', verifyToken, userController.getUser);
+router.post('/api/users', verifyToken, userController.createUser);
+router.patch('/api/users/:id', verifyToken, userController.updateUser);
+router.delete('/api/users/:id', verifyToken, userController.deleteUser);
 
 module.exports = router;
