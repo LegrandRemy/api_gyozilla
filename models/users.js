@@ -13,19 +13,73 @@ module.exports = (sequelize, DataTypes) => {
   }
   Users.init(
     {
-      lastname: DataTypes.STRING,
-      firstname: DataTypes.STRING,
-      password: DataTypes.STRING,
-      email: DataTypes.STRING,
-      phone: DataTypes.STRING,
-      adress: DataTypes.STRING,
-      zipcode: DataTypes.STRING,
-      city: DataTypes.STRING,
-      hiring_date: DataTypes.DATE,
-      salary: DataTypes.STRING,
-      fidelitypoints: DataTypes.STRING,
-      id_contract_types: DataTypes.INTEGER,
-      id_roles: DataTypes.INTEGER,
+      lastname: {
+        type:DataTypes.STRING,
+        validate:{
+          notEmpty: true,
+        }
+      },
+      firstname: {
+        type: DataTypes.STRING,
+        validate:{
+          notEmpty: true,
+        }
+      },
+      email: {
+        type: DataTypes.STRING,
+        validate: {
+          notEmpty: true,
+          isEmail: true
+        }
+      },
+      password: {
+        type: DataTypes.STRING,
+        validate: {
+          notEmpty: true,
+        }
+      },
+      phone: {
+        type: DataTypes.STRING,
+        validate: {
+          notEmpty: true,
+        }
+      }, 
+      adress: {
+        type: DataTypes.STRING,
+        validate: {
+          notEmpty: true,
+        }
+      },
+      zipcode: {
+        type: DataTypes.STRING,
+        validate: {
+          notEmpty: true,
+        }
+      },
+      city: {
+        type: DataTypes.STRING,
+        validate: {
+          notEmpty: true,
+        }
+      },
+      hiring_date: {
+        type: DataTypes.DATE,
+        validate: {
+          isDate: true
+        }
+      }, 
+      salary: {
+        type: DataTypes.STRING,
+      }, 
+      fidelitypoints: {
+        type: DataTypes.STRING,
+      },
+      id_contract_types: {
+        type: DataTypes.INTEGER,
+      },
+      id_roles: {
+        type: DataTypes.INTEGER,
+      },
     },
     {
       sequelize,
