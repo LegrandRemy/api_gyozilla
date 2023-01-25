@@ -1,26 +1,12 @@
 const db = require('../models/index')
 const Alert = db['Alerts']
 
-// exports.is_exist = async (email) => {
-//     User.findOne({
-//         $or: [
-//             {email: email}
-//         ]
-//     }, (err, user) => {
-//         if (err) throw err;
-//         if (user) {
-//             return true;
-//         } else {
-//             return false;
-//         }
-//     });
-// }
-
 exports.getAllAlerts = async (req, res) => {
   try {
     const alerts = await Alert.findAll()
     res.status(200).json(alerts)
   } catch (error) {
+    console.log('toto est a la mer')
     res.status(500).json({
       message: 'Impossible de récupérer les alertes',
       error: error.message,

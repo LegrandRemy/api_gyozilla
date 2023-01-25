@@ -20,7 +20,12 @@
     "jsonwebtoken": "^9.0.0",
     "mongoose": "^6.8.4",
     "mysql2": "^3.0.1",
-    "sequelize": "^6.28.0"
+    "pg": "^8.8.0",
+    "sequelize": "^6.28.0",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-json": "^2.0.0",
+    "swagger-tools": "^0.10.4",
+    "swagger-ui-express": "^4.6.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.20",

@@ -14,10 +14,10 @@
     "dialect": "mysql"
   },
   "production": {
-    "username": "root",
-    "password": null,
-    "database": "database_production",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
+    "username": "user_api_gyozilla_db",
+    "password": "wcE7ApGUFaFW7ajmDoLnBpVOQJg7G9rm",
+    "database": "gyozilla_db",
+    "host": "dpg-cf8fgi1gp3jqqerqcrlg-a:5432",
+    "dialect": "postgres"
   }
 }
