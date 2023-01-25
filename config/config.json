@@ -17,7 +17,7 @@
     "username": "user_api_gyozilla_db",
     "password": "wcE7ApGUFaFW7ajmDoLnBpVOQJg7G9rm",
     "database": "gyozilla_db",
-    "host": "dpg-cf8fgi1gp3jqqerqcrlg-a:5432",
+    "host": "dpg-cf8fgi1gp3jqqerqcrlg-a",
     "dialect": "postgres"
   }
 }
