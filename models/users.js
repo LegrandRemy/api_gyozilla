@@ -26,6 +26,7 @@ module.exports = (sequelize, DataTypes) => {
       fidelitypoints: DataTypes.STRING,
       id_contract_types: DataTypes.INTEGER,
       id_roles: DataTypes.INTEGER,
+      id_meeting: DataTypes.INTEGER,
     },
     {
       sequelize,

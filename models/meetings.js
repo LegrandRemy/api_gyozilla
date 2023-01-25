@@ -15,6 +15,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       end_hour: DataTypes.DATE,
       start_hour: DataTypes.DATE,
+      id_users: DataTypes.INTEGER,
     },
     {
       sequelize,
