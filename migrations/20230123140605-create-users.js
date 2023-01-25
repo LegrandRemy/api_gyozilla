@@ -21,9 +21,6 @@ module.exports = {
       password: {
         type: Sequelize.STRING,
       },
-      password_confirmation: {
-        type: Sequelize.STRING,
-      },
       phone: {
         type: Sequelize.STRING,
       },
