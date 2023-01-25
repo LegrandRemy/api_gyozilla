@@ -6,6 +6,7 @@ exports.getAllAlerts = async (req, res) => {
     const alerts = await Alert.findAll()
     res.status(200).json(alerts)
   } catch (error) {
+    console.log('toto est a la mer')
     res.status(500).json({
       message: 'Impossible de récupérer les alertes',
       error: error.message,
