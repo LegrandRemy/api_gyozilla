@@ -1,5 +1,6 @@
 const {
     tokenRoute,
+    authRoute,
     usersRoute,
     suppliersRoute,
     alertsRoute,
@@ -25,6 +26,7 @@ const {
 } = require('./routes/routes')
 const express = require('express')
 const app = express()
+
 const port = 3000
 const swaggerJsdoc = require('swagger-jsdoc')
 const swaggerUi = require('swagger-ui-express')
@@ -64,6 +66,7 @@ app.use(session({
     cookie: { secure: true }
 }));
 app.use(tokenRoute);
+app.use(authRoute);
 app.use(usersRoute)
 app.use(suppliersRoute)
 app.use(alertsRoute)
