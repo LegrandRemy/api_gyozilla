@@ -10,7 +10,7 @@
  *         id:
  *           type: int
  *           description: ID du produit
- *         working:
+ *         label:
  *           type: string
  *           description: Libellé du produit
  *         price:
@@ -24,7 +24,7 @@
  *           description: ID recette du produit  
  *       example:
  *         id: 1
- *         working: Nems
+ *         label: Nems
  *         price: 5€
  *         reference: 884569
  *         id_receipts: 2
@@ -49,7 +49,7 @@
  *         required: false
  *         description: id du produit
  *       - in: query
- *         name: working
+ *         name: label
  *         schema:
  *           type: string
  *         required: false
