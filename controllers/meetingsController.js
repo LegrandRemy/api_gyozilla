@@ -1,5 +1,7 @@
 const db = require('../models/index')
+const { getAllUsers_meetings } = require('./users_meetingsController')
 const Meeting = db['Meetings']
+const Users_meetings = db['Users_meetings']
 
 // exports.is_exist = async (email) => {
 //   User.findOne(
@@ -42,9 +44,22 @@ exports.getMeeting = async (req, res) => {
 }
 
 exports.createMeeting = async (req, res) => {
+  let data = {
+    end_hour: req.body.end_hour,
+    start_hour: req.body.start_hour,
+  }
   try {
-    const newMeeting = await Meeting.create(req.body)
-    res.status(201).json({ message: 'created', data: newMeeting })
+    const newMeeting = await Meeting.create(data)
+    if (newMeeting) {
+      req.body.id_users.map((item) => {
+        Users_meetings.create({
+          id_meetings: newMeeting.id,
+          id_users: item,
+        })
+      })
+
+      res.status(201).json({ message: 'created', data: newMeeting })
+    }
   } catch (error) {
     res.status(500).json({
       message: "Le rendez-vous n'a pas été créé",

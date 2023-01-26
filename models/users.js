@@ -80,9 +80,6 @@ module.exports = (sequelize, DataTypes) => {
       id_roles: {
         type: DataTypes.INTEGER,
       },
-      id_meetings: {
-        type: DataTypes.INTEGER,
-      },
     },
     {
       sequelize,
