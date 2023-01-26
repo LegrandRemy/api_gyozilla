@@ -15,10 +15,10 @@ module.exports = {
       end: {
         type: Sequelize.DATE,
       },
-      id_hourlies_types: {
+      id_hourly_types: {
         type: Sequelize.INTEGER,
         references: {
-          model: 'Hourlies_types',
+          model: 'Hourly_types',
           key: 'id',
         },
       },
