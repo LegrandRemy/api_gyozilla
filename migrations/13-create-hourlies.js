@@ -18,7 +18,7 @@ module.exports = {
       id_hourlies_types: {
         type: Sequelize.INTEGER,
         references: {
-          model: 'Hourlies_types',
+          model: 'Hourly_types',
           key: 'id',
         },
       },

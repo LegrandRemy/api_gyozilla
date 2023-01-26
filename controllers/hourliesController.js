@@ -13,7 +13,7 @@ exports.getAllHourlies = async (req, res) => {
   }
 }
 
-exports.getOrder = async (req, res) => {
+exports.getHourly = async (req, res) => {
   try {
     const hourlies = await Hourlies.findByPk(req.params.id)
     res.status(200).json(hourlies)
@@ -25,7 +25,7 @@ exports.getOrder = async (req, res) => {
   }
 }
 
-exports.createHourlies = async (req, res) => {
+exports.createHourly = async (req, res) => {
   try {
     const newHourlies = await Hourlies.create(req.body)
     res.status(201).json({ message: 'created', data: newHourlies })
@@ -37,7 +37,7 @@ exports.createHourlies = async (req, res) => {
   }
 }
 
-exports.updateHourlies = async (req, res) => {
+exports.updateHourly = async (req, res) => {
   try {
     const updatedHourlies = await Hourlies.update(req.body, {
       where: {
@@ -53,7 +53,7 @@ exports.updateHourlies = async (req, res) => {
   }
 }
 
-exports.deleteHourlies = async (req, res) => {
+exports.deleteHourly = async (req, res) => {
   try {
     await Hourlies.findByPk(req.params.id)
     res.status(200).json({
