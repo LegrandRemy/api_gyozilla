@@ -9,13 +9,10 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      step_visual: {
-        type: Sequelize.STRING,
+      note: {
+        type: Sequelize.INTEGER,
       },
-      step_quality: {
-        type: Sequelize.STRING,
-      },
-      step_taste: {
+      comment: {
         type: Sequelize.STRING,
       },
       createdAt: {

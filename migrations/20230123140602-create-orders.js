@@ -18,9 +18,6 @@ module.exports = {
       price: {
         type: Sequelize.STRING,
       },
-      id_steps: {
-        type: Sequelize.INTEGER,
-      },
       id_sales_revenues: {
         type: Sequelize.INTEGER,
       },

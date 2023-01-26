@@ -13,9 +13,8 @@ module.exports = (sequelize, DataTypes) => {
   }
   Ratings.init(
     {
-      step_visual: DataTypes.STRING,
-      step_quality: DataTypes.STRING,
-      step_taste: DataTypes.STRING,
+      note: DataTypes.INTEGER,
+      comment: DataTypes.STRING
     },
     {
       sequelize,
