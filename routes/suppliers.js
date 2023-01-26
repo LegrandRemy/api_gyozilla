@@ -154,7 +154,6 @@
  *           type: string
  *         required: true
  *         description: id du fournisseur
- *
  *     responses:
  *       200:
  *         description: Le fournisseur a été supprimé.
@@ -165,11 +164,12 @@
 const express = require('express')
 const router = express.Router()
 const suppliersController = require('../controllers/suppliersController')
+const { verifyToken } = require("../controllers/tokenController");
 
-router.get('/api/suppliers', suppliersController.getAllSuppliers)
-router.get('/api/suppliers/:id', suppliersController.getSupplier)
-router.post('/api/suppliers', suppliersController.createSupplier)
-router.put('/api/suppliers/:id', suppliersController.updateSupplier)
-router.delete('/api/suppliers/:id', suppliersController.deleteSupplier)
+router.get('/api/suppliers', verifyToken, suppliersController.getAllSuppliers)
+router.get('/api/suppliers/:id', verifyToken, suppliersController.getSupplier)
+router.post('/api/suppliers', verifyToken, suppliersController.createSupplier)
+router.put('/api/suppliers/:id', verifyToken, suppliersController.updateSupplier)
+router.delete('/api/suppliers/:id', verifyToken, suppliersController.deleteSupplier)
 
 module.exports = router
