@@ -4,32 +4,25 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.bulkInsert(
-      'ratings',
+      'sales_revenues',
       [
         {
-          note: '5',
-          comment: 'Très très bon, je reviendrai vite',
+          ca: 20000,
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
-          note: '3',
-          comment: 'Bon mais j\'ai connu mieux',
-          id_meetings: 1,
+          ca: 18560,
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
-          note: '1',
-          comment: 'Bof, pas très bon',
-          id_meetings: 1,
+          ca: 45263,
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
-          note: '0',
-          comment: 'Très mediocre, ...',
-          id_meetings: 1,
+          ca: 1245,
           createdAt: new Date(),
           updatedAt: new Date(),
         },
@@ -39,7 +32,7 @@ module.exports = {
   },
 
   async down(queryInterface, Sequelize) {
-    await queryInterface.bulkDelete('ratings', null, {})
+    await queryInterface.bulkDelete('sales_revenues', null, {})
   },
 }
 

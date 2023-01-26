@@ -1,25 +1,41 @@
-'use strict';
+'use strict'
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
-  async up (queryInterface, Sequelize) {
-    /**
-     * Add seed commands here.
-     *
-     * Example:
-     * await queryInterface.bulkInsert('People', [{
-     *   name: 'John Doe',
-     *   isBetaMember: false
-     * }], {});
-    */
+  async up(queryInterface, Sequelize) {
+    await queryInterface.bulkInsert(
+      'contract_types',
+      [
+        {
+          contact_name: 'Bertrand DECOUPE',
+          phone: '0612587963',
+          email: 'decoupe@exemple.com',
+          compagny: 'Le boucher du coin perdu',
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          contact_name: 'Jean JECUEILLE',
+          phone: '0678369410',
+          email: 'jeceuille@exemple.com',
+          compagny: 'Les legumes du soleil de Picardie',
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          contact_name: 'Marcel JAPAN',
+          phone: '0641397426',
+          email: 'japan@exemple.com',
+          compagny: 'Tout pour les sushis',
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+      ],
+      {},
+    )
   },
 
-  async down (queryInterface, Sequelize) {
-    /**
-     * Add commands to revert seed here.
-     *
-     * Example:
-     * await queryInterface.bulkDelete('People', null, {});
-     */
-  }
-};
+  async down(queryInterface, Sequelize) {
+    await queryInterface.bulkDelete('contract_types', null, {})
+  },
+}
