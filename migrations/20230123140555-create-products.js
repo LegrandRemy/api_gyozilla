@@ -18,6 +18,9 @@ module.exports = {
       reference: {
         type: Sequelize.STRING,
       },
+      image: {
+        type: Sequelize.STRING,
+      },
       id_receipts: {
         type: Sequelize.INTEGER,
       },
