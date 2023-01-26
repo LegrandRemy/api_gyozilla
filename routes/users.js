@@ -62,8 +62,8 @@
  *         hiring_date: 2020-05-20
  *         salary: 1800
  *         fidelitypoints: 50
- *         contract_types: 1
- *         roles: 1
+ *         id_contract_types: 1
+ *         id_roles: 1
  */
 
 /**
@@ -143,13 +143,13 @@
  *         required: false
  *         description: Points de fidélité de l'utilisateur
  *       - in: query
- *         name: contract_types
+ *         name: id_contract_types
  *         schema:
  *           type: int
  *         required: false
  *         description: Type de contract de l'employé
  *       - in: query
- *         name: roles
+ *         name: id_roles
  *         schema:
  *           type: int
  *         required: false
@@ -167,7 +167,7 @@
  *     summary: Créer un nouvel utilisateur
  *     tags: [users]
  *     requestBody:
- *       required: true
+ *       required: false
  *       content:
  *         application/json:
  *           schema:
@@ -189,7 +189,7 @@
  *       - in: path
  *         name: id
  *         schema:
- *           type: string
+ *           type: int
  *         required: true
  *         description: Utilisateur par l'id
  *     responses:
@@ -208,7 +208,7 @@
  *      - in: path
  *        name: id
  *        schema:
- *          type: string
+ *          type: int
  *        required: true
  *        description: id de l'utilisateur
  *    requestBody:
@@ -235,7 +235,7 @@
  *       - in: path
  *         name: id
  *         schema:
- *           type: string
+ *           type: int
  *         required: true
  *         description: id de l'utilisateur
  *  
