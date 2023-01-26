@@ -9,7 +9,7 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      working: {
+      label: {
         type: Sequelize.STRING,
       },
       price: {
