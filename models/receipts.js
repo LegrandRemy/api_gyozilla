@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
   }
   Receipts.init(
     {
-      wording: DataTypes.STRING,
+      label: DataTypes.STRING,
       reference: DataTypes.INTEGER,
       id_step: DataTypes.INTEGER,
     },

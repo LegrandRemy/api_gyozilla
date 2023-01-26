@@ -83,7 +83,6 @@ exports.getAllUsers = async (req, res) => {
         'fidelitypoints',
         'id_contract_types',
         'id_roles',
-        'id_meetings',
       ],
       where: {
         [Op.and]: [where],
