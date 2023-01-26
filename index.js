@@ -90,7 +90,7 @@ app.use(receiptsRoute)
 app.use(ratingsRoute)
 app.use(productsRoute)
 app.get('/', (req, res) => res.send('API Gyozilla'));
-app.listen(port, () => console.log(`Gyozilla est sur le port ${port} !`));
+app.listen(port, () => console.log(`Visiter l'API Gyozilla sur http://localhost:${port}/api`));
 app.use(
     "/api",
     swaggerUi.serve,
