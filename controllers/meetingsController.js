@@ -51,10 +51,13 @@ exports.createMeeting = async (req, res) => {
   try {
     const newMeeting = await Meeting.create(data)
     if (newMeeting) {
-      await Users_meetings.create({
-        id_meetings: newMeeting.id,
-        id_users: req.body.id_users,
+      req.body.id_users.map((item) => {
+        Users_meetings.create({
+          id_meetings: newMeeting.id,
+          id_users: item,
+        })
       })
+
       res.status(201).json({ message: 'created', data: newMeeting })
     }
   } catch (error) {

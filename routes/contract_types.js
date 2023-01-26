@@ -35,91 +35,91 @@
  *         schema:
  *           type: int
  *         required: false
- *         description: id du type de
+ *         description: id du type de contrat
  *       - in: query
- *         name: lastname
+ *         name: type
  *         schema:
  *           type: string
  *         required: false
- *         description: nom de l'alerte
+ *         description: nom du type de contrat
  *
  *     responses:
  *       200:
- *         description: La liste de toutes les alertes
+ *         description: La liste de tous les types de contrat
  *         content:
  *           application/json:
  *             schema:
  *               type: array
  *               items:
- *                 $ref: '#/components/schemas/alerts'
+ *                 $ref: '#/components/schemas/contract_types'
  *   post:
- *     summary: Créer une nouvelle alerte
- *     tags: [alerts]
+ *     summary: Créer un nouveau type de contrat
+ *     tags: [contract_types]
  *     requestBody:
  *       required: true
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/alerts'
+ *             $ref: '#/components/schemas/contract_types'
  *     responses:
  *       200:
- *         description: L'alerte créée.
+ *         description: Le type de contrat a été créé.
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/alerts'
+ *               $ref: '#/components/schemas/contract_types'
  *       404:
  *         description: Une erreur est survenue.
  * /api/alerts/{id}:
  *   get:
- *     summary: Récupérer l'alerte par l'id
- *     tags: [alerts]
+ *     summary: Récupérer le type de contrat par l'id
+ *     tags: [contract_types]
  *     parameters:
  *       - in: path
  *         name: id
  *         schema:
  *           type: string
  *         required: true
- *         description: Alerte par l'id
+ *         description: Type de contrat par l'id
  *     responses:
  *       200:
- *         description: Alerte par l'id
+ *         description: Type de contrat par l'id
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/alerts'
+ *               $ref: '#/components/schemas/contract_types'
  *       404:
- *         description: L'alerte n'a pas été trouvée.
+ *         description: Le type de contrat n'a pas été trouvé.
  *   patch:
- *    summary: Mise à jour de l'alerte par son id
- *    tags: [alerts]
+ *    summary: Mise à jour du type de contrat par son id
+ *    tags: [contract_types]
  *    parameters:
  *      - in: path
  *        name: id
  *        schema:
  *          type: string
  *        required: true
- *        description: id de l'alerte
+ *        description: id du type de contrat
  *    requestBody:
  *      required: true
  *      content:
  *        application/json:
  *          schema:
- *            $ref: '#/components/schemas/alerts'
+ *            $ref: '#/components/schemas/contract_types'
  *    responses:
  *      200:
- *        description: L'alerte a été mise à jour
+ *        description: Le type de contrat a été mis à jour
  *        content:
  *          application/json:
  *            schema:
- *              $ref: '#/components/schemas/alerts'
+ *              $ref: '#/components/schemas/contract_types'
  *      404:
- *        description: L'alerte n'a pas été trouvée.
+ *        description: Le type de contrat n'a pas été trouvé.
  *      500:
  *        description: Une erreur est survenue.
  *   delete:
- *     summary: Supprimer une alerte par son id
- *     tags: [alerts]
+ *     summary: Supprimer un type de contrat par son id
+ *     tags: [contract_types]
  *     parameters:
  *       - in: path
  *         name: id
@@ -130,9 +130,9 @@
  *
  *     responses:
  *       200:
- *         description: L'alerte a été supprimée.
+ *         description: Le type de contrat a été supprimé.
  *       404:
- *         description: L'alerte n'a pas été trouvée.
+ *         description: Le type de contrat n'a pas été trouvé.
  */
 
 const express = require('express')

@@ -13,10 +13,10 @@ module.exports = (sequelize, DataTypes) => {
   }
   Ressources.init(
     {
-      working: DataTypes.STRING,
+      label: DataTypes.STRING,
       price: DataTypes.STRING,
       reference: DataTypes.STRING,
-      id_alerts: DataTypes.INTEGER,
+      quantity: DataTypes.INTEGER,
       id_ressources_types: DataTypes.INTEGER,
     },
     {
