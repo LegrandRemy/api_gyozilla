@@ -73,8 +73,6 @@
  *   description: API pour les utilisateurs
  * /api/users:
  *   get:
- *     security:
- *       - bearerAuth: []
  *     summary: Lister tous les utilisateurs
  *     tags: [users]
  *     parameters:
