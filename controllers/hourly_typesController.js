@@ -1,22 +1,6 @@
 const db = require('../models/index')
 const Hourly_type = db['Hourly_types']
 
-// exports.is_exist = async (email) => {
-//   User.findOne(
-//     {
-//       $or: [{ email: email }],
-//     },
-//     (err, user) => {
-//       if (err) throw err
-//       if (user) {
-//         return true
-//       } else {
-//         return false
-//       }
-//     },
-//   )
-// }
-
 exports.getAllHourly_types = async (req, res) => {
   try {
     const hourly_types = await Hourly_type.findAll()

@@ -1,22 +1,6 @@
 const db = require('../models/index')
 const Product_category = db['Product_categories']
 
-// exports.is_exist = async (email) => {
-//   Product_category.findOne(
-//     {
-//       $or: [{ email: email }],
-//     },
-//     (err, user) => {
-//       if (err) throw err
-//       if (user) {
-//         return true
-//       } else {
-//         return false
-//       }
-//     },
-//   )
-// }
-
 exports.getAllProduct_categories = async (req, res) => {
   try {
     const product_categories = await Product_category.findAll()

@@ -2,24 +2,22 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Products', {
+    await queryInterface.createTable('Measurement_Units', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      working: {
+      unity: {
         type: Sequelize.STRING,
       },
-      price: {
-        type: Sequelize.STRING,
-      },
-      reference: {
-        type: Sequelize.STRING,
-      },
-      id_receipts: {
+      id_ressources: {
         type: Sequelize.INTEGER,
+        references: {
+          model: 'Ressources',
+          key: 'id',
+        },
       },
       createdAt: {
         allowNull: false,
@@ -32,6 +30,6 @@ module.exports = {
     })
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Products')
+    await queryInterface.dropTable('Measurement_Units')
   },
 }

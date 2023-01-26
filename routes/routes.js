@@ -21,6 +21,7 @@ const ressources_suppliersRoute = require('./ressources_suppliers')
 const receiptsRoute = require('./receipts')
 const ratingsRoute = require('./ratings')
 const productsRoute = require('./products')
+const hourliesRoute = require('./hourlies')
 module.exports = {
   tokenRoute,
   usersRoute,
@@ -45,4 +46,5 @@ module.exports = {
   receiptsRoute,
   productsRoute,
   ratingsRoute,
+  hourliesRoute,
 }

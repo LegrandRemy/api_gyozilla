@@ -2,18 +2,35 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Measurement_Units', {
+    await queryInterface.createTable('Orders', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      unity: {
+      status: {
         type: Sequelize.STRING,
       },
-      id_ressources: {
+      payement_at: {
+        type: Sequelize.DATE,
+      },
+      price: {
+        type: Sequelize.STRING,
+      },
+      id_sales_revenues: {
         type: Sequelize.INTEGER,
+        references: {
+          model: 'Sales_revenues',
+          key: 'id',
+        },
+      },
+      id_users: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Users',
+          key: 'id',
+        },
       },
       createdAt: {
         allowNull: false,
@@ -26,6 +43,6 @@ module.exports = {
     })
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Measurement_Units')
+    await queryInterface.dropTable('Orders')
   },
 }

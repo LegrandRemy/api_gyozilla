@@ -11,9 +11,17 @@ module.exports = {
       },
       id_ressources: {
         type: Sequelize.INTEGER,
+        references: {
+          model: 'Ressources',
+          key: 'id',
+        },
       },
       id_suppliers: {
         type: Sequelize.INTEGER,
+        references: {
+          model: 'Suppliers',
+          key: 'id',
+        },
       },
       createdAt: {
         allowNull: false,
