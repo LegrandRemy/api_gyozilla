@@ -27,6 +27,7 @@ module.exports = {
         {
           lastname: 'Pliant',
           firstname: 'Martine',
+          password: 'Marcus',
           email: 'demo@demo.com',
           phone: '0612345678',
           adress: '18 Rue de la barbie qui pleure',
