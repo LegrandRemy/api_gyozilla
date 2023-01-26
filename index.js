@@ -89,10 +89,13 @@ app.use(ressources_suppliersRoute)
 app.use(receiptsRoute)
 app.use(ratingsRoute)
 app.use(productsRoute)
-app.get('/', (req, res) => res.send('API Gyozilla'))
+app.get('/', (req, res) => res.send('API Gyozilla'));
 app.listen(port, () => console.log(`Gyozilla est sur le port ${port} !`));
 app.use(
     "/api",
     swaggerUi.serve,
-    swaggerUi.setup(specs, { explorer: false })
+    swaggerUi.setup(specs, { explorer: false }),
 );
+app.use((req, res, next) => {
+    res.status(404).send("Oups la page est introuvable");
+});
