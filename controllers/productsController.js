@@ -8,8 +8,8 @@ exports.getAllProducts = async (req, res) => {
     if (req.query.id) {
       where.id = req.query.id
     }
-    if (req.query.working) {
-      where.working = req.query.working
+    if (req.query.label) {
+      where.label = req.query.label
     }
     if (req.query.price) {
       where.price = req.query.price
@@ -23,7 +23,7 @@ exports.getAllProducts = async (req, res) => {
     const products = await Product.findAll({
       attributes: [
         'id',
-        'working',
+        'label',
         'price',
         'reference',
         'id_receipts'
