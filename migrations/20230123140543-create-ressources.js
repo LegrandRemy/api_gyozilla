@@ -9,7 +9,7 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      working: {
+      label: {
         type: Sequelize.STRING,
       },
       price: {
@@ -18,7 +18,7 @@ module.exports = {
       reference: {
         type: Sequelize.STRING,
       },
-      id_alerts: {
+      quantity: {
         type: Sequelize.INTEGER,
       },
       id_ressources_types: {

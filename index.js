@@ -3,7 +3,6 @@ const {
     usersRoute,
     authRoute,
     suppliersRoute,
-    alertsRoute,
     contract_typesRoute,
     categoriesRoute,
     hourly_typesRoute,
@@ -12,7 +11,7 @@ const {
     ordersRoute,
     product_categoriesRoute,
     product_ordersRoute,
-    product_ressourcesRoute,
+    product_ressources_receiptsRoute,
     users_meetingsRoute,
     stepsRoute,
     rolesRoute,
@@ -69,7 +68,6 @@ app.use(tokenRoute);
 app.use(usersRoute)
 app.use(authRoute);
 app.use(suppliersRoute)
-app.use(alertsRoute)
 app.use(contract_typesRoute)
 app.use(categoriesRoute)
 app.use(hourly_typesRoute)
@@ -78,7 +76,7 @@ app.use(meetingsRoute)
 app.use(ordersRoute)
 app.use(product_categoriesRoute)
 app.use(product_ordersRoute)
-app.use(product_ressourcesRoute)
+app.use(product_ressources_receiptsRoute)
 app.use(users_meetingsRoute)
 app.use(stepsRoute)
 app.use(sales_revenuesRoute)

@@ -1,5 +1,5 @@
 const db = require('../models/index')
-const Product_ressource = db['product_ressources']
+const Product_ressource = db['product_ressources_receipts']
 
 // exports.is_exist = async (email) => {
 //   product_ressource.findOne(
@@ -17,10 +17,10 @@ const Product_ressource = db['product_ressources']
 //   )
 // }
 
-exports.getAllproduct_ressources = async (req, res) => {
+exports.getAllproduct_ressources_receipts = async (req, res) => {
   try {
-    const product_ressources = await Product_ressource.findAll()
-    res.status(200).json(product_ressources)
+    const product_ressources_receipts = await Product_ressource.findAll()
+    res.status(200).json(product_ressources_receipts)
   } catch (error) {
     res.status(500).json({
       message: 'Impossible de récupérer les ingrédients de produit',
