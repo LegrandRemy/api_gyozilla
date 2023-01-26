@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     {
       sequelize,
-      modelName: 'Measurement_Units',
+      modelName: 'Measurement_units',
     },
   )
   return Measurement_Units

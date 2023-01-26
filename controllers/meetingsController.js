@@ -3,22 +3,6 @@ const { getAllUsers_meetings } = require('./users_meetingsController')
 const Meeting = db['Meetings']
 const Users_meetings = db['Users_meetings']
 
-// exports.is_exist = async (email) => {
-//   User.findOne(
-//     {
-//       $or: [{ email: email }],
-//     },
-//     (err, user) => {
-//       if (err) throw err
-//       if (user) {
-//         return true
-//       } else {
-//         return false
-//       }
-//     },
-//   )
-// }
-
 exports.getAllMeetings = async (req, res) => {
   try {
     const meetings = await Meeting.findAll()

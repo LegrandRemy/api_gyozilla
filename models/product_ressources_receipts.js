@@ -21,7 +21,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     {
       sequelize,
-      modelName: 'Product_Ressources_Receipts',
+      modelName: 'Product_ressources_receipts',
     },
   )
   return Product_Ressources_Receipts
