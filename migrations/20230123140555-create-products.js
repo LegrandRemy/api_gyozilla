@@ -9,13 +9,16 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      working: {
+      label: {
         type: Sequelize.STRING,
       },
       price: {
         type: Sequelize.STRING,
       },
       reference: {
+        type: Sequelize.STRING,
+      },
+      image: {
         type: Sequelize.STRING,
       },
       id_receipts: {

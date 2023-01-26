@@ -105,7 +105,7 @@
  *       - in: path
  *         name: id
  *         schema:
- *           type: string
+ *           type: int
  *         required: true
  *         description: Fournisseur par l'id
  *     responses:
@@ -117,14 +117,14 @@
  *               $ref: '#/components/schemas/suppliers'
  *       404:
  *         description: Le fournisseur n'a pas été trouvé.
- *   put:
+ *   patch:
  *    summary: Mise à jour du fournisseur par son id
  *    tags: [suppliers]
  *    parameters:
  *      - in: path
  *        name: id
  *        schema:
- *          type: string
+ *          type: int
  *        required: true
  *        description: id du fournisseur
  *    requestBody:
@@ -151,7 +151,7 @@
  *       - in: path
  *         name: id
  *         schema:
- *           type: string
+ *           type: int
  *         required: true
  *         description: id du fournisseur
  *     responses:
@@ -169,7 +169,7 @@ const { verifyToken } = require("../controllers/tokenController");
 router.get('/api/suppliers', verifyToken, suppliersController.getAllSuppliers)
 router.get('/api/suppliers/:id', verifyToken, suppliersController.getSupplier)
 router.post('/api/suppliers', verifyToken, suppliersController.createSupplier)
-router.put('/api/suppliers/:id', verifyToken, suppliersController.updateSupplier)
+router.patch('/api/suppliers/:id', verifyToken, suppliersController.updateSupplier)
 router.delete('/api/suppliers/:id', verifyToken, suppliersController.deleteSupplier)
 
 module.exports = router
