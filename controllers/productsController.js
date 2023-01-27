@@ -1,5 +1,5 @@
 const db = require('../models/index');
-const Product = db['Products'];
+const Products = db['Products'];
 const {
   Op
 } = require('sequelize');
@@ -8,8 +8,8 @@ const fs = require('fs');
 const {
   storage
 } = require('../middlewares/upload');
-
-
+const _ = require('lodash')
+const { Op } = require('sequelize')
 
 exports.getAllProducts = async (req, res) => {
   try {
@@ -26,21 +26,12 @@ exports.getAllProducts = async (req, res) => {
     if (req.query.reference) {
       where.reference = req.query.reference
     }
-    if (req.query.id_receipts) {
-      where.id_receipts = req.query.id_receipts
-    }
-    const products = await Product.findAll({
-      attributes: [
-        'id',
-        'label',
-        'price',
-        'reference',
-        'id_receipts'
-      ],
+    const products = await Products.findAll({
+      include: ['productCategory'],
       where: {
         [Op.and]: [where],
       },
-    });
+    })
     res.status(200).json(products)
   } catch (error) {
     res.status(500).json({
@@ -52,8 +43,16 @@ exports.getAllProducts = async (req, res) => {
 
 exports.getProduct = async (req, res) => {
   try {
-    const Product = await Product.findByPk(req.params.id)
-    res.status(200).json(Product)
+    const product = await Products.findByPk(req.params.id, {
+      include: ['productCategory'],
+    })
+    if (product) {
+      res.status(200).json(product)
+    } else {
+      res.status(404).json({
+        message: "Aucun produit n'a été trouvé.",
+      })
+    }
   } catch (error) {
     res.status(500).json({
       message: 'Impossible de récupérer les produits',
@@ -73,10 +72,10 @@ exports.createProduct = async (req, res) => {
       message: 'Le produit existe déjà'
     });
     const image = req.file;
-    const newProduct = await Product.create(req.body);
+    const newProduct = await Products.create(req.body);
     const newFileName = newProduct.id;
     fs.renameSync(image.path, 'uploads/products/' + newFileName);
-    const productPatch = await Product.update({
+    const productPatch = await Products.update({
       image: newFileName
     }, {
       where: {
@@ -98,15 +97,33 @@ exports.createProduct = async (req, res) => {
 
 exports.updateProduct = async (req, res) => {
   try {
-    const updatedProduct = await Product.update(req.body, {
+    const keys = Object.keys(req.body)
+    const columns = await Products.describe()
+    const invalidFields = []
+    for (let i = 0; i < keys.length; i++) {
+      if (!columns.hasOwnProperty(keys[i])) {
+        invalidFields.push(keys[i])
+      }
+    }
+    if (invalidFields.length) {
+      return res.status(400).json({
+        message: `Le ou les champs qui n'existent pas : ${invalidFields.join(
+          ', ',
+        )}`,
+      })
+    }
+    const oldProduct = await Products.findByPk(req.params.id)
+    const updatedProduct = await Products.update(req.body, {
       where: {
         id: req.params.id,
       },
     })
-    res.status(201).json({
-      message: 'updated',
-      data: updatedProduct
-    })
+    const newProduct = await Products.findByPk(req.params.id)
+    const updatedProperties = _.omitBy(newProduct.dataValues, (value, key) =>
+      _.isEqual(value, oldProduct.dataValues[key]),
+    )
+    const response = _.omit(updatedProperties, ['updatedAt'])
+    res.status(200).json({ message: 'Mis à jour', data: response })
   } catch (error) {
     res.status(500).json({
       message: "Le produit n'a pas été mis à jour",
@@ -117,7 +134,11 @@ exports.updateProduct = async (req, res) => {
 
 exports.deleteProduct = async (req, res) => {
   try {
-    await Product.findByPk(req.params.id)
+    await Products.destroy({
+      where: {
+        id: req.params.id,
+      },
+    })
     res.status(200).json({
       message: 'Le produit a été supprimé',
     })
