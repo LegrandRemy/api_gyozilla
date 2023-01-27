@@ -20,7 +20,6 @@ const {
   ressources_typesRoute,
   ressources_suppliersRoute,
   ratingsRoute,
-  receiptsRoute,
   productsRoute,
   hourliesRoute,
 } = require('./routes/routes')
@@ -90,7 +89,6 @@ app.use(rolesRoute)
 app.use(ressourcesRoute)
 app.use(ressources_typesRoute)
 app.use(ressources_suppliersRoute)
-app.use(receiptsRoute)
 app.use(ratingsRoute)
 app.use(productsRoute)
 app.use(hourliesRoute)

@@ -18,7 +18,6 @@ const rolesRoute = require('./roles')
 const ressourcesRoute = require('./ressources')
 const ressources_typesRoute = require('./ressources_types')
 const ressources_suppliersRoute = require('./ressources_suppliers')
-const receiptsRoute = require('./receipts')
 const ratingsRoute = require('./ratings')
 const productsRoute = require('./products')
 const hourliesRoute = require('./hourlies')
@@ -43,7 +42,6 @@ module.exports = {
   ressourcesRoute,
   ressources_typesRoute,
   ressources_suppliersRoute,
-  receiptsRoute,
   productsRoute,
   ratingsRoute,
   hourliesRoute,

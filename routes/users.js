@@ -193,7 +193,7 @@
  *     responses:
  *       200:
  *         description: Utilisateur par l'id
- *         contens:
+ *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/users'
@@ -207,7 +207,7 @@
  *        name: id
  *        schema:
  *          type: int
- *        required: true
+ *        required: false
  *        description: id de l'utilisateur
  *    requestBody:
  *      required: true
