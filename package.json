@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npx sequelize-cli db:migrate && node index.js"
+    "start": "nodemon index.js"
   },
   "author": "",
   "license": "ISC",
@@ -23,6 +23,7 @@
     "jsonwebtoken": "^9.0.0",
     "lodash": "^4.17.21",
     "mongoose": "^6.8.4",
+    "multer": "^1.4.5-lts.1",
     "mysql2": "^3.0.1",
     "pg": "^8.8.0",
     "sequelize": "^6.28.0",
