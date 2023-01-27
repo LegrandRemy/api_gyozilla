@@ -3,11 +3,7 @@ const Product = db['Products'];
 const {
   Op
 } = require('sequelize');
-const multer = require('multer');
 const fs = require('fs');
-const {
-  storage
-} = require('../middlewares/upload');
 
 
 
