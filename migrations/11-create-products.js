@@ -21,13 +21,6 @@ module.exports = {
       image: {
         type: Sequelize.STRING,
       },
-      id_receipts: {
-        type: Sequelize.INTEGER,
-        references: {
-          model: 'Receipts',
-          key: 'id',
-        },
-      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

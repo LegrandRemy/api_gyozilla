@@ -4,30 +4,23 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.bulkInsert(
-      'Users',
+      'meetings',
       [
         {
-          type: 'Admin',
+          end_hour: '2023-01-26 09:00:00',
+          start_hour: '2023-01-26 10:00:00',
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
-          type: 'Director',
+          end_hour: '2023-01-26 14:00:00',
+          start_hour: '2023-01-26 15:00:00',
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
-          type: 'Manager',
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
-        {
-          type: 'Employed',
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
-        {
-          type: 'Customer',
+          end_hour: '2023-01-27 10:00:00',
+          start_hour: '2023-01-27 12:00:00',
           createdAt: new Date(),
           updatedAt: new Date(),
         },
@@ -37,6 +30,6 @@ module.exports = {
   },
 
   async down(queryInterface, Sequelize) {
-    await queryInterface.bulkDelete('Users', null, {})
+    await queryInterface.bulkDelete('meetings', null, {})
   },
 }

@@ -24,12 +24,13 @@ const {
   productsRoute,
   hourliesRoute,
 } = require('./routes/routes')
-const express = require('express')
-const app = express()
 
+const express = require("express"),
+  bodyParser = require("body-parser"),
+  swaggerJsdoc = require("swagger-jsdoc"),
+  swaggerUi = require("swagger-ui-express");
+const app = express()
 const port = 3000
-const swaggerJsdoc = require('swagger-jsdoc')
-const swaggerUi = require('swagger-ui-express')
 const session = require('express-session')
 const options = {
   definition: {
@@ -95,4 +96,8 @@ app.use(productsRoute)
 app.use(hourliesRoute)
 app.get('/', (req, res) => res.send('API Gyozilla'))
 app.listen(port, () => console.log(`Gyozilla est sur le port ${port} !`))
-app.use('/api', swaggerUi.serve, swaggerUi.setup(specs, { explorer: false }))
+app.use(
+  "/api",
+  swaggerUi.serve,
+  swaggerUi.setup(specs)
+);

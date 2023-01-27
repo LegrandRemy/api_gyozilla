@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
   Hourlies.init({
     start: DataTypes.DATE,
     end: DataTypes.DATE,
-    id_hourlies_types: DataTypes.INTEGER
+    id_hourly_types: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'Hourlies',

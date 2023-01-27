@@ -4,28 +4,29 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.bulkInsert(
-      'contract_types',
+      'ressources_suppliers',
       [
         {
-          type: 'Client',
+          id_ressources: 1,
+          id_suppliers: 1,
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
-          type: 'CDI',
-          id_meetings: 1,
+          id_ressources: 2,
+          id_suppliers: 1,
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
-          type: 'CDD',
-          id_meetings: 1,
+          id_ressources: 3,
+          id_suppliers: 2,
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
-          type: 'Interim',
-          id_meetings: 1,
+          id_ressources: 4,
+          id_suppliers: 2,
           createdAt: new Date(),
           updatedAt: new Date(),
         },
@@ -35,6 +36,6 @@ module.exports = {
   },
 
   async down(queryInterface, Sequelize) {
-    await queryInterface.bulkDelete('contract_types', null, {})
+    await queryInterface.bulkDelete('ressources_suppliers', null, {})
   },
 }
