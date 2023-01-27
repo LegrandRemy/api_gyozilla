@@ -18,10 +18,16 @@
  *           description: Prix de la ressource
  *         reference:
  *           type: string
- *           description: Reference de la ressource
+ *           description: Référence de la ressource
  *         quantity:
  *           type: string
  *           description: Quantity de la ressource
+ *         ressources_types:
+ *           type: int
+ *           description: Type de la ressource
+ *         measurement_units:
+ *           type: int
+ *           description: Unité de mesure de la ressource
  *
  *       example:
  *         id: 1
@@ -29,6 +35,8 @@
  *         price: 1
  *         reference: MB500XF490
  *         quantity: 50
+ *         id_ressources_types: 1
+ *         id_measurement_units: 1
  *
  */
 
@@ -66,12 +74,7 @@
  *           type: string
  *         required: false
  *         description: reference de la ressource
- *       - in: query
- *         name: quantity
- *         schema:
- *           type: string
- *         required: false
- *         description: quantité de la ressource
+ *
  *
  *     responses:
  *       200:
@@ -114,7 +117,7 @@
  *     responses:
  *       200:
  *         description: ressource par l'id
- *         contens:
+ *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/ressources'
@@ -128,7 +131,7 @@
  *        name: id
  *        schema:
  *          type: int
- *        required: true
+ *        required: false
  *        description: id de la ressource
  *    requestBody:
  *      required: true
@@ -155,7 +158,7 @@
  *         name: id
  *         schema:
  *           type: int
- *         required: true
+ *         required: false
  *         description: id de la ressource
  *     responses:
  *       200:
@@ -167,11 +170,24 @@
 const express = require('express')
 const router = express.Router()
 const ressourceController = require('../controllers/ressourcesController')
+const { verifyToken } = require('../controllers/tokenController')
 
-router.get('/api/ressources/', ressourceController.getAllRessources)
-router.get('/api/ressources/:id', ressourceController.getRessource)
-router.post('/api/ressources', ressourceController.createRessource)
-router.put('/api/ressources/:id', ressourceController.updateRessource)
-router.delete('/api/ressources/:id', ressourceController.deleteRessource)
+router.get(
+  '/api/ressources/',
+  verifyToken,
+  ressourceController.getAllRessources,
+)
+router.get('/api/ressources/:id', verifyToken, ressourceController.getRessource)
+router.post('/api/ressources', verifyToken, ressourceController.createRessource)
+router.patch(
+  '/api/ressources/:id',
+  verifyToken,
+  ressourceController.updateRessource,
+)
+router.delete(
+  '/api/ressources/:id',
+  verifyToken,
+  ressourceController.deleteRessource,
+)
 
 module.exports = router
