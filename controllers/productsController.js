@@ -1,5 +1,5 @@
 const db = require('../models/index');
-const Product = db['Products'];
+const Products = db['Products'];
 const {
   Op
 } = require('sequelize');
@@ -58,7 +58,7 @@ exports.getProduct = async (req, res) => {
 
 exports.createProduct = async (req, res) => {
   try {
-    const product_isExist = await Product.findOne({
+    const product_isExist = await Products.findOne({
       where: {
         reference: req.body.reference
       }
