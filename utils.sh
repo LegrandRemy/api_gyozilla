@@ -3,7 +3,6 @@ npx sequelize-cli model:generate --name Contract_types --attributes type:string
 npx sequelize-cli model:generate --name Ratings --attributes step_visual:string,step_quality:string,step_taste:string
 npx sequelize-cli model:generate --name Sales_Revenues --attributes ca:string
 npx sequelize-cli model:generate --name Categories --attributes name:string
-npx sequelize-cli model:generate --name Receipts --attributes label:string,reference:integer,id_step:integer
 npx sequelize-cli model:generate --name Ressources_types --attributes type:string
 npx sequelize-cli model:generate --name Suppliers --attributes contact_name:string,adress:string,phone:string,email:string,compagny:string
 npx sequelize-cli model:generate --name Meetings --attributes end_hour:string,start_hour:string

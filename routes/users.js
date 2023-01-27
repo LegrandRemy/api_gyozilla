@@ -207,7 +207,7 @@
  *        name: id
  *        schema:
  *          type: int
- *        required: true
+ *        required: false
  *        description: id de l'utilisateur
  *    requestBody:
  *      required: true
@@ -234,7 +234,7 @@
  *         name: id
  *         schema:
  *           type: int
- *         required: true
+ *         required: false
  *         description: id de l'utilisateur
  *     responses:
  *       200:

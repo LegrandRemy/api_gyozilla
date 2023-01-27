@@ -2,6 +2,9 @@ const db = require('../models/index')
 const Products = db['Products']
 const _ = require('lodash')
 const { Op } = require('sequelize')
+const multer = require('multer')
+const fs = require('fs')
+const { storage } = require('../middlewares/upload')
 
 exports.getAllProducts = async (req, res) => {
   try {
@@ -55,8 +58,34 @@ exports.getProduct = async (req, res) => {
 
 exports.createProduct = async (req, res) => {
   try {
+    const product_isExist = await Products.findOne({
+      where: {
+        reference: req.body.reference,
+      },
+    })
+    if (product_isExist)
+      return res.status(401).send({
+        message: 'Le produit existe déjà',
+      })
+    const image = req.file
     const newProduct = await Products.create(req.body)
-    res.status(201).json({ message: 'created', data: newProduct })
+    const newFileName = newProduct.id
+    fs.renameSync(image.path, 'uploads/products/' + newFileName)
+    const productPatch = await Products.update(
+      {
+        image: newFileName,
+      },
+      {
+        where: {
+          id: newProduct.id,
+        },
+      },
+    )
+    res.status(200).json({
+      message: 'Produit créé',
+      data: newProduct,
+      update: productPatch,
+    })
   } catch (error) {
     res.status(500).json({
       message: "Le produit n'a pas été créé",
