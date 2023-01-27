@@ -20,7 +20,7 @@ module.exports = {
         },
         {
           id_users: 2,
-          id_meetings: 3,
+          id_meetings: 1,
           createdAt: new Date(),
           updatedAt: new Date(),
         },
