@@ -1,10 +1,10 @@
 const db = require('../models/index')
-const User = db['Users']
+const Users = db['Users']
 const _ = require('lodash')
 const { Op } = require('sequelize')
 
 exports.is_exist = async (email) => {
-  User.findOne(
+  Users.findOne(
     {
       $where: [
         {
@@ -65,25 +65,8 @@ exports.getAllUsers = async (req, res) => {
     if (req.query.roles) {
       where.roles = req.query.roles
     }
-    if (req.query.meetings) {
-      where.meetings = req.query.meetings
-    }
-    const users = await User.findAll({
-      attributes: [
-        'id',
-        'firstname',
-        'lastname',
-        'email',
-        'phone',
-        'adress',
-        'zipcode',
-        'city',
-        'hiring_date',
-        'salary',
-        'fidelitypoints',
-        'id_contract_types',
-        'id_roles',
-      ],
+    const users = await Users.findAll({
+      include: ['roles', 'contract_types', 'meetingsUsers'],
       where: {
         [Op.and]: [where],
       },
@@ -99,7 +82,9 @@ exports.getAllUsers = async (req, res) => {
 
 exports.getUser = async (req, res) => {
   try {
-    const user = await User.findByPk(req.params.id)
+    const user = await Users.findByPk(req.params.id, {
+      include: ['roles', 'contract_types', 'meetingsUsers'],
+    })
     if (user) {
       res.status(200).json(user)
     } else {
@@ -117,7 +102,7 @@ exports.getUser = async (req, res) => {
 
 exports.createUser = async (req, res) => {
   try {
-    const newUser = await User.create(req.body)
+    const newUser = await Users.create(req.body)
     res.status(201).json({
       message: 'created',
       data: newUser,
@@ -133,7 +118,7 @@ exports.createUser = async (req, res) => {
 exports.updateUser = async (req, res) => {
   try {
     const keys = Object.keys(req.body)
-    const columns = await User.describe()
+    const columns = await Users.describe()
     const invalidFields = []
     for (let i = 0; i < keys.length; i++) {
       if (!columns.hasOwnProperty(keys[i])) {
@@ -147,13 +132,13 @@ exports.updateUser = async (req, res) => {
         )}`,
       })
     }
-    const oldUser = await User.findByPk(req.params.id)
-    const updatedUser = await User.update(req.body, {
+    const oldUser = await Users.findByPk(req.params.id)
+    const updatedUser = await Users.update(req.body, {
       where: {
         id: req.params.id,
       },
     })
-    const newUser = await User.findByPk(req.params.id)
+    const newUser = await Users.findByPk(req.params.id)
     const updatedProperties = _.omitBy(newUser.dataValues, (value, key) =>
       _.isEqual(value, oldUser.dataValues[key]),
     )
@@ -169,7 +154,7 @@ exports.updateUser = async (req, res) => {
 
 exports.deleteUser = async (req, res) => {
   try {
-    await User.destroy({
+    await Users.destroy({
       where: {
         id: req.params.id,
       },

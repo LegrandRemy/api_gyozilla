@@ -40,31 +40,31 @@
  *     summary: Liste tous les fournisseurs
  *     tags: [suppliers]
  *     parameters:
- *       - in: path
+ *       - in: query
  *         name: id
  *         schema:
  *           type: int
  *         required: false
  *         description: id du fournisseur
- *       - in: path
+ *       - in: query
  *         name: contact_name
  *         schema:
  *           type: string
  *         required: false
  *         description: nom du contact du fournisseur
- *       - in: path
+ *       - in: query
  *         name: phone
  *         schema:
  *           type: string
  *         required: false
  *         description: Téléphone du fournisseur
- *       - in: path
+ *       - in: query
  *         name: email
  *         schema:
  *           type: string
  *         required: false
  *         description: Email du fournisseur
- *       - in: path
+ *       - in: query
  *         name: compagny
  *         schema:
  *           type: string
@@ -125,7 +125,7 @@
  *        name: id
  *        schema:
  *          type: int
- *        required: true
+ *        required: false
  *        description: id du fournisseur
  *    requestBody:
  *      required: true
@@ -152,7 +152,7 @@
  *         name: id
  *         schema:
  *           type: int
- *         required: true
+ *         required: false
  *         description: id du fournisseur
  *     responses:
  *       200:
@@ -164,12 +164,20 @@
 const express = require('express')
 const router = express.Router()
 const suppliersController = require('../controllers/suppliersController')
-const { verifyToken } = require("../controllers/tokenController");
+const { verifyToken } = require('../controllers/tokenController')
 
 router.get('/api/suppliers', verifyToken, suppliersController.getAllSuppliers)
 router.get('/api/suppliers/:id', verifyToken, suppliersController.getSupplier)
 router.post('/api/suppliers', verifyToken, suppliersController.createSupplier)
-router.patch('/api/suppliers/:id', verifyToken, suppliersController.updateSupplier)
-router.delete('/api/suppliers/:id', verifyToken, suppliersController.deleteSupplier)
+router.patch(
+  '/api/suppliers/:id',
+  verifyToken,
+  suppliersController.updateSupplier,
+)
+router.delete(
+  '/api/suppliers/:id',
+  verifyToken,
+  suppliersController.deleteSupplier,
+)
 
 module.exports = router
