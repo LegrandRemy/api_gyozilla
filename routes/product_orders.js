@@ -102,7 +102,7 @@
  *       404:
  *         description: Le Commande de produit n'a pas été trouvée.
  *   patch:
- *    summary: Mise à jour de la lommande de produit par son id
+ *    summary: Mise à jour de la commande de produit par son id
  *    tags: [product_orders]
  *    parameters:
  *      - in: path
