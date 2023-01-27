@@ -8,7 +8,14 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      Ressources.belongsTo(models.Ressources_types, {
+        as: 'ressources_types',
+        foreignKey: 'id_ressources_types',
+      })
+      Ressources.belongsTo(models.Measurement_units, {
+        as: 'measurement_units',
+        foreignKey: 'id_measurement_units',
+      })
     }
   }
   Ressources.init(
@@ -18,6 +25,7 @@ module.exports = (sequelize, DataTypes) => {
       reference: DataTypes.STRING,
       quantity: DataTypes.INTEGER,
       id_ressources_types: DataTypes.INTEGER,
+      id_measurement_units: DataTypes.INTEGER,
     },
     {
       sequelize,

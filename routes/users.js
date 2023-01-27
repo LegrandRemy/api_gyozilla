@@ -193,7 +193,7 @@
  *     responses:
  *       200:
  *         description: Utilisateur par l'id
- *         contens:
+ *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/users'
@@ -243,15 +243,15 @@
  *         description: L'utilisateur n'a pas été trouvé.
  */
 
-const express = require('express');
-const router = express.Router();
-const userController = require('../controllers/usersController');
-const { verifyToken } = require("../controllers/tokenController");
+const express = require('express')
+const router = express.Router()
+const userController = require('../controllers/usersController')
+const { verifyToken } = require('../controllers/tokenController')
 
-router.get("/api/users/", verifyToken, userController.getAllUsers);
-router.get('/api/users/:id', verifyToken, userController.getUser);
-router.post('/api/users/', verifyToken, userController.createUser);
-router.patch('/api/users/:id', verifyToken, userController.updateUser);
-router.delete('/api/users/:id', verifyToken, userController.deleteUser);
+router.get('/api/users/', verifyToken, userController.getAllUsers)
+router.get('/api/users/:id', verifyToken, userController.getUser)
+router.post('/api/users/', verifyToken, userController.createUser)
+router.patch('/api/users/:id', verifyToken, userController.updateUser)
+router.delete('/api/users/:id', verifyToken, userController.deleteUser)
 
-module.exports = router;
+module.exports = router

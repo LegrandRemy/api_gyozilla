@@ -8,13 +8,15 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      Measurement_Units.hasOne(models.Ressources, {
+        as: 'ressources',
+        foreignKey: 'id',
+      })
     }
   }
   Measurement_Units.init(
     {
       unity: DataTypes.STRING,
-      id_ressources: DataTypes.INTEGER,
     },
     {
       sequelize,
