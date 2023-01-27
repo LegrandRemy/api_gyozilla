@@ -9,8 +9,8 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       Contract_types.hasOne(models.Users, {
-        as:'users',
-        foreignKey:'id'
+        as: 'users',
+        foreignKey: 'id',
       })
     }
   }
