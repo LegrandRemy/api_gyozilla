@@ -1,8 +1,5 @@
 const db = require('../models/index');
 const Products = db['Products'];
-const {
-  Op
-} = require('sequelize');
 const multer = require('multer');
 const fs = require('fs');
 const {
