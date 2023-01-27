@@ -14,7 +14,13 @@ module.exports = {
         },
         {
           id_users: 2,
-          id_meetings: 1,
+          id_meetings: 2,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          id_users: 2,
+          id_meetings: 3,
           createdAt: new Date(),
           updatedAt: new Date(),
         },

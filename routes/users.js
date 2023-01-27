@@ -167,7 +167,7 @@
  *     summary: Créer un nouvel utilisateur
  *     tags: [users]
  *     requestBody:
- *       required: false
+ *       required: true
  *       content:
  *         application/json:
  *           schema:
@@ -189,18 +189,18 @@
  *       - in: path
  *         name: id
  *         schema:
- *           type: int
+ *           type: string
  *         required: true
  *         description: Utilisateur par l'id
  *     responses:
  *       200:
  *         description: Utilisateur par l'id
- *         content:
+ *         contens:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/users'
  *       404:
- *         description: L'utilisateur n'a pas été trouvé.
+ *         description: L'utilisateur n'a pas été trouvé
  *   patch:
  *    summary: Mise à jour de l'utilisateur par son id
  *    tags: [users]
@@ -238,7 +238,6 @@
  *           type: int
  *         required: true
  *         description: id de l'utilisateur
- *  
  *     responses:
  *       200:
  *         description: L'utilisateur a été supprimé.
@@ -253,7 +252,7 @@ const { verifyToken } = require("../controllers/tokenController");
 
 router.get("/api/users/", verifyToken, userController.getAllUsers);
 router.get('/api/users/:id', verifyToken, userController.getUser);
-router.post('/api/users', verifyToken, userController.createUser);
+router.post('/api/users/', verifyToken, userController.createUser);
 router.patch('/api/users/:id', verifyToken, userController.updateUser);
 router.delete('/api/users/:id', verifyToken, userController.deleteUser);
 

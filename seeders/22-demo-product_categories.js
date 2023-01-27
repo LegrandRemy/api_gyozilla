@@ -8,15 +8,13 @@ module.exports = {
       [
         {
           id_products: 1,
-          id_suppliers: 1,
-          id_step: 1,
+          id_categories: 1,
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
           id_products: 2,
-          id_suppliers: 1,
-          id_step: 2,
+          id_categories: 1,
           createdAt: new Date(),
           updatedAt: new Date(),
         },

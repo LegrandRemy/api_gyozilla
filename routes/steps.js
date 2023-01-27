@@ -15,11 +15,7 @@
  *           description: Les étapes d'une recette
  *       example:
  *         id: 1
- *         step: "1. Eplucher les pommes, 2. Cuire les pommes, ..."
- */
-
-/**
- * @swagger
+ *         step: 1. Eplucher les pommes, 2. Cuire les pommes, ...
  * tags:
  *   name: steps
  *   description: API pour les étapes de recette
@@ -62,33 +58,6 @@
  *               $ref: '#/components/schemas/steps'
  *       404:
  *         description: Les étapes n'ont pas été trouvé.
- *   patch:
- *    summary: Mise à jour des étapes d'une recette
- *    tags: [steps]
- *    parameters:
- *      - in: path
- *        name: id
- *        schema:
- *          type: int
- *        required: true
- *        description: id des étapes d'une recette
- *    requestBody:
- *      required: true
- *      content:
- *        application/json:
- *          schema:
- *            $ref: '#/components/schemas/steps'
- *    responses:
- *      200:
- *        description: Les étapes d'une recette a été mis à jour
- *        content:
- *          application/json:
- *            schema:
- *              $ref: '#/components/schemas/steps'
- *      404:
- *        description: Les étapes d'une recette n'a pas été trouvé.
- *      500:
- *        description: Une erreur est survenue.
  *   delete:
  *     summary: Supprimer les étapes d'une recette par son id
  *     tags: [steps]
@@ -106,14 +75,13 @@
  *         description: Les étapes d'une recette n'a pas été trouvé.
  */
 
-const express = require('express')
-const router = express.Router()
-const stepController = require('../controllers/stepsController')
+const express = require('express');
+const router = express.Router();
+const stepController = require('../controllers/stepsController');
+const { verifyToken } = require("../controllers/tokenController");
 
-router.get('/api/steps/', stepController.getAllSteps)
-router.get('/api/steps/:id', stepController.getStep)
-router.post('/api/steps', stepController.createStep)
-router.patch('/api/steps/:id', stepController.updateStep)
-router.delete('/api/steps/:id', stepController.deleteStep)
+router.get('/api/steps/:id', verifyToken, stepController.getStep);
+router.post('/api/steps/', verifyToken, stepController.createStep);
+router.delete('/api/steps/:id', verifyToken, stepController.deleteStep);
 
-module.exports = router
+module.exports = router;

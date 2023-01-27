@@ -13,19 +13,16 @@ module.exports = {
         },
         {
           type: 'CDI',
-          id_meetings: 1,
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
           type: 'CDD',
-          id_meetings: 1,
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
           type: 'Interim',
-          id_meetings: 1,
           createdAt: new Date(),
           updatedAt: new Date(),
         },

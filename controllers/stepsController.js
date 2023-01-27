@@ -1,22 +1,16 @@
 const db = require('../models/index')
 const Step = db['Steps']
 
-exports.getAllSteps = async (req, res) => {
-  try {
-    const Steps = await Step.findAll()
-    res.status(200).json(Steps)
-  } catch (error) {
-    res.status(500).json({
-      message: 'Impossible de récupérer les etapes du menu',
-      error: error.message,
-    })
-  }
-}
-
 exports.getStep = async (req, res) => {
   try {
-    const Step = await Step.findByPk(req.params.id)
-    res.status(200).json(Step)
+    const step = await Step.findByPk(req.params.id)
+    if (step) {
+      res.status(200).json(step)
+    } else {
+      res.status(404).json({
+        message: "Aucune étape n'a été trouvé.",
+      })
+    }
   } catch (error) {
     res.status(500).json({
       message: 'Impossible de récupérer les etapes du menu',
@@ -28,7 +22,10 @@ exports.getStep = async (req, res) => {
 exports.createStep = async (req, res) => {
   try {
     const newStep = await Step.create(req.body)
-    res.status(201).json({ message: 'created', data: newStep })
+    res.status(201).json({ 
+      message: 'created', 
+      data: newStep,
+    })
   } catch (error) {
     res.status(500).json({
       message: "les etapes du menu n'ont pas été créées",
@@ -37,25 +34,13 @@ exports.createStep = async (req, res) => {
   }
 }
 
-exports.updateStep = async (req, res) => {
+exports.deleteStep = async (req, res) => {
   try {
-    const updatedStep = await Step.update(req.body, {
+    await Step.destroy({
       where: {
         id: req.params.id,
       },
     })
-    res.status(201).json({ message: 'updated', data: updatedStep })
-  } catch (error) {
-    res.status(500).json({
-      message: "les etapes du menu n'ont pas été mise à jour",
-      error: error.message,
-    })
-  }
-}
-
-exports.deleteStep = async (req, res) => {
-  try {
-    await Step.findByPk(req.params.id)
     res.status(200).json({
       message: 'les etapes du menu ont été supprimées',
     })

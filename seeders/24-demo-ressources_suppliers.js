@@ -18,6 +18,18 @@ module.exports = {
           createdAt: new Date(),
           updatedAt: new Date(),
         },
+        {
+          id_ressources: 3,
+          id_suppliers: 2,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          id_ressources: 4,
+          id_suppliers: 2,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
       ],
       {},
     )
