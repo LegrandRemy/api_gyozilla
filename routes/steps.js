@@ -16,6 +16,10 @@
  *       example:
  *         id: 1
  *         step: 1. Eplucher les pommes, 2. Cuire les pommes, ...
+ */
+
+/**
+ * @swagger
  * tags:
  *   name: steps
  *   description: API pour les étapes de recette
@@ -46,7 +50,7 @@
  *       - in: path
  *         name: id
  *         schema:
- *           type: int
+ *           type: string
  *         required: true
  *         description: Les étapes d'une recette par l'id
  *     responses:
@@ -57,7 +61,7 @@
  *             schema:
  *               $ref: '#/components/schemas/steps'
  *       404:
- *         description: Les étapes n'ont pas été trouvé.
+ *         description: Les étapes n'ont pas été trouvé
  *   delete:
  *     summary: Supprimer les étapes d'une recette par son id
  *     tags: [steps]

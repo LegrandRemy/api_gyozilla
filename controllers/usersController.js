@@ -69,27 +69,11 @@ exports.getAllUsers = async (req, res) => {
       where.meetings = req.query.meetings
     }
     const users = await User.findAll({
-      attributes: [
-        'id',
-        'firstname',
-        'lastname',
-        'email',
-        'phone',
-        'adress',
-        'zipcode',
-        'city',
-        'hiring_date',
-        'salary',
-        'fidelitypoints',
-        'id_contract_types',
-        'id_roles',
-      ],
+      include: ['roles', 'contract_types', 'meetingsUsers'],
       where: {
         [Op.and]: [where],
       },
     })
-    users.dataValues.id_contract_types = req.params.id_contract_types
-    users.dataValues.id_roles = req.params.id_roles
     res.status(200).json(users)
   } catch (error) {
     res.status(500).json({
@@ -102,7 +86,7 @@ exports.getAllUsers = async (req, res) => {
 exports.getUser = async (req, res) => {
   try {
     const user = await User.findByPk(req.params.id, {
-      include: ['roles', 'contract', 'meetingsUsers'],
+      include: ['roles', 'contract_types', 'meetingsUsers'],
     })
     if (user) {
       res.status(200).json(user)

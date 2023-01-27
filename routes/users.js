@@ -4,8 +4,6 @@
  *   schemas:
  *     users:
  *       type: object
- *       required:
- *         -
  *       properties:
  *         id:
  *           type: int
@@ -42,12 +40,12 @@
  *           description: Salaire de l'employé
  *         fidelitypoints:
  *           type: string
- *           description: Points de fidélité du client si client
+ *           description: Points de fidélité du client
  *         contract_types:
- *           type: int
- *           description: Type de contrat de l'employé
+ *           type: string
+ *           description: Type de contract de l'employé
  *         roles:
- *           type: int
+ *           type: string
  *           description: Role de l'employé
  *       example:
  *         id: 1
