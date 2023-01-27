@@ -2,7 +2,7 @@
  * @swagger
  * components:
  *   schemas:
- *     alerts:
+ *     categories:
  *       type: object
  *       required:
  *         -
@@ -28,7 +28,7 @@
  *     security:
  *       - bearerAuth: []
  *     summary: Lister toutes les catégories
- *     tags: [alerts]
+ *     tags: [categories]
  *     parameters:
  *       - in: query
  *         name: id
