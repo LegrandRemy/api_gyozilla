@@ -1,11 +1,33 @@
 const db = require('../models/index')
-const Ressource = db['Ressources']
-
+const Ressources = db['Ressources']
+const _ = require('lodash')
+const { Op } = require('sequelize')
 
 exports.getAllRessources = async (req, res) => {
   try {
-    const Ressources = await Ressource.findAll()
-    res.status(200).json(Ressources)
+    const where = {}
+    if (req.query.id) {
+      where.id = req.query.id
+    }
+    if (req.query.label) {
+      where.label = req.query.label
+    }
+    if (req.query.price) {
+      where.price = req.query.price
+    }
+    if (req.query.reference) {
+      where.reference = req.query.reference
+    }
+    if (req.query.ressources_types) {
+      where.ressources_types = req.query.ressources_types
+    }
+    const ressources = await Ressources.findAll({
+      include: ['ressources_types', 'measurement_units'],
+      where: {
+        [Op.and]: [where],
+      },
+    })
+    res.status(200).json(ressources)
   } catch (error) {
     res.status(500).json({
       message: 'Impossible de récupérer les ressources',
@@ -16,11 +38,13 @@ exports.getAllRessources = async (req, res) => {
 
 exports.getRessource = async (req, res) => {
   try {
-    const Ressource = await Ressource.findByPk(req.params.id)
-    res.status(200).json(Ressource)
+    const ressources = await Ressources.findByPk(req.params.id, {
+      include: ['ressources_types', 'measurement_units'],
+    })
+    res.status(200).json(ressources)
   } catch (error) {
     res.status(500).json({
-      message: "Impossible de récupérer la ressource",
+      message: 'Impossible de récupérer la ressource',
       error: error.message,
     })
   }
@@ -28,7 +52,7 @@ exports.getRessource = async (req, res) => {
 
 exports.createRessource = async (req, res) => {
   try {
-    const newRessource = await Ressource.create(req.body)
+    const newRessource = await Ressources.create(req.body)
     res.status(201).json({ message: 'created', data: newRessource })
   } catch (error) {
     res.status(500).json({
@@ -40,12 +64,34 @@ exports.createRessource = async (req, res) => {
 
 exports.updateRessource = async (req, res) => {
   try {
-    const updatedRessource = await Ressource.update(req.body, {
+    const keys = Object.keys(req.body)
+    const columns = await Ressources.describe()
+    const invalidFields = []
+    for (let i = 0; i < keys.length; i++) {
+      if (!columns.hasOwnProperty(keys[i])) {
+        invalidFields.push(keys[i])
+      }
+    }
+    if (invalidFields.length) {
+      return res.status(400).json({
+        message: `Le ou les champs qui n'existent pas : ${invalidFields.join(
+          ', ',
+        )}`,
+      })
+    }
+    const oldRessource = await Ressources.findByPk(req.params.id)
+    const updatedRessource = await Ressources.update(req.body, {
       where: {
         id: req.params.id,
       },
     })
-    res.status(201).json({ message: 'updated', data: updatedRessource })
+    const newRessource = await Ressources.findByPk(req.params.id)
+    const updatedProperties = _.omitBy(newRessource.dataValues, (value, key) =>
+      _.isEqual(value, oldRessource.dataValues[key]),
+    )
+    const response = _.omit(updatedProperties, ['updatedAt'])
+
+    res.status(201).json({ message: 'updated', data: response })
   } catch (error) {
     res.status(500).json({
       message: "La ressource n'a pas été mis à jour",
@@ -56,9 +102,13 @@ exports.updateRessource = async (req, res) => {
 
 exports.deleteRessource = async (req, res) => {
   try {
-    await Ressource.findByPk(req.params.id)
+    await Ressources.destroy({
+      where: {
+        id: req.params.id,
+      },
+    })
     res.status(200).json({
-      message: "La ressource a été supprimé",
+      message: 'La ressource a été supprimé',
     })
   } catch (error) {
     res.status(500).json({

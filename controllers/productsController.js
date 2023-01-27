@@ -1,13 +1,33 @@
 const db = require('../models/index')
-const Product = db['Products']
+const Products = db['Products']
+const _ = require('lodash')
+const { Op } = require('sequelize')
 
 exports.getAllProducts = async (req, res) => {
   try {
-    const Products = await Product.findAll()
-    res.status(200).json(Products)
+    const where = {}
+    if (req.query.id) {
+      where.id = req.query.id
+    }
+    if (req.query.label) {
+      where.label = req.query.label
+    }
+    if (req.query.price) {
+      where.price = req.query.price
+    }
+    if (req.query.reference) {
+      where.reference = req.query.reference
+    }
+    const products = await Products.findAll({
+      include: ['productCategory'],
+      where: {
+        [Op.and]: [where],
+      },
+    })
+    res.status(200).json(products)
   } catch (error) {
     res.status(500).json({
-      message: 'Impossible de récupérer les etapes du menu',
+      message: 'Impossible de récupérer les produits',
       error: error.message,
     })
   }
@@ -15,11 +35,19 @@ exports.getAllProducts = async (req, res) => {
 
 exports.getProduct = async (req, res) => {
   try {
-    const Product = await Product.findByPk(req.params.id)
-    res.status(200).json(Product)
+    const product = await Products.findByPk(req.params.id, {
+      include: ['productCategory'],
+    })
+    if (product) {
+      res.status(200).json(product)
+    } else {
+      res.status(404).json({
+        message: "Aucun produit n'a été trouvé.",
+      })
+    }
   } catch (error) {
     res.status(500).json({
-      message: 'Impossible de récupérer les etapes du menu',
+      message: 'Impossible de récupérer les produits',
       error: error.message,
     })
   }
@@ -27,11 +55,11 @@ exports.getProduct = async (req, res) => {
 
 exports.createProduct = async (req, res) => {
   try {
-    const newProduct = await Product.create(req.body)
+    const newProduct = await Products.create(req.body)
     res.status(201).json({ message: 'created', data: newProduct })
   } catch (error) {
     res.status(500).json({
-      message: "les etapes du menu n'ont pas été créées",
+      message: "Le produit n'a pas été créé",
       error: error.message,
     })
   }
@@ -39,15 +67,36 @@ exports.createProduct = async (req, res) => {
 
 exports.updateProduct = async (req, res) => {
   try {
-    const updatedProduct = await Product.update(req.body, {
+    const keys = Object.keys(req.body)
+    const columns = await Products.describe()
+    const invalidFields = []
+    for (let i = 0; i < keys.length; i++) {
+      if (!columns.hasOwnProperty(keys[i])) {
+        invalidFields.push(keys[i])
+      }
+    }
+    if (invalidFields.length) {
+      return res.status(400).json({
+        message: `Le ou les champs qui n'existent pas : ${invalidFields.join(
+          ', ',
+        )}`,
+      })
+    }
+    const oldProduct = await Products.findByPk(req.params.id)
+    const updatedProduct = await Products.update(req.body, {
       where: {
         id: req.params.id,
       },
     })
-    res.status(201).json({ message: 'updated', data: updatedProduct })
+    const newProduct = await Products.findByPk(req.params.id)
+    const updatedProperties = _.omitBy(newProduct.dataValues, (value, key) =>
+      _.isEqual(value, oldProduct.dataValues[key]),
+    )
+    const response = _.omit(updatedProperties, ['updatedAt'])
+    res.status(200).json({ message: 'Mis à jour', data: response })
   } catch (error) {
     res.status(500).json({
-      message: "les etapes du menu n'ont pas été mise à jour",
+      message: "Le produit n'a pas été mis à jour",
       error: error.message,
     })
   }
@@ -55,13 +104,17 @@ exports.updateProduct = async (req, res) => {
 
 exports.deleteProduct = async (req, res) => {
   try {
-    await Product.findByPk(req.params.id)
+    await Products.destroy({
+      where: {
+        id: req.params.id,
+      },
+    })
     res.status(200).json({
-      message: 'les etapes du menu ont été supprimées',
+      message: 'Le produit a été supprimé',
     })
   } catch (error) {
     res.status(500).json({
-      message: "les etapes du menu n'ont pas été supprimées",
+      message: "Le produit n'a pas été supprimé",
       error: error.message,
     })
   }

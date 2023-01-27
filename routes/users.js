@@ -4,8 +4,6 @@
  *   schemas:
  *     users:
  *       type: object
- *       required:
- *         -
  *       properties:
  *         id:
  *           type: int
@@ -42,12 +40,12 @@
  *           description: Salaire de l'employé
  *         fidelitypoints:
  *           type: string
- *           description: Points de fidélité du client si client
+ *           description: Points de fidélité du client
  *         contract_types:
- *           type: int
- *           description: Type de contrat de l'employé
+ *           type: string
+ *           description: Type de contract de l'employé
  *         roles:
- *           type: int
+ *           type: string
  *           description: Role de l'employé
  *       example:
  *         id: 1
@@ -195,7 +193,7 @@
  *     responses:
  *       200:
  *         description: Utilisateur par l'id
- *         contens:
+ *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/users'
@@ -245,15 +243,15 @@
  *         description: L'utilisateur n'a pas été trouvé.
  */
 
-const express = require('express');
-const router = express.Router();
-const userController = require('../controllers/usersController');
-const { verifyToken } = require("../controllers/tokenController");
+const express = require('express')
+const router = express.Router()
+const userController = require('../controllers/usersController')
+const { verifyToken } = require('../controllers/tokenController')
 
-router.get("/api/users/", verifyToken, userController.getAllUsers);
-router.get('/api/users/:id', verifyToken, userController.getUser);
-router.post('/api/users/', verifyToken, userController.createUser);
-router.patch('/api/users/:id', verifyToken, userController.updateUser);
-router.delete('/api/users/:id', verifyToken, userController.deleteUser);
+router.get('/api/users/', verifyToken, userController.getAllUsers)
+router.get('/api/users/:id', verifyToken, userController.getUser)
+router.post('/api/users/', verifyToken, userController.createUser)
+router.patch('/api/users/:id', verifyToken, userController.updateUser)
+router.delete('/api/users/:id', verifyToken, userController.deleteUser)
 
-module.exports = router;
+module.exports = router

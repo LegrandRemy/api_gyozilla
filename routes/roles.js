@@ -50,7 +50,7 @@
  *       - in: path
  *         name: id
  *         schema:
- *           type: int
+ *           type: string
  *         required: true
  *         description: Le role d'un utilisateur par l'id
  *     responses:
@@ -61,7 +61,7 @@
  *             schema:
  *               $ref: '#/components/schemas/roles'
  *       404:
- *         description: Le role n'a pas été trouvé.
+ *         description: Le role n'a pas été trouvé
  *   delete:
  *     summary: Supprimer le role par son id
  *     tags: [roles]

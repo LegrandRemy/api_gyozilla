@@ -7,14 +7,32 @@ module.exports = {
       'measurement_units',
       [
         {
-          unity: 'T',
-          id_ressources: 1,
+          unity: 'g',
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
-          unity: 'kg',
-          id_ressources: 2,
+          unity: 'Kg',
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          unity: 'L',
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          unity: 'pièce',
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          unity: 'canette',
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          unity: 'bouteille',
           createdAt: new Date(),
           updatedAt: new Date(),
         },
