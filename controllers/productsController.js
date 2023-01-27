@@ -60,7 +60,7 @@ exports.getProduct = async (req, res) => {
 
 exports.createProduct = async (req, res) => {
   try {
-    const product_isExist = await Product.findOne({
+    const product_isExist = await Products.findOne({
       where: {
         reference: req.body.reference
       }
