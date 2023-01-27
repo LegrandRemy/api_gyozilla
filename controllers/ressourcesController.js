@@ -1,11 +1,10 @@
 const db = require('../models/index')
-const Ressource = db['Ressources']
-
+const Ressources = db['Ressources']
 
 exports.getAllRessources = async (req, res) => {
   try {
-    const Ressources = await Ressource.findAll()
-    res.status(200).json(Ressources)
+    const ressources = await Ressources.findAll()
+    res.status(200).json(ressources)
   } catch (error) {
     res.status(500).json({
       message: 'Impossible de récupérer les ressources',
@@ -16,11 +15,11 @@ exports.getAllRessources = async (req, res) => {
 
 exports.getRessource = async (req, res) => {
   try {
-    const Ressource = await Ressource.findByPk(req.params.id)
-    res.status(200).json(Ressource)
+    const ressources = await Ressources.findByPk(req.params.id)
+    res.status(200).json(ressources)
   } catch (error) {
     res.status(500).json({
-      message: "Impossible de récupérer la ressource",
+      message: 'Impossible de récupérer la ressource',
       error: error.message,
     })
   }
@@ -28,7 +27,7 @@ exports.getRessource = async (req, res) => {
 
 exports.createRessource = async (req, res) => {
   try {
-    const newRessource = await Ressource.create(req.body)
+    const newRessource = await Ressources.create(req.body)
     res.status(201).json({ message: 'created', data: newRessource })
   } catch (error) {
     res.status(500).json({
@@ -40,7 +39,7 @@ exports.createRessource = async (req, res) => {
 
 exports.updateRessource = async (req, res) => {
   try {
-    const updatedRessource = await Ressource.update(req.body, {
+    const updatedRessource = await Ressources.update(req.body, {
       where: {
         id: req.params.id,
       },
@@ -56,9 +55,13 @@ exports.updateRessource = async (req, res) => {
 
 exports.deleteRessource = async (req, res) => {
   try {
-    await Ressource.findByPk(req.params.id)
+    await Ressources.destroy({
+      where: {
+        id: req.params.id,
+      },
+    })
     res.status(200).json({
-      message: "La ressource a été supprimé",
+      message: 'La ressource a été supprimé',
     })
   } catch (error) {
     res.status(500).json({
