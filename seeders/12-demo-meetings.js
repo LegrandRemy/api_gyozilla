@@ -4,7 +4,7 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.bulkInsert(
-      'meetings',
+      'Meetings',
       [
         {
           end_hour: '2023-01-26 09:00:00',
@@ -30,6 +30,6 @@ module.exports = {
   },
 
   async down(queryInterface, Sequelize) {
-    await queryInterface.bulkDelete('meetings', null, {})
+    await queryInterface.bulkDelete('Meetings', null, {})
   },
 }

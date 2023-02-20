@@ -4,7 +4,7 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.bulkInsert(
-      'measurement_units',
+      'Measurement_Units',
       [
         {
           unity: 'g',
@@ -42,6 +42,6 @@ module.exports = {
   },
 
   async down(queryInterface, Sequelize) {
-    await queryInterface.bulkDelete('measurement_units', null, {})
+    await queryInterface.bulkDelete('Measurement_Units', null, {})
   },
 }

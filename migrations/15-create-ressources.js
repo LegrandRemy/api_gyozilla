@@ -24,7 +24,7 @@ module.exports = {
       id_ressources_types: {
         type: Sequelize.INTEGER,
         references: {
-          model: 'Ressources_types',
+          model: 'Ressources_Types',
           key: 'id',
         },
       },

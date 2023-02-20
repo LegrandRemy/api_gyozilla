@@ -48,7 +48,7 @@ module.exports = {
       id_contract_types: {
         type: Sequelize.INTEGER,
         references: {
-          model: 'Contract_types',
+          model: 'Contract_Types',
           key: 'id',
         },
       },
