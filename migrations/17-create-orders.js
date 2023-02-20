@@ -21,7 +21,7 @@ module.exports = {
       id_sales_revenues: {
         type: Sequelize.INTEGER,
         references: {
-          model: 'Sales_revenues',
+          model: 'Sales_Revenues',
           key: 'id',
         },
       },
