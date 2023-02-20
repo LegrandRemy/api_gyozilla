@@ -21,10 +21,10 @@
  *           description: Prix de la commande
  *         id_sales_revenues:
  *           type: string
- *           description: CA  
+ *           description: CA
  *         id_users:
  *           type: string
- *           description: Client de la commande  
+ *           description: Client de la commande
  *       example:
  *         id: 1
  *         status: En cours
@@ -166,7 +166,7 @@
  *           type: string
  *         required: true
  *         description: id de la commande
- *  
+ *
  *     responses:
  *       200:
  *         description: La commande a été supprimé.
@@ -179,10 +179,10 @@ const router = express.Router()
 const orderController = require('../controllers/ordersController')
 const { verifyToken } = require('../controllers/tokenController')
 
-router.get('/api/orders',verifyToken, orderController.getAllOrders)
-router.get('/api/orders/:id',verifyToken,orderController.getOrder)
-router.post('/api/orders',verifyToken,orderController.createOrder)
-router.put('/api/orders/:id',verifyToken,orderController.updateOrder)
-router.delete('/api/orders/:id',verifyToken, orderController.deleteOrder)
+router.get('/api/orders', verifyToken, orderController.getAllOrders)
+router.get('/api/orders/:id', verifyToken, orderController.getOrder)
+router.post('/api/orders', verifyToken, orderController.createOrder)
+router.put('/api/orders/:id', verifyToken, orderController.updateOrder)
+router.delete('/api/orders/:id', verifyToken, orderController.deleteOrder)
 
 module.exports = router

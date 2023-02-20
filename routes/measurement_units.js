@@ -1,5 +1,5 @@
 /**
- * @swagger
+ *  @swagger
  * components:
  *   schemas:
  *     measurement_units:
@@ -8,7 +8,8 @@
  *         -
  *       properties:
  *         id:
- *           type: int
+ *           type:
+ *            int
  *           description: ID de l'unité de mesure
  *         unity:
  *           type: string
@@ -46,10 +47,10 @@
  *           type: string
  *         required: false
  *         description: nom de l'unité de mesure
- *        - in: query
+ *       - in: query
  *         name: id_ressources
  *         schema:
- *           type: int
+ *          type: int
  *         required: false
  *         description: ID de la ressource associée
  *
@@ -73,7 +74,7 @@
  *             $ref: '#/components/schemas/measurement_units'
  *     responses:
  *       200:
- *         description: L'unité de mesure a été créée'.
+ *         description: L'unité de mesure a été créée.
  *         content:
  *           application/json:
  *             schema:

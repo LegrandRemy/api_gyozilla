@@ -58,25 +58,25 @@
  *           type: string
  *         required: false
  *         description: Nom de la recette
- *        - in: query
+ *       - in: query
  *         name: reference
  *         schema:
  *           type: int
  *         required: false
  *         description: Référence de la recette
- *        - in: query
+ *       - in: query
  *         name: id_step
  *         schema:
  *           type: int
  *         required: false
  *         description: ID de l'étape de recette
- *        - in: query
+ *       - in: query
  *         name: id_products
  *         schema:
  *           type: int
  *         required: false
  *         description: ID du produit associé
- * - in: query
+ *       - in: query
  *         name: id_ressources
  *         schema:
  *           type: int
