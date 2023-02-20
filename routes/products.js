@@ -180,6 +180,11 @@ const upload = multer({
 
 router.get('/api/products/', verifyToken, productController.getAllProducts)
 router.get('/api/products/:id', verifyToken, productController.getProduct)
+router.get(
+  '/api/products/category/:categoriesId',
+  verifyToken,
+  productController.getProductByCategories,
+)
 router.post(
   '/api/products/create',
   verifyToken,
