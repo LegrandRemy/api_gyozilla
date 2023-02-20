@@ -2,6 +2,12 @@ const db = require('../models/index')
 const Products = db['Products']
 const _ = require('lodash')
 const { Op } = require('sequelize')
+const db = require('../models/index')
+const Product = db['Products']
+const { Op } = require('sequelize')
+const multer = require('multer')
+const fs = require('fs')
+const { storage } = require('../middlewares/upload')
 
 exports.getAllProducts = async (req, res) => {
   try {
@@ -18,8 +24,11 @@ exports.getAllProducts = async (req, res) => {
     if (req.query.reference) {
       where.reference = req.query.reference
     }
-    const products = await Products.findAll({
-      include: ['productCategory'],
+    if (req.query.id_receipts) {
+      where.id_receipts = req.query.id_receipts
+    }
+    const products = await Product.findAll({
+      attributes: ['id', 'label', 'price', 'reference', 'id_receipts'],
       where: {
         [Op.and]: [where],
       },
@@ -55,8 +64,34 @@ exports.getProduct = async (req, res) => {
 
 exports.createProduct = async (req, res) => {
   try {
-    const newProduct = await Products.create(req.body)
-    res.status(201).json({ message: 'created', data: newProduct })
+    const product_isExist = await Product.findOne({
+      where: {
+        reference: req.body.reference,
+      },
+    })
+    if (product_isExist)
+      return res.status(401).send({
+        message: 'Le produit existe déjà',
+      })
+    const image = req.file
+    const newProduct = await Product.create(req.body)
+    const newFileName = newProduct.id
+    fs.renameSync(image.path, 'uploads/products/' + newFileName)
+    const productPatch = await Product.update(
+      {
+        image: newFileName,
+      },
+      {
+        where: {
+          id: newProduct.id,
+        },
+      },
+    )
+    res.status(200).json({
+      message: 'Produit créé',
+      data: newProduct,
+      update: productPatch,
+    })
   } catch (error) {
     res.status(500).json({
       message: "Le produit n'a pas été créé",
@@ -88,12 +123,10 @@ exports.updateProduct = async (req, res) => {
         id: req.params.id,
       },
     })
-    const newProduct = await Products.findByPk(req.params.id)
-    const updatedProperties = _.omitBy(newProduct.dataValues, (value, key) =>
-      _.isEqual(value, oldProduct.dataValues[key]),
-    )
-    const response = _.omit(updatedProperties, ['updatedAt'])
-    res.status(200).json({ message: 'Mis à jour', data: response })
+    res.status(201).json({
+      message: 'updated',
+      data: updatedProduct,
+    })
   } catch (error) {
     res.status(500).json({
       message: "Le produit n'a pas été mis à jour",

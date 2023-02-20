@@ -19,12 +19,15 @@
  *         reference:
  *           type: string
  *           description: Reference du produit
- *
+ *         id_receipts:
+ *           type: string
+ *           description: ID recette du produit
  *       example:
  *         id: 1
  *         label: Nems
  *         price: 5€
  *         reference: 884569
+ *         id_receipts: 2
  */
 
 /**
@@ -64,11 +67,11 @@
  *         required: false
  *         description: reference du produit
  *       - in: query
- *         name: products_categories
+ *         name: id_receipts
  *         schema:
  *           type: string
  *         required: false
- *         description: Categorie du produit
+ *         description: Id recette du produit
  *     responses:
  *       200:
  *         description: La liste de tous les produits
@@ -124,7 +127,7 @@
  *        name: id
  *        schema:
  *          type: string
- *        required: false
+ *        required: true
  *        description: id du produit
  *    requestBody:
  *      required: true
@@ -151,7 +154,7 @@
  *         name: id
  *         schema:
  *           type: string
- *         required: false
+ *         required: true
  *         description: id du produit
  *
  *     responses:
@@ -165,11 +168,28 @@ const express = require('express')
 const router = express.Router()
 const productController = require('../controllers/productsController')
 const { verifyToken } = require('../controllers/tokenController')
+const {
+  storage,
+  fileSizeFilter,
+  fileTypeFilter,
+} = require('../middlewares/upload')
+const multer = require('multer')
+
+const upload = multer({
+  storage: storage,
+  fileSizer: fileSizeFilter,
+  fileType: fileTypeFilter,
+})
 
 router.get('/api/products/', verifyToken, productController.getAllProducts)
 router.get('/api/products/:id', verifyToken, productController.getProduct)
-router.post('/api/products', verifyToken, productController.createProduct)
-router.patch('/api/products/:id', verifyToken, productController.updateProduct)
+router.post(
+  '/api/products/create',
+  verifyToken,
+  upload.single('image'),
+  productController.createProduct,
+)
+router.put('/api/products/:id', verifyToken, productController.updateProduct)
 router.delete('/api/products/:id', verifyToken, productController.deleteProduct)
 
 module.exports = router

@@ -125,7 +125,7 @@
  *        name: id
  *        schema:
  *          type: int
- *        required: true
+ *        required: false
  *        description: id du fournisseur
  *    requestBody:
  *      required: true
@@ -152,7 +152,7 @@
  *         name: id
  *         schema:
  *           type: int
- *         required: true
+ *         required: false
  *         description: id du fournisseur
  *     responses:
  *       200:
