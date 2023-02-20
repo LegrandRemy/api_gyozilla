@@ -174,10 +174,11 @@ const upload = multer({
     fileType: fileTypeFilter
 });
 
-router.get('/api/products/', verifyToken, productController.getAllProducts)
-router.get('/api/products/:id',verifyToken, productController.getProduct)
+router.get('/api/products/', verifyToken, productController.getAllProducts);
+router.get('/api/products/:id',verifyToken, productController.getProduct);
+router.get('/api/products/category/:categoriesId',verifyToken, productController.getProductByCategories);
 router.post('/api/products/create',verifyToken,upload.single('image'),productController.createProduct);
-router.patch('/api/products/:id',verifyToken, productController.updateProduct)
-router.delete('/api/products/:id',verifyToken, productController.deleteProduct)
+router.patch('/api/products/:id',verifyToken, productController.updateProduct);
+router.delete('/api/products/:id',verifyToken, productController.deleteProduct);
 
 module.exports = router
