@@ -46,7 +46,7 @@
  *           type: int
  *         required: false
  *         description: Note de l'évaluation
- *        - in: query
+ *       - in: query
  *         name: comment
  *         schema:
  *           type: int
