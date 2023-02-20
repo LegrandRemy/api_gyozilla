@@ -1,12 +1,10 @@
 const db = require('../models/index');
 const Products = db['Products'];
-const multer = require('multer');
-const fs = require('fs');
 const {
-  storage
-} = require('../middlewares/upload');
+  Op
+} = require('sequelize');
+const fs = require('fs');
 const _ = require('lodash')
-const { Op } = require('sequelize')
 
 exports.getAllProducts = async (req, res) => {
   try {
