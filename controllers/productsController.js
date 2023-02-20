@@ -36,6 +36,25 @@ exports.getAllProducts = async (req, res) => {
   }
 }
 
+exports.getProductByCategories = async (req,res) => {
+  const categoriesId = req.params.categoriesId
+  try {
+    const products = await Product_category.findAll({
+      where: { id_categories: categoriesId },
+      include: ['productCategory']
+    })
+    res.status(200).json({
+      message: 'ProductsByCat',
+      data: products
+    })
+  } catch (error) {
+    res.status(500).json({
+      message: 'Impossible de récupérer les produits par catégorie',
+      error: error.message,
+    })
+  }
+}
+
 exports.getProduct = async (req, res) => {
   try {
     const product = await Products.findByPk(req.params.id, {
