@@ -1,28 +1,25 @@
 /**
  *  @swagger
- * components:
- *   schemas:
- *     measurement_units:
- *       type: object
- *       required:
- *         -
- *       properties:
- *         id:
- *           type:
- *            int
- *           description: ID de l'unité de mesure
- *         unity:
- *           type: string
- *           description: nom de l'unité de mesure
- *         id_ressources:
- *           type: int
- *           description: ID de la ressource associée
- *
- *       example:
- *         id: 1
- *         unity: kg
- *         id_ressources: 8
- *
+ *  components:
+ *    schemas:
+ *      measurement_units:
+ *        type: object
+ *        required:
+ *          -
+ *      properties:
+ *        id:
+ *          type: int
+ *          description: ID de l'unité de mesure
+ *        unity:
+ *          type: string
+ *          description: nom de l'unité de mesure
+ *        id_ressources:
+ *          type: int
+ *          description: ID de la ressource associée
+ *      example:
+ *        id: 1
+ *        unity: kg
+ *        id_ressources: 8
  */
 
 /**
