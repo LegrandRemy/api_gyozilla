@@ -181,7 +181,7 @@ const { verifyToken } = require('../controllers/tokenController')
 
 router.get('/api/orders',verifyToken, orderController.getAllOrders)
 router.get('/api/orders/:id',verifyToken,orderController.getOrder)
-router.get('/api/user/:id/orders',verifyToken,orderController.getOrderByUser)
+router.get('/api/orders/user/:id',verifyToken,orderController.getOrderByUser)
 router.post('/api/orders',verifyToken,orderController.createOrder)
 router.put('/api/orders/:id',verifyToken,orderController.updateOrder)
 router.delete('/api/orders/:id',verifyToken, orderController.deleteOrder)
