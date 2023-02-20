@@ -16,7 +16,7 @@
  *         end_hour:
  *           type: date
  *           description: Heure de fin du rendez-vous
- *          id_users:
+ *         id_users:
  *           type: date
  *           description: ID de l'utilisateur associé au rendez-vous
  *
@@ -50,13 +50,13 @@
  *           type: date
  *         required: false
  *         description: Heure de début de rendez-vous
- *        - in: query
+ *       - in: query
  *         name: end_hour
  *         schema:
  *           type: date
  *         required: false
  *         description: Heure de fin de rendez-vous
- *        - in: query
+ *       - in: query
  *         name: id_users
  *         schema:
  *           type: int

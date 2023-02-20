@@ -1,27 +1,25 @@
 /**
- * @swagger
- * components:
- *   schemas:
- *     measurement_units:
- *       type: object
- *       required:
- *         -
- *       properties:
- *         id:
- *           type: int
- *           description: ID de l'unité de mesure
- *         unity:
- *           type: string
- *           description: nom de l'unité de mesure
- *         id_ressources:
- *           type: int
- *           description: ID de la ressource associée
- *
- *       example:
- *         id: 1
- *         unity: kg
- *         id_ressources: 8
- *
+ *  @swagger
+ *  components:
+ *    schemas:
+ *      measurement_units:
+ *        type: object
+ *        required:
+ *          -
+ *      properties:
+ *        id:
+ *          type: int
+ *          description: ID de l'unité de mesure
+ *        unity:
+ *          type: string
+ *          description: nom de l'unité de mesure
+ *        id_ressources:
+ *          type: int
+ *          description: ID de la ressource associée
+ *      example:
+ *        id: 1
+ *        unity: kg
+ *        id_ressources: 8
  */
 
 /**
@@ -46,7 +44,7 @@
  *           type: string
  *         required: false
  *         description: nom de l'unité de mesure
- *        - in: query
+ *       - in: query
  *         name: id_ressources
  *         schema:
  *           type: int
@@ -73,7 +71,7 @@
  *             $ref: '#/components/schemas/measurement_units'
  *     responses:
  *       200:
- *         description: L'unité de mesure a été créée'.
+ *         description: L'unité de mesure a été créée.
  *         content:
  *           application/json:
  *             schema:
@@ -145,29 +143,29 @@
  *         description: L'unité de mesure n'a pas été trouvée.
  */
 
-const express = require('express')
-const router = express.Router()
-const measurement_unitController = require('../controllers/measurement_unitsController')
+const express = require("express");
+const router = express.Router();
+const measurement_unitController = require("../controllers/measurement_unitsController");
 
 router.get(
-  '/api/measurement_units',
-  measurement_unitController.getAllMeasurement_units,
-)
+  "/api/measurement_units",
+  measurement_unitController.getAllMeasurement_units
+);
 router.get(
-  '/api/measurement_units/:id',
-  measurement_unitController.getMeasurement_unit,
-)
+  "/api/measurement_units/:id",
+  measurement_unitController.getMeasurement_unit
+);
 router.post(
-  '/api/measurement_units',
-  measurement_unitController.createMeasurement_unit,
-)
+  "/api/measurement_units",
+  measurement_unitController.createMeasurement_unit
+);
 router.put(
-  '/api/measurement_units/:id',
-  measurement_unitController.updateMeasurement_unit,
-)
+  "/api/measurement_units/:id",
+  measurement_unitController.updateMeasurement_unit
+);
 router.delete(
-  '/api/measurement_units/:id',
-  measurement_unitController.deleteMeasurement_unit,
-)
+  "/api/measurement_units/:id",
+  measurement_unitController.deleteMeasurement_unit
+);
 
-module.exports = router
+module.exports = router;
