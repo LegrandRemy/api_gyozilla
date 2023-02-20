@@ -179,10 +179,19 @@ const router = express.Router()
 const orderController = require('../controllers/ordersController')
 const { verifyToken } = require('../controllers/tokenController')
 
+<<<<<<< HEAD
 router.get('/api/orders', verifyToken, orderController.getAllOrders)
 router.get('/api/orders/:id', verifyToken, orderController.getOrder)
 router.post('/api/orders', verifyToken, orderController.createOrder)
 router.put('/api/orders/:id', verifyToken, orderController.updateOrder)
 router.delete('/api/orders/:id', verifyToken, orderController.deleteOrder)
+=======
+router.get('/api/orders',verifyToken, orderController.getAllOrders)
+router.get('/api/orders/:id',verifyToken,orderController.getOrder)
+router.get('/api/user/:id/orders',verifyToken,orderController.getOrderByUser)
+router.post('/api/orders',verifyToken,orderController.createOrder)
+router.put('/api/orders/:id',verifyToken,orderController.updateOrder)
+router.delete('/api/orders/:id',verifyToken, orderController.deleteOrder)
+>>>>>>> 74ddd9285b70d442d107a1b9bab8a9d42372f25c
 
 module.exports = router
