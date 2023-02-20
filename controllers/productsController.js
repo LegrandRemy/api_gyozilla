@@ -1,8 +1,5 @@
 const db = require('../models/index')
 const Products = db['Products']
-const { Op } = require('sequelize')
-const fs = require('fs')
-const _ = require('lodash')
 
 exports.getAllProducts = async (req, res) => {
   try {
