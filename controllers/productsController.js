@@ -1,7 +1,9 @@
-const db = require('../models/index')
-const Products = db['Products']
-const { Op } = require('sequelize')
-const fs = require('fs')
+const db = require('../models/index');
+const Products = db['Products'];
+const {
+  Op
+} = require('sequelize');
+const fs = require('fs');
 const _ = require('lodash')
 
 exports.getAllProducts = async (req, res) => {
@@ -34,6 +36,25 @@ exports.getAllProducts = async (req, res) => {
   }
 }
 
+exports.getProductByCategories = async (req,res) => {
+  const categoriesId = req.params.categoriesId
+  try {
+    const products = await Product_category.findAll({
+      where: { id_categories: categoriesId },
+      include: ['productCategory']
+    })
+    res.status(200).json({
+      message: 'ProductsByCat',
+      data: products
+    })
+  } catch (error) {
+    res.status(500).json({
+      message: 'Impossible de récupérer les produits par catégorie',
+      error: error.message,
+    })
+  }
+}
+
 exports.getProduct = async (req, res) => {
   try {
     const product = await Products.findByPk(req.params.id, {
@@ -58,31 +79,27 @@ exports.createProduct = async (req, res) => {
   try {
     const product_isExist = await Products.findOne({
       where: {
-        reference: req.body.reference,
-      },
+        reference: req.body.reference
+      }
+    });
+    if (product_isExist) return res.status(401).send({
+      message: 'Le produit existe déjà'
+    });
+    const image = req.file;
+    const newProduct = await Products.create(req.body);
+    const newFileName = newProduct.id;
+    fs.renameSync(image.path, 'uploads/products/' + newFileName);
+    const productPatch = await Products.update({
+      image: newFileName
+    }, {
+      where: {
+        id: newProduct.id
+      }
     })
-    if (product_isExist)
-      return res.status(401).send({
-        message: 'Le produit existe déjà',
-      })
-    const image = req.file
-    const newProduct = await Products.create(req.body)
-    const newFileName = newProduct.id
-    fs.renameSync(image.path, 'uploads/products/' + newFileName)
-    const productPatch = await Products.update(
-      {
-        image: newFileName,
-      },
-      {
-        where: {
-          id: newProduct.id,
-        },
-      },
-    )
     res.status(200).json({
       message: 'Produit créé',
       data: newProduct,
-      update: productPatch,
+      update: productPatch
     })
   } catch (error) {
     res.status(500).json({
