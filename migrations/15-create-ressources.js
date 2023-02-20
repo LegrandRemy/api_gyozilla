@@ -31,7 +31,7 @@ module.exports = {
       id_measurement_units: {
         type: Sequelize.INTEGER,
         references: {
-          model: 'Measurement_units',
+          model: 'Measurement_Units',
           key: 'id',
         },
       },
