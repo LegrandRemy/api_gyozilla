@@ -4,7 +4,7 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.bulkInsert(
-      'ratings',
+      'Ratings',
       [
         {
           note: '5',
@@ -14,7 +14,7 @@ module.exports = {
         },
         {
           note: '3',
-          comment: 'Bon mais j\'ai connu mieux',
+          comment: "Bon mais j'ai connu mieux",
           createdAt: new Date(),
           updatedAt: new Date(),
         },
@@ -36,7 +36,6 @@ module.exports = {
   },
 
   async down(queryInterface, Sequelize) {
-    await queryInterface.bulkDelete('ratings', null, {})
+    await queryInterface.bulkDelete('Ratings', null, {})
   },
 }
-
