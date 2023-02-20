@@ -1,6 +1,7 @@
 const { Op } = require('sequelize');
 const db = require('../models/index');
 const Order = db['Orders'];
+const User = db['Users'];
 
 exports.isOrder_Exist = async (req,res)=>{
   const checkIdOrder = await Order.findOne({ where: { id: req.body.email }});
@@ -57,6 +58,24 @@ exports.getOrder = async (req, res) => {
   } catch (error) {
     res.status(500).json({
       message: 'Impossible de récupérer la commande',
+      error: error.message,
+    })
+  }
+}
+
+exports.getOrderByUser = async (req, res) => {
+  const id = req.params.id;
+  try {
+    const orders = await Order.findAll({
+      where: {id_users: id}
+    })
+    res.status(200).json({
+      message: 'getAllOrderUser',
+      data: orders
+    })
+  } catch (error) {
+    res.status(500).json({
+      message: 'Impossible de récupérer les commandes de l\'utilisateur',
       error: error.message,
     })
   }
