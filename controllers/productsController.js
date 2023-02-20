@@ -1,8 +1,6 @@
-const db = require('../models/index')
+const db = require('../models')
 const Products = db['Products']
 const _ = require('lodash')
-const { Op } = require('sequelize')
-const db = require('../models/index')
 const Product = db['Products']
 const { Op } = require('sequelize')
 const multer = require('multer')
