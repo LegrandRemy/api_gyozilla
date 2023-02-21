@@ -70,7 +70,7 @@
  *               $ref: '#/components/schemas/contract_types'
  *       404:
  *         description: Une erreur est survenue.
- * /api/alerts/{id}:
+ * /api/contract_types/{id}:
  *   get:
  *     summary: Récupérer le type de contrat par l'id
  *     tags: [contract_types]
@@ -126,7 +126,7 @@
  *         schema:
  *           type: string
  *         required: true
- *         description: id de l'alerte
+ *         description: id du type de contrat
  *
  *     responses:
  *       200:
