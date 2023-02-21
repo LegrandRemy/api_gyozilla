@@ -1,5 +1,5 @@
 const db = require('../models/index')
-const Product_category = db['Product_categories']
+const Product_category = db['Product_Categories']
 
 exports.getAllProduct_categories = async (req, res) => {
   try {

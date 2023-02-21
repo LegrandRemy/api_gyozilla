@@ -47,7 +47,7 @@
  *           type: int
  *         required: false
  *         description: ID du produit associé
- *        - in: query
+ *       - in: query
  *         name: id_orders
  *         schema:
  *           type: int

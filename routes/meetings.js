@@ -16,14 +16,14 @@
  *         end_hour:
  *           type: date
  *           description: Heure de fin du rendez-vous
- *          id_users:
+ *         id_users:
  *           type: date
  *           description: ID de l'utilisateur associé au rendez-vous
  *
  *       example:
  *         id: 1
- *         start_hour: 023-09-22T15:00:00
- *         end_hour: 023-09-22T18:00:00
+ *         start_hour: 2023-09-22T15:00:00
+ *         end_hour: 2023-09-22T18:00:00
  *         id_users: 1
  *
  */
@@ -50,13 +50,13 @@
  *           type: date
  *         required: false
  *         description: Heure de début de rendez-vous
- *        - in: query
+ *       - in: query
  *         name: end_hour
  *         schema:
  *           type: date
  *         required: false
  *         description: Heure de fin de rendez-vous
- *        - in: query
+ *       - in: query
  *         name: id_users
  *         schema:
  *           type: int
@@ -98,7 +98,7 @@
  *       - in: path
  *         name: id
  *         schema:
- *           type: int
+ *           type: string
  *         required: true
  *         description: Rendez-vous par l'id
  *     responses:

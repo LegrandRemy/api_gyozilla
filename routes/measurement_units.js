@@ -1,27 +1,25 @@
 /**
- * @swagger
- * components:
- *   schemas:
- *     measurement_units:
- *       type: object
- *       required:
- *         -
- *       properties:
- *         id:
- *           type: int
- *           description: ID de l'unité de mesure
- *         unity:
- *           type: string
- *           description: nom de l'unité de mesure
- *         id_ressources:
- *           type: int
- *           description: ID de la ressource associée
- *
- *       example:
- *         id: 1
- *         unity: kg
- *         id_ressources: 8
- *
+ *  @swagger
+ *  components:
+ *    schemas:
+ *      measurement_units:
+ *        type: object
+ *        required:
+ *          -
+ *      properties:
+ *        id:
+ *          type: int
+ *          description: ID de l'unité de mesure
+ *        unity:
+ *          type: string
+ *          description: nom de l'unité de mesure
+ *        id_ressources:
+ *          type: int
+ *          description: ID de la ressource associée
+ *      example:
+ *        id: 1
+ *        unity: kg
+ *        id_ressources: 8
  */
 
 /**
@@ -46,10 +44,10 @@
  *           type: string
  *         required: false
  *         description: nom de l'unité de mesure
- *        - in: query
+ *       - in: query
  *         name: id_ressources
  *         schema:
- *           type: int
+ *          type: int
  *         required: false
  *         description: ID de la ressource associée
  *
@@ -73,7 +71,7 @@
  *             $ref: '#/components/schemas/measurement_units'
  *     responses:
  *       200:
- *         description: L'unité de mesure a été créée'.
+ *         description: L'unité de mesure a été créée.
  *         content:
  *           application/json:
  *             schema:

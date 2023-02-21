@@ -1,5 +1,5 @@
 const db = require('../models/index')
-const Ressource_type = db['Ressource_types']
+const Ressource_type = db['Ressource_Types']
 
 exports.getAllRessources_types = async (req, res) => {
   try {

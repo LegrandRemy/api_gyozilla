@@ -19,15 +19,22 @@
  *         reference:
  *           type: string
  *           description: Reference du produit
+<<<<<<< HEAD
  *         id_receipts:
  *           type: string
  *           description: ID recette du produit
+=======
+ *
+>>>>>>> 437340d7c1f400ba20298fc979710021574e8ec6
  *       example:
  *         id: 1
  *         label: Nems
  *         price: 5€
  *         reference: 884569
+<<<<<<< HEAD
  *         id_receipts: 2
+=======
+>>>>>>> 437340d7c1f400ba20298fc979710021574e8ec6
  */
 
 /**
@@ -67,11 +74,19 @@
  *         required: false
  *         description: reference du produit
  *       - in: query
+<<<<<<< HEAD
  *         name: id_receipts
  *         schema:
  *           type: string
  *         required: false
  *         description: Id recette du produit
+=======
+ *         name: products_categories
+ *         schema:
+ *           type: string
+ *         required: false
+ *         description: Categorie du produit
+>>>>>>> 437340d7c1f400ba20298fc979710021574e8ec6
  *     responses:
  *       200:
  *         description: La liste de tous les produits
@@ -127,7 +142,11 @@
  *        name: id
  *        schema:
  *          type: string
+<<<<<<< HEAD
  *        required: true
+=======
+ *        required: false
+>>>>>>> 437340d7c1f400ba20298fc979710021574e8ec6
  *        description: id du produit
  *    requestBody:
  *      required: true
@@ -154,7 +173,11 @@
  *         name: id
  *         schema:
  *           type: string
+<<<<<<< HEAD
  *         required: true
+=======
+ *         required: false
+>>>>>>> 437340d7c1f400ba20298fc979710021574e8ec6
  *         description: id du produit
  *
  *     responses:
@@ -181,6 +204,7 @@ const upload = multer({
   fileType: fileTypeFilter,
 })
 
+<<<<<<< HEAD
 router.get('/api/products/', verifyToken, productController.getAllProducts)
 router.get('/api/products/:id', verifyToken, productController.getProduct)
 router.post(
@@ -191,5 +215,13 @@ router.post(
 )
 router.put('/api/products/:id', verifyToken, productController.updateProduct)
 router.delete('/api/products/:id', verifyToken, productController.deleteProduct)
+=======
+router.get('/api/products/', verifyToken, productController.getAllProducts);
+router.get('/api/products/:id',verifyToken, productController.getProduct);
+router.get('/api/products/category/:categoriesId',verifyToken, productController.getProductByCategories);
+router.post('/api/products/create',verifyToken,upload.single('image'),productController.createProduct);
+router.patch('/api/products/:id',verifyToken, productController.updateProduct);
+router.delete('/api/products/:id',verifyToken, productController.deleteProduct);
+>>>>>>> 437340d7c1f400ba20298fc979710021574e8ec6
 
 module.exports = router

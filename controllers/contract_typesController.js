@@ -1,5 +1,5 @@
 const db = require('../models/index')
-const Contract_type = db['Contract_types']
+const Contract_type = db['Contract_Types']
 
 exports.getAllContract_types = async (req, res) => {
   try {
