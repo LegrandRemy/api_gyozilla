@@ -5,7 +5,7 @@ const users_meetingsController = require('../controllers/users_meetingsControlle
 router.get('/api/users_meetings', users_meetingsController.getAllUsers_meetings)
 router.get('/api/users_meetings/:id', users_meetingsController.getUsers_meeting)
 router.post('/api/users_meetings', users_meetingsController.createUsers_meeting)
-router.put(
+router.patch(
   '/api/users_meetings/:id',
   users_meetingsController.updateUsers_meeting,
 )

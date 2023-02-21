@@ -159,7 +159,7 @@ router.post(
   '/api/measurement_units',
   measurement_unitController.createMeasurement_unit,
 )
-router.put(
+router.patch(
   '/api/measurement_units/:id',
   measurement_unitController.updateMeasurement_unit,
 )

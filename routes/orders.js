@@ -183,7 +183,7 @@ router.get('/api/orders', verifyToken, orderController.getAllOrders)
 router.get('/api/orders/:id', verifyToken, orderController.getOrder)
 router.get('/api/orders/user/:id', verifyToken, orderController.getOrderByUser)
 router.post('/api/orders', verifyToken, orderController.createOrder)
-router.put('/api/orders/:id', verifyToken, orderController.updateOrder)
+router.patch('/api/orders/:id', verifyToken, orderController.updateOrder)
 router.delete('/api/orders/:id', verifyToken, orderController.deleteOrder)
 
 module.exports = router
