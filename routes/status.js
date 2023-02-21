@@ -27,7 +27,7 @@
  *   get:
  *     security:
  *       - bearerAuth: []
- *     summary: Lister toutes les status
+ *     summary: Lister tous les status
  *     tags: [status]
  *     parameters:
  *       - in: query
@@ -35,7 +35,7 @@
  *         schema:
  *           type: int
  *         required: false
- *         description: id de la commande
+ *         description: id du status
  *       - in: query
  *         name: name
  *         schema:
@@ -62,7 +62,7 @@
  *             $ref: '#/components/schemas/status'
  *     responses:
  *       200:
- *         description: Status créée.
+ *         description: Status créé.
  *         content:
  *           application/json:
  *             schema:
