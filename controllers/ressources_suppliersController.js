@@ -1,10 +1,12 @@
 const db = require('../models/index')
-const Ressource_supplier = db['Ressource_Suppliers']
+const Ressource_supplier = db['Ressources_suppliers']
 
 exports.getAllRessources_suppliers = async (req, res) => {
+  console.log('ici');
   try {
-    const Ressources_suppliers = await Ressource_supplier.findAll()
-    res.status(200).json(Ressources_suppliers)
+    const ressources_suppliers = await Ressource_supplier.findAll()
+    
+    res.status(200).json(ressources_suppliers)
   } catch (error) {
     res.status(500).json({
       message: 'Impossible de récupérer les Ressource_suppliers',

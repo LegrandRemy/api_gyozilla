@@ -12,6 +12,9 @@ module.exports = (sequelize, DataTypes) => {
         as: 'ressources_types',
         foreignKey: 'id_ressources_types',
       })
+      Ressources.hasMany(models.Ressources_suppliers, {
+        foreignKey: 'id_ressources',
+      })
       Ressources.belongsTo(models.Measurement_units, {
         as: 'measurement_units',
         foreignKey: 'id_measurement_units',

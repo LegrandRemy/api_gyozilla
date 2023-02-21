@@ -1,5 +1,6 @@
 const db = require('../models/index')
 const Ressources = db['Ressources']
+const Ressources_suppliers = db['Ressources_suppliers']
 const _ = require('lodash')
 const { Op } = require('sequelize')
 
@@ -54,6 +55,29 @@ exports.getRessourceByType = async (req,res) => {
     })
   }
 }
+
+exports.getResourcesBySupplier = async (req, res, next) => {
+  try {
+    const supplierId = req.params.supplierId;
+
+    const ressources = await Ressources.findAll({
+      include: [
+        {
+          model: Ressources_suppliers,
+          where: { id_suppliers: supplierId },
+          attributes: [],
+        },
+      ],
+    });
+
+    res.status(200).json(ressources);
+  } catch (error) {
+    res.status(500).json({ 
+      message: 'Une erreur est survenue.',
+      error: error.message });
+  }
+};
+
 
 exports.getRessource = async (req, res) => {
   try {
