@@ -3,8 +3,8 @@ const Users_Meeting = db['Users_Meetings']
 
 exports.getAllUsers_meetings = async (req, res) => {
   try {
-    const Users_Meetings = await Users_Meeting.findAll()
-    res.status(200).json(Users_Meetings)
+    const users_meetings = await Users_Meeting.findAll()
+    res.status(200).json(users_meetings)
   } catch (error) {
     res.status(500).json({
       message: 'Impossible de récupérer les reunions',
@@ -15,8 +15,8 @@ exports.getAllUsers_meetings = async (req, res) => {
 
 exports.getUsers_meeting = async (req, res) => {
   try {
-    const Users_Meeting = await Users_Meeting.findByPk(req.params.id)
-    res.status(200).json(Users_Meeting)
+    const users_meetings = await Users_Meeting.findByPk(req.params.id)
+    res.status(200).json(users_meetings)
   } catch (error) {
     res.status(500).json({
       message: 'Impossible de récupérer la reunion',
