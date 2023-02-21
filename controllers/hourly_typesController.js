@@ -1,5 +1,5 @@
 const db = require('../models/index')
-const Hourly_type = db['Hourly_types']
+const Hourly_type = db['Hourly_Types']
 
 exports.getAllHourly_types = async (req, res) => {
   try {

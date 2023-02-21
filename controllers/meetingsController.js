@@ -1,7 +1,7 @@
 const db = require('../models/index')
 const { getAllUsers_meetings } = require('./users_meetingsController')
 const Meeting = db['Meetings']
-const Users_meetings = db['Users_meetings']
+const Users_meetings = db['Users_Meetings']
 
 exports.getAllMeetings = async (req, res) => {
   try {

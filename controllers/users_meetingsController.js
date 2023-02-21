@@ -1,5 +1,5 @@
 const db = require('../models/index')
-const Users_meeting = db['Users_meetings']
+const Users_meeting = db['Users_Meetings']
 
 exports.getAllUsers_meetings = async (req, res) => {
   try {
