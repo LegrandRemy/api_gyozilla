@@ -1,5 +1,5 @@
 const db = require('../models/index')
-const Measurement_unit = db['Measurement_units']
+const Measurement_unit = db['Measurement_Units']
 
 exports.getAllMeasurement_units = async (req, res) => {
   try {

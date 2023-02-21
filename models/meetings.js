@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      Meetings.hasMany(models.Users_meetings, {
+      Meetings.hasMany(models.Users_Meetings, {
         as: 'meetingsUsers',
         foreignKey: 'id_meetings',
       })
@@ -18,12 +18,12 @@ module.exports = (sequelize, DataTypes) => {
     {
       end_hour: DataTypes.DATE,
       start_hour: DataTypes.DATE,
-      id_users: {
-        type: DataTypes.INTEGER,
-        validate: {
-          isNull: true,
-        },
-      },
+      // id_users: {
+      //   type: DataTypes.INTEGER,
+      //   validate: {
+      //     isNull: true,
+      //   },
+      // },
     },
     {
       sequelize,

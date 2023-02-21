@@ -12,11 +12,11 @@ module.exports = (sequelize, DataTypes) => {
         as: 'roles',
         foreignKey: 'id_roles',
       })
-      Users.belongsTo(models.Contract_types, {
+      Users.belongsTo(models.Contract_Types, {
         as: 'contract_types',
         foreignKey: 'id_contract_types',
       })
-      Users.hasMany(models.Users_meetings, {
+      Users.hasMany(models.Users_Meetings, {
         as: 'meetingsUsers',
         foreignKey: 'id_users',
       })

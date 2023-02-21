@@ -11,9 +11,10 @@ const ordersRoute = require('./orders')
 const product_categoriesRoute = require('./product_categories')
 const product_ordersRoute = require('./product_orders')
 const product_ressources_receiptsRoute = require('./product_ressources_receipts')
-const users_meetingsRoute = require('./users_meetings')
+const users_meetingsRoute = require('./Users_Meetings')
 const stepsRoute = require('./steps')
 const sales_revenuesRoute = require('./sales_revenues')
+const statusRoute = require('./status')
 const rolesRoute = require('./roles')
 const ressourcesRoute = require('./ressources')
 const ressources_typesRoute = require('./ressources_types')
@@ -36,6 +37,7 @@ module.exports = {
   product_ordersRoute,
   product_ressources_receiptsRoute,
   users_meetingsRoute,
+  statusRoute,
   stepsRoute,
   sales_revenuesRoute,
   rolesRoute,

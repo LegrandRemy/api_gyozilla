@@ -1,5 +1,5 @@
 const db = require('../models/index')
-const Ressource_supplier = db['Ressource_suppliers']
+const Ressource_supplier = db['Ressource_Suppliers']
 
 exports.getAllRessources_suppliers = async (req, res) => {
   try {

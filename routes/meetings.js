@@ -22,8 +22,8 @@
  *
  *       example:
  *         id: 1
- *         start_hour: 023-09-22T15:00:00
- *         end_hour: 023-09-22T18:00:00
+ *         start_hour: 2023-09-22T15:00:00
+ *         end_hour: 2023-09-22T18:00:00
  *         id_users: 1
  *
  */
@@ -98,7 +98,7 @@
  *       - in: path
  *         name: id
  *         schema:
- *           type: int
+ *           type: string
  *         required: true
  *         description: Rendez-vous par l'id
  *     responses:

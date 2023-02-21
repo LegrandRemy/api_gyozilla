@@ -1,5 +1,5 @@
 const db = require('../models/index')
-const Product_order = db['Product_orders']
+const Product_order = db['Product_Orders']
 
 exports.getAllProduct_orders = async (req, res) => {
   try {

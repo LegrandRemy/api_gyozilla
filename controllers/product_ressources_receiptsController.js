@@ -1,5 +1,5 @@
 const db = require('../models/index')
-const Product_ressource = db['product_ressources_receipts']
+const Product_ressource = db['Product_Ressources_Receipts']
 
 exports.getAllproduct_ressources_receipts = async (req, res) => {
   try {
