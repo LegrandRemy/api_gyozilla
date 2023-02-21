@@ -162,7 +162,7 @@ router.post(
   '/api/product_categories',
   product_categoryController.createProduct_category,
 )
-router.put(
+router.patch(
   '/api/product_categories/:id',
   product_categoryController.updateProduct_category,
 )

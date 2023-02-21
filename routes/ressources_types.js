@@ -14,7 +14,7 @@ router.post(
   '/api/ressources_types',
   ressource_typeController.createRessource_type,
 )
-router.put(
+router.patch(
   '/api/ressources_types/:id',
   ressource_typeController.updateRessource_type,
 )

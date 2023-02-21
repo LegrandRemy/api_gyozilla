@@ -153,7 +153,7 @@ const product_orderController = require('../controllers/product_ordersController
 router.get('/api/product_orders', product_orderController.getAllProduct_orders)
 router.get('/api/product_orders/:id', product_orderController.getProduct_order)
 router.post('/api/product_orders', product_orderController.createProduct_order)
-router.put(
+router.patch(
   '/api/product_orders/:id',
   product_orderController.updateProduct_order,
 )

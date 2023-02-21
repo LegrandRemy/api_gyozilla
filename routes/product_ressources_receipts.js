@@ -191,7 +191,7 @@ router.post(
   '/api/product_ressources_receipts',
   product_ressourceController.createProduct_ressource,
 )
-router.put(
+router.patch(
   '/api/product_ressources_receipts/:id',
   product_ressourceController.updateProduct_ressource,
 )

@@ -14,7 +14,7 @@ router.post(
   '/api/ressources_suppliers',
   ressource_supplierController.createRessource_supplier,
 )
-router.put(
+router.patch(
   '/api/ressources_suppliers/:id',
   ressource_supplierController.updateRessource_supplier,
 )
