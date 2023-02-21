@@ -98,7 +98,7 @@
  *       - in: path
  *         name: id
  *         schema:
- *           type: int
+ *           type: string
  *         required: true
  *         description: Rendez-vous par l'id
  *     responses:

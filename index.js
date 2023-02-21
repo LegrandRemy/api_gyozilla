@@ -13,6 +13,7 @@ const {
   product_ordersRoute,
   product_ressources_receiptsRoute,
   users_meetingsRoute,
+  statusRoute,
   stepsRoute,
   rolesRoute,
   sales_revenuesRoute,
@@ -83,6 +84,7 @@ app.use(product_categoriesRoute)
 app.use(product_ordersRoute)
 app.use(product_ressources_receiptsRoute)
 app.use(users_meetingsRoute)
+app.use(statusRoute)
 app.use(stepsRoute)
 app.use(sales_revenuesRoute)
 app.use(rolesRoute)

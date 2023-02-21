@@ -10,15 +10,15 @@
  *         id:
  *           type: int
  *           description: ID de la commande
- *         status:
- *           type: string
- *           description: Status de la commande
  *         payement_at:
  *           type: string
  *           description: Paiement de la commande
  *         price:
  *           type: string
  *           description: Prix de la commande
+ *         id_status:
+ *           type: string
+ *           description: Status de la commande
  *         id_sales_revenues:
  *           type: string
  *           description: CA
@@ -27,9 +27,9 @@
  *           description: Client de la commande
  *       example:
  *         id: 1
- *         status: En cours
  *         payement_at: 15/02/2023
  *         price: 25€
+ *         id_status: 1
  *         id_sales_revenues: 2
  *         id_users: 3
  */
@@ -53,12 +53,6 @@
  *         required: false
  *         description: id de la commande
  *       - in: query
- *         name: status
- *         schema:
- *           type: string
- *         required: false
- *         description: status de la commande
- *       - in: query
  *         name: payement_at
  *         schema:
  *           type: string
@@ -70,6 +64,12 @@
  *           type: string
  *         required: false
  *         description: prix de la commande
+ *       - in: query
+ *         name: id_status
+ *         schema:
+ *           type: string
+ *         required: false
+ *         description: status de la commande
  *       - in: query
  *         name: id_sales_revenues
  *         schema:
