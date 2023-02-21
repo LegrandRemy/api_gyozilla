@@ -21,6 +21,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       sequelize,
       modelName: 'Measurement_units',
+      tableName: 'Measurement_Units',
     },
   )
   return Measurement_Units
