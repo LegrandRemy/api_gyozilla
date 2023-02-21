@@ -2,10 +2,25 @@ const db = require('../models/index')
 const { getAllUsers_meetings } = require('./users_meetingsController')
 const Meeting = db['Meetings']
 const Users_Meetings = db['Users_Meetings']
+const { Op } = require('sequelize')
 
 exports.getAllMeetings = async (req, res) => {
   try {
-    const meetings = await Meeting.findAll()
+    const where = {}
+    if (req.query.id) {
+      where.id = req.query.id
+    }
+    if (req.query.start_hour) {
+      where.start_hour = req.query.start_hour
+    }
+    if (req.query.end_hour) {
+      where.end_hour = req.query.end_hour
+    }
+    const meetings = await Meeting.findAll({
+      where: {
+        [Op.and]: [where],
+      },
+    })
     res.status(200).json(meetings)
   } catch (error) {
     res.status(500).json({
@@ -34,18 +49,11 @@ exports.createMeeting = async (req, res) => {
   }
   try {
     const newMeeting = await Meeting.create(data)
-    // console.log(newMeeting)
-    // console.log("coucou1")
     if (newMeeting) {
-      // console.log("coucou2")
-      console.log(id_meetings, id_users, newMeeting.id)
-      req.body.id_users.map((item) => {
-        Users_Meetings.create({
-          id_meetings: newMeeting.id,
-          id_users: item,
-        })
+      Users_Meetings.create({
+        id_meetings: newMeeting.id,
+        id_users: req.body.id_users,
       })
-
       res.status(201).json({ message: 'created', data: newMeeting })
     }
   } catch (error) {
