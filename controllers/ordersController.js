@@ -14,8 +14,8 @@ exports.getAllOrders = async (req, res) => {
     if (req.query.id) {
       where.id = req.query.id
     }
-    if (req.query.status) {
-      where.status = req.query.status
+    if (req.query.id_status) {
+      where.id_status = req.query.id_status
     }
     if (req.query.payement_at) {
       where.payement_at = req.query.payement_at
@@ -33,9 +33,9 @@ exports.getAllOrders = async (req, res) => {
       attributes: [
         'id',
         'payement_at',
-        'status',
         'price',
-        'id_sales_revenues',
+        'id_status',
+        'id_users',
         'id_sales_revenues'
       ],
       where: {
