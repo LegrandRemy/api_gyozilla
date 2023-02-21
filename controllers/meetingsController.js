@@ -1,7 +1,7 @@
 const db = require('../models/index')
 const { getAllUsers_meetings } = require('./users_meetingsController')
 const Meeting = db['Meetings']
-const Users_meetings = db['Users_meetings']
+const Users_Meetings = db['Users_Meetings']
 
 exports.getAllMeetings = async (req, res) => {
   try {
@@ -34,9 +34,13 @@ exports.createMeeting = async (req, res) => {
   }
   try {
     const newMeeting = await Meeting.create(data)
+    // console.log(newMeeting)
+    // console.log("coucou1")
     if (newMeeting) {
+      // console.log("coucou2")
+      console.log(id_meetings, id_users, newMeeting.id)
       req.body.id_users.map((item) => {
-        Users_meetings.create({
+        Users_Meetings.create({
           id_meetings: newMeeting.id,
           id_users: item,
         })
