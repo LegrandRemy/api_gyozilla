@@ -178,6 +178,7 @@ router.get(
   ressourceController.getAllRessources,
 )
 router.get('/api/ressources/:id', verifyToken, ressourceController.getRessource)
+router.get('/api/ressources/type/:idType', verifyToken, ressourceController.getRessourceByType)
 router.post('/api/ressources', verifyToken, ressourceController.createRessource)
 router.patch(
   '/api/ressources/:id',

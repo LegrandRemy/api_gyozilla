@@ -36,6 +36,25 @@ exports.getAllRessources = async (req, res) => {
   }
 }
 
+exports.getRessourceByType = async (req,res) => {
+  const idType = req.params.idType;
+  try {
+    const ressource = await Ressources.findAll({
+      where: {id_ressources_types: idType},
+      include: ['ressources_types'],
+    })
+    res.status(200).json({
+      message: 'RessourceByType',
+      data: ressource
+    })
+  } catch (error) {
+    res.status(500).json({
+      message: 'Impossible de récupèrer les ressources par son type',
+      error: error.message,
+    })
+  }
+}
+
 exports.getRessource = async (req, res) => {
   try {
     const ressources = await Ressources.findByPk(req.params.id, {
