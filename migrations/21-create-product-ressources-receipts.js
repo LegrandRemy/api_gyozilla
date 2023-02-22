@@ -2,7 +2,7 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Product_Ressources_Receipts', {
+    await queryInterface.createTable('Product_Stocks_Receipts', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -16,10 +16,10 @@ module.exports = {
           key: 'id',
         },
       },
-      id_ressources: {
+      id_stock: {
         type: Sequelize.INTEGER,
         references: {
-          model: 'Ressources',
+          model: 'Stock',
           key: 'id',
         },
       },
@@ -41,6 +41,6 @@ module.exports = {
     })
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Product_Ressources_Receipts')
+    await queryInterface.dropTable('Product_Stocks_Receipts')
   },
 }

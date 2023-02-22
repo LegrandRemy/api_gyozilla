@@ -1,10 +1,11 @@
-const { Op } = require('sequelize');
-const db = require('../models/index');
-const Order = db['Orders'];
+const { Op } = require('sequelize')
+const db = require('../models/index')
+const Order = db['Orders']
 
-exports.isOrder_Exist = async (req,res)=>{
-  const checkIdOrder = await Order.findOne({ where: { id: req.body.email }});
-  if (checkIdOrder) return res.status(401).send({ message: 'La commande existe déjà' });
+exports.isOrder_Exist = async (req, res) => {
+  const checkIdOrder = await Order.findOne({ where: { id: req.body.email } })
+  if (checkIdOrder)
+    return res.status(401).send({ message: 'La commande existe déjà' })
 }
 
 exports.getAllOrders = async (req, res) => {
@@ -22,25 +23,15 @@ exports.getAllOrders = async (req, res) => {
     if (req.query.id_status) {
       where.id_users = req.query.id_status
     }
-    if (req.query.id_sales_revenues) {
-      where.id_sales_revenues = req.query.id_sales_revenues
-    }
     if (req.query.id_users) {
       where.id_users = req.query.id_users
     }
     const orders = await Order.findAll({
-      attributes: [
-        'id',
-        'payement_at',
-        'price',
-        'id_status',
-        'id_sales_revenues',
-        'id_sales_revenues'
-      ],
+      attributes: ['id', 'payement_at', 'price', 'id_status'],
       where: {
         [Op.and]: [where],
       },
-    });
+    })
     res.status(200).json(orders)
   } catch (error) {
     res.status(500).json({
@@ -63,33 +54,33 @@ exports.getOrder = async (req, res) => {
 }
 
 exports.getOrderByUser = async (req, res) => {
-  const id = req.params.id;
+  const id = req.params.id
   try {
     const orders = await Order.findAll({
-      where: {id_users: id}
+      where: { id_users: id },
     })
     res.status(200).json({
       message: 'getAllOrderUser',
-      data: orders
+      data: orders,
     })
   } catch (error) {
     res.status(500).json({
-      message: 'Impossible de récupérer les commandes de l\'utilisateur',
+      message: "Impossible de récupérer les commandes de l'utilisateur",
       error: error.message,
     })
   }
 }
 
 exports.getOrderByStatus = async (req, res) => {
-  const idStatus = req.params.idStatus;
+  const idStatus = req.params.idStatus
   try {
     const orders = await Order.findAll({
-      where: {id_status: idStatus},
+      where: { id_status: idStatus },
       include: ['status'],
     })
     res.status(200).json({
       message: 'getAllOrderStatus',
-      data: orders
+      data: orders,
     })
   } catch (error) {
     res.status(500).json({

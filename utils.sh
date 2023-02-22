@@ -3,17 +3,17 @@ npx sequelize-cli model:generate --name Contract_types --attributes type:string
 npx sequelize-cli model:generate --name Ratings --attributes step_visual:string,step_quality:string,step_taste:string
 npx sequelize-cli model:generate --name Sales_Revenues --attributes ca:string
 npx sequelize-cli model:generate --name Categories --attributes name:string
-npx sequelize-cli model:generate --name Ressources_types --attributes type:string
+npx sequelize-cli model:generate --name Stocks_types --attributes type:string
 npx sequelize-cli model:generate --name Suppliers --attributes contact_name:string,adress:string,phone:string,email:string,compagny:string
 npx sequelize-cli model:generate --name Meetings --attributes end_hour:string,start_hour:string
 npx sequelize-cli model:generate --name Hourly_types --attributes name:string
 npx sequelize-cli model:generate --name Steps --attributes step:string
-npx sequelize-cli model:generate --name Measurement_Units --attributes unity:string,id_ressources:integer
+npx sequelize-cli model:generate --name Measurement_Units --attributes unity:string,id_stock:integer
 
-npx sequelize-cli model:generate --name Ressources --attributes label:string,price:string,reference:string, quantity:integer,id_ressources_types:integer
+npx sequelize-cli model:generate --name Stock --attributes label:string,price:string,reference:string, quantity:integer,id_stock_types:integer
 
-npx sequelize-cli model:generate --name Ressources_Suppliers --attributes id_ressources:integer,id_suppliers:integer
-npx sequelize-cli model:generate --name Product_Ressources_Receipts --attributes id_products:integer,id_ressources:integer
+npx sequelize-cli model:generate --name Stocks_Suppliers --attributes id_stock:integer,id_suppliers:integer
+npx sequelize-cli model:generate --name Product_Stocks_Receipts --attributes id_products:integer,id_stock:integer
 npx sequelize-cli model:generate --name Product_Categories --attributes id_products:integer,id_categories:integer
 npx sequelize-cli model:generate --name Products --attributes label:string,price:string,reference:string,id_receipts:integer
 npx sequelize-cli model:generate --name Products_Orders --attributes id_products:integer,id_orders:integer
