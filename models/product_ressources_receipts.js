@@ -13,8 +13,6 @@ module.exports = (sequelize, DataTypes) => {
   }
   Product_Ressources_Receipts.init(
     {
-      label: DataTypes.STRING,
-      reference: DataTypes.INTEGER,
       id_step: DataTypes.INTEGER,
       id_products: DataTypes.INTEGER,
       id_ressources: DataTypes.INTEGER,

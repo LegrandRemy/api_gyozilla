@@ -2,6 +2,7 @@ const db = require('../models/index')
 const Product_ressource = db['Product_Ressources_Receipts']
 
 exports.getAllproduct_ressources_receipts = async (req, res) => {
+  console.log(res.status)
   try {
     const product_ressources_receipts = await Product_ressource.findAll()
     res.status(200).json(product_ressources_receipts)
