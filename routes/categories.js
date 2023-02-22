@@ -142,7 +142,7 @@ const categoryController = require('../controllers/categoriesController')
 router.get('/api/categories', categoryController.getAllCategories)
 router.get('/api/categories/:id', categoryController.getCategory)
 router.post('/api/categories', categoryController.createCategory)
-router.put('/api/categories/:id', categoryController.updateCategory)
+router.patch('/api/categories/:id', categoryController.updateCategory)
 router.delete('/api/categories/:id', categoryController.deleteCategory)
 
 module.exports = router

@@ -205,14 +205,27 @@ const upload = multer({
 })
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 router.get('/api/products/', verifyToken, productController.getAllProducts)
 router.get('/api/products/:id', verifyToken, productController.getProduct)
 router.post(
   '/api/products/create',
+=======
+router.get('/api/products/', verifyToken, productController.getAllProducts)
+router.get('/api/products/:id', verifyToken, productController.getProduct)
+router.get(
+  '/api/products/category/:categoriesId',
+  verifyToken,
+  productController.getProductByCategories,
+)
+router.post(
+  '/api/products',
+>>>>>>> ef47ed61af43918b06e54dcdf4bb5be0f12a803f
   verifyToken,
   upload.single('image'),
   productController.createProduct,
 )
+<<<<<<< HEAD
 router.put('/api/products/:id', verifyToken, productController.updateProduct)
 router.delete('/api/products/:id', verifyToken, productController.deleteProduct)
 =======
@@ -223,5 +236,9 @@ router.post('/api/products/create',verifyToken,upload.single('image'),productCon
 router.patch('/api/products/:id',verifyToken, productController.updateProduct);
 router.delete('/api/products/:id',verifyToken, productController.deleteProduct);
 >>>>>>> 437340d7c1f400ba20298fc979710021574e8ec6
+=======
+router.patch('/api/products/:id', verifyToken, productController.updateProduct)
+router.delete('/api/products/:id', verifyToken, productController.deleteProduct)
+>>>>>>> ef47ed61af43918b06e54dcdf4bb5be0f12a803f
 
 module.exports = router

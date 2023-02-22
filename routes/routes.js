@@ -10,15 +10,13 @@ const meetingsRoute = require('./meetings')
 const ordersRoute = require('./orders')
 const product_categoriesRoute = require('./product_categories')
 const product_ordersRoute = require('./product_orders')
-const product_ressources_receiptsRoute = require('./product_ressources_receipts')
-const users_meetingsRoute = require('./Users_Meetings')
+const users_meetingsRoute = require('./users_meetings')
 const stepsRoute = require('./steps')
-const sales_revenuesRoute = require('./sales_revenues')
 const statusRoute = require('./status')
 const rolesRoute = require('./roles')
-const ressourcesRoute = require('./ressources')
-const ressources_typesRoute = require('./ressources_types')
-const ressources_suppliersRoute = require('./ressources_suppliers')
+const stockRoute = require('./stock')
+const stock_typesRoute = require('./stock_types')
+const stock_suppliersRoute = require('./stock_suppliers')
 const ratingsRoute = require('./ratings')
 const productsRoute = require('./products')
 const hourliesRoute = require('./hourlies')
@@ -35,15 +33,13 @@ module.exports = {
   ordersRoute,
   product_categoriesRoute,
   product_ordersRoute,
-  product_ressources_receiptsRoute,
   users_meetingsRoute,
   statusRoute,
   stepsRoute,
-  sales_revenuesRoute,
   rolesRoute,
-  ressourcesRoute,
-  ressources_typesRoute,
-  ressources_suppliersRoute,
+  stockRoute,
+  stock_typesRoute,
+  stock_suppliersRoute,
   productsRoute,
   ratingsRoute,
   hourliesRoute,

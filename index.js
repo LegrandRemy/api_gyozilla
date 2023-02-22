@@ -11,24 +11,22 @@ const {
   ordersRoute,
   product_categoriesRoute,
   product_ordersRoute,
-  product_ressources_receiptsRoute,
   users_meetingsRoute,
   statusRoute,
   stepsRoute,
   rolesRoute,
-  sales_revenuesRoute,
-  ressourcesRoute,
-  ressources_typesRoute,
-  ressources_suppliersRoute,
+  stockRoute,
+  stock_typesRoute,
+  stock_suppliersRoute,
   ratingsRoute,
   productsRoute,
   hourliesRoute,
 } = require('./routes/routes')
 
-const express = require("express"),
-  bodyParser = require("body-parser"),
-  swaggerJsdoc = require("swagger-jsdoc"),
-  swaggerUi = require("swagger-ui-express");
+const express = require('express'),
+  bodyParser = require('body-parser'),
+  swaggerJsdoc = require('swagger-jsdoc'),
+  swaggerUi = require('swagger-ui-express')
 const app = express()
 const port = 3000
 const session = require('express-session')
@@ -82,25 +80,21 @@ app.use(meetingsRoute)
 app.use(ordersRoute)
 app.use(product_categoriesRoute)
 app.use(product_ordersRoute)
-app.use(product_ressources_receiptsRoute)
 app.use(users_meetingsRoute)
 app.use(statusRoute)
 app.use(stepsRoute)
-app.use(sales_revenuesRoute)
 app.use(rolesRoute)
-app.use(ressourcesRoute)
-app.use(ressources_typesRoute)
-app.use(ressources_suppliersRoute)
+app.use(stockRoute)
+app.use(stock_typesRoute)
+app.use(stock_suppliersRoute)
 app.use(ratingsRoute)
 app.use(productsRoute)
 app.use(hourliesRoute)
-app.get('/', (req, res) => res.send('API Gyozilla'));
-app.listen(port, () => console.log(`Visiter l'API Gyozilla sur http://localhost:${port}/api`));
-app.use(
-  "/api",
-  swaggerUi.serve,
-  swaggerUi.setup(specs)
+app.get('/', (req, res) => res.send('API Gyozilla'))
+app.listen(port, () =>
+  console.log(`Visiter l'API Gyozilla sur http://localhost:${port}/api`),
 )
+app.use('/api', swaggerUi.serve, swaggerUi.setup(specs))
 app.use((req, res, next) => {
-    res.status(404).send("Oups la page est introuvable");
-});
+  res.status(404).send('Oups la page est introuvable')
+})

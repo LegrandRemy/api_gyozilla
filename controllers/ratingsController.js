@@ -1,3 +1,4 @@
+const { request } = require('http')
 const db = require('../models/index')
 const Rating = db['Ratings']
 
@@ -38,6 +39,7 @@ exports.createRating = async (req, res) => {
 }
 
 exports.updateRating = async (req, res) => {
+  console.log(req.body)
   try {
     const updatedRating = await Rating.update(req.body, {
       where: {

@@ -142,7 +142,7 @@ const { verifyToken } = require('../controllers/tokenController')
 router.get('/api/status', verifyToken, statusController.getAllStatus)
 router.get('/api/status/:id', verifyToken, statusController.getStatus)
 router.post('/api/status', verifyToken, statusController.createStatus)
-router.put('/api/status/:id', verifyToken, statusController.updateStatus)
+router.patch('/api/status/:id', verifyToken, statusController.updateStatus)
 router.delete('/api/status/:id', verifyToken, statusController.deleteStatus)
 
 module.exports = router

@@ -13,13 +13,13 @@
  *        unity:
  *          type: string
  *          description: nom de l'unité de mesure
- *        id_ressources:
+ *        id_stock:
  *          type: int
- *          description: ID de la ressource associée
+ *          description: ID de la stock associée
  *      example:
  *        id: 1
  *        unity: kg
- *        id_ressources: 8
+ *        id_stock: 8
  */
 
 /**
@@ -45,11 +45,11 @@
  *         required: false
  *         description: nom de l'unité de mesure
  *       - in: query
- *         name: id_ressources
+ *         name: id_stock
  *         schema:
  *          type: int
  *         required: false
- *         description: ID de la ressource associée
+ *         description: ID de la stock associée
  *
  *     responses:
  *       200:
@@ -159,7 +159,7 @@ router.post(
   '/api/measurement_units',
   measurement_unitController.createMeasurement_unit,
 )
-router.put(
+router.patch(
   '/api/measurement_units/:id',
   measurement_unitController.updateMeasurement_unit,
 )

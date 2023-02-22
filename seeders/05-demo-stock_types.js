@@ -4,19 +4,15 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.bulkInsert(
-      'Product_Ressources_Receipts',
+      'Stocks_Types',
       [
         {
-          id_products: 1,
-          id_ressources: 1,
-          id_step: 1,
+          type: 'Alimentaire',
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
-          id_products: 2,
-          id_ressources: 1,
-          id_step: 1,
+          type: 'Materiel',
           createdAt: new Date(),
           updatedAt: new Date(),
         },
@@ -26,6 +22,6 @@ module.exports = {
   },
 
   async down(queryInterface, Sequelize) {
-    await queryInterface.bulkDelete('Product_Ressources_Receipts', null, {})
+    await queryInterface.bulkDelete('Stocks_Types', null, {})
   },
 }

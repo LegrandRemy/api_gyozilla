@@ -8,8 +8,8 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      Measurement_Units.hasOne(models.Ressources, {
-        as: 'ressources',
+      Measurement_Units.hasOne(models.Stock, {
+        as: 'stock',
         foreignKey: 'id',
       })
     }
