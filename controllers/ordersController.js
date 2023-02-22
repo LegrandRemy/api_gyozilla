@@ -1,7 +1,6 @@
 const { Op } = require('sequelize');
 const db = require('../models/index');
 const Order = db['Orders'];
-const User = db['Users'];
 
 exports.isOrder_Exist = async (req,res)=>{
   const checkIdOrder = await Order.findOne({ where: { id: req.body.email }});
@@ -14,14 +13,14 @@ exports.getAllOrders = async (req, res) => {
     if (req.query.id) {
       where.id = req.query.id
     }
-    if (req.query.status) {
-      where.status = req.query.status
-    }
     if (req.query.payement_at) {
       where.payement_at = req.query.payement_at
     }
     if (req.query.price) {
       where.price = req.query.price
+    }
+    if (req.query.id_status) {
+      where.id_users = req.query.id_status
     }
     if (req.query.id_sales_revenues) {
       where.id_sales_revenues = req.query.id_sales_revenues
@@ -33,8 +32,8 @@ exports.getAllOrders = async (req, res) => {
       attributes: [
         'id',
         'payement_at',
-        'status',
         'price',
+        'id_status',
         'id_sales_revenues',
         'id_sales_revenues'
       ],
@@ -76,6 +75,25 @@ exports.getOrderByUser = async (req, res) => {
   } catch (error) {
     res.status(500).json({
       message: 'Impossible de récupérer les commandes de l\'utilisateur',
+      error: error.message,
+    })
+  }
+}
+
+exports.getOrderByStatus = async (req, res) => {
+  const idStatus = req.params.idStatus;
+  try {
+    const orders = await Order.findAll({
+      where: {id_status: idStatus},
+      include: ['status'],
+    })
+    res.status(200).json({
+      message: 'getAllOrderStatus',
+      data: orders
+    })
+  } catch (error) {
+    res.status(500).json({
+      message: 'Impossible de récupérer les commandes par leur status',
       error: error.message,
     })
   }

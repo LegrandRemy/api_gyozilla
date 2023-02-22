@@ -8,7 +8,10 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      Suppliers.hasMany(models.Ressources_types, {
+        as: 'ressources_types',
+        foreignKey: 'id_suppliers',
+      })
     }
   }
   Suppliers.init(
