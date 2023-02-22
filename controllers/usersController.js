@@ -59,14 +59,11 @@ exports.getAllUsers = async (req, res) => {
     if (req.query.fidelitypoints) {
       where.fidelitypoints = req.query.fidelitypoints
     }
-    if (req.query.contract_types) {
-      where.contract_types = req.query.contract_types
-    }
     if (req.query.roles) {
       where.roles = req.query.roles
     }
     const users = await Users.findAll({
-      include: ['roles', 'contract_types', 'meetingsUsers'],
+      include: ['roles', 'meetingsUsers'],
       where: {
         [Op.and]: [where],
       },

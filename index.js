@@ -3,9 +3,7 @@ const {
   usersRoute,
   authRoute,
   suppliersRoute,
-  contract_typesRoute,
   categoriesRoute,
-  hourly_typesRoute,
   measurement_unitsRoute,
   meetingsRoute,
   ordersRoute,
@@ -20,7 +18,6 @@ const {
   stock_suppliersRoute,
   ratingsRoute,
   productsRoute,
-  hourliesRoute,
 } = require('./routes/routes')
 
 const express = require('express'),
@@ -72,9 +69,7 @@ app.use(tokenRoute)
 app.use(usersRoute)
 app.use(authRoute)
 app.use(suppliersRoute)
-app.use(contract_typesRoute)
 app.use(categoriesRoute)
-app.use(hourly_typesRoute)
 app.use(measurement_unitsRoute)
 app.use(meetingsRoute)
 app.use(ordersRoute)
@@ -89,7 +84,6 @@ app.use(stock_typesRoute)
 app.use(stock_suppliersRoute)
 app.use(ratingsRoute)
 app.use(productsRoute)
-app.use(hourliesRoute)
 app.get('/', (req, res) => res.send('API Gyozilla'))
 app.listen(port, () =>
   console.log(`Visiter l'API Gyozilla sur http://localhost:${port}/api`),

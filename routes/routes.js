@@ -3,8 +3,6 @@ const usersRoute = require('./users')
 const authRoute = require('./auth')
 const suppliersRoute = require('./suppliers')
 const categoriesRoute = require('./categories')
-const contract_typesRoute = require('./contract_types')
-const hourly_typesRoute = require('./hourly_types')
 const measurement_unitsRoute = require('./measurement_units')
 const meetingsRoute = require('./meetings')
 const ordersRoute = require('./orders')
@@ -19,15 +17,12 @@ const stock_typesRoute = require('./stock_types')
 const stock_suppliersRoute = require('./stock_suppliers')
 const ratingsRoute = require('./ratings')
 const productsRoute = require('./products')
-const hourliesRoute = require('./hourlies')
 module.exports = {
   tokenRoute,
   usersRoute,
   authRoute,
   suppliersRoute,
   categoriesRoute,
-  contract_typesRoute,
-  hourly_typesRoute,
   measurement_unitsRoute,
   meetingsRoute,
   ordersRoute,
@@ -42,5 +37,4 @@ module.exports = {
   stock_suppliersRoute,
   productsRoute,
   ratingsRoute,
-  hourliesRoute,
 }
