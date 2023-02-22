@@ -41,8 +41,7 @@ exports.getRessourceByType = async (req,res) => {
   const idType = req.params.idType;
   try {
     const ressource = await Ressources.findAll({
-      where: {id_ressources_types: idType},
-      include: ['ressources_types'],
+          where: { id_ressources_types: idType },
     })
     res.status(200).json({
       message: 'RessourceByType',
