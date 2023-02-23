@@ -46,7 +46,7 @@
  *         required: false
  *         description: id du produit
  *       - in: query
- *         name: label
+ *         name: name
  *         schema:
  *           type: string
  *         required: false

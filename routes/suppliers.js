@@ -10,24 +10,20 @@
  *         id:
  *           type: int
  *           description: ID du fournisseur
- *         contact_name:
+ *         name:
  *           type: string
  *           description: Nom du fournisseur
  *         phone:
  *           type: string
  *           description: Numéro de téléphone du fournisseur
- *         email:
+ *         adress:
  *           type: string
- *           description: Email du fournisseur
- *         compagny:
- *           type: string
- *           description: Nom de la société
+ *           description: Adresse du fournisseur
  *       example:
  *         id: 1
- *         contact_name: Robert
+ *         name: les resto du coeur
+ *         adress: 10 rue de la poupee qui tousse 80000 Amiens
  *         phone: 0600000000
- *         email: robert.jean@gmail.com
- *         compagny: les resto du coeur
  */
 
 /**
@@ -47,7 +43,7 @@
  *         required: false
  *         description: id du fournisseur
  *       - in: query
- *         name: contact_name
+ *         name: name
  *         schema:
  *           type: string
  *         required: false
@@ -59,17 +55,11 @@
  *         required: false
  *         description: Téléphone du fournisseur
  *       - in: query
- *         name: email
+ *         name: adress
  *         schema:
  *           type: string
  *         required: false
- *         description: Email du fournisseur
- *       - in: query
- *         name: compagny
- *         schema:
- *           type: string
- *         required: false
- *         description: Nom du fournisseur
+ *         description: Adresse du fournisseur
  *     responses:
  *       200:
  *         description: La liste de tous les fournisseurs

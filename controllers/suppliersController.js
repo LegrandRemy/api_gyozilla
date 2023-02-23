@@ -7,7 +7,7 @@ exports.getAllSuppliers = async (req, res) => {
     res.status(200).json(suppliers)
   } catch (error) {
     res.status(500).json({
-      message: 'Impossible de récupérer les fournisseurs',
+      message: 'Impossible de récupérer les fournisseurs !',
       error: error.message,
     })
   }
@@ -19,7 +19,7 @@ exports.getSupplier = async (req, res) => {
     res.status(200).json(supplier)
   } catch (error) {
     res.status(500).json({
-      message: 'Impossible de récupérer le fournisseur',
+      message: 'Impossible de récupérer le fournisseur !',
       error: error.message,
     })
   }
@@ -31,7 +31,7 @@ exports.createSupplier = async (req, res) => {
     res.status(201).json({ message: 'created', data: newSupplier })
   } catch (error) {
     res.status(500).json({
-      message: "Le fournisseur n'a pas été créé",
+      message: "Le fournisseur n'a pas été créé !",
       error: error.message,
     })
   }
@@ -47,7 +47,7 @@ exports.updateSupplier = async (req, res) => {
     res.status(201).json({ message: 'updated', data: updatedSupplier })
   } catch (error) {
     res.status(500).json({
-      message: "Le fournisseur n'a pas été mis à jour",
+      message: "Le fournisseur n'a pas été mis à jour !",
       error: error.message,
     })
   }
@@ -57,7 +57,7 @@ exports.deleteSupplier = async (req, res) => {
   try {
     await Supplier.findByPk(req.params.id)
     res.status(200).json({
-      message: 'Le fournisseur a été supprimé',
+      message: 'Le fournisseur a été supprimé !',
     })
   } catch (error) {
     res.status(500).json({
