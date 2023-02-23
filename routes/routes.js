@@ -1,4 +1,5 @@
 const ordersRoute = require('./orders')
+const deliveriesRoute = require('./deliveries')
 
 const tokenRoute = require('./token')
 const usersRoute = require('./users')
@@ -15,12 +16,14 @@ const stock_suppliersRoute = require('./stock_suppliers')
 const ratingsRoute = require('./ratings')
 const productsRoute = require('./products')
 module.exports = {
+  deliveriesRoute,
   tokenRoute,
+  ordersRoute,
+  suppliersRoute,
+
   usersRoute,
   authRoute,
-  suppliersRoute,
   categoriesRoute,
-  ordersRoute,
   product_categoriesRoute,
   product_ordersRoute,
   statusRoute,

@@ -27,12 +27,12 @@
 # npx sequelize-cli model:generate --name Orders --attributes id_customers:integer,id_franchises:integer,date_order:date,total_price:integer,id_status:string
 # npx sequelize-cli model:generate --name OrderLines --attributes id_orders:integer,id_products:integer,quantity:integer
 npx sequelize-cli model:generate --name Ingredients --attributes name:string,quantity:string,purchasePrice:float
-npx sequelize-cli model:generate --name products --attributes name:string,description:text,photo:string,price:float,creation_steps:text,id_product_categories:integer
-# npx sequelize-cli model:generate --name productCategories --attributes name:string
-# npx sequelize-cli model:generate --name status --attributes name:string
-# npx sequelize-cli model:generate --name customerRating --attributes id_customers:integer,id_ratings:integer
-# npx sequelize-cli model:generate --name supplierOrders --attributes date_order:date,total_price:integer,id_suppliers:integer,id_franchises:integer
-# npx sequelize-cli model:generate --name deliveries --attributes id_suppliers_orders:integer,delivery_date:date,carrier_name:string
+npx sequelize-cli model:generate --name Products --attributes name:string,description:text,photo:string,price:float,creation_steps:text,id_product_categories:integer
+# npx sequelize-cli model:generate --name ProductCategories --attributes name:string
+# npx sequelize-cli model:generate --name Status --attributes name:string
+# npx sequelize-cli model:generate --name CustomerRating --attributes id_customers:integer,id_ratings:integer
+# npx sequelize-cli model:generate --name SupplierOrders --attributes date_order:date,total_price:integer,id_suppliers:integer,id_franchises:integer
+# npx sequelize-cli model:generate --name Deliveries --attributes id_suppliers_orders:integer,delivery_date:date,carrier_name:string
 # npx sequelize-cli model:generate --name Franchises --attributes name:string,address:string,phone:string
 # npx sequelize-cli model:generate --name Employees --attributes phone:string,email:string,password:string,id_roles:integer,id_franchises:integer
 # npx sequelize-cli model:generate --name Permissions --attributes type:string

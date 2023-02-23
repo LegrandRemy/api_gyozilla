@@ -30,14 +30,7 @@ exports.getAllOrders = async (req, res) => {
       where.date_order = req.query.date_order
     }
     const orders = await Order.findAll({
-      attributes: [
-        'id',
-        'id_customers',
-        'total_price',
-        'id_status',
-        'id_franchises',
-        'date_order',
-      ],
+      attributes: ['id_customers', 'id_status', 'id_franchises'],
       where: {
         [Op.and]: [where],
       },
@@ -114,15 +107,36 @@ exports.createOrder = async (req, res) => {
 
 exports.updateOrder = async (req, res) => {
   try {
+    const keys = Object.keys(req.body)
+    const columns = await Order.describe()
+    const invalidFields = []
+    for (let i = 0; i < keys.length; i++) {
+      if (!columns.hasOwnProperty(keys[i])) {
+        invalidFields.push(keys[i])
+      }
+    }
+    if (invalidFields.length) {
+      return res.status(400).json({
+        message: `Le ou les champs qui n'existent pas : ${invalidFields.join(
+          ', ',
+        )}`,
+      })
+    }
+    const oldOrder = await Order.findByPk(req.params.id)
     const updatedOrder = await Order.update(req.body, {
       where: {
         id: req.params.id,
       },
     })
-    res.status(201).json({ message: 'updated', data: updatedOrder })
+    const newOrder = await Order.findByPk(req.params.id)
+    const updatedProperties = _.omitBy(newOrder.dataValues, (value, key) =>
+      _.isEqual(value, oldOrder.dataValues[key]),
+    )
+    const response = _.omit(updatedProperties, ['updatedAt'])
+    res.status(200).json({ message: 'Mis à jour', data: response })
   } catch (error) {
     res.status(500).json({
-      message: "La commande n'a pas été mise à jour",
+      message: "La commande n'a pas été mis à jour",
       error: error.message,
     })
   }
@@ -130,7 +144,11 @@ exports.updateOrder = async (req, res) => {
 
 exports.deleteOrder = async (req, res) => {
   try {
-    await Order.findByPk(req.params.id)
+    await Order.destroy({
+      where: {
+        id: req.params.id,
+      },
+    })
     res.status(200).json({
       message: 'La commande a été supprimée',
     })
