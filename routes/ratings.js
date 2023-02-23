@@ -88,8 +88,8 @@
  *       - in: path
  *         name: id
  *         schema:
- *           type: int
- *         required: true
+ *           type: string
+ *         required: false
  *         description: Evaluation par l'id
  *     responses:
  *       200:
@@ -99,7 +99,7 @@
  *             schema:
  *               $ref: '#/components/schemas/ratings'
  *       404:
- *         description: l'évaluation n'a pas été trouvée.
+ *         description: L'évaluation n'a pas été trouvée.
  *   patch:
  *    summary: Mise à jour de l'évaluation par son id
  *    tags: [ratings]
@@ -108,7 +108,7 @@
  *        name: id
  *        schema:
  *          type: int
- *        required: true
+ *        required: false
  *        description: id de la recette
  *    requestBody:
  *      required: true
@@ -152,7 +152,7 @@ const ratingsController = require('../controllers/ratingsController')
 router.get('/api/ratings/', ratingsController.getAllRatings)
 router.get('/api/ratings/:id', ratingsController.getRating)
 router.post('/api/ratings', ratingsController.createRating)
-router.put('/api/ratings/:id', ratingsController.updateRating)
+router.patch('/api/ratings/:id', ratingsController.updateRating)
 router.delete('/api/ratings/:id', ratingsController.deleteRating)
 
 module.exports = router
