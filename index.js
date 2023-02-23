@@ -4,14 +4,10 @@ const {
   authRoute,
   suppliersRoute,
   categoriesRoute,
-  measurement_unitsRoute,
-  meetingsRoute,
   ordersRoute,
   product_categoriesRoute,
   product_ordersRoute,
-  users_meetingsRoute,
   statusRoute,
-  stepsRoute,
   rolesRoute,
   stockRoute,
   stock_typesRoute,
@@ -70,14 +66,10 @@ app.use(usersRoute)
 app.use(authRoute)
 app.use(suppliersRoute)
 app.use(categoriesRoute)
-app.use(measurement_unitsRoute)
-app.use(meetingsRoute)
 app.use(ordersRoute)
 app.use(product_categoriesRoute)
 app.use(product_ordersRoute)
-app.use(users_meetingsRoute)
 app.use(statusRoute)
-app.use(stepsRoute)
 app.use(rolesRoute)
 app.use(stockRoute)
 app.use(stock_typesRoute)
