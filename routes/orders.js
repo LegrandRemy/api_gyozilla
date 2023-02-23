@@ -10,28 +10,28 @@
  *         id:
  *           type: int
  *           description: ID de la commande
- *         payement_at:
+ *         date_order:
  *           type: string
- *           description: Paiement de la commande
- *         price:
+ *           description: Date de la commande
+ *         total_price:
  *           type: string
  *           description: Prix de la commande
  *         id_status:
  *           type: string
  *           description: Status de la commande
- *         id_sales_revenues:
+ *         id_franchises:
  *           type: string
- *           description: CA
- *         id_users:
+ *           description: Franchise lié à la commande
+ *         id_customers:
  *           type: string
  *           description: Client de la commande
  *       example:
  *         id: 1
- *         payement_at: 15/02/2023
- *         price: 25€
+ *         date_order: 15/02/2023
+ *         total_price: 25€
  *         id_status: 1
- *         id_sales_revenues: 2
- *         id_users: 3
+ *         id_franchises: 1
+ *         id_customers: 1
  */
 
 /**
@@ -53,13 +53,13 @@
  *         required: false
  *         description: id de la commande
  *       - in: query
- *         name: payement_at
+ *         name: date_order
  *         schema:
  *           type: string
  *         required: false
  *         description: date de paiement de la commande
  *       - in: query
- *         name: price
+ *         name: total_price
  *         schema:
  *           type: string
  *         required: false
@@ -67,19 +67,19 @@
  *       - in: query
  *         name: id_status
  *         schema:
- *           type: string
+ *           type: integer
  *         required: false
  *         description: status de la commande
  *       - in: query
- *         name: id_sales_revenues
+ *         name: id_franchises
  *         schema:
- *           type: string
+ *           type: integer
  *         required: false
- *         description: Id CA de la commande
+ *         description: Id de la franchise
  *       - in: query
- *         name: id_users
+ *         name: id_customers
  *         schema:
- *           type: string
+ *           type: integer
  *         required: false
  *         description: Id utilisateur de la commande
  *     responses:
@@ -181,8 +181,16 @@ const { verifyToken } = require('../controllers/tokenController')
 
 router.get('/api/orders', verifyToken, orderController.getAllOrders)
 router.get('/api/orders/:id', verifyToken, orderController.getOrder)
-router.get('/api/orders/user/:id', verifyToken, orderController.getOrderByUser)
-router.get('/api/orders/status/:idStatus', verifyToken, orderController.getOrderByStatus)
+router.get(
+  '/api/orders/customers/:id',
+  verifyToken,
+  orderController.getOrderByCustomer,
+)
+router.get(
+  '/api/orders/status/:idStatus',
+  verifyToken,
+  orderController.getOrderByStatus,
+)
 router.post('/api/orders', verifyToken, orderController.createOrder)
 router.patch('/api/orders/:id', verifyToken, orderController.updateOrder)
 router.delete('/api/orders/:id', verifyToken, orderController.deleteOrder)

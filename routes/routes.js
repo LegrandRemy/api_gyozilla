@@ -1,9 +1,10 @@
+const ordersRoute = require('./orders')
+
 const tokenRoute = require('./token')
 const usersRoute = require('./users')
 const authRoute = require('./auth')
 const suppliersRoute = require('./suppliers')
 const categoriesRoute = require('./categories')
-const ordersRoute = require('./orders')
 const product_categoriesRoute = require('./product_categories')
 const product_ordersRoute = require('./product_orders')
 const statusRoute = require('./status')

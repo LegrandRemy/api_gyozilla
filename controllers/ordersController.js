@@ -14,20 +14,30 @@ exports.getAllOrders = async (req, res) => {
     if (req.query.id) {
       where.id = req.query.id
     }
-    if (req.query.payement_at) {
-      where.payement_at = req.query.payement_at
+    if (req.query.id_customers) {
+      where.id_customers = req.query.id_customers
     }
-    if (req.query.price) {
-      where.price = req.query.price
+    if (req.query.total_price) {
+      where.total_price = req.query.total_price
     }
     if (req.query.id_status) {
-      where.id_users = req.query.id_status
+      where.id_status = req.query.id_status
     }
-    if (req.query.id_users) {
-      where.id_users = req.query.id_users
+    if (req.query.id_franchises) {
+      where.id_franchises = req.query.id_franchises
+    }
+    if (req.query.date_order) {
+      where.date_order = req.query.date_order
     }
     const orders = await Order.findAll({
-      attributes: ['id', 'payement_at', 'price', 'id_status'],
+      attributes: [
+        'id',
+        'id_customers',
+        'total_price',
+        'id_status',
+        'id_franchises',
+        'date_order',
+      ],
       where: {
         [Op.and]: [where],
       },
@@ -53,14 +63,14 @@ exports.getOrder = async (req, res) => {
   }
 }
 
-exports.getOrderByUser = async (req, res) => {
+exports.getOrderByCustomer = async (req, res) => {
   const id = req.params.id
   try {
     const orders = await Order.findAll({
-      where: { id_users: id },
+      where: { id_customers: id },
     })
     res.status(200).json({
-      message: 'getAllOrderUser',
+      message: 'getAllOrderCustomers',
       data: orders,
     })
   } catch (error) {
