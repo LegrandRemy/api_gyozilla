@@ -16,13 +16,13 @@
  *         phone:
  *           type: string
  *           description: Numéro de téléphone du fournisseur
- *         adress:
+ *         address:
  *           type: string
  *           description: Adresse du fournisseur
  *       example:
  *         id: 1
  *         name: les resto du coeur
- *         adress: 10 rue de la poupee qui tousse 80000 Amiens
+ *         address: 10 rue de la poupee qui tousse 80000 Amiens
  *         phone: 0600000000
  */
 
@@ -55,7 +55,7 @@
  *         required: false
  *         description: Téléphone du fournisseur
  *       - in: query
- *         name: adress
+ *         name: address
  *         schema:
  *           type: string
  *         required: false

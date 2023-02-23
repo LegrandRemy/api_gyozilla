@@ -1,40 +1,42 @@
 const ordersRoute = require('./orders')
 const deliveriesRoute = require('./deliveries')
-
-const tokenRoute = require('./token')
 const customersRoute = require('./customers')
 const employeesRoute = require('./employees')
+const tokenRoute = require('./token')
 const authRoute = require('./auth')
+const rolesRoute = require('./roles')
+const stockRoute = require('./stock')
+const ratingsRoute = require('./ratings')
+const statusRoute = require('./status')
+const ingredientsRoute = require('./ingredients')
+const franchisesRoute = require('./franchises')
+
 const suppliersRoute = require('./suppliers')
 const categoriesRoute = require('./categories')
 const product_categoriesRoute = require('./product_categories')
 const product_ordersRoute = require('./product_orders')
-const statusRoute = require('./status')
-const rolesRoute = require('./roles')
-const stockRoute = require('./stock')
 const stock_typesRoute = require('./stock_types')
 const stock_suppliersRoute = require('./stock_suppliers')
-const ratingsRoute = require('./ratings')
 const productsRoute = require('./products')
 module.exports = {
   deliveriesRoute,
   tokenRoute,
   ordersRoute,
   suppliersRoute,
-
-  usersRoute,
+  ratingsRoute,
+  statusRoute,
+  stockRoute,
+  ingredientsRoute,
   customersRoute,
   employeesRoute,
+  franchisesRoute,
 
   authRoute,
   categoriesRoute,
   product_categoriesRoute,
   product_ordersRoute,
-  statusRoute,
   rolesRoute,
-  stockRoute,
   stock_typesRoute,
   stock_suppliersRoute,
   productsRoute,
-  ratingsRoute,
 }

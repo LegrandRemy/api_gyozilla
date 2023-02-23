@@ -55,7 +55,7 @@ module.exports = (sequelize, DataTypes) => {
           notEmpty: true,
         },
       },
-      adress: {
+      address: {
         type: DataTypes.STRING,
         validate: {
           notEmpty: true,

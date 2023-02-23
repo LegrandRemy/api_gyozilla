@@ -17,7 +17,7 @@
  *         email:
  *           type: string
  *           description: Email du client
-*  *       password:
+ *  *       password:
  *           type: string
  *           description: Mdp du client
  *         fidelityPoints:
@@ -28,7 +28,7 @@
  *         lastname: Robert
  *         firstname: Jean
  *         email: robert.jean@gmail.com
- *         password: ab123456
+ *         password: abc123456
  *         fidelitypoints: 50
  */
 
@@ -165,13 +165,21 @@
 
 const express = require('express')
 const router = express.Router()
-const userController = require('../controllers/customerController')
+const customerController = require('../controllers/customerController')
 const { verifyToken } = require('../controllers/tokenController')
 
-router.get('/api/customers/', verifyToken, userController.getAllCustomers)
-router.get('/api/customers/:id', verifyToken, userController.getCustomer)
-router.post('/api/customers/', verifyToken, userController.createCustomer)
-router.patch('/api/customers/:id', verifyToken, userController.updateCustomer)
-router.delete('/api/customers/:id', verifyToken, userController.deleteCustomer)
+router.get('/api/customers/', verifyToken, customerController.getAllCustomers)
+router.get('/api/customers/:id', verifyToken, customerController.getCustomer)
+router.post('/api/customers/', verifyToken, customerController.createCustomer)
+router.patch(
+  '/api/customers/:id',
+  verifyToken,
+  customerController.updateCustomer,
+)
+router.delete(
+  '/api/customers/:id',
+  verifyToken,
+  customerController.deleteCustomer,
+)
 
 module.exports = router

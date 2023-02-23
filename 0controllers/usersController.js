@@ -41,8 +41,8 @@ exports.getAllUsers = async (req, res) => {
     if (req.query.phone) {
       where.phone = req.query.phone
     }
-    if (req.query.adress) {
-      where.adress = req.query.adress
+    if (req.query.address) {
+      where.address = req.query.address
     }
     if (req.query.zipcode) {
       where.zipcode = req.query.zipcode

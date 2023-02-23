@@ -9,34 +9,22 @@
  *       properties:
  *         id:
  *           type: int
- *           description: ID de la stock
- *         label:
+ *           description: ID du stock
+ *         id_franchises:
+ *           type: int
+ *           description: ID de la franchise
+ *         id-ingredients:
  *           type: string
- *           description: Nom de la stock
- *         price:
- *           type: string
- *           description: Prix de la stock
- *         reference:
- *           type: string
- *           description: Référence de la stock
+ *           description: ID de l'ingredient
  *         quantity:
  *           type: string
- *           description: Quantity de la stock
- *         stock_types:
- *           type: int
- *           description: Type de la stock
- *         measurement_units:
- *           type: int
- *           description: Unité de mesure de la stock
+ *           description: Quantité du stock
  *
  *       example:
  *         id: 1
- *         label: Riz
- *         price: 1
- *         reference: MB500XF490
+ *         id_franchises: 1
+ *         id-ingredients: 1
  *         quantity: 50
- *         id_stock_types: 1
- *         id_measurement_units: 1
  *
  */
 
@@ -57,28 +45,28 @@
  *         required: false
  *         description: id de la stock
  *       - in: query
- *         name: label
+ *         name: id_franchise
  *         schema:
  *           type: string
  *         required: false
- *         description: nom de la stock
+ *         description: ID de la franchise
  *       - in: query
- *         name: price
+ *         name: id_ingredient
  *         schema:
  *           type: string
  *         required: false
- *         description: prix de la stock
+ *         description: ID de l'ingredient
  *       - in: query
- *         name: reference
+ *         name: qunatity
  *         schema:
  *           type: string
  *         required: false
- *         description: reference de la stock
+ *         description: Quantite du stock
  *
  *
  *     responses:
  *       200:
- *         description: La liste de toutes les stock
+ *         description: La liste de tous les stocks
  *         content:
  *           application/json:
  *             schema:
@@ -86,7 +74,7 @@
  *               items:
  *                 $ref: '#/components/schemas/stock'
  *   post:
- *     summary: Créer une nouvelle stock
+ *     summary: Créer un stock
  *     tags: [stock]
  *     requestBody:
  *       required: true
@@ -96,7 +84,7 @@
  *             $ref: '#/components/schemas/stock'
  *     responses:
  *       200:
- *         description: Stock créée.
+ *         description: Stock créé.
  *         content:
  *           application/json:
  *             schema:
@@ -105,7 +93,7 @@
  *         description: Une erreur est survenue.
  * /api/stock/{id}:
  *   get:
- *     summary: Récupérer la stock par l'id
+ *     summary: Récupérer le stock par l'id
  *     tags: [stock]
  *     parameters:
  *       - in: path
@@ -122,9 +110,9 @@
  *             schema:
  *               $ref: '#/components/schemas/stock'
  *       404:
- *         description: La stock n'a pas été trouvée
+ *         description: La stock n'a pas été trouvé
  *   patch:
- *    summary: Mise à jour de la stock par son id
+ *    summary: Mise à jour du stock par son id
  *    tags: [stock]
  *    parameters:
  *      - in: path
@@ -132,7 +120,7 @@
  *        schema:
  *          type: int
  *        required: false
- *        description: id de la stock
+ *        description: id du stock
  *    requestBody:
  *      required: true
  *      content:
@@ -141,17 +129,17 @@
  *            $ref: '#/components/schemas/stock'
  *    responses:
  *      200:
- *        description: La stock a été mise à jour
+ *        description: Le stock a été mise à jour
  *        content:
  *          application/json:
  *            schema:
  *              $ref: '#/components/schemas/stock'
  *      404:
- *        description: La stock n'a pas été trouvée.
+ *        description: Le stock n'a pas été trouvée.
  *      500:
  *        description: Une erreur est survenue.
  *   delete:
- *     summary: Supprimer une stock par son id
+ *     summary: Supprimer un stock par son id
  *     tags: [stock]
  *     parameters:
  *       - in: path
@@ -159,12 +147,12 @@
  *         schema:
  *           type: int
  *         required: false
- *         description: id de la stock
+ *         description: id du stock
  *     responses:
  *       200:
- *         description: La stock a été supprimée.
+ *         description: Le stock a été supprimé.
  *       404:
- *         description: La stock n'a pas été trouvée.
+ *         description: Le stock n'a pas été trouvé.
  */
 
 const express = require('express')
@@ -180,7 +168,7 @@ router.get(
   stockController.getStockByType,
 )
 router.get(
-  '/api/stock/supplier/:supplierId',
+  '/api/stock/stock/:stockId',
   verifyToken,
   stockController.getStockBySupplier,
 )

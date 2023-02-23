@@ -1,19 +1,25 @@
 const {
   tokenRoute,
-  usersRoute,
+  customersRoute,
+  employeesRoute,
   authRoute,
   suppliersRoute,
+  deliveriesRoute,
+  productsRoute,
+  rolesRoute,
+  stockRoute,
+  ratingsRoute,
+  ingredientsRoute,
+  franchisesRoute,
+
   categoriesRoute,
   ordersRoute,
   product_categoriesRoute,
   product_ordersRoute,
   statusRoute,
-  rolesRoute,
-  stockRoute,
+
   stock_typesRoute,
   stock_suppliersRoute,
-  ratingsRoute,
-  productsRoute,
 } = require('./routes/routes')
 
 const express = require('express'),
@@ -62,19 +68,24 @@ app.use(
   }),
 )
 app.use(tokenRoute)
-app.use(usersRoute)
+app.use(deliveriesRoute)
+app.use(customersRoute)
+app.use(employeesRoute)
 app.use(authRoute)
 app.use(suppliersRoute)
-app.use(categoriesRoute)
 app.use(ordersRoute)
+app.use(rolesRoute)
+app.use(stockRoute)
+app.use(ratingsRoute)
+app.use(ingredientsRoute)
+app.use(franchisesRoute)
+
+app.use(categoriesRoute)
 app.use(product_categoriesRoute)
 app.use(product_ordersRoute)
 app.use(statusRoute)
-app.use(rolesRoute)
-app.use(stockRoute)
 app.use(stock_typesRoute)
 app.use(stock_suppliersRoute)
-app.use(ratingsRoute)
 app.use(productsRoute)
 app.get('/', (req, res) => res.send('API Gyozilla'))
 app.listen(port, () =>
