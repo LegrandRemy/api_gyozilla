@@ -1,7 +1,8 @@
 const ordersRoute = require('./orders')
 
 const tokenRoute = require('./token')
-const usersRoute = require('./users')
+const customersRoute = require('./customers')
+const employeesRoute = require('./employees')
 const authRoute = require('./auth')
 const suppliersRoute = require('./suppliers')
 const categoriesRoute = require('./categories')
@@ -16,7 +17,8 @@ const ratingsRoute = require('./ratings')
 const productsRoute = require('./products')
 module.exports = {
   tokenRoute,
-  usersRoute,
+  customersRoute,
+  employeesRoute,
   authRoute,
   suppliersRoute,
   categoriesRoute,
