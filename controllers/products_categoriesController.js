@@ -28,7 +28,7 @@ exports.getAllProductsCategories = async (req, res) => {
   }
 }
 
-exports.getProduct = async (req, res) => {
+exports.getProductCategorie = async (req, res) => {
   try {
     const product = await ProductsCategories.findByPk(req.params.id, {
       include: ['productCategory'],
@@ -48,45 +48,19 @@ exports.getProduct = async (req, res) => {
   }
 }
 
-exports.createProduct = async (req, res) => {
+exports.createProductCategorie = async (req, res) => {
   try {
-    const product_isExist = await ProductsCategories.findOne({
-      where: {
-        reference: req.body.reference,
-      },
-    })
-    if (product_isExist)
-      return res.status(401).send({
-        message: 'Le produit existe déjà',
-      })
-    const image = req.file
-    const newProduct = await ProductsCategories.create(req.body)
-    const newFileName = newProduct.id
-    fs.renameSync(image.path, 'uploads/productsCategories/' + newFileName)
-    const productPatch = await ProductsCategories.update(
-      {
-        image: newFileName,
-      },
-      {
-        where: {
-          id: newProduct.id,
-        },
-      },
-    )
-    res.status(200).json({
-      message: 'Produit créé',
-      data: newProduct,
-      update: productPatch,
-    })
+    const newProductCategorie = await ProductsCategories.create(req.body)
+    res.status(201).json({ message: 'created', data: newProductCategorie })
   } catch (error) {
     res.status(500).json({
-      message: "Le produit n'a pas été créé",
+      message: "La ProductCategorie n'a pas été créé",
       error: error.message,
     })
   }
 }
 
-exports.updateProduct = async (req, res) => {
+exports.updateProductCategorie = async (req, res) => {
   try {
     const keys = Object.keys(req.body)
     const columns = await ProductsCategories.describe()
@@ -103,15 +77,19 @@ exports.updateProduct = async (req, res) => {
         )}`,
       })
     }
-    const oldProduct = await ProductsCategories.findByPk(req.params.id)
-    const updatedProduct = await ProductsCategories.update(req.body, {
+    const oldProductCategories = await ProductsCategories.findByPk(
+      req.params.id,
+    )
+    const updatedProductCategories = await ProductsCategories.update(req.body, {
       where: {
         id: req.params.id,
       },
     })
-    const newProduct = await ProductsCategories.findByPk(req.params.id)
-    const updatedProperties = _.omitBy(newProduct.dataValues, (value, key) =>
-      _.isEqual(value, oldProduct.dataValues[key]),
+    const newProductCategories = await ProductsCategories.findByPk(
+      req.params.id,
+    )
+    const updatedProperties = _.omitBy(newProductCategories, (value, key) =>
+      _.isEqual(value, oldProductCategories[key]),
     )
     const response = _.omit(updatedProperties, ['updatedAt'])
     res.status(200).json({ message: 'Mis à jour', data: response })
@@ -123,7 +101,7 @@ exports.updateProduct = async (req, res) => {
   }
 }
 
-exports.deleteProduct = async (req, res) => {
+exports.deleteProductCategorie = async (req, res) => {
   try {
     await ProductsCategories.destroy({
       where: {

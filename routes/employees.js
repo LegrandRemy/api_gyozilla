@@ -14,13 +14,13 @@
  *         firstname:
  *           type: string
  *           description: Prénom de l'employé
- *          phone:
- *             type: string
+ *         phone:
+ *           type: string
  *           description: Téléphone de l'employé
  *         email:
  *           type: string
  *           description: Email de l'employé
- *  *       password:
+ *         password:
  *           type: string
  *           description: Mdp de l'employé
  *         id_franchises:

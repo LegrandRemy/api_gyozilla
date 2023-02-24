@@ -12,24 +12,23 @@
  *           description: ID de la commande du fournisseur
  *         id_suppliers:
  *           type: int
- *           description: ID du produit associé 
+ *           description: ID du produit associé
  *         date_order:
  *           type: int
- *           description: ID du produit associé 
+ *           description: ID du produit associé
  *         total_price:
  *           type: int
- *           description: ID du produit associé 
+ *           description: ID du produit associé
  *         id_franchises:
  *           type: int
  *           description: ID de la commande associée
- *          
+ *
  *       example:
  *         id: 1
  *         date_order: 2023-11-02
  *         total_price: 100
  *         id_suppliers: 1
  *         id_franchises: 1
-
  *
  */
 
@@ -168,27 +167,27 @@
 
 const express = require('express')
 const router = express.Router()
-const product_orderController = require('../controllers/supplier_ordersController')
+const supplier_ordersController = require('../controllers/supplier_ordersController')
 
 router.get(
   '/api/supplier_orders',
-  supplier_ordersController.getAllSupplier_orders,
+  supplier_ordersController.getAllSupplierOrders,
 )
 router.get(
   '/api/supplier_orders/:id',
-  supplier_ordersController.getSupplier_order,
+  supplier_ordersController.getSupplierOrder,
 )
 router.post(
   '/api/supplier_orders',
-  supplier_ordersController.createProduct_order,
+  supplier_ordersController.createSupplierOrder,
 )
 router.patch(
   '/api/supplier_orders/:id',
-  supplier_orderController.updateSupplier_order,
+  supplier_ordersController.updateSupplierOrder,
 )
 router.delete(
   '/api/supplier_orders/:id',
-  supplier_orderController.deleteSupplier_order,
+  supplier_ordersController.deleteSupplierOrder,
 )
 
 module.exports = router

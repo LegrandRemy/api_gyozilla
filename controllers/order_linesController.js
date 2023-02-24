@@ -1,14 +1,15 @@
 const { Op } = require('sequelize')
 const db = require('../models/index')
-const Order = db['Orders']
+const OrderLine = db['OrderLines']
 
 exports.isOrder_Exist = async (req, res) => {
-  const checkIdOrder = await Order.findOne({ where: { id: req.body.email } })
-  if (checkIdOrder)
-    return res.status(401).send({ message: 'La commande existe déjà' })
+  const checkIdOrderLine = await OrderLine.findOne({
+    where: { id: req.body.email },
+  })
+  if (checkIdOrderLine) return res.status(401).send({ message: 'existe déjà' })
 }
 
-exports.getAllOrder_lines = async (req, res) => {
+exports.getAllOrderLines = async (req, res) => {
   try {
     const where = {}
     if (req.query.id) {
@@ -23,13 +24,13 @@ exports.getAllOrder_lines = async (req, res) => {
     if (req.query.quantity) {
       where.quantity = req.query.quantity
     }
-    const orders = await Order.findAll({
+    const orderLine = await OrderLine.findAll({
       attributes: ['id_orders', 'id_products'],
       where: {
         [Op.and]: [where],
       },
     })
-    res.status(200).json(orders)
+    res.status(200).json(orderLine)
   } catch (error) {
     res.status(500).json({
       message: 'Impossible de récupérer',
@@ -38,10 +39,10 @@ exports.getAllOrder_lines = async (req, res) => {
   }
 }
 
-exports.getOrder_line = async (req, res) => {
+exports.getOrderLine = async (req, res) => {
   try {
-    const order = await Order.findByPk(req.params.id)
-    res.status(200).json(order)
+    const orderLine = await OrderLine.findByPk(req.params.id)
+    res.status(200).json(orderLine)
   } catch (error) {
     res.status(500).json({
       message: 'Impossible de récupérer',
@@ -50,10 +51,10 @@ exports.getOrder_line = async (req, res) => {
   }
 }
 
-exports.createOrder_line = async (req, res) => {
+exports.createOrderLine = async (req, res) => {
   try {
-    const newOrder = await Order.create(req.body)
-    res.status(201).json({ message: 'created', data: newOrder })
+    const newOrderLine = await Order.create(req.body)
+    res.status(201).json({ message: 'created', data: newOrderLine })
   } catch (error) {
     res.status(500).json({
       message: 'pas été créée',
@@ -62,10 +63,10 @@ exports.createOrder_line = async (req, res) => {
   }
 }
 
-exports.updateOrder_line = async (req, res) => {
+exports.updateOrderLine = async (req, res) => {
   try {
     const keys = Object.keys(req.body)
-    const columns = await Order.describe()
+    const columns = await OrderLine.describe()
     const invalidFields = []
     for (let i = 0; i < keys.length; i++) {
       if (!columns.hasOwnProperty(keys[i])) {
@@ -79,29 +80,29 @@ exports.updateOrder_line = async (req, res) => {
         )}`,
       })
     }
-    const oldOrder = await Order.findByPk(req.params.id)
-    const updatedOrder = await Order.update(req.body, {
+    const oldOrderLine = await OrderLine.findByPk(req.params.id)
+    const updatedOrderLine = await OrderLine.update(req.body, {
       where: {
         id: req.params.id,
       },
     })
-    const newOrder = await Order.findByPk(req.params.id)
-    const updatedProperties = _.omitBy(newOrder.dataValues, (value, key) =>
-      _.isEqual(value, oldOrder.dataValues[key]),
+    const newOrderLine = await OrderLine.findByPk(req.params.id)
+    const updatedProperties = _.omitBy(newOrderLine.dataValues, (value, key) =>
+      _.isEqual(value, oldOrderLine.dataValues[key]),
     )
     const response = _.omit(updatedProperties, ['updatedAt'])
     res.status(200).json({ message: 'Mis à jour', data: response })
   } catch (error) {
     res.status(500).json({
-      message: "La commande n'a pas été mis à jour",
+      message: 'pas été mis à jour',
       error: error.message,
     })
   }
 }
 
-exports.deleteOrder_line = async (req, res) => {
+exports.deleteOrderLine = async (req, res) => {
   try {
-    await Order.destroy({
+    await OrderLine.destroy({
       where: {
         id: req.params.id,
       },

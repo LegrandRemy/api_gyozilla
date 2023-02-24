@@ -17,7 +17,7 @@
  *         email:
  *           type: string
  *           description: Email du client
- *  *       password:
+ *         password:
  *           type: string
  *           description: Mdp du client
  *         fidelityPoints:

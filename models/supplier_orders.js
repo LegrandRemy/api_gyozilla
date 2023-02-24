@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
         as: 'deliveries',
         foreignKey: 'id_suppliers_orders',
       })
-      SupplierOrders.belongTo(models.Suppliers, {
+      SupplierOrders.belongsTo(models.Suppliers, {
         as: 'suppliers',
         foreignKey: 'id_suppliers',
       })

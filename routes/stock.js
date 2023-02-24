@@ -162,16 +162,6 @@ const { verifyToken } = require('../controllers/tokenController')
 
 router.get('/api/stock/', verifyToken, stockController.getAllStocks)
 router.get('/api/stock/:id', verifyToken, stockController.getStock)
-router.get(
-  '/api/stock/type/:idType',
-  verifyToken,
-  stockController.getStockByType,
-)
-router.get(
-  '/api/stock/stock/:stockId',
-  verifyToken,
-  stockController.getStockBySupplier,
-)
 router.post('/api/stock', verifyToken, stockController.createStock)
 router.patch('/api/stock/:id', verifyToken, stockController.updateStock)
 router.delete('/api/stock/:id', verifyToken, stockController.deleteStock)

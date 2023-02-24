@@ -11,15 +11,15 @@ module.exports = (sequelize, DataTypes) => {
       Orders.belongsTo(models.Status, {
         as: 'status',
         foreignKey: 'id_status',
-      }),
-        Orders.belongsTo(models.Franchises, {
-          as: 'franchises',
-          foreignKey: 'id_franchises',
-        }),
-        Orders.belongsTo(models.Customers, {
-          as: 'customers',
-          foreignKey: 'id_customers',
-        })
+      })
+      Orders.belongsTo(models.Franchises, {
+        as: 'franchises',
+        foreignKey: 'id_franchises',
+      })
+      Orders.belongsTo(models.Customers, {
+        as: 'customers',
+        foreignKey: 'id_customers',
+      })
     }
   }
   Orders.init(

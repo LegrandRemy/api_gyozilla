@@ -1,41 +1,5 @@
 /**
  * @swagger
- * components:
- *   schemas:
- *     order_lines:
- *       type: object
- *       required:
- *         -
- *       properties:
- *         id:
- *           type: int
- *           description: ID de la commande
- *         date_order:
- *           type: string
- *           description: Date de la commande
- *         total_price:
- *           type: string
- *           description: Prix de la commande
- *         id_status:
- *           type: string
- *           description: Status de la commande
- *         id_franchises:
- *           type: string
- *           description: Franchise lié à la commande
- *         id_customers:
- *           type: string
- *           description: Client de la commande
- *       example:
- *         id: 1
- *         date_order: 15/02/2023
- *         total_price: 25€
- *         id_status: 1
- *         id_franchises: 1
- *         id_customers: 1
- */
-
-/**
- * @swagger
  * tags:
  *   name: order_lines
  *   description: API pour les commandes
@@ -174,6 +138,42 @@
  *         description: La commande n'a pas été trouvé.
  */
 
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     orders:
+ *       type: object
+ *       required:
+ *         -
+ *       properties:
+ *         id:
+ *           type: int
+ *           description: ID de la commande
+ *         date_order:
+ *           type: string
+ *           description: Date de la commande
+ *         total_price:
+ *           type: string
+ *           description: Prix de la commande
+ *         id_status:
+ *           type: string
+ *           description: Status de la commande
+ *         id_franchises:
+ *           type: string
+ *           description: Franchise lié à la commande
+ *         id_customers:
+ *           type: string
+ *           description: Client de la commande
+ *       example:
+ *         id: 1
+ *         date_order: 15/02/2023
+ *         total_price: 25€
+ *         id_status: 1
+ *         id_franchises: 1
+ *         id_customers: 1
+ */
+
 const express = require('express')
 const router = express.Router()
 const orderLinesController = require('../controllers/order_linesController')
@@ -182,37 +182,27 @@ const { verifyToken } = require('../controllers/tokenController')
 router.get(
   '/api/order_lines',
   verifyToken,
-  orderLinesController.getAllOrder_lines,
+  orderLinesController.getAllOrderLines,
 )
 router.get(
   '/api/order_lines/:id',
   verifyToken,
-  orderLinesController.getOrder_line,
-)
-router.get(
-  '/api/order_lines/customers/:id',
-  verifyToken,
-  orderLinesController.getOrder_lineByCustomer,
-)
-router.get(
-  '/api/order_lines/status/:idStatus',
-  verifyToken,
-  orderLinesController.getOrder_lineByStatus,
+  orderLinesController.getOrderLine,
 )
 router.post(
   '/api/order_lines',
   verifyToken,
-  orderLinesController.createOrder_line,
+  orderLinesController.createOrderLine,
 )
 router.patch(
   '/api/order_lines/:id',
   verifyToken,
-  orderLinesController.updateOrder_line,
+  orderLinesController.updateOrderLine,
 )
 router.delete(
   '/api/order_lines/:id',
   verifyToken,
-  orderLinesController.deleteOrder_line,
+  orderLinesController.deleteOrderLine,
 )
 
 module.exports = router

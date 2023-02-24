@@ -31,7 +31,7 @@ exports.getAllDeliveries = async (req, res) => {
 exports.getDeliveries = async (req, res) => {
   try {
     const deliveries = await Deliveries.findByPk(req.params.id, {
-      include: ['supplierOrders'],
+      include: ['SupplierOrders'],
     })
     if (deliveries) {
       res.status(200).json(deliveries)

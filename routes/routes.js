@@ -14,6 +14,7 @@ const employeesRoute = require('./employees')
 const authRoute = require('./auth')
 const deliveriesRoute = require('./deliveries')
 const supplier_ordersRoute = require('./supplier_orders')
+const order_linesRoute = require('./order_lines')
 
 module.exports = {
   tokenRoute,
@@ -32,4 +33,5 @@ module.exports = {
   authRoute,
   deliveriesRoute,
   supplier_ordersRoute,
+  order_linesRoute,
 }

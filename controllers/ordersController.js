@@ -30,7 +30,7 @@ exports.getAllOrders = async (req, res) => {
       where.date_order = req.query.date_order
     }
     const orders = await Order.findAll({
-      attributes: ['id_customers', 'id_status', 'id_franchises'],
+      attributes: ['id_status', 'id_franchises', 'id_customers'],
       where: {
         [Op.and]: [where],
       },

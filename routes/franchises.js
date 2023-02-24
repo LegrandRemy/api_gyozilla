@@ -14,8 +14,8 @@
  *         address:
  *           type: string
  *           description: Adresse de la franchise
- *          phone:
- *             type: string
+ *         phone:
+ *           type: string
  *           description: Téléphone de la franchise
  *       example:
  *         id: 1

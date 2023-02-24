@@ -4,10 +4,10 @@ const {
   customersRoute,
   franchisesRoute,
   suppliersRoute,
-  product_categoriesRoute,
   statusRoute,
   ingredientsRoute,
   productsRoute,
+  product_categoriesRoute,
   ratingsRoute,
   stockRoute,
   ordersRoute,
@@ -52,6 +52,7 @@ const options = {
   },
   apis: ['./routes/*.js'],
 }
+// const specs = swaggerJsdoc(options)
 const specs = swaggerJsdoc(options)
 
 app.use(express.json())
@@ -75,9 +76,9 @@ app.use(stockRoute)
 app.use(ratingsRoute)
 app.use(ingredientsRoute)
 app.use(franchisesRoute)
-app.use(product_categoriesRoute)
 app.use(statusRoute)
 app.use(productsRoute)
+app.use(product_categoriesRoute)
 app.use(supplier_ordersRoute)
 app.use(order_linesRoute)
 app.get('/', (req, res) => res.send('API Gyozilla'))

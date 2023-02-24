@@ -4,14 +4,13 @@ module.exports = (sequelize, DataTypes) => {
   class Stocks extends Model {
     static associate(models) {
       // association avec la table Franchise avec l'alias "franchise"
-      Stocks.belongsTo(models.Franchise, {
-        foreignKey: 'id_franchise',
+      Stocks.belongsTo(models.Franchises, {
+        foreignKey: 'id_franchises',
         as: 'franchise',
       })
-
       // association avec la table Ingredient avec l'alias "ingredient"
       Stocks.belongsTo(models.Ingredients, {
-        foreignKey: 'id_ingredient',
+        foreignKey: 'id_ingredients',
         as: 'ingredients',
       })
     }
