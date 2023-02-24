@@ -21,11 +21,9 @@ module.exports = {
   tokenRoute,
   ordersRoute,
   suppliersRoute,
-
   usersRoute,
   customersRoute,
   employeesRoute,
-
   authRoute,
   categoriesRoute,
   product_categoriesRoute,
