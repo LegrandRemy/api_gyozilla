@@ -1,28 +1,8 @@
-<<<<<<< HEAD:controllers/productsController.js
-<<<<<<< HEAD
-const db = require('../models')
-const Products = db['Products']
-const _ = require('lodash')
-const Product = db['Products']
-const { Op } = require('sequelize')
-const multer = require('multer')
-const fs = require('fs')
-const { storage } = require('../middlewares/upload')
-=======
-const db = require('../models/index');
-const Products = db['Products'];
-const {
-  Op
-} = require('sequelize');
-const fs = require('fs');
-=======
 const db = require('../models/index')
 const Products = db['Products']
 const { Op } = require('sequelize')
 const fs = require('fs')
->>>>>>> 3d38ffd9a62273f174563cab961964cbba83b321:0controllers/productsController.js
 const _ = require('lodash')
->>>>>>> 437340d7c1f400ba20298fc979710021574e8ec6
 
 exports.getAllProducts = async (req, res) => {
   try {
@@ -48,16 +28,8 @@ exports.getAllProducts = async (req, res) => {
     if (req.query.id_product_categories) {
       where.id_product_categories = req.query.id_product_categories
     }
-<<<<<<< HEAD
-    if (req.query.id_receipts) {
-      where.id_receipts = req.query.id_receipts
-    }
-    const products = await Product.findAll({
-      attributes: ['id', 'label', 'price', 'reference', 'id_receipts'],
-=======
     const products = await Products.findAll({
       include: ['productCategory'],
->>>>>>> 437340d7c1f400ba20298fc979710021574e8ec6
       where: {
         [Op.and]: [where],
       },
@@ -111,54 +83,22 @@ exports.getProduct = async (req, res) => {
 }
 
 exports.createProduct = async (req, res) => {
+  console.log(req.body)
   try {
-<<<<<<< HEAD
-    const product_isExist = await Product.findOne({
-      where: {
-        reference: req.body.reference,
-      },
-=======
     const product_isExist = await Products.findOne({
       where: {
-<<<<<<< HEAD:controllers/productsController.js
-        reference: req.body.reference
-      }
-    });
-    if (product_isExist) return res.status(401).send({
-      message: 'Le produit existe déjà'
-    });
-    const image = req.file;
-    const newProduct = await Products.create(req.body);
-    const newFileName = newProduct.id;
-    fs.renameSync(image.path, 'uploads/products/' + newFileName);
-    const productPatch = await Products.update({
-      image: newFileName
-    }, {
-      where: {
-        id: newProduct.id
-      }
->>>>>>> 437340d7c1f400ba20298fc979710021574e8ec6
-=======
         reference: req.body.reference,
       },
->>>>>>> 3d38ffd9a62273f174563cab961964cbba83b321:0controllers/productsController.js
     })
     if (product_isExist)
       return res.status(401).send({
         message: 'Le produit existe déjà',
       })
     const image = req.file
-<<<<<<< HEAD:controllers/productsController.js
-    const newProduct = await Product.create(req.body)
-    const newFileName = newProduct.id
-    fs.renameSync(image.path, 'uploads/products/' + newFileName)
-    const productPatch = await Product.update(
-=======
     const newProduct = await Products.create(req.body)
     const newFileName = newProduct.id
     fs.renameSync(image.path, 'uploads/products/' + newFileName)
     const productPatch = await Products.update(
->>>>>>> 3d38ffd9a62273f174563cab961964cbba83b321:0controllers/productsController.js
       {
         image: newFileName,
       },
@@ -204,19 +144,12 @@ exports.updateProduct = async (req, res) => {
         id: req.params.id,
       },
     })
-<<<<<<< HEAD
-    res.status(201).json({
-      message: 'updated',
-      data: updatedProduct,
-    })
-=======
     const newProduct = await Products.findByPk(req.params.id)
     const updatedProperties = _.omitBy(newProduct.dataValues, (value, key) =>
       _.isEqual(value, oldProduct.dataValues[key]),
     )
     const response = _.omit(updatedProperties, ['updatedAt'])
     res.status(200).json({ message: 'Mis à jour', data: response })
->>>>>>> 437340d7c1f400ba20298fc979710021574e8ec6
   } catch (error) {
     res.status(500).json({
       message: "Le produit n'a pas été mis à jour",
