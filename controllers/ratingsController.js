@@ -10,9 +10,6 @@ exports.getAllRatings = async (req, res) => {
     if (req.query.note) {
       where.note = req.query.note
     }
-    if (req.query.comment) {
-      where.comment = req.query.comment
-    }
     const rating = await Rating.findAll({
       where: {
         [Op.and]: [where],
