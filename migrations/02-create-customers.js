@@ -10,16 +10,16 @@ module.exports = {
         type: Sequelize.INTEGER,
       },
       lastname: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING(50),
       },
       firstname: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING(50),
       },
       email: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING(100),
       },
       password: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING(50),
       },
       fidelityPoints: {
         type: Sequelize.STRING,

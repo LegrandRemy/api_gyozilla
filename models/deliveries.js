@@ -8,16 +8,32 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      Deliveries.belongTo(models.SupplierOrders, {
+      Deliveries.belongsTo(models.SupplierOrders, {
         as: 'SupplierOrders',
+        foreignKey: 'id_suppliers_orders',
       })
     }
   }
   Deliveries.init(
     {
-      id_suppliers_orders: DataTypes.INTEGER,
-      delivery_date: DataTypes.DATE,
-      carrier_name: DataTypes.STRING,
+      id_suppliers_orders: {
+        type: DataTypes.INTEGER,
+        validate: {
+          notEmpty: true,
+        },
+      },
+      delivery_date: {
+        type: DataTypes.DATE,
+        validate: {
+          noEmpty: true,
+        },
+      },
+      carrier_name: {
+        type: DataTypes.STRING(50),
+        validate: {
+          noEmpty: true,
+        },
+      },
     },
     {
       sequelize,

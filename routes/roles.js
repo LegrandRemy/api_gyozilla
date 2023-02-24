@@ -10,22 +10,22 @@
  *         id:
  *           type: int
  *           description: L'id du role'
- *         type:
+ *         name:
  *           type: string
- *           description: Le role d'un utilisateur
+ *           description: Le role d'un employé
  *       example:
  *         id: 1
- *         type: Client
+ *         type: Cuisinier
  */
 
 /**
  * @swagger
  * tags:
  *   name: roles
- *   description: API pour le role d'un utilisateur
+ *   description: API pour le role d'un employé
  * /api/roles:
  *   post:
- *     summary: Créer le role d'un utilisateur
+ *     summary: Créer le role d'un employé
  *     tags: [roles]
  *     requestBody:
  *       required: true
@@ -52,10 +52,10 @@
  *         schema:
  *           type: string
  *         required: true
- *         description: Le role d'un utilisateur par l'id
+ *         description: Le role d'un employé par l'id
  *     responses:
  *       200:
- *         description: Le role d'un utilisateur par l'id
+ *         description: Le role d'un employé par l'id
  *         contens:
  *           application/json:
  *             schema:
@@ -82,7 +82,7 @@
 const express = require('express')
 const router = express.Router()
 const roleController = require('../controllers/rolesController')
-const { verifyToken } = require("../controllers/tokenController");
+const { verifyToken } = require('../controllers/tokenController')
 
 router.get('/api/roles/', verifyToken, roleController.getAllRoles)
 router.get('/api/roles/:id', verifyToken, roleController.getRole)

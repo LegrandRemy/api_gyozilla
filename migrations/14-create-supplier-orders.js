@@ -10,15 +10,19 @@ module.exports = {
         type: Sequelize.INTEGER,
       },
       date_order: {
+        allowNull: false,
         type: Sequelize.DATE,
       },
       total_price: {
-        type: Sequelize.INTEGER,
+        allowNull: false,
+        type: Sequelize.DECIMAL(3, 2),
       },
       id_suppliers: {
+        allowNull: false,
         type: Sequelize.INTEGER,
       },
       id_franchises: {
+        allowNull: false,
         type: Sequelize.INTEGER,
       },
       createdAt: {

@@ -1,19 +1,21 @@
 const {
   tokenRoute,
-  usersRoute,
-  authRoute,
-  suppliersRoute,
-  categoriesRoute,
-  ordersRoute,
-  product_categoriesRoute,
-  product_ordersRoute,
-  statusRoute,
   rolesRoute,
-  stockRoute,
-  stock_typesRoute,
-  stock_suppliersRoute,
-  ratingsRoute,
+  customersRoute,
+  franchisesRoute,
+  suppliersRoute,
+  statusRoute,
+  ingredientsRoute,
   productsRoute,
+  product_categoriesRoute,
+  ratingsRoute,
+  stockRoute,
+  ordersRoute,
+  employeesRoute,
+  authRoute,
+  deliveriesRoute,
+  supplier_ordersRoute,
+  order_linesRoute,
 } = require('./routes/routes')
 
 const express = require('express'),
@@ -50,6 +52,7 @@ const options = {
   },
   apis: ['./routes/*.js'],
 }
+// const specs = swaggerJsdoc(options)
 const specs = swaggerJsdoc(options)
 
 app.use(express.json())
@@ -62,20 +65,22 @@ app.use(
   }),
 )
 app.use(tokenRoute)
-app.use(usersRoute)
+app.use(deliveriesRoute)
+app.use(customersRoute)
+app.use(employeesRoute)
 app.use(authRoute)
 app.use(suppliersRoute)
-app.use(categoriesRoute)
 app.use(ordersRoute)
-app.use(product_categoriesRoute)
-app.use(product_ordersRoute)
-app.use(statusRoute)
 app.use(rolesRoute)
 app.use(stockRoute)
-app.use(stock_typesRoute)
-app.use(stock_suppliersRoute)
 app.use(ratingsRoute)
+app.use(ingredientsRoute)
+app.use(franchisesRoute)
+app.use(statusRoute)
 app.use(productsRoute)
+app.use(product_categoriesRoute)
+app.use(supplier_ordersRoute)
+app.use(order_linesRoute)
 app.get('/', (req, res) => res.send('API Gyozilla'))
 app.listen(port, () =>
   console.log(`Visiter l'API Gyozilla sur http://localhost:${port}/api`),

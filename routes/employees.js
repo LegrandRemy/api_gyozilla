@@ -14,13 +14,13 @@
  *         firstname:
  *           type: string
  *           description: Prénom de l'employé
- *          phone:
- *             type: string
+ *         phone:
+ *           type: string
  *           description: Téléphone de l'employé
  *         email:
  *           type: string
  *           description: Email de l'employé
-*  *       password:
+ *         password:
  *           type: string
  *           description: Mdp de l'employé
  *         id_franchises:
@@ -31,10 +31,10 @@
  *           description: ID du role de l'employé
  *       example:
  *         id: 1
- *         lastname: Lev
+ *         lastname: Leveque
  *         firstname: Marcus
  *         phone: 0680313131
- *         email: marcus.lev@gmail.com
+ *         email: marcus.leveque@gmail.com
  *         password: ab123456
  *         id_franchises: 3
  *         id_roles: 1
@@ -185,13 +185,21 @@
 
 const express = require('express')
 const router = express.Router()
-const userController = require('../controllers/employeeController')
+const employeeController = require('../controllers/employeeController')
 const { verifyToken } = require('../controllers/tokenController')
 
-router.get('/api/employees/', verifyToken, userController.getAllEmployees)
-router.get('/api/employees/:id', verifyToken, userController.getEmployee)
-router.post('/api/employees/', verifyToken, userController.createEmployee)
-router.patch('/api/employees/:id', verifyToken, userController.updateEmployee)
-router.delete('/api/employees/:id', verifyToken, userController.deleteEmployee)
+router.get('/api/employees/', verifyToken, employeeController.getAllEmployees)
+router.get('/api/employees/:id', verifyToken, employeeController.getEmployee)
+router.post('/api/employees/', verifyToken, employeeController.createEmployee)
+router.patch(
+  '/api/employees/:id',
+  verifyToken,
+  employeeController.updateEmployee,
+)
+router.delete(
+  '/api/employees/:id',
+  verifyToken,
+  employeeController.deleteEmployee,
+)
 
 module.exports = router
