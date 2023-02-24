@@ -8,18 +8,51 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      Products.belongsTo(models.Product_categories, {
+      Products.belongsTo(models.ProductCategories, {
         as: 'productCategory',
-        foreignKey: 'id',
+        foreignKey: 'id_product_categories',
       })
     }
   }
   Products.init(
     {
-      label: DataTypes.STRING,
-      price: DataTypes.STRING,
-      reference: DataTypes.STRING,
-      image: DataTypes.STRING,
+      name: {
+        type: DataTypes.STRING(50),
+        validate: {
+          notEmpty: true,
+        },
+      },
+      description: {
+        type: DataTypes.TEXT,
+        validate: {
+          notEmpty: true,
+        },
+      },
+      image: {
+        type: DataTypes.STRING(100),
+        validate: {
+          notEmpty: true,
+        },
+      },
+      price: {
+        type: DataTypes.FLOAT(6, 2),
+        validate: {
+          notEmpty: true,
+          isDecimal: true,
+        },
+      },
+      creation_steps: {
+        type: DataTypes.TEXT,
+        validate: {
+          notEmpty: true,
+        },
+      },
+      id_product_categories: {
+        type: DataTypes.INTEGER,
+        validate: {
+          notEmpty: true,
+        },
+      },
     },
     {
       sequelize,

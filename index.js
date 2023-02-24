@@ -1,34 +1,27 @@
 const {
   tokenRoute,
-  usersRoute,
-  authRoute,
-  suppliersRoute,
-  contract_typesRoute,
-  categoriesRoute,
-  hourly_typesRoute,
-  measurement_unitsRoute,
-  meetingsRoute,
-  ordersRoute,
-  product_categoriesRoute,
-  product_ordersRoute,
-  product_ressources_receiptsRoute,
-  users_meetingsRoute,
-  statusRoute,
-  stepsRoute,
   rolesRoute,
-  sales_revenuesRoute,
-  ressourcesRoute,
-  ressources_typesRoute,
-  ressources_suppliersRoute,
-  ratingsRoute,
+  customersRoute,
+  franchisesRoute,
+  suppliersRoute,
+  statusRoute,
+  ingredientsRoute,
   productsRoute,
-  hourliesRoute,
+  product_categoriesRoute,
+  ratingsRoute,
+  stockRoute,
+  ordersRoute,
+  employeesRoute,
+  authRoute,
+  deliveriesRoute,
+  supplier_ordersRoute,
+  order_linesRoute,
 } = require('./routes/routes')
 
-const express = require("express"),
-  bodyParser = require("body-parser"),
-  swaggerJsdoc = require("swagger-jsdoc"),
-  swaggerUi = require("swagger-ui-express");
+const express = require('express'),
+  bodyParser = require('body-parser'),
+  swaggerJsdoc = require('swagger-jsdoc'),
+  swaggerUi = require('swagger-ui-express')
 const app = express()
 const port = 3000
 const session = require('express-session')
@@ -59,6 +52,7 @@ const options = {
   },
   apis: ['./routes/*.js'],
 }
+// const specs = swaggerJsdoc(options)
 const specs = swaggerJsdoc(options)
 
 app.use(express.json())
@@ -71,36 +65,27 @@ app.use(
   }),
 )
 app.use(tokenRoute)
-app.use(usersRoute)
+app.use(deliveriesRoute)
+app.use(customersRoute)
+app.use(employeesRoute)
 app.use(authRoute)
 app.use(suppliersRoute)
-app.use(contract_typesRoute)
-app.use(categoriesRoute)
-app.use(hourly_typesRoute)
-app.use(measurement_unitsRoute)
-app.use(meetingsRoute)
 app.use(ordersRoute)
-app.use(product_categoriesRoute)
-app.use(product_ordersRoute)
-app.use(product_ressources_receiptsRoute)
-app.use(users_meetingsRoute)
-app.use(statusRoute)
-app.use(stepsRoute)
-app.use(sales_revenuesRoute)
 app.use(rolesRoute)
-app.use(ressourcesRoute)
-app.use(ressources_typesRoute)
-app.use(ressources_suppliersRoute)
+app.use(stockRoute)
 app.use(ratingsRoute)
+app.use(ingredientsRoute)
+app.use(franchisesRoute)
+app.use(statusRoute)
 app.use(productsRoute)
-app.use(hourliesRoute)
-app.get('/', (req, res) => res.send('API Gyozilla'));
-app.listen(port, () => console.log(`Visiter l'API Gyozilla sur http://localhost:${port}/api`));
-app.use(
-  "/api",
-  swaggerUi.serve,
-  swaggerUi.setup(specs)
+app.use(product_categoriesRoute)
+app.use(supplier_ordersRoute)
+app.use(order_linesRoute)
+app.get('/', (req, res) => res.send('API Gyozilla'))
+app.listen(port, () =>
+  console.log(`Visiter l'API Gyozilla sur http://localhost:${port}/api`),
 )
+app.use('/api', swaggerUi.serve, swaggerUi.setup(specs))
 app.use((req, res, next) => {
-    res.status(404).send("Oups la page est introuvable");
-});
+  res.status(404).send('Oups la page est introuvable')
+})

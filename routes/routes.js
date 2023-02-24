@@ -1,50 +1,37 @@
 const tokenRoute = require('./token')
-const usersRoute = require('./users')
-const authRoute = require('./auth')
-const suppliersRoute = require('./suppliers')
-const categoriesRoute = require('./categories')
-const contract_typesRoute = require('./contract_types')
-const hourly_typesRoute = require('./hourly_types')
-const measurement_unitsRoute = require('./measurement_units')
-const meetingsRoute = require('./meetings')
-const ordersRoute = require('./orders')
-const product_categoriesRoute = require('./product_categories')
-const product_ordersRoute = require('./product_orders')
-const product_ressources_receiptsRoute = require('./product_ressources_receipts')
-const users_meetingsRoute = require('./users_meetings')
-const stepsRoute = require('./steps')
-const sales_revenuesRoute = require('./sales_revenues')
-const statusRoute = require('./status')
 const rolesRoute = require('./roles')
-const ressourcesRoute = require('./ressources')
-const ressources_typesRoute = require('./ressources_types')
-const ressources_suppliersRoute = require('./ressources_suppliers')
+const customersRoute = require('./customers')
+const franchisesRoute = require('./franchises')
+const suppliersRoute = require('./suppliers')
+const product_categoriesRoute = require('./product_categories')
+const statusRoute = require('./status')
 const ratingsRoute = require('./ratings')
+const stockRoute = require('./stock')
+const ordersRoute = require('./orders')
+const ingredientsRoute = require('./ingredients')
 const productsRoute = require('./products')
-const hourliesRoute = require('./hourlies')
+const employeesRoute = require('./employees')
+const authRoute = require('./auth')
+const deliveriesRoute = require('./deliveries')
+const supplier_ordersRoute = require('./supplier_orders')
+const order_linesRoute = require('./order_lines')
+
 module.exports = {
   tokenRoute,
-  usersRoute,
-  authRoute,
-  suppliersRoute,
-  categoriesRoute,
-  contract_typesRoute,
-  hourly_typesRoute,
-  measurement_unitsRoute,
-  meetingsRoute,
-  ordersRoute,
-  product_categoriesRoute,
-  product_ordersRoute,
-  product_ressources_receiptsRoute,
-  users_meetingsRoute,
-  statusRoute,
-  stepsRoute,
-  sales_revenuesRoute,
   rolesRoute,
-  ressourcesRoute,
-  ressources_typesRoute,
-  ressources_suppliersRoute,
+  customersRoute,
+  franchisesRoute,
+  suppliersRoute,
+  product_categoriesRoute,
+  statusRoute,
+  ingredientsRoute,
   productsRoute,
   ratingsRoute,
-  hourliesRoute,
+  stockRoute,
+  ordersRoute,
+  employeesRoute,
+  authRoute,
+  deliveriesRoute,
+  supplier_ordersRoute,
+  order_linesRoute,
 }

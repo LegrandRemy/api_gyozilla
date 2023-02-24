@@ -12,16 +12,15 @@
  *           description: ID de la catégorie de produit
  *         id_products:
  *           type: int
- *           description: ID du produit associé 
+ *           description: ID du produit associé
  *         id_categories:
  *           type: int
  *           description: ID de la catégorie associée
- *          
+ *
  *       example:
  *         id: 1
  *         id_products: 1
  *         id_categories: 1
-
  *
  */
 
@@ -148,27 +147,27 @@
 
 const express = require('express')
 const router = express.Router()
-const product_categoryController = require('../controllers/product_categoriesController')
+const product_categoryController = require('../controllers/products_categoriesController')
 
 router.get(
   '/api/product_categories',
-  product_categoryController.getAllProduct_categories,
+  product_categoryController.getAllProductsCategories,
 )
 router.get(
   '/api/product_categories/:id',
-  product_categoryController.getProduct_category,
+  product_categoryController.getProductCategorie,
 )
 router.post(
   '/api/product_categories',
-  product_categoryController.createProduct_category,
+  product_categoryController.createProductCategorie,
 )
 router.patch(
   '/api/product_categories/:id',
-  product_categoryController.updateProduct_category,
+  product_categoryController.updateProductCategorie,
 )
 router.delete(
   '/api/product_categories/:id',
-  product_categoryController.deleteProduct_category,
+  product_categoryController.deleteProductCategorie,
 )
 
 module.exports = router

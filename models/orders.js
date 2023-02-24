@@ -12,15 +12,48 @@ module.exports = (sequelize, DataTypes) => {
         as: 'status',
         foreignKey: 'id_status',
       })
+      Orders.belongsTo(models.Franchises, {
+        as: 'franchises',
+        foreignKey: 'id_franchises',
+      })
+      Orders.belongsTo(models.Customers, {
+        as: 'customers',
+        foreignKey: 'id_customers',
+      })
     }
   }
   Orders.init(
     {
-      payement_at: DataTypes.STRING,
-      price: DataTypes.STRING,
-      id_status: DataTypes.STRING,
-      id_sales_revenues: DataTypes.INTEGER,
-      id_users: DataTypes.INTEGER,
+      id_customers: {
+        type: DataTypes.INTEGER,
+        validate: {
+          notEmpty: true,
+        },
+      },
+      id_franchises: {
+        type: DataTypes.INTEGER,
+        validate: {
+          notEmpty: true,
+        },
+      },
+      date_order: {
+        type: DataTypes.DATE,
+        validate: {
+          notEmpty: true,
+        },
+      },
+      total_price: {
+        type: DataTypes.INTEGER,
+        validate: {
+          notEmpty: true,
+        },
+      },
+      id_status: {
+        type: DataTypes.INTEGER,
+        validate: {
+          notEmpty: true,
+        },
+      },
     },
     {
       sequelize,
