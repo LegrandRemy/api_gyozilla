@@ -29,7 +29,7 @@ module.exports = (sequelize, DataTypes) => {
         },
       },
       purchasePrice: {
-        type: DataTypes.FLOAT(3, 2),
+        type: DataTypes.FLOAT(6, 2),
         validate: {
           notEmpty: true,
         },

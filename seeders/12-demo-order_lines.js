@@ -4,23 +4,26 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.bulkInsert(
-      'Orders',
+      'OrderLines',
       [
         {
-          id_customers: 1,
-          id_franchises: 1,
-          date_order: new Date(),
-          total_price: 50,
-          id_status: 1,
+          quantity: 6,
+          id_orders: 1,
+          id_products: 1,
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
-          id_customers: 2,
-          id_franchises: 2,
-          date_order: new Date(),
-          total_price: 30,
-          id_status: 2,
+          quantity: 3,
+          id_orders: 2,
+          id_products: 2,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          quantity: 5,
+          id_orders: 2,
+          id_products: 3,
           createdAt: new Date(),
           updatedAt: new Date(),
         },
@@ -30,6 +33,6 @@ module.exports = {
   },
 
   async down(queryInterface, Sequelize) {
-    await queryInterface.bulkDelete('Orders', null, {})
+    await queryInterface.bulkDelete('OrderLines', null, {})
   },
 }

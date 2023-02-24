@@ -35,7 +35,7 @@ module.exports = (sequelize, DataTypes) => {
         },
       },
       price: {
-        type: DataTypes.FLOAT(3, 2),
+        type: DataTypes.FLOAT(6, 2),
         validate: {
           notEmpty: true,
           isDecimal: true,

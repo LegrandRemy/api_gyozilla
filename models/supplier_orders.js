@@ -25,13 +25,13 @@ module.exports = (sequelize, DataTypes) => {
   SupplierOrders.init(
     {
       date_order: {
-        type: DataTypes.DATE,
+        type: DataTypes.DATEONLY,
         validate: {
           notEmpty: true,
         },
       },
       total_price: {
-        type: DataTypes.DECIMAL(3, 2),
+        type: DataTypes.DECIMAL(6, 2),
         validate: {
           notEmpty: true,
         },
