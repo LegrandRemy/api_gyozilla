@@ -8,15 +8,20 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      Roles.hasOne(models.Users, {
-        as: 'users',
+      Roles.hasOne(models.Employees, {
+        as: 'employees',
         foreignKey: 'id',
       })
     }
   }
   Roles.init(
     {
-      type: DataTypes.STRING,
+      name: {
+        type: DataTypes.STRING(50),
+        validate: {
+          notEmpty: true,
+        },
+      },
     },
     {
       sequelize,

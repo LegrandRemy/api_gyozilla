@@ -13,8 +13,24 @@ module.exports = (sequelize, DataTypes) => {
   }
   Ratings.init(
     {
-      note: DataTypes.INTEGER,
-      comment: DataTypes.STRING
+      id_customers: {
+        type: DataTypes.INTEGER,
+        validate: {
+          notEmpty: true,
+        },
+      },
+      id_products: {
+        type: DataTypes.INTEGER,
+        validate: {
+          notEmpty: true,
+        },
+      },
+      note: {
+        type: DataTypes.INTEGER,
+        validate: {
+          notEmpty: true,
+        },
+      },
     },
     {
       sequelize,
