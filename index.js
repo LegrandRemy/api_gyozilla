@@ -15,12 +15,7 @@ const {
   authRoute,
   deliveriesRoute,
   supplier_ordersRoute,
-
   order_linesRoute,
-
-  categoriesRoute,
-  stock_typesRoute,
-  stock_suppliersRoute,
 } = require('./routes/routes')
 
 const express = require('express'),
@@ -84,10 +79,7 @@ app.use(product_categoriesRoute)
 app.use(statusRoute)
 app.use(productsRoute)
 app.use(supplier_ordersRoute)
-
-app.use(categoriesRoute)
-app.use(stock_typesRoute)
-app.use(stock_suppliersRoute)
+app.use(order_linesRoute)
 app.get('/', (req, res) => res.send('API Gyozilla'))
 app.listen(port, () =>
   console.log(`Visiter l'API Gyozilla sur http://localhost:${port}/api`),
