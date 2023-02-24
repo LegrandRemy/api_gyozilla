@@ -1,5 +1,6 @@
 const db = require('../models/index')
 const Employees = db['Employees']
+const bcrypt = require('bcryptjs')
 const _ = require('lodash')
 const { Op } = require('sequelize')
 
@@ -84,6 +85,10 @@ exports.getEmployee = async (req, res) => {
 
 exports.createEmployee = async (req, res) => {
   try {
+    Employees.beforeCreate(async (employee, options) => {
+      const hashedPassword = await bcrypt.hash(employee.password, 10);
+      employee.password = hashedPassword;
+    });
     const newEmployee = await Employees.create(req.body)
     res.status(201).json({
       message: 'created',

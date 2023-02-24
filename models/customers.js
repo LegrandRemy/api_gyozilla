@@ -36,7 +36,7 @@ module.exports = (sequelize, DataTypes) => {
         },
       },
       password: {
-        type: DataTypes.STRING(50),
+        type: DataTypes.STRING(160),
         validate: {
           notEmpty: true,
         },
@@ -44,7 +44,7 @@ module.exports = (sequelize, DataTypes) => {
       fidelityPoints: {
         type: DataTypes.INTEGER,
         validate: {
-          notEmpty: true,
+          notEmpty: false,
         },
       },
     },
