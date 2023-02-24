@@ -10,16 +10,16 @@ module.exports = {
         type: Sequelize.INTEGER,
       },
       name: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING(50),
       },
       description: {
         type: Sequelize.TEXT,
       },
       image: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING(100),
       },
       price: {
-        type: Sequelize.FLOAT,
+        type: Sequelize.FLOAT(3, 2),
       },
       creation_steps: {
         type: Sequelize.TEXT,

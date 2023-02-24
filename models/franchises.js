@@ -9,16 +9,32 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       Franchises.hasMany(models.Stocks, {
-        foreignKey: 'id_franchise',
         as: 'stocks',
+        foreignKey: 'id_franchises',
       })
     }
   }
   Franchises.init(
     {
-      name: DataTypes.STRING,
-      address: DataTypes.STRING,
-      phone: DataTypes.STRING,
+      name: {
+        type: DataTypes.STRING(50),
+        validate: {
+          notEmpty: true,
+        },
+      },
+      address: {
+        type: DataTypes.STRING(100),
+        validate: {
+          notEmpty: true,
+        },
+      },
+      phone: {
+        type: DataTypes.STRING(20),
+        validate: {
+          notEmpty: true,
+          matches: /^\+?\d{10,}$/,
+        },
+      },
     },
     {
       sequelize,

@@ -10,13 +10,13 @@ module.exports = {
         type: Sequelize.INTEGER,
       },
       name: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING(100),
       },
       address: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING(100),
       },
       phone: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING(15),
       },
       createdAt: {
         allowNull: false,

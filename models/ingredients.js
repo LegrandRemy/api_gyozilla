@@ -16,9 +16,24 @@ module.exports = (sequelize, DataTypes) => {
   }
   Ingredients.init(
     {
-      name: DataTypes.STRING,
-      quantity: DataTypes.STRING,
-      purchasePrice: DataTypes.FLOAT,
+      name: {
+        type: DataTypes.STRING(50),
+        validate: {
+          notEmpty: true,
+        },
+      },
+      quantity: {
+        type: DataTypes.INTEGER,
+        validate: {
+          notEmpty: true,
+        },
+      },
+      purchasePrice: {
+        type: DataTypes.FLOAT(3, 2),
+        validate: {
+          notEmpty: true,
+        },
+      },
     },
     {
       sequelize,

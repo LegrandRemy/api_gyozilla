@@ -18,9 +18,24 @@ module.exports = (sequelize, DataTypes) => {
   }
   Stocks.init(
     {
-      id_franchises: DataTypes.INTEGER,
-      id_ingredients: DataTypes.INTEGER,
-      quantity: DataTypes.STRING,
+      id_franchises: {
+        type: DataTypes.INTEGER,
+        validate: {
+          notEmpty: true,
+        },
+      },
+      id_ingredients: {
+        type: DataTypes.INTEGER,
+        validate: {
+          notEmpty: true,
+        },
+      },
+      quantity: {
+        type: DataTypes.INTEGER,
+        validate: {
+          notEmpty: true,
+        },
+      },
     },
     {
       sequelize,

@@ -1,23 +1,24 @@
 const {
   tokenRoute,
+  rolesRoute,
   customersRoute,
+  franchisesRoute,
+  suppliersRoute,
+  product_categoriesRoute,
+  statusRoute,
+  ingredientsRoute,
+  productsRoute,
+  ratingsRoute,
+  stockRoute,
+  ordersRoute,
   employeesRoute,
   authRoute,
-  suppliersRoute,
   deliveriesRoute,
-  productsRoute,
-  rolesRoute,
-  stockRoute,
-  ratingsRoute,
-  ingredientsRoute,
-  franchisesRoute,
+  supplier_ordersRoute,
+
+  order_linesRoute,
 
   categoriesRoute,
-  ordersRoute,
-  product_categoriesRoute,
-  product_ordersRoute,
-  statusRoute,
-
   stock_typesRoute,
   stock_suppliersRoute,
 } = require('./routes/routes')
@@ -79,14 +80,14 @@ app.use(stockRoute)
 app.use(ratingsRoute)
 app.use(ingredientsRoute)
 app.use(franchisesRoute)
+app.use(product_categoriesRoute)
+app.use(statusRoute)
+app.use(productsRoute)
+app.use(supplier_ordersRoute)
 
 app.use(categoriesRoute)
-app.use(product_categoriesRoute)
-app.use(product_ordersRoute)
-app.use(statusRoute)
 app.use(stock_typesRoute)
 app.use(stock_suppliersRoute)
-app.use(productsRoute)
 app.get('/', (req, res) => res.send('API Gyozilla'))
 app.listen(port, () =>
   console.log(`Visiter l'API Gyozilla sur http://localhost:${port}/api`),

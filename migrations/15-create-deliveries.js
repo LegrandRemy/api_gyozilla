@@ -10,13 +10,15 @@ module.exports = {
         type: Sequelize.INTEGER,
       },
       id_suppliers_orders: {
+        allowNull: false,
         type: Sequelize.INTEGER,
       },
       delivery_date: {
         type: Sequelize.DATE,
       },
       carrier_name: {
-        type: Sequelize.STRING,
+        allowNull: false,
+        type: Sequelize.STRING(50),
       },
       createdAt: {
         allowNull: false,

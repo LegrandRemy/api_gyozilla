@@ -16,12 +16,43 @@ module.exports = (sequelize, DataTypes) => {
   }
   Products.init(
     {
-      name: DataTypes.STRING,
-      description: DataTypes.STRING,
-      image: DataTypes.STRING,
-      price: DataTypes.FLOAT,
-      creation_steps: DataTypes.STRING,
-      id_product_categories: DataTypes.INT,
+      name: {
+        type: DataTypes.STRING(50),
+        validate: {
+          notEmpty: true,
+        },
+      },
+      description: {
+        type: DataTypes.TEXT,
+        validate: {
+          notEmpty: true,
+        },
+      },
+      image: {
+        type: DataTypes.STRING(100),
+        validate: {
+          notEmpty: true,
+        },
+      },
+      price: {
+        type: DataTypes.FLOAT(3, 2),
+        validate: {
+          notEmpty: true,
+          isDecimal: true,
+        },
+      },
+      creation_steps: {
+        type: DataTypes.TEXT,
+        validate: {
+          notEmpty: true,
+        },
+      },
+      id_product_categories: {
+        type: DataTypes.INTEGER,
+        validate: {
+          notEmpty: true,
+        },
+      },
     },
     {
       sequelize,

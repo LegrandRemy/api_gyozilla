@@ -15,7 +15,12 @@ module.exports = (sequelize, DataTypes) => {
   }
   ProductCategories.init(
     {
-      name: DataTypes.STRING,
+      name: {
+        type: DataTypes.STRING(50),
+        validate: {
+          notEmpty: true,
+        },
+      },
     },
     {
       sequelize,

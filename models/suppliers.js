@@ -16,9 +16,28 @@ module.exports = (sequelize, DataTypes) => {
   }
   Suppliers.init(
     {
-      name: DataTypes.STRING,
-      address: DataTypes.STRING,
-      phone: DataTypes.STRING,
+      name: {
+        type: DataTypes.STRING(100),
+        validate: {
+          notEmpty: true,
+          allowNull: false,
+        },
+      },
+      address: {
+        type: DataTypes.STRING(100),
+        validate: {
+          notEmpty: true,
+          allowNull: false,
+        },
+      },
+      phone: {
+        type: DataTypes.STRING(15),
+        validate: {
+          notEmpty: true,
+          isNumeric: true,
+          allowNull: false,
+        },
+      },
     },
     {
       sequelize,

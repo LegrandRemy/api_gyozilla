@@ -30,7 +30,6 @@ npx sequelize-cli model:generate --name Ingredients --attributes name:string,qua
 npx sequelize-cli model:generate --name Products --attributes name:string,description:text,photo:string,price:float,creation_steps:text,id_product_categories:integer
 # npx sequelize-cli model:generate --name ProductCategories --attributes name:string
 # npx sequelize-cli model:generate --name Status --attributes name:string
-# npx sequelize-cli model:generate --name CustomerRating --attributes id_customers:integer,id_ratings:integer
 # npx sequelize-cli model:generate --name SupplierOrders --attributes date_order:date,total_price:integer,id_suppliers:integer,id_franchises:integer
 # npx sequelize-cli model:generate --name Deliveries --attributes id_suppliers_orders:integer,delivery_date:date,carrier_name:string
 # npx sequelize-cli model:generate --name Franchises --attributes name:string,address:string,phone:string

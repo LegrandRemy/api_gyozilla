@@ -24,11 +24,36 @@ module.exports = (sequelize, DataTypes) => {
   }
   Orders.init(
     {
-      id_customers: DataTypes.INTEGER,
-      id_franchises: DataTypes.INTEGER,
-      date_order: DataTypes.DATE,
-      total_price: DataTypes.INTEGER,
-      id_status: DataTypes.STRING,
+      id_customers: {
+        type: DataTypes.INTEGER,
+        validate: {
+          notEmpty: true,
+        },
+      },
+      id_franchises: {
+        type: DataTypes.INTEGER,
+        validate: {
+          notEmpty: true,
+        },
+      },
+      date_order: {
+        type: DataTypes.DATE,
+        validate: {
+          notEmpty: true,
+        },
+      },
+      total_price: {
+        type: DataTypes.INTEGER,
+        validate: {
+          notEmpty: true,
+        },
+      },
+      id_status: {
+        type: DataTypes.INTEGER,
+        validate: {
+          notEmpty: true,
+        },
+      },
     },
     {
       sequelize,
