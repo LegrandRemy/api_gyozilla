@@ -19,6 +19,12 @@ module.exports = (sequelize, DataTypes) => {
   }
   Employees.init(
     {
+      login: {
+        type: DataTypes.STRING(10),
+        validate: {
+          notEmpty: true,
+        },
+      },
       lastname: {
         type: DataTypes.STRING(50),
         validate: {
