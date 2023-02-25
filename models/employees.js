@@ -20,10 +20,7 @@ module.exports = (sequelize, DataTypes) => {
   Employees.init(
     {
       login: {
-        type: DataTypes.STRING(10),
-        validate: {
-          notEmpty: true,
-        },
+        type: DataTypes.STRING(100),
       },
       lastname: {
         type: DataTypes.STRING(50),
@@ -52,9 +49,6 @@ module.exports = (sequelize, DataTypes) => {
       },
       password: {
         type: DataTypes.STRING(160),
-        validate: {
-          notEmpty: true,
-        },
       },
       id_roles: {
         type: DataTypes.INTEGER,

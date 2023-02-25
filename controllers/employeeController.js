@@ -3,7 +3,6 @@ const Employees = db['Employees']
 const bcrypt = require('bcryptjs')
 const _ = require('lodash')
 const { Op } = require('sequelize')
-const { generateRandomNumber } = require('../middlewares/generateRandom')
 
 exports.is_exist = async (id) => {
   Employees.findOne(
@@ -88,14 +87,16 @@ exports.createEmployee = async (req, res) => {
   try {
     const lastname = req.body.lastname
     const firstname = req.body.firstname
-    const login = lastname.slice(0,2) + firstname.slice(0,2) + generateRandomNumber().toString
+    const random = Math.floor(Math.random() * 900) + 100;
+    const login = lastname.slice(0,2) + firstname.slice(0,2) + random.toString()
+    const mp = lastname.slice(0,3) + firstname.slice(0,3) + random.toString()
+    req.body.login = login
     Employees.beforeCreate(async (employee, options) => {
+      employee.password = mp
       const hashedPassword = await bcrypt.hash(employee.password, 10);
       employee.password = hashedPassword;
     });
-    const newEmployee = await Employees.create(req.body, {
-      login: login
-    })
+    const newEmployee = await Employees.create(req.body)
     res.status(201).json({
       message: 'created',
       data: newEmployee,
