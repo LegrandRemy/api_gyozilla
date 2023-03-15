@@ -80,9 +80,9 @@ exports.getCustomer = async (req, res) => {
 exports.createCustomer = async (req, res) => {
   try {
     Customers.beforeCreate(async (customer, options) => {
-      const hashedPassword = await bcrypt.hash(customer.password, 10);
-      customer.password = hashedPassword;
-    });
+      const hashedPassword = await bcrypt.hash(customer.password, 10)
+      customer.password = hashedPassword
+    })
     const newCustomer = await Customers.create(req.body)
     res.status(201).json({
       message: 'created',
