@@ -187,6 +187,16 @@ router.get(
   orderController.getOrderByCustomer,
 )
 router.get(
+  '/api/orders/:orderId/customers/:customerId',
+  verifyToken,
+  orderController.getOneOrderByCustomer,
+)
+router.get(
+  '/api/orders/franchise/:franchiseId',
+  verifyToken,
+  orderController.getAllOrdersByFranchise,
+)
+router.get(
   '/api/orders/status/:idStatus',
   verifyToken,
   orderController.getOrderByStatus,

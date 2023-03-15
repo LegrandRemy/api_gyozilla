@@ -74,6 +74,43 @@ exports.getOrderByCustomer = async (req, res) => {
   }
 }
 
+exports.getOneOrderByCustomer = async (req, res) => {
+  const customerId = req.params.customerId
+  const orderId = req.param.orderId
+  try {
+    const order = await Order.findAll({
+      where: { id_customers: customerId, id: orderId },
+    })
+    res.status(200).json({
+      message: 'getOneOrderByCustomers',
+      data: order,
+    })
+  } catch (error) {
+    res.status(500).json({
+      message: "Impossible de récupérer la commandes de l'utilisateur",
+      error: error.message,
+    })
+  }
+}
+
+exports.getAllOrdersByFranchise = async (req, res) => {
+  const franchiseId = req.params.franchiseId
+  try {
+    const orders = await Order.findAll({
+      where: { id_franchises: franchiseId },
+    })
+    res.status(200).json({
+      message: 'getAllOrdersByFranchise',
+      data: orders,
+    })
+  } catch (error) {
+    res.status(500).json({
+      message: "Impossible de récupérer les commandes de la franchise",
+      error: error.message,
+    })
+  }
+}
+
 exports.getOrderByStatus = async (req, res) => {
   const idStatus = req.params.idStatus
   try {
