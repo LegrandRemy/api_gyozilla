@@ -76,7 +76,7 @@ exports.getOrderByCustomer = async (req, res) => {
 
 exports.getOneOrderByCustomer = async (req, res) => {
   const customerId = req.params.customerId
-  const orderId = req.param.orderId
+  const orderId = req.params.orderId
   try {
     const order = await Order.findAll({
       where: { id_customers: customerId, id: orderId },

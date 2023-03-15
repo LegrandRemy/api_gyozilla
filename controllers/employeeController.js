@@ -104,7 +104,7 @@ exports.getAllEmployeeByRole = async (req, res) => {
 
 exports.getOneEmployeeByFranchise = async (req, res) => {
   const employeeId = req.params.employeeId
-  const franchiseId = req.param.franchiseId
+  const franchiseId = req.params.franchiseId
   try {
     const employee = await Employees.findAll({
       where: { id_franchises: franchiseId, id: employeeId },
