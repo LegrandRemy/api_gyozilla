@@ -83,6 +83,7 @@ exports.getProduct = async (req, res) => {
 }
 
 exports.createProduct = async (req, res) => {
+  console.log(req.body)
   try {
     const product_isExist = await Products.findOne({
       where: {

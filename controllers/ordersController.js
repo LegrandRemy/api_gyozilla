@@ -14,8 +14,8 @@ exports.getAllOrders = async (req, res) => {
     if (req.query.id) {
       where.id = req.query.id
     }
-    if (req.query.id_customers) {
-      where.id_customers = req.query.id_customers
+    if (req.query.status) {
+      where.status = req.query.status
     }
     if (req.query.total_price) {
       where.total_price = req.query.total_price
@@ -30,7 +30,14 @@ exports.getAllOrders = async (req, res) => {
       where.date_order = req.query.date_order
     }
     const orders = await Order.findAll({
-      attributes: ['id_status', 'id_franchises', 'id_customers'],
+      attributes: [
+        'id',
+        'payement_at',
+        'status',
+        'price',
+        'id_sales_revenues',
+        'id_sales_revenues',
+      ],
       where: {
         [Op.and]: [where],
       },
