@@ -4,8 +4,6 @@
  *   schemas:
  *     product_categories:
  *       type: object
- *       required:
- *         -
  *       properties:
  *         id:
  *           type: int
@@ -88,7 +86,7 @@
  *       - in: path
  *         name: id
  *         schema:
- *           type: int
+ *           type: string
  *         required: true
  *         description: Catégorie de produit par l'id
  *     responses:

@@ -9,10 +9,10 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      id_franchises: {
-        allowNull: false,
-        type: Sequelize.INTEGER,
-      },
+      // id_franchises: {
+      //   allowNull: false,
+      //   type: Sequelize.INTEGER,
+      // },
       id_ingredients: {
         allowNull: false,
         type: Sequelize.INTEGER,

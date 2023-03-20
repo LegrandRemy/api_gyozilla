@@ -39,6 +39,7 @@ exports.getAllFranchises = async (req, res) => {
       where.phone = req.query.phone
     }
     const franchises = await Franchises.findAll({
+      attributes: ['id', 'name', 'address', 'phone', 'createdAt', 'updatedAt'],
       where: {
         [Op.and]: [where],
       },
@@ -54,7 +55,9 @@ exports.getAllFranchises = async (req, res) => {
 
 exports.getFranchise = async (req, res) => {
   try {
-    const franchise = await Franchises.findByPk(req.params.id)
+    const franchise = await Franchises.findByPk(req.params.id, {
+      attributes: ['id', 'name', 'address', 'phone', 'createdAt', 'updatedAt'],
+    })
     if (franchise) {
       res.status(200).json(franchise)
     } else {

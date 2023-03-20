@@ -13,10 +13,10 @@ module.exports = {
         allowNull: false,
         type: Sequelize.INTEGER,
       },
-      id_franchises: {
-        allowNull: false,
-        type: Sequelize.INTEGER,
-      },
+      // id_franchises: {
+      //   allowNull: false,
+      //   type: Sequelize.INTEGER,
+      // },
       date_order: {
         type: Sequelize.DATE,
       },

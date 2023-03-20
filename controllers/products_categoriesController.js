@@ -1,5 +1,5 @@
 const db = require('../models/index')
-const ProductsCategories = db['ProductsCategories']
+const ProductsCategories = db['ProductCategories']
 const { Op } = require('sequelize')
 const fs = require('fs')
 const _ = require('lodash')
@@ -14,7 +14,7 @@ exports.getAllProductsCategories = async (req, res) => {
       where.name = req.query.name
     }
     const productsCategories = await ProductsCategories.findAll({
-      include: ['productCategory'],
+      //include: ['productCategory'],
       where: {
         [Op.and]: [where],
       },
@@ -29,9 +29,10 @@ exports.getAllProductsCategories = async (req, res) => {
 }
 
 exports.getProductCategorie = async (req, res) => {
+  console.log(req.params.id)
   try {
     const product = await ProductsCategories.findByPk(req.params.id, {
-      include: ['productCategory'],
+      //include: ['productCategory'],
     })
     if (product) {
       res.status(200).json(product)
