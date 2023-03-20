@@ -25,7 +25,7 @@
  *
  *       example:
  *         id: 1
- *         date_order: 2023-11-02
+ *         date_order: "2023-11-02"
  *         total_price: 100
  *         id_suppliers: 1
  *         id_franchises: 1

@@ -20,7 +20,7 @@
  *       example:
  *         id: 1
  *         note: 4
- *         comment: J'ai beaucoup apprécié mon repas chez Gyozilla, service efficace et personnel agréable
+ *         comment: "J'ai beaucoup apprécié mon repas chez Gyozilla, service efficace et personnel agréable"
  *
  */
 

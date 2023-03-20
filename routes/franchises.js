@@ -19,9 +19,9 @@
  *           description: Téléphone de la franchise
  *       example:
  *         id: 1
- *         name: Rems Burger
- *         address: 10 rue de la poupee qui tousse
- *         phone: 0680313131
+ *         name: "Rems Burger"
+ *         address: "10 rue de la poupee qui tousse"
+ *         phone: "0680313131"
  */
 
 /**

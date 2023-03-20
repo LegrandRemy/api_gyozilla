@@ -167,8 +167,8 @@
  *           description: Client de la commande
  *       example:
  *         id: 1
- *         date_order: 15/02/2023
- *         total_price: 25€
+ *         date_order: "2023-11-02"
+ *         total_price: "25€"
  *         id_status: 1
  *         id_franchises: 1
  *         id_customers: 1

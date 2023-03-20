@@ -21,9 +21,9 @@
  *           description: Le prix d'un ingrédient
  *       example:
  *         id: 1
- *         name: Riz
+ *         name: "Riz"
  *         quantity: 2
- *         purchasePrice: 5€
+ *         purchasePrice: 5
  */
 
 /**
@@ -52,7 +52,7 @@
  *         description: Une erreur est survenue.
  * /api/ingredients/{id}:
  *   get:
- *     summary: Récupérer le role par l'id
+ *     summary: Récupérer l'ingrédient par l'id
  *     tags: [ingredients]
  *     parameters:
  *       - in: path

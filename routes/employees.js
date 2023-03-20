@@ -31,11 +31,11 @@
  *           description: ID du role de l'employé
  *       example:
  *         id: 1
- *         lastname: Leveque
- *         firstname: Marcus
- *         phone: 0680313131
- *         email: marcus.leveque@gmail.com
- *         password: ab123456
+ *         lastname: "Leveque"
+ *         firstname: "Marcus"
+ *         phone: "0680313131"
+ *         email: "marcus.leveque@gmail.com"
+ *         password: "ab123456"
  *         id_franchises: 3
  *         id_roles: 1
  */
