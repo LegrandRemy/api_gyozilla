@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'id_franchises',
       })
       Franchises.hasMany(models.Orders, {
-        as: 'franchises',
+        as: 'orders',
         foreignKey: 'id_franchises',
       })
     }
