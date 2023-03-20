@@ -2,6 +2,7 @@ const db = require('../models/index')
 const Customers = db['Customers']
 const _ = require('lodash')
 const { Op } = require('sequelize')
+const bcrypt = require('bcryptjs')
 
 exports.is_exist = async (email) => {
   Customers.findOne(
@@ -78,6 +79,10 @@ exports.getCustomer = async (req, res) => {
 
 exports.createCustomer = async (req, res) => {
   try {
+    Customers.beforeCreate(async (customer, options) => {
+      const hashedPassword = await bcrypt.hash(customer.password, 10)
+      customer.password = hashedPassword
+    })
     const newCustomer = await Customers.create(req.body)
     res.status(201).json({
       message: 'created',

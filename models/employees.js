@@ -9,7 +9,6 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       Employees.hasMany(models.Franchises, {
-        as: 'franchises',
         foreignKey: 'id_franchises',
       })
       Employees.belongsTo(models.Roles, {
@@ -46,7 +45,7 @@ module.exports = (sequelize, DataTypes) => {
         },
       },
       password: {
-        type: DataTypes.STRING(50),
+        type: DataTypes.STRING(160),
         validate: {
           notEmpty: true,
         },

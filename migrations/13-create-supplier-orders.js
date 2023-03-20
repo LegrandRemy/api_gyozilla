@@ -11,11 +11,11 @@ module.exports = {
       },
       date_order: {
         allowNull: false,
-        type: Sequelize.DATE,
+        type: Sequelize.DATEONLY,
       },
       total_price: {
         allowNull: false,
-        type: Sequelize.DECIMAL(3, 2),
+        type: Sequelize.DECIMAL(6, 2),
       },
       id_suppliers: {
         allowNull: false,

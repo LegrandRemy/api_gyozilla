@@ -9,6 +9,12 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
+      lastname: {
+        type: Sequelize.STRING(50),
+      },
+      firstname: {
+        type: Sequelize.STRING(50),
+      },
       phone: {
         type: Sequelize.STRING(15),
       },
@@ -18,7 +24,7 @@ module.exports = {
       },
       password: {
         allowNull: false,
-        type: Sequelize.STRING(50),
+        type: Sequelize.STRING(160),
       },
       id_roles: {
         allowNull: false,

@@ -19,10 +19,10 @@ module.exports = {
         type: Sequelize.STRING(100),
       },
       password: {
-        type: Sequelize.STRING(50),
+        type: Sequelize.STRING(160),
       },
       fidelityPoints: {
-        type: Sequelize.STRING,
+        type: Sequelize.INTEGER,
       },
       createdAt: {
         allowNull: false,
