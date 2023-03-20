@@ -14,8 +14,8 @@ exports.getAllOrders = async (req, res) => {
     if (req.query.id) {
       where.id = req.query.id
     }
-    if (req.query.id_customers) {
-      where.id_customers = req.query.id_customers
+    if (req.query.status) {
+      where.status = req.query.status
     }
     if (req.query.total_price) {
       where.total_price = req.query.total_price
@@ -30,7 +30,14 @@ exports.getAllOrders = async (req, res) => {
       where.date_order = req.query.date_order
     }
     const orders = await Order.findAll({
-      attributes: ['id_status', 'id_franchises', 'id_customers'],
+      attributes: [
+        'id',
+        'payement_at',
+        'status',
+        'price',
+        'id_sales_revenues',
+        'id_sales_revenues',
+      ],
       where: {
         [Op.and]: [where],
       },
@@ -69,6 +76,43 @@ exports.getOrderByCustomer = async (req, res) => {
   } catch (error) {
     res.status(500).json({
       message: "Impossible de récupérer les commandes de l'utilisateur",
+      error: error.message,
+    })
+  }
+}
+
+exports.getOneOrderByCustomer = async (req, res) => {
+  const customerId = req.params.customerId
+  const orderId = req.params.orderId
+  try {
+    const order = await Order.findAll({
+      where: { id_customers: customerId, id: orderId },
+    })
+    res.status(200).json({
+      message: 'getOneOrderByCustomers',
+      data: order,
+    })
+  } catch (error) {
+    res.status(500).json({
+      message: "Impossible de récupérer la commandes de l'utilisateur",
+      error: error.message,
+    })
+  }
+}
+
+exports.getAllOrdersByFranchise = async (req, res) => {
+  const franchiseId = req.params.franchiseId
+  try {
+    const orders = await Order.findAll({
+      where: { id_franchises: franchiseId },
+    })
+    res.status(200).json({
+      message: 'getAllOrdersByFranchise',
+      data: orders,
+    })
+  } catch (error) {
+    res.status(500).json({
+      message: "Impossible de récupérer les commandes de la franchise",
       error: error.message,
     })
   }
