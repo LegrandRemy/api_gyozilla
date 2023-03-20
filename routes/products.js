@@ -4,8 +4,6 @@
  *   schemas:
  *     products:
  *       type: object
- *       required:
- *         -
  *       properties:
  *         id:
  *           type: int
@@ -55,45 +53,44 @@
  *         name: id
  *         schema:
  *           type: int
- *         required: true
+ *         required: false
  *         description: ID du produit
  *       - in: query
  *         name: name
  *         schema:
  *           type: string
- *         required: true
+ *         required: false
  *         description: Libellé du produit
  *       - in: query
  *         name: description
  *         schema:
  *           type: string
- *         required: true
+ *         required: false
  *         description: Description du produit
  *       - in: query
  *         name: image
  *         schema:
  *           type: string
- *         required: true
+ *         required: false
  *         description: Image du produit
  *       - in: query
  *         name: price
  *         schema:
  *           type: float
- *         required: true
+ *         required: false
  *         description: Prix du produit
  *       - in: query
  *         name: creation_steps
  *         schema:
  *           type: string
- *         required: true
+ *         required: false
  *         description: Etape de création du produit
  *       - in: query
  *         name: id_product_categories
  *         schema:
  *           type: int
- *         required: true
+ *         required: false
  *         description: ID de la categorie du produit
- *
  *     responses:
  *       200:
  *         description: La liste de tous les produits

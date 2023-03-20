@@ -89,32 +89,32 @@
  *       404:
  *         description: Le Catégorie de produit n'a pas été trouvée.
  *   patch:
- *    summary: Mise à jour de la catégorie de produit par son id
- *    tags: [product_categories]
- *    parameters:
- *      - in: path
- *        name: id
- *        schema:
- *          type: string
- *        required: true
- *        description: id de la catégorie de produit
- *    requestBody:
- *      required: true
- *      content:
- *        application/json:
- *          schema:
- *            $ref: '#/components/schemas/product_categories'
- *    responses:
- *      200:
- *        description: La catégorie de produit a été mise à jour
- *        content:
- *          application/json:
- *            schema:
- *              $ref: '#/components/schemas/product_categories'
- *      404:
- *        description: La catégorie de produit n'a pas été trouvée.
- *      500:
- *        description: Une erreur est survenue.
+ *     summary: Mise à jour de la catégorie de produit par son id
+ *     tags: [product_categories]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: id de la catégorie de produit
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/product_categories'
+ *     responses:
+ *       200:
+ *         description: La catégorie de produit a été mise à jour
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/product_categories'
+ *       404:
+ *         description: La catégorie de produit n'a pas été trouvée.
+ *       500:
+ *         description: Une erreur est survenue.
  *   delete:
  *     summary: Supprimer une catégorie de produit par son id
  *     tags: [product_categories]
@@ -125,7 +125,6 @@
  *           type: string
  *         required: true
  *         description: id de la catégorie de produit
- *
  *     responses:
  *       200:
  *         description: La catégorie de produit a été supprimée.
