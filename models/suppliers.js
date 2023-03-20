@@ -20,14 +20,12 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING(100),
         validate: {
           notEmpty: true,
-          allowNull: false,
         },
       },
       address: {
         type: DataTypes.STRING(100),
         validate: {
           notEmpty: true,
-          allowNull: false,
         },
       },
       phone: {
@@ -35,7 +33,6 @@ module.exports = (sequelize, DataTypes) => {
         validate: {
           notEmpty: true,
           isNumeric: true,
-          allowNull: false,
         },
       },
     },
