@@ -139,7 +139,7 @@
  *       - in: path
  *         name: id
  *         schema:
- *           type: int
+ *           type: string
  *         required: false
  *         description: id de la livraison
  *     responses:

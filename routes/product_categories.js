@@ -4,8 +4,6 @@
  *   schemas:
  *     product_categories:
  *       type: object
- *       required:
- *         -
  *       properties:
  *         id:
  *           type: int
@@ -16,12 +14,9 @@
  *         id_categories:
  *           type: int
  *           description: ID de la catégorie associée
- *
  *       example:
  *         id: 1
- *         id_products: 1
- *         id_categories: 1
- *
+ *         name: "Chinois"
  */
 
 /**
@@ -41,18 +36,11 @@
  *         required: false
  *         description: ID de la catégorie de produit
  *       - in: query
- *         name: id_products
+ *         name: name
  *         schema:
- *           type: int
+ *           type: string
  *         required: false
- *         description: ID du produit associé
- *       - in: query
- *         name: id_categories
- *         schema:
- *           type: int
- *         required: false
- *         description: ID de la catégorie associée
- *
+ *         description: Nom de la catégorie de produit
  *     responses:
  *       200:
  *         description: La liste de toutes les catégories de produit
@@ -88,7 +76,7 @@
  *       - in: path
  *         name: id
  *         schema:
- *           type: int
+ *           type: string
  *         required: true
  *         description: Catégorie de produit par l'id
  *     responses:
@@ -134,7 +122,7 @@
  *       - in: path
  *         name: id
  *         schema:
- *           type: int
+ *           type: string
  *         required: true
  *         description: id de la catégorie de produit
  *

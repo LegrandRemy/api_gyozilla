@@ -1,6 +1,7 @@
 const { Op } = require('sequelize')
 const db = require('../models/index')
 const Order = db['Orders']
+const _ = require('lodash')
 
 exports.isOrder_Exist = async (req, res) => {
   const checkIdOrder = await Order.findOne({ where: { id: req.body.email } })

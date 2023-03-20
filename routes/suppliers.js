@@ -95,7 +95,7 @@
  *       - in: path
  *         name: id
  *         schema:
- *           type: int
+ *           type: string
  *         required: true
  *         description: Fournisseur par l'id
  *     responses:
@@ -141,7 +141,7 @@
  *       - in: path
  *         name: id
  *         schema:
- *           type: int
+ *           type: string
  *         required: false
  *         description: id du fournisseur
  *     responses:
