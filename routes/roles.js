@@ -15,7 +15,7 @@
  *           description: Le role d'un employé
  *       example:
  *         id: 1
- *         type: "Cuisinier"
+ *         name: "Cuisinier"
  */
 
 /**
@@ -69,7 +69,7 @@
  *       - in: path
  *         name: id
  *         schema:
- *           type: int
+ *           type: string
  *         required: true
  *         description: id du role
  *     responses:

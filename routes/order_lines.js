@@ -1,5 +1,41 @@
 /**
  * @swagger
+ * components:
+ *   schemas:
+ *     orderlines:
+ *       type: object
+ *       required:
+ *         -
+ *       properties:
+ *         id:
+ *           type: int
+ *           description: ID de la commande
+ *         date_order:
+ *           type: string
+ *           description: Date de la commande
+ *         total_price:
+ *           type: string
+ *           description: Prix de la commande
+ *         id_status:
+ *           type: string
+ *           description: Status de la commande
+ *         id_franchises:
+ *           type: string
+ *           description: Franchise lié à la commande
+ *         id_customers:
+ *           type: string
+ *           description: Client de la commande
+ *       example:
+ *         id: 1
+ *         id_orders: 2
+ *         id_products: 2
+ *         quantity: 5
+ *         id_franchises: 1
+ */
+
+
+/**
+ * @swagger
  * tags:
  *   name: order_lines
  *   description: API pour les commandes
@@ -138,41 +174,6 @@
  *         description: La commande n'a pas été trouvé.
  */
 
-/**
- * @swagger
- * components:
- *   schemas:
- *     orders:
- *       type: object
- *       required:
- *         -
- *       properties:
- *         id:
- *           type: int
- *           description: ID de la commande
- *         date_order:
- *           type: string
- *           description: Date de la commande
- *         total_price:
- *           type: string
- *           description: Prix de la commande
- *         id_status:
- *           type: string
- *           description: Status de la commande
- *         id_franchises:
- *           type: string
- *           description: Franchise lié à la commande
- *         id_customers:
- *           type: string
- *           description: Client de la commande
- *       example:
- *         id: 1
- *         date_order: "2023-11-02"
- *         total_price: "25€"
- *         id_status: 1
- *         id_franchises: 1
- *         id_customers: 1
- */
 
 const express = require('express')
 const router = express.Router()

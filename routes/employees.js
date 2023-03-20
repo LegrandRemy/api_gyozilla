@@ -146,7 +146,7 @@
  *      - in: path
  *        name: id
  *        schema:
- *          type: int
+ *          type: string
  *        required: false
  *        description: id de l'employé
  *    requestBody:
@@ -173,7 +173,7 @@
  *       - in: path
  *         name: id
  *         schema:
- *           type: int
+ *           type: string
  *         required: false
  *         description: id de l'employé
  *     responses:

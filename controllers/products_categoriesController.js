@@ -14,7 +14,10 @@ exports.getAllProductsCategories = async (req, res) => {
       where.name = req.query.name
     }
     const productsCategories = await ProductsCategories.findAll({
+<<<<<<< HEAD
       //include: ['productCategory'],
+=======
+>>>>>>> 6f8f6430db6dfe847eaba7a1846c8d6449205591
       where: {
         [Op.and]: [where],
       },
@@ -32,7 +35,6 @@ exports.getProductCategorie = async (req, res) => {
   console.log(req.params.id)
   try {
     const product = await ProductsCategories.findByPk(req.params.id, {
-      //include: ['productCategory'],
     })
     if (product) {
       res.status(200).json(product)

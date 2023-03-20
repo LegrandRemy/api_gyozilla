@@ -31,7 +31,7 @@
  *   description: API pour les franchises
  * /api/franchises:
  *   get:
- *     summary: Lister tous les employés
+ *     summary: Lister toutes les franchises
  *     tags: [franchises]
  *     parameters:
  *       - in: query
@@ -112,7 +112,7 @@
  *      - in: path
  *        name: id
  *        schema:
- *          type: int
+ *          type: string
  *        required: false
  *        description: id de la franchise
  *    requestBody:
@@ -139,7 +139,7 @@
  *       - in: path
  *         name: id
  *         schema:
- *           type: int
+ *           type: string
  *         required: false
  *         description: id de la franchise
  *     responses:
