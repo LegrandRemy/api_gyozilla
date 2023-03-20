@@ -9,6 +9,9 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
+      login: {
+        type: Sequelize.STRING(100),
+      },
       lastname: {
         type: Sequelize.STRING(50),
       },
@@ -23,7 +26,6 @@ module.exports = {
         type: Sequelize.STRING(50),
       },
       password: {
-        allowNull: false,
         type: Sequelize.STRING(160),
       },
       id_roles: {

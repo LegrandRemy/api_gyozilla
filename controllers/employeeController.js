@@ -65,6 +65,63 @@ exports.getAllEmployees = async (req, res) => {
   }
 }
 
+
+exports.getAllEmployeeByFranchise = async (req, res) => {
+  const franchiseId = req.params.franchiseId
+  try {
+    const employees = await Employees.findAll({
+      where: { id_franchises: franchiseId },
+    })
+    res.status(200).json({
+      message: 'getAllOrdersByFranchise',
+      data: employees,
+    })
+  } catch (error) {
+    res.status(500).json({
+      message: "Impossible de récupérer les employés de la franchise",
+      error: error.message,
+    })
+  }
+}
+
+exports.getAllEmployeeByRole = async (req, res) => {
+  const roleId = req.params.roleId
+  try {
+    const employees = await Employees.findAll({
+      where: { id_roles: roleId },
+    })
+    res.status(200).json({
+      message: 'getAllEmployeeByRole',
+      data: employees,
+    })
+  } catch (error) {
+    res.status(500).json({
+      message: "Impossible de récupérer les employés du role en question",
+      error: error.message,
+    })
+  }
+}
+
+exports.getOneEmployeeByFranchise = async (req, res) => {
+  const employeeId = req.params.employeeId
+  const franchiseId = req.params.franchiseId
+  try {
+    const employee = await Employees.findAll({
+      where: { id_franchises: franchiseId, id: employeeId },
+    })
+    res.status(200).json({
+      message: 'getOneEmployeeByFranchise',
+      data: employee,
+    })
+  } catch (error) {
+    res.status(500).json({
+      message: "Impossible de récupérer l'employé de la franchise'",
+      error: error.message,
+    })
+  }
+}
+
+
 exports.getEmployee = async (req, res) => {
   try {
     const employee = await Employees.findByPk(req.params.id)
@@ -85,7 +142,14 @@ exports.getEmployee = async (req, res) => {
 
 exports.createEmployee = async (req, res) => {
   try {
+    const lastname = req.body.lastname
+    const firstname = req.body.firstname
+    const random = Math.floor(Math.random() * 900) + 100;
+    const login = lastname.slice(0,2) + firstname.slice(0,2) + random.toString()
+    const mp = lastname.slice(0,3) + firstname.slice(0,3) + random.toString()
+    req.body.login = login
     Employees.beforeCreate(async (employee, options) => {
+      employee.password = mp
       const hashedPassword = await bcrypt.hash(employee.password, 10);
       employee.password = hashedPassword;
     });
