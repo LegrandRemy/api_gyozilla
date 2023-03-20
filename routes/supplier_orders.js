@@ -168,25 +168,26 @@
 const express = require('express')
 const router = express.Router()
 const supplier_ordersController = require('../controllers/supplier_ordersController')
+const { verifyToken } = require('../controllers/tokenController')
 
 router.get(
-  '/api/supplier_orders',
+  '/api/supplier_orders', verifyToken,
   supplier_ordersController.getAllSupplierOrders,
 )
 router.get(
-  '/api/supplier_orders/:id',
+  '/api/supplier_orders/:id', verifyToken,
   supplier_ordersController.getSupplierOrder,
 )
 router.post(
-  '/api/supplier_orders',
+  '/api/supplier_orders', verifyToken,
   supplier_ordersController.createSupplierOrder,
 )
 router.patch(
-  '/api/supplier_orders/:id',
+  '/api/supplier_orders/:id', verifyToken,
   supplier_ordersController.updateSupplierOrder,
 )
 router.delete(
-  '/api/supplier_orders/:id',
+  '/api/supplier_orders/:id', verifyToken,
   supplier_ordersController.deleteSupplierOrder,
 )
 

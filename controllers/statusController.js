@@ -1,6 +1,7 @@
 const { Op } = require('sequelize')
 const db = require('../models/index')
 const Status = db['Status']
+const _ = require('lodash')
 
 exports.getAllStatus = async (req, res) => {
   try {

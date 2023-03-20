@@ -135,25 +135,26 @@
 const express = require('express')
 const router = express.Router()
 const product_categoryController = require('../controllers/products_categoriesController')
+const { verifyToken } = require('../controllers/tokenController')
 
 router.get(
-  '/api/product_categories',
+  '/api/product_categories', verifyToken,
   product_categoryController.getAllProductsCategories,
 )
 router.get(
-  '/api/product_categories/:id',
+  '/api/product_categories/:id', verifyToken,
   product_categoryController.getProductCategorie,
 )
 router.post(
-  '/api/product_categories',
+  '/api/product_categories', verifyToken,
   product_categoryController.createProductCategorie,
 )
 router.patch(
-  '/api/product_categories/:id',
+  '/api/product_categories/:id', verifyToken,
   product_categoryController.updateProductCategorie,
 )
 router.delete(
-  '/api/product_categories/:id',
+  '/api/product_categories/:id', verifyToken,
   product_categoryController.deleteProductCategorie,
 )
 

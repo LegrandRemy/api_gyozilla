@@ -26,8 +26,8 @@ exports.getAllRoles = async (req, res) => {
 
 exports.getRole = async (req, res) => {
   try {
-    const Role = await Role.findByPk(req.params.id)
-    res.status(200).json(Role)
+    const role = await Role.findByPk(req.params.id)
+    res.status(200).json(role)
   } catch (error) {
     res.status(500).json({
       message: "Impossible de récupérer le role de l'employé",

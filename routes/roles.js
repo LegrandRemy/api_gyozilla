@@ -15,7 +15,7 @@
  *           description: Le role d'un employé
  *       example:
  *         id: 1
- *         type: "Cuisinier"
+ *         name: "Cuisinier"
  */
 
 /**

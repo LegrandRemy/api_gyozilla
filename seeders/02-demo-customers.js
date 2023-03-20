@@ -9,7 +9,7 @@ module.exports = {
         {
           lastname: 'Rabbit',
           firstname: 'Roger',
-          password: 'ilesttropfort',
+          password: '$2a$10$ZsnkVypMltudrypwEWfzD.lqrxIMiAU0dd.H6.8lqf1S/oAXP.r06',
           email: 'rabbit.roger@gmail.com',
           fidelityPoints: 3,
           createdAt: new Date(),
@@ -18,7 +18,7 @@ module.exports = {
         {
           lastname: 'Mouloud',
           firstname: 'Jean',
-          password: 'ilesttropfort',
+          password: '$2a$10$ZsnkVypMltudrypwEWfzD.lqrxIMiAU0dd.H6.8lqf1S/oAXP.r06',
           email: 'jean.mouloud@gmail.com',
           fidelityPoints: 20,
           createdAt: new Date(),
@@ -27,7 +27,7 @@ module.exports = {
         {
           lastname: 'Legrand',
           firstname: 'Remy',
-          password: 'ilesttropfort',
+          password: '$2a$10$ZsnkVypMltudrypwEWfzD.lqrxIMiAU0dd.H6.8lqf1S/oAXP.r06',
           email: 'legrand.remy@gmail.com',
           fidelityPoints: 1000,
           createdAt: new Date(),
