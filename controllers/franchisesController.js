@@ -39,7 +39,6 @@ exports.getAllFranchises = async (req, res) => {
       where.phone = req.query.phone
     }
     const franchises = await Franchises.findAll({
-      attributes: ['franchises', 'roles'],
       where: {
         [Op.and]: [where],
       },
