@@ -95,7 +95,7 @@
  *      - in: path
  *        name: id
  *        schema:
- *          type: int
+ *          type: string
  *        required: true
  *        description: id de la catégorie de produit
  *    requestBody:

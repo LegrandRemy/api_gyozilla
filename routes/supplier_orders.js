@@ -127,7 +127,7 @@
  *      - in: path
  *        name: id
  *        schema:
- *          type: int
+ *          type: string
  *        required: true
  *        description: id de la commande du fournisseur
  *    requestBody:
