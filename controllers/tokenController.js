@@ -1,17 +1,54 @@
 require('dotenv').config
 const jwt = require('jsonwebtoken');
+const db = require('../models/index')
+const bcrypt = require('bcrypt')
+const Customers = db['Customers']
+const Employees = db['Employees']
 
 exports.getToken = async (req, res) => {
     try {
-        const payload = {
-            username: req.body.email,
-            password: req.body.password
-        };
-        const secret = process.env.JWT_SECRET;
-        const options = { expiresIn: '24h' };
-        const token = jwt.sign(payload, secret, options);
-        req.session.token = token;
-        res.status(200).json({ token });
+        const customer = await Customers.findOne({
+            where: {email:req.body.email}
+        })
+        if (customer) {
+            const passwordMatch = await bcrypt.compare(req.body.password, customer.password)
+            if (passwordMatch) {
+                const payload = {
+                    username: req.body.email,
+                    password: passwordMatch
+                };
+                
+            const secret = process.env.JWT_SECRET;
+            const options = { expiresIn: '24h' };
+            const token = jwt.sign(payload, secret, options);
+            req.session.token = token;
+            res.status(200).json({ 
+                message: "Authentification réussi",
+                token: token
+                });
+            }
+        }
+        const employee = await Employees.findOne({
+            where: {email:req.body.email}
+        })
+        if (employee) {
+            const passwordMatch = await bcrypt.compare(req.body.password, employee.password)
+            if (passwordMatch) {
+                const payload = {
+                    username: req.body.email,
+                    password: passwordMatch
+                };
+                
+            const secret = process.env.JWT_SECRET;
+            const options = { expiresIn: '24h' };
+            const token = jwt.sign(payload, secret, options);
+            req.session.token = token;
+            res.status(200).json({ 
+                message: "Authentification réussi",
+                token: token
+                });
+            }
+        }
     } catch (error) {
         res.status(500).json({
             message: 'Impossible de récupérer le token',

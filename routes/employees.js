@@ -190,6 +190,9 @@ const { verifyToken } = require('../controllers/tokenController')
 
 router.get('/api/employees/', verifyToken, employeeController.getAllEmployees)
 router.get('/api/employees/:id', verifyToken, employeeController.getEmployee)
+router.get('/api/employees/franchises/:franchiseId', verifyToken, employeeController.getAllEmployeeByFranchise)
+router.get('/api/employees/roles/:roleId', verifyToken, employeeController.getAllEmployeeByRole)
+router.get('/api/employees/:employeeId/franchises/:franchiseId', verifyToken, employeeController.getOneEmployeeByFranchise)
 router.post('/api/employees/', verifyToken, employeeController.createEmployee)
 router.patch(
   '/api/employees/:id',
