@@ -21,9 +21,9 @@
  *           description: Adresse du fournisseur
  *       example:
  *         id: 1
- *         name: les resto du coeur
- *         address: 10 rue de la poupee qui tousse 80000 Amiens
- *         phone: 0600000000
+ *         name: "les resto du coeur"
+ *         address: "10 rue de la poupee qui tousse 80000 Amiens"
+ *         phone: "0600000000"
  */
 
 /**

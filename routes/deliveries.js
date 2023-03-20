@@ -20,8 +20,8 @@
  *       example:
  *         id: 1
  *         id_suppliers_order: 1
- *         delivery_date: 2023-02-20
- *         carrier_name: transport ducobu
+ *         delivery_date: "2023-02-20"
+ *         carrier_name: "transport ducobu"
  */
 
 /**
@@ -51,7 +51,7 @@
  *         schema:
  *           type: string
  *         required: false
- *         description: datede livraison
+ *         description: date de livraison
  *       - in: query
  *         name: carrier_name
  *         schema:

@@ -31,11 +31,11 @@
  *
  *       example:
  *         id: 1
- *         name: BigMac
- *         description: Onctueux et savoureux
- *         image: 1.jpg
+ *         name: "BigMac"
+ *         description: "Onctueux et savoureux"
+ *         image: "1.jpg"
  *         price: 7,80
- *         creation_steps: Mettre le fromage sur le pain
+ *         creation_steps: "Mettre le fromage sur le pain"
  *         id_product_categories: 1
  */
 

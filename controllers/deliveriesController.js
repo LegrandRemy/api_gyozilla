@@ -18,10 +18,14 @@ exports.getAllDeliveries = async (req, res) => {
     if (req.query.carrier_name) {
       where.carrier_name = req.query.carrier_name
     }
-    const deliveries = await Deliveries.findAll()
-    res.deliveries(200).json({ message: 'Test', data: deliveries })
+    const deliveries = await Deliveries.findAll({
+      where: {
+        [Op.and]: [where],
+      },
+    })
+    res.status(200).json(deliveries)
   } catch (error) {
-    res.deliveries(500).json({
+    res.status(500).json({
       message: 'Test',
       error: error.message,
     })
@@ -41,7 +45,7 @@ exports.getDeliveries = async (req, res) => {
       })
     }
   } catch (error) {
-    res.deliveries(500).json({
+    res.status(500).json({
       message: 'Impossible de récupérer le deliveries',
       error: error.message,
     })
@@ -51,9 +55,9 @@ exports.getDeliveries = async (req, res) => {
 exports.createDeliveries = async (req, res) => {
   try {
     const newDeliveries = await Deliveries.create(req.body)
-    res.deliveries(201).json({ message: 'created', data: newDeliveries })
+    res.status(201).json({ message: 'created', data: newDeliveries })
   } catch (error) {
-    res.deliveries(500).json({
+    res.status(500).json({
       message: "La livraison n'a pas été créé",
       error: error.message,
     })

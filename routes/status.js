@@ -15,7 +15,7 @@
  *           description: Paiement de la commande
  *       example:
  *         id: 1
- *         name: En cours
+ *         name: "En cours"
  */
 
 /**
