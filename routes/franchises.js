@@ -31,7 +31,7 @@
  *   description: API pour les franchises
  * /api/franchises:
  *   get:
- *     summary: Lister tous les employés
+ *     summary: Lister toutes les franchises
  *     tags: [franchises]
  *     parameters:
  *       - in: query
