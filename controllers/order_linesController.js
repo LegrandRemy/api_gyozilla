@@ -1,6 +1,7 @@
 const { Op } = require('sequelize')
 const db = require('../models/index')
 const OrderLine = db['OrderLines']
+const _ = require('lodash')
 
 exports.isOrder_Exist = async (req, res) => {
   const checkIdOrderLine = await OrderLine.findOne({
@@ -25,6 +26,7 @@ exports.getAllOrderLines = async (req, res) => {
       where.quantity = req.query.quantity
     }
     const orderLine = await OrderLine.findAll({
+      // attributes: ['id_orders', 'id_products'],
       where: {
         [Op.and]: [where],
       },
@@ -52,7 +54,7 @@ exports.getOrderLine = async (req, res) => {
 
 exports.createOrderLine = async (req, res) => {
   try {
-    const newOrderLine = await Order.create(req.body)
+    const newOrderLine = await OrderLine.create(req.body)
     res.status(201).json({ message: 'created', data: newOrderLine })
   } catch (error) {
     res.status(500).json({
@@ -107,11 +109,11 @@ exports.deleteOrderLine = async (req, res) => {
       },
     })
     res.status(200).json({
-      message: '=supprimée',
+      message: 'La ligne de commande a été supprimé',
     })
   } catch (error) {
     res.status(500).json({
-      message: 'pas été supprimée',
+      message: "La ligne de commande n'a pas été supprimé",
       error: error.message,
     })
   }
