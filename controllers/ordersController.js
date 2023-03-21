@@ -1,6 +1,7 @@
 const { Op } = require('sequelize')
 const db = require('../models/index')
 const Order = db['Orders']
+const _ = require('lodash')
 
 exports.isOrder_Exist = async (req, res) => {
   const checkIdOrder = await Order.findOne({ where: { id: req.body.email } })
@@ -30,14 +31,6 @@ exports.getAllOrders = async (req, res) => {
       where.date_order = req.query.date_order
     }
     const orders = await Order.findAll({
-      attributes: [
-        'id',
-        'payement_at',
-        'status',
-        'price',
-        'id_sales_revenues',
-        'id_sales_revenues',
-      ],
       where: {
         [Op.and]: [where],
       },

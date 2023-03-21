@@ -1,6 +1,6 @@
 const db = require('../models/index')
-const Stock = db['Stock']
-const Franchise = db['Franchise']
+const Stock = db['Stocks']
+// const Franchise = db['Franchises']
 const _ = require('lodash')
 const { Op } = require('sequelize')
 
@@ -13,17 +13,14 @@ exports.getAllStocks = async (req, res) => {
     if (req.query.id_franchise) {
       where.id_franchise = req.query.id_franchise
     }
-    if (req.query.id_ingredient) {
-      where.id_ingredient = req.query.id_ingredient
+    if (req.query.id_ingredients) {
+      where.id_ingredients = req.query.id_ingredients
     }
     if (req.query.quantity) {
       where.quantity = req.query.quantity
     }
-    const stocks = await db.Stocks.findAll({
-      include: [
-        { model: db.Franchise, as: 'franchise' },
-        { model: db.Ingredient, as: 'ingredient' },
-      ],
+    const stocks = await Stock.findAll({
+      // include: ['franchise', 'ingredients'],
       where: {
         [Op.and]: [where],
       },
@@ -85,12 +82,14 @@ exports.getStockByFranchise = async (req, res, next) => {
 
 exports.getStock = async (req, res) => {
   try {
-    const stock = await Stock.findByPk(req.params.id, {
-      include: [
-        { model: db.Franchise, as: 'franchise' },
-        { model: db.Ingredient, as: 'ingredient' },
-      ],
-    })
+    const stock = await Stock.findByPk(req.params.id
+    //   , {
+    //   include: [
+    //     { model: db.Franchise, as: 'franchise' },
+    //     { model: db.Ingredient, as: 'ingredient' },
+    //   ],
+    // }
+    )
     res.status(200).json(stock)
   } catch (error) {
     res.status(500).json({

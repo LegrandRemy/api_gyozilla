@@ -1,5 +1,7 @@
 const db = require('../models/index')
 const Rating = db['Ratings']
+const { Op } = require('sequelize')
+const _ = require('lodash')
 
 exports.getAllRatings = async (req, res) => {
   try {

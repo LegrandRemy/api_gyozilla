@@ -19,13 +19,13 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING(50),
         validate: {
           notEmpty: true,
-          isNull: false,
         },
       },
     },
     {
       sequelize,
       modelName: 'Status',
+      tableName: 'Status'
     },
   )
   return Status

@@ -23,7 +23,7 @@
  *       example:
  *         id: 1
  *         id_franchises: 1
- *         id-ingredients: 1
+ *         id_ingredients: 1
  *         quantity: 50
  *
  */
@@ -118,7 +118,7 @@
  *      - in: path
  *        name: id
  *        schema:
- *          type: int
+ *          type: string
  *        required: false
  *        description: id du stock
  *    requestBody:
@@ -145,7 +145,7 @@
  *       - in: path
  *         name: id
  *         schema:
- *           type: int
+ *           type: string
  *         required: false
  *         description: id du stock
  *     responses:
