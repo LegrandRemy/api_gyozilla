@@ -1,12 +1,6 @@
 const db = require('../models/index')
-<<<<<<< HEAD
-const Stock = db['Stock']
-const Franchise = db['Franchise']
-const Ingredient = db['Ingredient']
-=======
 const Stock = db['Stocks']
 // const Franchise = db['Franchises']
->>>>>>> f36fc73d514c0da0dc44ead301efc0bec39173ca
 const _ = require('lodash')
 const { Op } = require('sequelize')
 
@@ -88,13 +82,14 @@ exports.getStockByFranchise = async (req, res, next) => {
 
 exports.getStock = async (req, res) => {
   try {
-    const stock = await Stock.findByPk(req.params.id
-    //   , {
-    //   include: [
-    //     { model: db.Franchise, as: 'franchise' },
-    //     { model: db.Ingredient, as: 'ingredient' },
-    //   ],
-    // }
+    const stock = await Stock.findByPk(
+      req.params.id,
+      //   , {
+      //   include: [
+      //     { model: db.Franchise, as: 'franchise' },
+      //     { model: db.Ingredient, as: 'ingredient' },
+      //   ],
+      // }
     )
     res.status(200).json(stock)
   } catch (error) {
