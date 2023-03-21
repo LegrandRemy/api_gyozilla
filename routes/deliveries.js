@@ -19,7 +19,7 @@
  *           description: Nom du transporteur
  *       example:
  *         id: 1
- *         id_suppliers_order: 1
+ *         id_suppliers_orders: 1
  *         delivery_date: "2023-02-20"
  *         carrier_name: "transport ducobu"
  */

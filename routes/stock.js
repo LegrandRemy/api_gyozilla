@@ -23,7 +23,7 @@
  *       example:
  *         id: 1
  *         id_franchises: 1
- *         id-ingredients: 1
+ *         id_ingredients: 1
  *         quantity: 50
  *
  */
