@@ -25,7 +25,6 @@ exports.getAllOrderLines = async (req, res) => {
       where.quantity = req.query.quantity
     }
     const orderLine = await OrderLine.findAll({
-      attributes: ['id_orders', 'id_products'],
       where: {
         [Op.and]: [where],
       },

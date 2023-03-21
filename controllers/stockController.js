@@ -1,6 +1,7 @@
 const db = require('../models/index')
 const Stock = db['Stock']
 const Franchise = db['Franchise']
+const Ingredient = db['Ingredient']
 const _ = require('lodash')
 const { Op } = require('sequelize')
 
@@ -20,10 +21,7 @@ exports.getAllStocks = async (req, res) => {
       where.quantity = req.query.quantity
     }
     const stocks = await db.Stocks.findAll({
-      include: [
-        { model: db.Franchise, as: 'franchise' },
-        { model: db.Ingredient, as: 'ingredient' },
-      ],
+      //include: ['franchise', 'ingredients'],
       where: {
         [Op.and]: [where],
       },
@@ -68,7 +66,7 @@ exports.getStockByFranchise = async (req, res, next) => {
       where: { id_franchise: franchiseId },
       include: [
         {
-          model: db.Ingredient,
+          model: Ingredient,
           as: 'ingredients',
         },
       ],

@@ -19,19 +19,19 @@ module.exports = (sequelize, DataTypes) => {
       id_suppliers_orders: {
         type: DataTypes.INTEGER,
         validate: {
-          notEmpty: true,
+          //notEmpty: true,
         },
       },
       delivery_date: {
         type: DataTypes.DATE,
         validate: {
-          noEmpty: true,
+          //noEmpty: true,
         },
       },
       carrier_name: {
         type: DataTypes.STRING(50),
         validate: {
-          noEmpty: true,
+          //noEmpty: true,
         },
       },
     },
