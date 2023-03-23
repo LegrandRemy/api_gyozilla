@@ -7,6 +7,7 @@ const Employees = db['Employees']
 
 exports.getToken = async (req, res) => {
     try {
+        let response;
         const customer = await Customers.findOne({
             where: {email:req.body.email}
         })
@@ -18,36 +19,44 @@ exports.getToken = async (req, res) => {
                     password: passwordMatch
                 };
                 
-            const secret = process.env.JWT_SECRET;
-            const options = { expiresIn: '24h' };
-            const token = jwt.sign(payload, secret, options);
-            req.session.token = token;
-            res.status(200).json({ 
-                message: "Authentification réussi",
-                token: token
-                });
+                const secret = process.env.JWT_SECRET;
+                const options = { expiresIn: '24h' };
+                const token = jwt.sign(payload, secret, options);
+                req.session.token = token;
+                response = {
+                    message: "Authentification réussi",
+                    token: token
+                };
+            }
+        } else {
+            const employee = await Employees.findOne({
+                where: {email:req.body.email}
+            })
+            if (employee) {
+                const passwordMatch = await bcrypt.compare(req.body.password, employee.password)
+                if (passwordMatch) {
+                    const payload = {
+                        username: req.body.email,
+                        password: passwordMatch
+                    };
+                    
+                    const secret = process.env.JWT_SECRET;
+                    const options = { expiresIn: '24h' };
+                    const token = jwt.sign(payload, secret, options);
+                    req.session.token = token;
+                    response = {
+                        message: "Authentification réussi",
+                        token: token
+                    };
+                }
             }
         }
-        const employee = await Employees.findOne({
-            where: {email:req.body.email}
-        })
-        if (employee) {
-            const passwordMatch = await bcrypt.compare(req.body.password, employee.password)
-            if (passwordMatch) {
-                const payload = {
-                    username: req.body.email,
-                    password: passwordMatch
-                };
-                
-            const secret = process.env.JWT_SECRET;
-            const options = { expiresIn: '24h' };
-            const token = jwt.sign(payload, secret, options);
-            req.session.token = token;
-            res.status(200).json({ 
-                message: "Authentification réussi",
-                token: token
-                });
-            }
+        if (response) {
+            res.status(200).json(response);
+        } else {
+            res.status(401).json({
+                message: 'Identifiant ou mot de passe incorrect'
+            });
         }
     } catch (error) {
         res.status(500).json({
