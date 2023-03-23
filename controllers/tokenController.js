@@ -6,28 +6,29 @@ const Customers = db['Customers']
 const Employees = db['Employees']
 
 exports.getToken = async (req, res) => {
+    console.log(req.body)
     try {
-        const customer = await Customers.findOne({
-            where: {email:req.body.email}
-        })
-        if (customer) {
-            const passwordMatch = await bcrypt.compare(req.body.password, customer.password)
-            if (passwordMatch) {
-                const payload = {
-                    username: req.body.email,
-                    password: passwordMatch
-                };
+        // const customer = await Customers.findOne({
+        //     where: {email:req.body.email}
+        // })
+        // if (customer) {
+        //     const passwordMatch = await bcrypt.compare(req.body.password, customer.password)
+        //     if (passwordMatch) {
+        //         const payload = {
+        //             username: req.body.email,
+        //             password: passwordMatch
+        //         };
                 
-            const secret = process.env.JWT_SECRET;
-            const options = { expiresIn: '24h' };
-            const token = jwt.sign(payload, secret, options);
-            req.session.token = token;
-            res.status(200).json({ 
-                message: "Authentification réussi",
-                token: token
-                });
-            }
-        }
+        //     const secret = process.env.JWT_SECRET;
+        //     const options = { expiresIn: '24h' };
+        //     const token = jwt.sign(payload, secret, options);
+        //     req.session.token = token;
+        //     res.status(200).json({ 
+        //         message: "Authentification réussi",
+        //         token: token
+        //         });
+        //     }
+        // }
         const employee = await Employees.findOne({
             where: {email:req.body.email}
         })
