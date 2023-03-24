@@ -23,6 +23,7 @@ const cors = require('cors') //autorise tous les navigateurs
   bodyParser = require('body-parser')
   swaggerJsdoc = require('swagger-jsdoc')
   swaggerUi = require('swagger-ui-express')
+const cors = require('cors')
 const app = express()
 app.use(cors())
 const port = 4000
