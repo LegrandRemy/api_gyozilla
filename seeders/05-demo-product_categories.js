@@ -7,27 +7,22 @@ module.exports = {
       'ProductCategories',
       [
         {
-          name: 'Burger',
+          name: 'Entrées',
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
-          name: 'Chinois',
+          name: 'Plats',
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
-          name: 'Japonnais',
+          name: 'Desserts',
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
-          name: 'Salade',
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
-        {
-          name: 'Surgeles',
+          name: 'Boissons',
           createdAt: new Date(),
           updatedAt: new Date(),
         },
