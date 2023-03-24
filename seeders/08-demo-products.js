@@ -9,7 +9,7 @@ module.exports = {
         {
           name: 'Nem',
           description: 'les nems sont de petits aliment aux boeufs, porc....',
-          image: null,
+          image: '1.png',
           price: 4,
           creation_steps: '1. Plonger les nems dans la friteuse, 2. ...',
           id_product_categories: 1,
@@ -19,7 +19,7 @@ module.exports = {
         {
           name: 'Porc laqué',
           description: "c'est du cochon",
-          image: null,
+          image: '2.png',
           price: 15,
           creation_steps: '1. Couper le porc, 2. Couper les oignons, 3. ...',
           id_product_categories: 2,
@@ -29,7 +29,7 @@ module.exports = {
         {
           name: 'Hamburger',
           description: "Nous c'est le gout....",
-          image: null,
+          image: '3.jpg',
           price: 12,
           creation_steps: '1. Couper le pain, 2. Couper les oignons, 3. ...',
           id_product_categories: 3,
@@ -39,7 +39,7 @@ module.exports = {
         {
           name: 'Mochi glacé',
           description: "Délicieux dessert glacé au thé vert",
-          image: null,
+          image: '4.jpg',
           price: 5,
           creation_steps: '1. Sortir du congélateur...',
           id_product_categories: 4,
