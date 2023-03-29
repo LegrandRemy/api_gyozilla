@@ -32,11 +32,20 @@ exports.getToken = async (req, res) => {
         const employee = await Employees.findOne({
             where: {email:req.body.email}
         })
-        if (employee) {
+        if (!employee) {
+            return res.status(400).send({ message: 'L\'email n\'existe pas' });
+        } else {
             const passwordMatch = await bcrypt.compare(req.body.password, employee.password)
             if (passwordMatch) {
                 const payload = {
-                    username: req.body.email,
+                    lastname: employee.lastname,
+                    firstname: employee.firstname,
+                    login: employee.login,
+                    email: req.body.email,
+                    phone: employee.phone,
+                    role: employee.id_roles,
+                    franchise: employee.id_franchises,
+                    createdAt: employee.createdAt,
                     password: passwordMatch
                 };
                 
