@@ -183,37 +183,41 @@
  *         description: Le produit n'a pas été trouvé.
  */
 
-const express = require('express')
-const router = express.Router()
-const productController = require('../controllers/productsController')
-const { verifyToken } = require('../controllers/tokenController')
+const express = require("express");
+const router = express.Router();
+const productController = require("../controllers/productsController");
+const { verifyToken } = require("../controllers/tokenController");
 const {
   storage,
   fileSizeFilter,
   fileTypeFilter,
-} = require('../middlewares/upload')
-const multer = require('multer')
+} = require("../middlewares/upload");
+const multer = require("multer");
 
 const upload = multer({
   storage: storage,
   fileSizer: fileSizeFilter,
   fileType: fileTypeFilter,
-})
+});
 
-router.get('/api/products/', productController.getAllProducts)
+router.get("/api/products/", productController.getAllProducts);
 router.get(
-  '/api/products/category/:categoriesId',
+  "/api/products/category/:categoriesId",
   verifyToken,
-  productController.getProductByCategories,
-)
-router.get('/api/products/:id', verifyToken, productController.getProduct)
+  productController.getProductByCategories
+);
+router.get("/api/products/:id", verifyToken, productController.getProduct);
 router.post(
-  '/api/products',
+  "/api/products",
   verifyToken,
-  upload.single('image'),
-  productController.createProduct,
-)
-router.patch('/api/products/:id', verifyToken, productController.updateProduct)
-router.delete('/api/products/:id', verifyToken, productController.deleteProduct)
+  upload.single("image"),
+  productController.createProduct
+);
+router.patch("/api/products/:id", verifyToken, productController.updateProduct);
+router.delete(
+  "/api/products/:id",
+  verifyToken,
+  productController.deleteProduct
+);
 
-module.exports = router
+module.exports = router;
