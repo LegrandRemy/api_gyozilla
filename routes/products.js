@@ -200,7 +200,7 @@ const upload = multer({
   fileType: fileTypeFilter,
 })
 
-router.get('/api/products/', productController.getAllProducts)
+router.get('/api/products', productController.getAllProducts)
 router.get(
   '/api/products/category/:categoriesId',
   verifyToken,
