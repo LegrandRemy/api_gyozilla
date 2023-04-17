@@ -18,9 +18,10 @@ const {
   order_linesRoute,
 } = require('./routes/routes')
 
-const express = require('express'),
-  bodyParser = require('body-parser'),
-  swaggerJsdoc = require('swagger-jsdoc'),
+const express = require('express')
+const cors = require('cors') //autorise tous les navigateurs
+  bodyParser = require('body-parser')
+  swaggerJsdoc = require('swagger-jsdoc')
   swaggerUi = require('swagger-ui-express')
 const app = express()
 const cors = require('cors') //autorise tous les navigateurs

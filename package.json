@@ -26,12 +26,14 @@
     "mongoose": "^6.8.4",
     "multer": "^1.4.5-lts.1",
     "mysql2": "^3.0.1",
+    "nodemailer": "^6.9.1",
     "pg": "^8.8.0",
     "sequelize": "^6.28.0",
     "swagger-jsdoc": "^6.2.8",
     "swagger-json": "^2.0.0",
     "swagger-tools": "^0.10.1",
-    "swagger-ui-express": "^4.6.0"
+    "swagger-ui-express": "^4.6.0",
+    "uuidv4": "^6.2.13"
   },
   "devDependencies": {
     "nodemon": "^2.0.20",
