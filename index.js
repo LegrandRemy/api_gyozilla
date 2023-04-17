@@ -25,7 +25,7 @@ const express = require('express'),
 const app = express()
 const cors = require('cors') //autorise tous les navigateurs
 app.use(cors())
-const port = 3000
+const port = 4000
 const session = require('express-session')
 const options = {
   definition: {
