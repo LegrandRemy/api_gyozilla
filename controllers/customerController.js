@@ -3,6 +3,8 @@ const Customers = db['Customers']
 const _ = require('lodash')
 const { Op } = require('sequelize')
 const bcrypt = require('bcryptjs')
+const nodemailer = require('nodemailer')
+const jwt = require('jsonwebtoken')
 
 exports.is_exist = async (email) => {
   Customers.findOne(
@@ -22,6 +24,73 @@ exports.is_exist = async (email) => {
       }
     },
   )
+}
+
+exports.forgotPassword = async (req,res) => {
+  const transporter = nodemailer.createTransport({
+    host: "localhost",
+    port: 1025,
+    secure: false,
+});
+  
+  const { email } = req.body;
+
+  try {
+    const customer = await Customers.findOne({ where : {email: email} });
+
+    if (!customer) {
+      return res.status(400).json({ message: "Aucun utilisateur avec cet e-mail n'a été trouvé." });
+    }
+    const secret = process.env.JWT_MAIL;
+    const options = { expiresIn: '1h' };
+    const token = jwt.sign({ userId: customer.id }, secret, options);
+    const resetUrl = `http://localhost:3000/reset-password?token=${token}`;
+    const message = {
+      from: "test@gmail.com",
+      to: customer.email,
+      subject: "Réinitialisation de mot de passe",
+      text: `Bonjour ${customer.firstname}, veuillez cliquer sur le lien suivant pour réinitialiser votre mot de passe : ${resetUrl}`,
+      html: `<p>Bonjour ${customer.firstname},</p><p>veuillez cliquer sur le lien suivant pour réinitialiser votre mot de passe :</p><p><a href="${resetUrl}">${resetUrl}</a></p>`,
+    };
+
+    transporter.sendMail(message, (error, info) => {
+      if (error) {
+        console.error(error);
+        return res.status(500).json({ message: "Une erreur s'est produite lors de l'envoi de l'e-mail de réinitialisation de mot de passe." });
+      } else {
+        console.log(`E-mail envoyé à ${customer.email}: ${info.response}`);
+        return res.status(200).json({ message: "Un e-mail de réinitialisation de mot de passe a été envoyé à votre adresse e-mail." });
+      }
+    });
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ message: "Une erreur s'est produite lors de la réinitialisation du mot de passe." });
+  }
+}
+
+exports.resetPassword = async (req,res) => {
+  const { token,password } = req.body;
+
+  try {
+    const secret = process.env.JWT_MAIL;
+    const decodedToken = jwt.verify(token, secret);
+
+    const customer = await Customers.findOne({ where: { id: decodedToken.userId } });
+    if (!customer) {
+      return res.status(400).json({message: 'Client introuvable'});
+    } else {
+      const hashedPassword = await bcrypt.hash(password, 10)
+      await customer.update({
+        password: hashedPassword
+      });
+      res.json({ 
+        message: 'Le mot de passe a été réinitialisé avec succès',
+        data: customer });
+    }
+  } catch (error) {
+    res.status(400).json({ message: 'Token non valide',
+  error: error });
+  }
 }
 
 exports.getAllCustomers = async (req, res) => {
