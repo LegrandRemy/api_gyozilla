@@ -168,6 +168,8 @@ const router = express.Router()
 const customerController = require('../controllers/customerController')
 const { verifyToken } = require('../controllers/tokenController')
 
+router.post('/api/customers/forgot-password', verifyToken, customerController.forgotPassword)
+router.post('/api/customers/reset-password', verifyToken, customerController.resetPassword)
 router.get('/api/customers/', verifyToken, customerController.getAllCustomers)
 router.get('/api/customers/:id', verifyToken, customerController.getCustomer)
 router.post('/api/customers/', verifyToken, customerController.createCustomer)
