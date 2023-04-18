@@ -24,7 +24,6 @@ const cors = require('cors') //autorise tous les navigateurs
   swaggerJsdoc = require('swagger-jsdoc')
   swaggerUi = require('swagger-ui-express')
 const app = express()
-const cors = require('cors') //autorise tous les navigateurs
 app.use(cors())
 const port = 4000
 const session = require('express-session')
