@@ -7,6 +7,7 @@ const Employees = db["Employees"];
 
 exports.getToken = async (req, res) => {
   try {
+    let response;
     const customer = await Customers.findOne({
       where: { email: req.body.email },
     });
