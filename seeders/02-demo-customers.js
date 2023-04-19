@@ -38,7 +38,7 @@ module.exports = {
           firstname: 'Cus',
           password: '$2a$10$ZsnkVypMltudrypwEWfzD.lqrxIMiAU0dd.H6.8lqf1S/oAXP.r06',
           email: 'test@test.fr',
-          fidelitypoints: 1000,
+          fidelityPoints: 1000,
           createdAt: new Date(),
           updatedAt: new Date(),
         },
