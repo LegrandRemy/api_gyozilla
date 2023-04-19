@@ -17,6 +17,10 @@ exports.getToken = async (req, res) => {
         if (!customer && !employee) {
             return res.status(400).send({ message: 'L\'email n\'existe pas' });
         } else {
+            //On verifie si le champ est false comme expliquer dans le customer.controller, on check si le client à vérifié son compte.
+            if (customer.is_verified === false) {
+                return res.status(400).send({ message: 'Vous devez valider votre compte pour vous connecter' });
+            }
             let user;
             let isEmployee;
 
