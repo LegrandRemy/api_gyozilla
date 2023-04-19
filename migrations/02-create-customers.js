@@ -23,6 +23,11 @@ module.exports = {
       },
       fidelityPoints: {
         type: Sequelize.INTEGER,
+        defaultValue: 0
+      },
+      is_verified: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false
       },
       createdAt: {
         allowNull: false,

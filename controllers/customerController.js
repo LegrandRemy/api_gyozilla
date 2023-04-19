@@ -46,7 +46,7 @@ exports.forgotPassword = async (req,res) => {
     const token = jwt.sign({ userId: customer.id }, secret, options);
     const resetUrl = `http://localhost:3000/reset-password?token=${token}`;
     const message = {
-      from: "test@gmail.com",
+      from: "contact@gyozilla.com",
       to: customer.email,
       subject: "Réinitialisation de mot de passe",
       text: `Bonjour ${customer.firstname}, veuillez cliquer sur le lien suivant pour réinitialiser votre mot de passe : ${resetUrl}`,
@@ -64,7 +64,8 @@ exports.forgotPassword = async (req,res) => {
     });
   } catch (err) {
     console.error(err);
-    return res.status(500).json({ message: "Une erreur s'est produite lors de la réinitialisation du mot de passe." });
+    return res.status(500).json({ message: "Une erreur s'est produite lors de la réinitialisation du mot de passe.",
+  error: err.message });
   }
 }
 
@@ -89,7 +90,7 @@ exports.resetPassword = async (req,res) => {
     }
   } catch (error) {
     res.status(400).json({ message: 'Token non valide',
-  error: error });
+  error: error.message });
   }
 }
 
@@ -147,7 +148,14 @@ exports.getCustomer = async (req, res) => {
 }
 
 exports.createCustomer = async (req, res) => {
+  //Configuration de nodemailer pour envoyer le mail
+  const transporter = nodemailer.createTransport({
+    host: "localhost",
+    port: 1025,
+    secure: false,
+});
   try {
+    //hashage du MP
     Customers.beforeCreate(async (customer, options) => {
       const hashedPassword = await bcrypt.hash(customer.password, 10)
       customer.password = hashedPassword
@@ -157,11 +165,65 @@ exports.createCustomer = async (req, res) => {
       message: 'created',
       data: newCustomer,
     })
+    if (newCustomer) {
+      //Si le client est ajouté à la BDD, on crée un token, la redirection sur la page de verif en front et le mail.
+      const secret = process.env.JWT_MAIL;
+      const options = { expiresIn: '1h' };
+      const token = jwt.sign({ email: newCustomer.email }, secret, options);
+      const validatedUrl = `http://localhost:3000/verify/${token}`;
+      const message = {
+        from: "contact@gyozilla.com",
+        to: newCustomer.email,
+        subject: "Validation du compte",
+        text: `Bonjour ${newCustomer.firstname}, Veuillez cliquer sur le lien suivant pour valider votre compte afin de vous connecter : ${validatedUrl}`,
+        html: `<p>Bonjour ${newCustomer.firstname},</p><p>Veuillez cliquer sur le lien suivant pour valider votre compte afin de vous connecter :</p><p><a href="${validatedUrl}">${validatedUrl}</a></p>`,
+      };
+  
+      transporter.sendMail(message, (error, info) => {
+        if (error) {
+          console.error(error);
+          return res.status(500).json({ 
+            message: "Une erreur s'est produite lors de l'envoi de l'e-mail de validation.",
+            error: error.message });
+        } else {
+          console.log(`E-mail envoyé à ${newCustomer.email}: ${info.response}`);
+          return res.status(200).json({ message: "Un e-mail de validation a été envoyé à votre adresse e-mail." });
+        }
+      });
+    }
   } catch (error) {
     res.status(500).json({
       message: "Le client n'a pas été créé",
       error: error.message,
     })
+  }
+}
+
+exports.verifyCustomer = async (req,res) => {
+
+  try {
+    //On utilise le même token que pour la cration du client
+    const secret = process.env.JWT_MAIL;
+    //On verifie le token passer dans l'url en params
+    const decodedToken = jwt.verify(req.params.token, secret);
+    //On cherche le client via le token car à la création on stock l'email utilisé à la création dans le token
+    const customer = await Customers.findOne({ where: { email: decodedToken.email } });
+    if (!customer) {
+      return res.status(400).json({message: 'Le lien de vérification est invalide.'});
+    } else {
+      //Pour expliquer rapidement, au clic sur le lien on met à jour le champ is_verified. Cette methode est appelé en front dans le module Verify.
+      //On va pourvoir par la suite check ce champ à la connexion. Mais ça se passe dans le token.controller !
+      await customer.update({
+        is_verified: true
+      })
+      res.status(200).json({ 
+        message: 'Votre compte a été vérifié avec succès.',
+        data: customer });
+    }
+  } catch (error) {
+    res.status(500).json({
+        message: 'Une erreur est survenue.',
+        error: error.message });
   }
 }
 
