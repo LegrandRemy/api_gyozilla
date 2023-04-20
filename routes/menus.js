@@ -111,12 +111,10 @@ const { verifyToken } = require('../controllers/tokenController')
 
 router.get(
   '/api/menus/',
-  verifyToken,
   menuController.getAllMenus,
 )
 router.get(
   '/api/menus/:id',
-  verifyToken,
   menuController.getMenu,
 )
 router.post(
