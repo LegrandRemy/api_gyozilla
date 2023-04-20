@@ -26,6 +26,9 @@
  *         id_product_categories:
  *           type: int
  *           description: ID de la categorie du produit
+ *         id_menus:
+ *           type: int
+ *           description: ID du menu
  *
  *       example:
  *         id: 1
@@ -35,6 +38,7 @@
  *         price: 7.80
  *         creation_steps: "Mettre le fromage sur le pain"
  *         id_product_categories: 1
+ *         id_menus: 1
  */
 
 /**
@@ -91,6 +95,12 @@
  *           type: int
  *         required: false
  *         description: ID de la categorie du produit
+ *       - in: query
+ *         name: id_menus
+ *         schema:
+ *           type: int
+ *         required: false
+ *         description: ID du menu
  *     responses:
  *       200:
  *         description: La liste de tous les produits

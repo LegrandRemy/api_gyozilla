@@ -28,6 +28,9 @@ exports.getAllProducts = async (req, res) => {
     if (req.query.id_product_categories) {
       where.id_product_categories = req.query.id_product_categories
     }
+    if (req.query.id_menus) {
+      where.id_menus = req.query.id_menus
+    }
     const products = await Products.findAll({
       include: ['productCategory'],
       where: {
