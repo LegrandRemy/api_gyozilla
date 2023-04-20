@@ -16,13 +16,14 @@ const {
   deliveriesRoute,
   supplier_ordersRoute,
   order_linesRoute,
+  newsRoute,
 } = require('./routes/routes')
 
 const express = require('express')
 const cors = require('cors') //autorise tous les navigateurs
-  bodyParser = require('body-parser')
-  swaggerJsdoc = require('swagger-jsdoc')
-  swaggerUi = require('swagger-ui-express')
+bodyParser = require('body-parser')
+swaggerJsdoc = require('swagger-jsdoc')
+swaggerUi = require('swagger-ui-express')
 const app = express()
 app.use(cors())
 const port = 4000
@@ -83,6 +84,7 @@ app.use(productsRoute)
 app.use(product_categoriesRoute)
 app.use(supplier_ordersRoute)
 app.use(order_linesRoute)
+app.use(newsRoute)
 app.get('/', (req, res) => res.send('API Gyozilla'))
 app.listen(port, () =>
   console.log(`Visiter l'API Gyozilla sur http://localhost:${port}/api`),

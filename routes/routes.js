@@ -1,4 +1,3 @@
-
 const tokenRoute = require('./token')
 const rolesRoute = require('./roles')
 const customersRoute = require('./customers')
@@ -16,9 +15,9 @@ const authRoute = require('./auth')
 const deliveriesRoute = require('./deliveries')
 const supplier_ordersRoute = require('./supplier_orders')
 const order_linesRoute = require('./order_lines')
+const newsRoute = require('./news')
 
 module.exports = {
-  
   tokenRoute,
   rolesRoute,
   customersRoute,
@@ -36,4 +35,7 @@ module.exports = {
   deliveriesRoute,
   supplier_ordersRoute,
   order_linesRoute,
+  newsRoute,
 }
+
+// "start": "npx sequelize-cli db:drop && npx sequelize-cli db:create && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all && node index.js"
