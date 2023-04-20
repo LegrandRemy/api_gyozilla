@@ -6,6 +6,7 @@ const {
   suppliersRoute,
   statusRoute,
   ingredientsRoute,
+  menusRoute,
   productsRoute,
   product_categoriesRoute,
   ratingsRoute,
@@ -79,6 +80,7 @@ app.use(ratingsRoute);
 app.use(ingredientsRoute);
 app.use(franchisesRoute);
 app.use(statusRoute);
+app.use(menusRoute);
 app.use(productsRoute);
 app.use(product_categoriesRoute);
 app.use(supplier_ordersRoute);
