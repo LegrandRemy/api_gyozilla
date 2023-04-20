@@ -216,6 +216,11 @@ router.get(
   verifyToken,
   productController.getProductByCategories,
 )
+router.get(
+  '/api/products/menu/:menuId',
+  verifyToken,
+  productController.getProductByMenu,
+)
 router.get('/api/products/:id', verifyToken, productController.getProduct)
 router.post(
   '/api/products',

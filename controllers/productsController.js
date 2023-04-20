@@ -65,6 +65,24 @@ exports.getProductByCategories = async (req, res) => {
   }
 }
 
+exports.getProductByMenu = async (req, res) => {
+  const menuId = req.params.menuId
+  try {
+    const products = await Products.findAll({
+      where: { id_menus: menuId },
+    })
+    res.status(200).json({
+      message: 'ProductsByMenu',
+      data: products,
+    })
+  } catch (error) {
+    res.status(500).json({
+      message: 'Impossible de récupérer les produits par menu',
+      error: error.message,
+    })
+  }
+}
+
 exports.getProduct = async (req, res) => {
   try {
     const product = await Products.findByPk(req.params.id, {
