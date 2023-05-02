@@ -39,6 +39,38 @@ exports.getAllOrderLines = async (req, res) => {
   }
 }
 
+exports.getAllOrderLinesByONP = async (req, res) => {
+  console.log('coucou je suis la');
+
+  try {
+
+    const orderLine = await OrderLine.findAll({
+      where: {
+        id_orders: req.params.idOrders,
+        id_products: req.params.idProducts
+      },
+      include: [
+        {
+          model: Orders,
+          as: 'idOrders'
+        },
+        {
+          model: Products,
+          as: 'idProducts'
+        }
+      ]
+    });
+    res.status(200).json(orderLine);
+  } catch (error) {
+    res.status(500).json({
+      message: 'Impossible de récupérer',
+      error: error.message
+    });
+  }
+};
+
+
+
 exports.getOrderLine = async (req, res) => {
   try {
     const orderLine = await OrderLine.findByPk(req.params.id)

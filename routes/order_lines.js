@@ -185,6 +185,11 @@ router.get(
   orderLinesController.getAllOrderLines,
 )
 router.get(
+  '/api/order_lines/orders/:idOrders/products/:idProducts',
+  verifyToken,
+  orderLinesController.getAllOrderLinesByONP,
+)
+router.get(
   '/api/order_lines/:id',
   verifyToken,
   orderLinesController.getOrderLine,

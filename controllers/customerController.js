@@ -233,6 +233,24 @@ exports.verifyCustomer = async (req,res) => {
   }
 }
 
+exports.updateUser = async (req, res) =>{
+  try {
+    const id = req.params.id;
+        const updateCustomer = await Customers.update(req.body, {
+          where: {id:id}
+        })
+        res.status(200).json({ 
+          message: 'Votre compte a été mit à jour',
+          data: updateCustomer });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      message: "Le client n'a pas été mis à jour",
+      error: error.message,
+    })
+  }
+}
+
 exports.updateCustomer = async (req, res) => {
   try {
     const keys = Object.keys(req.body)

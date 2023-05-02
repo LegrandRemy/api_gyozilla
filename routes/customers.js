@@ -177,7 +177,7 @@ router.get('/api/customers/verify/:token', customerController.verifyCustomer)
 router.patch(
   '/api/customers/:id',
   verifyToken,
-  customerController.updateCustomer,
+  customerController.updateUser,
 )
 router.delete(
   '/api/customers/:id',
