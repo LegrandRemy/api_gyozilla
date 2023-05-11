@@ -51,6 +51,7 @@ exports.getToken = async (req, res) => {
                     };
                 } else {
                     payload = {
+                        id: user.id,
                         lastname: user.lastname,
                         firstname: user.firstname,
                         username: req.body.email,
