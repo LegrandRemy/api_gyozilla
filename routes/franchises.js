@@ -156,7 +156,6 @@ const { verifyToken } = require('../controllers/tokenController')
 
 router.get(
   '/api/franchises/',
-  verifyToken,
   franchiseController.getAllFranchises,
 )
 router.get('/api/franchises/:id', verifyToken, franchiseController.getFranchise)

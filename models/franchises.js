@@ -39,6 +39,12 @@ module.exports = (sequelize, DataTypes) => {
           matches: /^\+?\d{10,}$/,
         },
       },
+      geography: {
+        type: DataTypes.STRING(50),
+        validate: {
+          notEmpty: true,
+        },
+      },
     },
     {
       sequelize,
