@@ -30,6 +30,9 @@ exports.getAllOrders = async (req, res) => {
     if (req.query.date_order) {
       where.date_order = req.query.date_order
     }
+    if (req.query.id_type_oders) {
+      where.id_type_oders = req.query.id_type_oders
+    }
     const orders = await Order.findAll({
       where: {
         [Op.and]: [where],

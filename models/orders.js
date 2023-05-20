@@ -20,6 +20,10 @@ module.exports = (sequelize, DataTypes) => {
         as: 'customers',
         foreignKey: 'id_customers',
       })
+      Orders.belongsTo(models.OrderTypes, {
+        as: 'order_types',
+        foreignKey: 'id_order_types',
+      })
     }
   }
   Orders.init(
@@ -49,6 +53,12 @@ module.exports = (sequelize, DataTypes) => {
         },
       },
       id_status: {
+        type: DataTypes.INTEGER,
+        validate: {
+          notEmpty: true,
+        },
+      },
+      id_order_types: {
         type: DataTypes.INTEGER,
         validate: {
           notEmpty: true,
