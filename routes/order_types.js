@@ -12,7 +12,7 @@
  *           description: ID
  *         name:
  *           type: string
- *           description: ID du type de commande
+ *           description: Nom du type de commande
  *       example:
  *         id: 1
  *         name: Click & Collect
@@ -42,7 +42,7 @@
  *         schema:
  *           type: string
  *         required: false
- *         description: id du type de commande
+ *         description: Nom du type de commande
  *     responses:
  *       200:
  *         description: La liste de tous les types de commande

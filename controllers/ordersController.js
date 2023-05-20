@@ -37,6 +37,7 @@ exports.getAllOrders = async (req, res) => {
       where: {
         [Op.and]: [where],
       },
+      include: ['orderType'],
     })
     res.status(200).json(orders)
   } catch (error) {
@@ -49,7 +50,9 @@ exports.getAllOrders = async (req, res) => {
 
 exports.getOrder = async (req, res) => {
   try {
-    const order = await Order.findByPk(req.params.id)
+    const order = await Order.findByPk(req.params.id, {
+      include: ['orderType'],
+    })
     res.status(200).json(order)
   } catch (error) {
     res.status(500).json({
