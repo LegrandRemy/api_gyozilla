@@ -21,8 +21,12 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'id_customers',
       })
       Orders.belongsTo(models.OrderTypes, {
-        as: 'orderType',
+        as: 'order_type',
         foreignKey: 'id_order_types',
+      })
+      Orders.hasMany(models.OrderLines, {
+        as: 'order_lines',
+        foreignKey: 'id_orders',
       })
     }
   }

@@ -3,6 +3,9 @@ const db = require('../models/index')
 const Order = db['Orders']
 const _ = require('lodash')
 
+const OrderLines = db['OrderLines'];
+const Products = db['Products'];
+
 exports.isOrder_Exist = async (req, res) => {
   const checkIdOrder = await Order.findOne({ where: { id: req.body.email } })
   if (checkIdOrder)
@@ -37,7 +40,7 @@ exports.getAllOrders = async (req, res) => {
       where: {
         [Op.and]: [where],
       },
-      include: ['orderType'],
+      include: ['order_type'],
     })
     res.status(200).json(orders)
   } catch (error) {
@@ -51,7 +54,7 @@ exports.getAllOrders = async (req, res) => {
 exports.getOrder = async (req, res) => {
   try {
     const order = await Order.findByPk(req.params.id, {
-      include: ['orderType'],
+      include: ['order_type'],
     })
     res.status(200).json(order)
   } catch (error) {
@@ -67,6 +70,18 @@ exports.getOrderByCustomer = async (req, res) => {
   try {
     const orders = await Order.findAll({
       where: { id_customers: id },
+      include: [
+        'order_type',
+        {
+          // 'order_lines'
+          model: OrderLines,
+          as: 'order_lines',
+          include: {
+            model: Products,
+            as: 'products'
+          }
+        }
+      ]
     })
     res.status(200).json({
       message: 'getAllOrderCustomers',
@@ -86,6 +101,17 @@ exports.getOneOrderByCustomer = async (req, res) => {
   try {
     const order = await Order.findAll({
       where: { id_customers: customerId, id: orderId },
+      include: [
+        'order_type',
+        {
+          model: OrderLines,
+          as: 'order_lines',
+          include: {
+            model: Products,
+            as: 'products'
+          }
+        }
+      ]
     })
     res.status(200).json({
       message: 'getOneOrderByCustomers',
