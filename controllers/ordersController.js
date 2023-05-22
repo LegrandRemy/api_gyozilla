@@ -72,8 +72,8 @@ exports.getOrderByCustomer = async (req, res) => {
       where: { id_customers: id },
       include: [
         'order_type',
+        'order_status',
         {
-          // 'order_lines'
           model: OrderLines,
           as: 'order_lines',
           include: {
@@ -103,6 +103,7 @@ exports.getOneOrderByCustomer = async (req, res) => {
       where: { id_customers: customerId, id: orderId },
       include: [
         'order_type',
+        'order_status',
         {
           model: OrderLines,
           as: 'order_lines',
