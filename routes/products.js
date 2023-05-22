@@ -212,13 +212,11 @@ const upload = multer({
 
 router.get("/api/products/", productController.getAllProducts);
 router.get(
-  "/api/products/category/:categoriesId",
-  verifyToken,
+  '/api/products/category/:categoriesId',
   productController.getProductByCategories,
 )
 router.get(
   '/api/products/menu/:menuId',
-  verifyToken,
   productController.getProductByMenu,
 )
 router.get('/api/products/:id', verifyToken, productController.getProduct)

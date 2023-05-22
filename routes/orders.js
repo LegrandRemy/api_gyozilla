@@ -25,6 +25,9 @@
  *         id_customers:
  *           type: string
  *           description: Client de la commande
+ *         id_order_types:
+ *           type: string
+ *           description: Type de commande
  *       example:
  *         id: 1
  *         date_order: "2023-11-02"
@@ -32,6 +35,7 @@
  *         id_status: 1
  *         id_franchises: 1
  *         id_customers: 1
+ *         id_order_types: 1
  */
 
 /**
@@ -82,6 +86,12 @@
  *           type: integer
  *         required: false
  *         description: Id utilisateur de la commande
+ *       - in: query
+ *         name: id_order_types
+ *         schema:
+ *           type: integer
+ *         required: false
+ *         description: Type de commande
  *     responses:
  *       200:
  *         description: La liste de toutes les commandes

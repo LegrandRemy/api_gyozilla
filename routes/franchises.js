@@ -17,11 +17,15 @@
  *         phone:
  *           type: string
  *           description: Téléphone de la franchise
+ *         geography:
+ *           type: string
+ *           description: Latitude/Longitude de la franchise
  *       example:
  *         id: 1
  *         name: "Rems Burger"
  *         address: "10 rue de la poupee qui tousse"
  *         phone: "0680313131"
+ *         geography: "49.890514, 2.3017172"
  */
 
 /**
@@ -58,6 +62,12 @@
  *           type: string
  *         required: false
  *         description: téléphone de la franchise
+ *       - in: query
+ *         name: geography
+ *         schema:
+ *           type: string
+ *         required: false
+ *         description: latitude/longitude de la franchise
  *     responses:
  *       200:
  *         description: La liste de toutes les franchises
@@ -156,7 +166,6 @@ const { verifyToken } = require('../controllers/tokenController')
 
 router.get(
   '/api/franchises/',
-  verifyToken,
   franchiseController.getAllFranchises,
 )
 router.get('/api/franchises/:id', verifyToken, franchiseController.getFranchise)

@@ -27,6 +27,9 @@ module.exports = {
       id_status: {
         type: Sequelize.INTEGER,
       },
+      id_order_types: {
+        type: Sequelize.INTEGER,
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
