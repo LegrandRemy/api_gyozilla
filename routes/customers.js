@@ -25,11 +25,11 @@
  *           description: Points de fidélité du client
  *       example:
  *         id: 1
- *         lastname: Robert
- *         firstname: Jean
- *         email: robert.jean@gmail.com
- *         password: abc123456
- *         fidelitypoints: 50
+ *         lastname: "Robert"
+ *         firstname: "Jean"
+ *         email: "robert.jean@gmail.com"
+ *         password: "abc123456"
+ *         fidelityPoints: 50
  */
 
 /**
@@ -67,7 +67,7 @@
  *         required: false
  *         description: Email du client
  *       - in: query
- *         name: fidelitypoints
+ *         name: fidelityPoints
  *         schema:
  *           type: string
  *         required: false
@@ -126,7 +126,7 @@
  *      - in: path
  *        name: id
  *        schema:
- *          type: int
+ *          type: string
  *        required: false
  *        description: id du client
  *    requestBody:
@@ -153,7 +153,7 @@
  *       - in: path
  *         name: id
  *         schema:
- *           type: int
+ *           type: string
  *         required: false
  *         description: id du client
  *     responses:

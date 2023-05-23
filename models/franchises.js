@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'id_franchises',
       })
       Franchises.hasMany(models.Orders, {
-        as: 'franchises',
+        as: 'orders',
         foreignKey: 'id_franchises',
       })
     }
@@ -37,6 +37,12 @@ module.exports = (sequelize, DataTypes) => {
         validate: {
           notEmpty: true,
           matches: /^\+?\d{10,}$/,
+        },
+      },
+      geography: {
+        type: DataTypes.STRING(50),
+        validate: {
+          notEmpty: true,
         },
       },
     },

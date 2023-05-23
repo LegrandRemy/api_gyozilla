@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       Orders.belongsTo(models.Status, {
-        as: 'status',
+        as: 'order_status',
         foreignKey: 'id_status',
       })
       Orders.belongsTo(models.Franchises, {
@@ -20,8 +20,12 @@ module.exports = (sequelize, DataTypes) => {
         as: 'customers',
         foreignKey: 'id_customers',
       })
+      Orders.belongsTo(models.OrderTypes, {
+        as: 'order_type',
+        foreignKey: 'id_order_types',
+      })
       Orders.hasMany(models.OrderLines, {
-        as:'orderLines',
+        as: 'order_lines',
         foreignKey: 'id_orders',
       })
     }
@@ -53,6 +57,12 @@ module.exports = (sequelize, DataTypes) => {
         },
       },
       id_status: {
+        type: DataTypes.INTEGER,
+        validate: {
+          notEmpty: true,
+        },
+      },
+      id_order_types: {
         type: DataTypes.INTEGER,
         validate: {
           notEmpty: true,

@@ -10,15 +10,17 @@ const ratingsRoute = require('./ratings')
 const stockRoute = require('./stock')
 const ordersRoute = require('./orders')
 const ingredientsRoute = require('./ingredients')
+const menusRoute = require('./menus')
 const productsRoute = require('./products')
 const employeesRoute = require('./employees')
 const authRoute = require('./auth')
 const deliveriesRoute = require('./deliveries')
 const supplier_ordersRoute = require('./supplier_orders')
 const order_linesRoute = require('./order_lines')
+const order_typesRoute = require('./order_types')
+const hiringRoute = require('./hiring')
 
 module.exports = {
-  
   tokenRoute,
   rolesRoute,
   customersRoute,
@@ -27,6 +29,7 @@ module.exports = {
   product_categoriesRoute,
   statusRoute,
   ingredientsRoute,
+  menusRoute,
   productsRoute,
   ratingsRoute,
   stockRoute,
@@ -36,4 +39,6 @@ module.exports = {
   deliveriesRoute,
   supplier_ordersRoute,
   order_linesRoute,
+  order_typesRoute,
+  hiringRoute,
 }

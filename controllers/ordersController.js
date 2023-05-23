@@ -1,8 +1,10 @@
 const { Op } = require('sequelize')
 const db = require('../models/index')
 const Order = db['Orders']
-const OrderLines = db['OrderLines']
-const Products = db['Products']
+const _ = require('lodash')
+
+const OrderLines = db['OrderLines'];
+const Products = db['Products'];
 
 exports.isOrder_Exist = async (req, res) => {
   const checkIdOrder = await Order.findOne({ where: { id: req.body.email } })
@@ -31,18 +33,14 @@ exports.getAllOrders = async (req, res) => {
     if (req.query.date_order) {
       where.date_order = req.query.date_order
     }
+    if (req.query.id_type_oders) {
+      where.id_type_oders = req.query.id_type_oders
+    }
     const orders = await Order.findAll({
-      attributes: [
-        'id',
-        'payement_at',
-        'status',
-        'price',
-        'id_sales_revenues',
-        'id_sales_revenues',
-      ],
       where: {
         [Op.and]: [where],
       },
+      include: ['order_type'],
     })
     res.status(200).json(orders)
   } catch (error) {
@@ -55,7 +53,9 @@ exports.getAllOrders = async (req, res) => {
 
 exports.getOrder = async (req, res) => {
   try {
-    const order = await Order.findByPk(req.params.id)
+    const order = await Order.findByPk(req.params.id, {
+      include: ['order_type'],
+    })
     res.status(200).json(order)
   } catch (error) {
     res.status(500).json({
@@ -70,6 +70,7 @@ exports.getOrderByCustomer = async (req, res) => {
   try {
     const orders = await Order.findAll({
       where: { id_customers: id },
+<<<<<<< HEAD
       include : [{
         model: OrderLines,
         as:'orderLines',
@@ -77,6 +78,19 @@ exports.getOrderByCustomer = async (req, res) => {
           'products'
         ]
         },
+=======
+      include: [
+        'order_type',
+        'order_status',
+        {
+          model: OrderLines,
+          as: 'order_lines',
+          include: {
+            model: Products,
+            as: 'products'
+          }
+        }
+>>>>>>> 331188f7ab8c0190bc7b52a9d0335abd11b35f0d
       ]
     })
     res.status(200).json({
@@ -98,6 +112,18 @@ exports.getOneOrderByCustomer = async (req, res) => {
   try {
     const order = await Order.findAll({
       where: { id_customers: customerId, id: orderId },
+      include: [
+        'order_type',
+        'order_status',
+        {
+          model: OrderLines,
+          as: 'order_lines',
+          include: {
+            model: Products,
+            as: 'products'
+          }
+        }
+      ]
     })
     res.status(200).json({
       message: 'getOneOrderByCustomers',

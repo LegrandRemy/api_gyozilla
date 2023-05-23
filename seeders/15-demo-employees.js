@@ -9,7 +9,7 @@ module.exports = {
         {
           lastname: 'Rabbit',
           firstname: 'Roger',
-          password: 'ilesttropfort',
+          password: '$2a$10$ZsnkVypMltudrypwEWfzD.lqrxIMiAU0dd.H6.8lqf1S/oAXP.r06',
           email: 'rabbit.roger@gmail.com',
           phone: '0609080044',
           id_franchises: 1,
@@ -31,7 +31,7 @@ module.exports = {
         {
           lastname: 'Blum',
           firstname: 'Léon',
-          password: 'ilesttropfort',
+          password: '$2a$10$ZsnkVypMltudrypwEWfzD.lqrxIMiAU0dd.H6.8lqf1S/oAXP.r06',
           email: 'blum.leon@gmail.com',
           phone: '0609080046',
           id_franchises: 2,

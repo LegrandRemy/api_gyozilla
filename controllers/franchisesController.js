@@ -38,8 +38,11 @@ exports.getAllFranchises = async (req, res) => {
     if (req.query.phone) {
       where.phone = req.query.phone
     }
+    if (req.query.geography) {
+      where.geography = req.query.geography
+    }
     const franchises = await Franchises.findAll({
-      attributes: ['franchises', 'roles'],
+      attributes: ['id', 'name', 'address', 'phone', 'geography', 'createdAt', 'updatedAt'],
       where: {
         [Op.and]: [where],
       },
@@ -55,7 +58,9 @@ exports.getAllFranchises = async (req, res) => {
 
 exports.getFranchise = async (req, res) => {
   try {
-    const franchise = await Franchises.findByPk(req.params.id)
+    const franchise = await Franchises.findByPk(req.params.id, {
+      attributes: ['id', 'name', 'address', 'phone', 'geography', 'createdAt', 'updatedAt'],
+    })
     if (franchise) {
       res.status(200).json(franchise)
     } else {
@@ -103,13 +108,18 @@ exports.updateFranchise = async (req, res) => {
         )}`,
       })
     }
-    const oldFranchise = await Franchises.findByPk(req.params.id)
+    const oldFranchise = await Franchises.findByPk(req.params.id, {
+      attributes: ['id', 'name', 'address', 'phone', 'geography', 'createdAt', 'updatedAt'],
+    })
     const updatedFranchise = await Franchises.update(req.body, {
+      attributes: ['id', 'name', 'address', 'phone', 'geography', 'createdAt', 'updatedAt'],
       where: {
         id: req.params.id,
       },
     })
-    const newFranchise = await Franchises.findByPk(req.params.id)
+    const newFranchise = await Franchises.findByPk(req.params.id, {
+      attributes: ['id', 'name', 'address', 'phone', 'geography', 'createdAt', 'updatedAt'],
+    })
     const updatedProperties = _.omitBy(newFranchise.dataValues, (value, key) =>
       _.isEqual(value, oldFranchise.dataValues[key]),
     )

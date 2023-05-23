@@ -14,8 +14,8 @@
  *           type: string
  *           description: Mot de passe de l'utilisateur
  *       example:
- *         email: Robert
- *         password: LePlusFort
+ *         email: "Robert"
+ *         password: "LePlusFort"
  */
 
 /**

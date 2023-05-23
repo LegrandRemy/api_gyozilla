@@ -28,6 +28,9 @@ exports.getAllProducts = async (req, res) => {
     if (req.query.id_product_categories) {
       where.id_product_categories = req.query.id_product_categories
     }
+    if (req.query.id_menus) {
+      where.id_menus = req.query.id_menus
+    }
     const products = await Products.findAll({
       include: ['productCategory'],
       where: {
@@ -62,6 +65,24 @@ exports.getProductByCategories = async (req, res) => {
   }
 }
 
+exports.getProductByMenu = async (req, res) => {
+  const menuId = req.params.menuId
+  try {
+    const products = await Products.findAll({
+      where: { id_menus: menuId },
+    })
+    res.status(200).json({
+      message: 'ProductsByMenu',
+      data: products,
+    })
+  } catch (error) {
+    res.status(500).json({
+      message: 'Impossible de récupérer les produits par menu',
+      error: error.message,
+    })
+  }
+}
+
 exports.getProduct = async (req, res) => {
   try {
     const product = await Products.findByPk(req.params.id, {
@@ -87,32 +108,39 @@ exports.createProduct = async (req, res) => {
   try {
     const product_isExist = await Products.findOne({
       where: {
-        reference: req.body.reference,
+        name: req.body.name,
       },
     })
     if (product_isExist)
       return res.status(401).send({
         message: 'Le produit existe déjà',
       })
-    const image = req.file
     const newProduct = await Products.create(req.body)
     const newFileName = newProduct.id
-    fs.renameSync(image.path, 'uploads/products/' + newFileName)
-    const productPatch = await Products.update(
-      {
-        image: newFileName,
-      },
-      {
-        where: {
-          id: newProduct.id,
+    if(req.file){
+      const image = req.file
+      fs.renameSync(image.path, 'uploads/products/' + newFileName)
+      const productPatch = await Products.update(
+        {
+          image: newFileName,
         },
-      },
-    )
-    res.status(200).json({
-      message: 'Produit créé',
-      data: newProduct,
-      update: productPatch,
-    })
+        {
+          where: {
+            id: newProduct.id,
+          },
+        },
+      )
+      res.status(200).json({
+        message: 'Produit créé',
+        data: newProduct,
+        update: productPatch,
+      })
+    } else {
+      res.status(200).json({
+        message: 'Produit créé',
+        data: newProduct
+      })
+    }
   } catch (error) {
     res.status(500).json({
       message: "Le produit n'a pas été créé",

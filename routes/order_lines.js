@@ -1,5 +1,34 @@
 /**
  * @swagger
+ * components:
+ *   schemas:
+ *     order_lines:
+ *       type: object
+ *       required:
+ *         -
+ *       properties:
+ *         id:
+ *           type: int
+ *           description: ID
+ *         id_orders:
+ *           type: string
+ *           description: ID de la commande
+ *         id_products:
+ *           type: string
+ *           description: ID du produit
+ *         quantity:
+ *           type: string
+ *           description: Quantité de produit de la commande
+ *       example:
+ *         id: 1
+ *         id_orders: 1
+ *         id_products: 1
+ *         quantity: 5
+ */
+
+
+/**
+ * @swagger
  * tags:
  *   name: order_lines
  *   description: API pour les commandes
@@ -15,37 +44,25 @@
  *         schema:
  *           type: int
  *         required: false
+ *         description: id
+ *       - in: query
+ *         name: id_orders
+ *         schema:
+ *           type: string
+ *         required: false
  *         description: id de la commande
  *       - in: query
- *         name: date_order
+ *         name: id_products
  *         schema:
  *           type: string
  *         required: false
- *         description: date de paiement de la commande
+ *         description: id du produit
  *       - in: query
- *         name: total_price
- *         schema:
- *           type: string
- *         required: false
- *         description: prix de la commande
- *       - in: query
- *         name: id_status
+ *         name: quantity
  *         schema:
  *           type: integer
  *         required: false
- *         description: status de la commande
- *       - in: query
- *         name: id_franchises
- *         schema:
- *           type: integer
- *         required: false
- *         description: Id de la franchise
- *       - in: query
- *         name: id_customers
- *         schema:
- *           type: integer
- *         required: false
- *         description: Id utilisateur de la commande
+ *         description: quantité du produit dans la commande
  *     responses:
  *       200:
  *         description: La liste de toutes les commandes
@@ -138,41 +155,6 @@
  *         description: La commande n'a pas été trouvé.
  */
 
-/**
- * @swagger
- * components:
- *   schemas:
- *     orders:
- *       type: object
- *       required:
- *         -
- *       properties:
- *         id:
- *           type: int
- *           description: ID de la commande
- *         date_order:
- *           type: string
- *           description: Date de la commande
- *         total_price:
- *           type: string
- *           description: Prix de la commande
- *         id_status:
- *           type: string
- *           description: Status de la commande
- *         id_franchises:
- *           type: string
- *           description: Franchise lié à la commande
- *         id_customers:
- *           type: string
- *           description: Client de la commande
- *       example:
- *         id: 1
- *         date_order: 15/02/2023
- *         total_price: 25€
- *         id_status: 1
- *         id_franchises: 1
- *         id_customers: 1
- */
 
 const express = require('express')
 const router = express.Router()

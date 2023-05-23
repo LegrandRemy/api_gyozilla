@@ -16,7 +16,7 @@
 # npx sequelize-cli model:generate --name Products_Orders --attributes id_products:integer,id_orders:integer
 # npx sequelize-cli model:generate --name Orders --attributes status:string,payement_at:string,price:string,id_steps:integer,id_users:integer
 
-# npx sequelize-cli model:generate --name Users --attributes lastname:string,firstname:string,email:string,phone:string,address:string,zipcode:string,city:string,hiring_date:date,salary:string,fidelitypoints:string,id_contract_types:integer,id_roles:integer
+# npx sequelize-cli model:generate --name Users --attributes lastname:string,firstname:string,email:string,phone:string,address:string,zipcode:string,city:string,hiring_date:date,salary:string,fidelityPoints:string,id_contract_types:integer,id_roles:integer
 
 
 # npx sequelize-cli model:generate --name Roles --attributes name:string

@@ -4,8 +4,6 @@
  *   schemas:
  *     products:
  *       type: object
- *       required:
- *         -
  *       properties:
  *         id:
  *           type: int
@@ -28,15 +26,19 @@
  *         id_product_categories:
  *           type: int
  *           description: ID de la categorie du produit
+ *         id_menus:
+ *           type: int
+ *           description: ID du menu
  *
  *       example:
  *         id: 1
- *         name: BigMac
- *         description: Onctueux et savoureux
- *         image: 1.jpg
- *         price: 7,80
- *         creation_steps: Mettre le fromage sur le pain
+ *         name: "BigMac"
+ *         description: "Onctueux et savoureux"
+ *         image: "1.jpg"
+ *         price: 7.80
+ *         creation_steps: "Mettre le fromage sur le pain"
  *         id_product_categories: 1
+ *         id_menus: 1
  */
 
 /**
@@ -55,45 +57,50 @@
  *         name: id
  *         schema:
  *           type: int
- *         required: true
+ *         required: false
  *         description: ID du produit
  *       - in: query
  *         name: name
  *         schema:
  *           type: string
- *         required: true
+ *         required: false
  *         description: Libellé du produit
  *       - in: query
  *         name: description
  *         schema:
  *           type: string
- *         required: true
+ *         required: false
  *         description: Description du produit
  *       - in: query
  *         name: image
  *         schema:
  *           type: string
- *         required: true
+ *         required: false
  *         description: Image du produit
  *       - in: query
  *         name: price
  *         schema:
  *           type: float
- *         required: true
+ *         required: false
  *         description: Prix du produit
  *       - in: query
  *         name: creation_steps
  *         schema:
  *           type: string
- *         required: true
+ *         required: false
  *         description: Etape de création du produit
  *       - in: query
  *         name: id_product_categories
  *         schema:
  *           type: int
- *         required: true
+ *         required: false
  *         description: ID de la categorie du produit
- *
+ *       - in: query
+ *         name: id_menus
+ *         schema:
+ *           type: int
+ *         required: false
+ *         description: ID du menu
  *     responses:
  *       200:
  *         description: La liste de tous les produits
@@ -129,7 +136,7 @@
  *       - in: path
  *         name: id
  *         schema:
- *           type: int
+ *           type: string
  *         required: true
  *         description: Produit par l'id
  *     responses:
@@ -148,7 +155,7 @@
  *      - in: path
  *        name: id
  *        schema:
- *          type: int
+ *          type: string
  *        required: true
  *        description: id du produit
  *    requestBody:
@@ -175,7 +182,7 @@
  *       - in: path
  *         name: id
  *         schema:
- *           type: int
+ *           type: string
  *         required: true
  *         description: id du produit
  *
@@ -206,8 +213,11 @@ const upload = multer({
 router.get('/api/products', productController.getAllProducts)
 router.get(
   '/api/products/category/:categoriesId',
-  verifyToken,
   productController.getProductByCategories,
+)
+router.get(
+  '/api/products/menu/:menuId',
+  productController.getProductByMenu,
 )
 router.get('/api/products/:id', verifyToken, productController.getProduct)
 router.post(

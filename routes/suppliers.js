@@ -21,9 +21,9 @@
  *           description: Adresse du fournisseur
  *       example:
  *         id: 1
- *         name: les resto du coeur
- *         address: 10 rue de la poupee qui tousse 80000 Amiens
- *         phone: 0600000000
+ *         name: "les resto du coeur"
+ *         address: "10 rue de la poupee qui tousse 80000 Amiens"
+ *         phone: "0600000000"
  */
 
 /**
@@ -95,7 +95,7 @@
  *       - in: path
  *         name: id
  *         schema:
- *           type: int
+ *           type: string
  *         required: true
  *         description: Fournisseur par l'id
  *     responses:
@@ -114,7 +114,7 @@
  *      - in: path
  *        name: id
  *        schema:
- *          type: int
+ *          type: string
  *        required: false
  *        description: id du fournisseur
  *    requestBody:
@@ -141,7 +141,7 @@
  *       - in: path
  *         name: id
  *         schema:
- *           type: int
+ *           type: string
  *         required: false
  *         description: id du fournisseur
  *     responses:

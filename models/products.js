@@ -12,10 +12,14 @@ module.exports = (sequelize, DataTypes) => {
         as: 'productCategory',
         foreignKey: 'id_product_categories',
       })
+      Products.belongsTo(models.Menus, {
+        as: 'productMenu',
+        foreignKey: 'id_menus',
+      })
       Products.hasMany(models.OrderLines, {
         as: 'orderLines',
-        foreignKey: 'id_products'
-      })
+        foreignKey: 'id_products',
+      });
     }
   }
   Products.init(
@@ -52,6 +56,12 @@ module.exports = (sequelize, DataTypes) => {
         },
       },
       id_product_categories: {
+        type: DataTypes.INTEGER,
+        validate: {
+          notEmpty: true,
+        },
+      },
+      id_menus: {
         type: DataTypes.INTEGER,
         validate: {
           notEmpty: true,
