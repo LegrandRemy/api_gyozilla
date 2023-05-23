@@ -22,9 +22,6 @@ exports.getAllOrderLines = async (req, res) => {
     if (req.query.id_products) {
       where.id_products = req.query.id_products
     }
-    if (req.query.id_menus) {
-      where.id_menus = req.query.id_menus
-    }
     if (req.query.quantity) {
       where.quantity = req.query.quantity
     }

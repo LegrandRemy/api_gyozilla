@@ -21,9 +21,6 @@ module.exports = {
         allowNull: false,
         type: Sequelize.INTEGER,
       },
-      id_menuns: {
-        type: Sequelize.INTEGER,
-      },
       menu_reference: {
         type: Sequelize.INTEGER,
       },

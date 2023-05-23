@@ -16,9 +16,6 @@
  *         id_products:
  *           type: int
  *           description: ID du produit
- *         id_menus:
- *           type: int
- *           description: ID du menu
  *         quantity:
  *           type: int
  *           description: Quantité de produit de la commande
@@ -65,12 +62,6 @@
  *           type: string
  *         required: false
  *         description: id du produit
- *       - in: query
- *         name: id_menus
- *         schema:
- *           type: integer
- *         required: false
- *         description: id du menu
  *       - in: query
  *         name: quantity
  *         schema:
