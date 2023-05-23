@@ -19,6 +19,7 @@ const {
   order_linesRoute,
   order_typesRoute,
   hiringRoute,
+  newsRoute,
 } = require('./routes/routes')
 
 const express = require('express')
@@ -89,6 +90,7 @@ app.use(supplier_ordersRoute)
 app.use(order_linesRoute)
 app.use(order_typesRoute)
 app.use(hiringRoute)
+app.use(newsRoute)
 app.get('/', (req, res) => res.send('API Gyozilla'))
 app.listen(port, () =>
   console.log(`Visiter l'API Gyozilla sur http://localhost:${port}/api`),
