@@ -70,15 +70,6 @@ exports.getOrderByCustomer = async (req, res) => {
   try {
     const orders = await Order.findAll({
       where: { id_customers: id },
-<<<<<<< HEAD
-      include : [{
-        model: OrderLines,
-        as:'orderLines',
-        include: [
-          'products'
-        ]
-        },
-=======
       include: [
         'order_type',
         'order_status',
@@ -90,7 +81,6 @@ exports.getOrderByCustomer = async (req, res) => {
             as: 'products'
           }
         }
->>>>>>> 331188f7ab8c0190bc7b52a9d0335abd11b35f0d
       ]
     })
     res.status(200).json({
