@@ -39,7 +39,7 @@ module.exports = (sequelize, DataTypes) => {
         },
       },
       menu_reference: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.BIGINT,
       },
     },
     {
