@@ -20,7 +20,7 @@ const {
   order_typesRoute,
   hiringRoute,
   newsRoute,
-} = require('./routes/routes')
+} = require("./routes/routes");
 
 const express = require("express");
 const cors = require("cors"); //autorise tous les navigateurs
@@ -68,7 +68,6 @@ app.use(
     resave: false,
     saveUninitialized: true,
     cookie: { secure: true },
-<<<<<<< HEAD
   })
 );
 app.use(tokenRoute);
@@ -90,33 +89,9 @@ app.use(product_categoriesRoute);
 app.use(supplier_ordersRoute);
 app.use(order_linesRoute);
 app.use(order_typesRoute);
+app.use(hiringRoute);
+app.use(newsRoute);
 app.get("/", (req, res) => res.send("API Gyozilla"));
-=======
-  }),
-)
-app.use(tokenRoute)
-app.use(deliveriesRoute)
-app.use(customersRoute)
-app.use(employeesRoute)
-app.use(authRoute)
-app.use(suppliersRoute)
-app.use(ordersRoute)
-app.use(rolesRoute)
-app.use(stockRoute)
-app.use(ratingsRoute)
-app.use(ingredientsRoute)
-app.use(franchisesRoute)
-app.use(statusRoute)
-app.use(menusRoute)
-app.use(productsRoute)
-app.use(product_categoriesRoute)
-app.use(supplier_ordersRoute)
-app.use(order_linesRoute)
-app.use(order_typesRoute)
-app.use(hiringRoute)
-app.use(newsRoute)
-app.get('/', (req, res) => res.send('API Gyozilla'))
->>>>>>> 0938c10ab9ca4343c614a87c4d2ccc7d2f2bb738
 app.listen(port, () =>
   console.log(`Visiter l'API Gyozilla sur http://localhost:${port}/api`)
 );
