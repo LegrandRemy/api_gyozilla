@@ -11,19 +11,27 @@
  *           type: int
  *           description: ID
  *         id_orders:
- *           type: string
+ *           type: int
  *           description: ID de la commande
  *         id_products:
- *           type: string
+ *           type: int
  *           description: ID du produit
+ *         id_menus:
+ *           type: int
+ *           description: ID du menu
  *         quantity:
- *           type: string
+ *           type: int
  *           description: Quantité de produit de la commande
+ *         menu_reference:
+ *           type: int
+ *           description: ID généré du menu
  *       example:
  *         id: 1
  *         id_orders: 1
  *         id_products: 1
+ *         id_menus: 1
  *         quantity: 5
+ *         menu_reference: 180
  */
 
 
@@ -58,11 +66,23 @@
  *         required: false
  *         description: id du produit
  *       - in: query
+ *         name: id_menus
+ *         schema:
+ *           type: integer
+ *         required: false
+ *         description: id du menu
+ *       - in: query
  *         name: quantity
  *         schema:
  *           type: integer
  *         required: false
  *         description: quantité du produit dans la commande
+ *       - in: query
+ *         name: menu_reference
+ *         schema:
+ *           type: integer
+ *         required: false
+ *         description: id généré du menu
  *     responses:
  *       200:
  *         description: La liste de toutes les commandes

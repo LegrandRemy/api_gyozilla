@@ -38,6 +38,12 @@ module.exports = (sequelize, DataTypes) => {
           notEmpty: true,
         },
       },
+      id_menus: {
+        type: DataTypes.INTEGER,
+      },
+      menu_reference: {
+        type: DataTypes.INTEGER,
+      },
     },
     {
       sequelize,
