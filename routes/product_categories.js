@@ -132,30 +132,33 @@
  *         description: La catégorie de produit n'a pas été trouvée.
  */
 
-const express = require('express')
-const router = express.Router()
-const product_categoryController = require('../controllers/products_categoriesController')
-const { verifyToken } = require('../controllers/tokenController')
+const express = require("express");
+const router = express.Router();
+const product_categoryController = require("../controllers/products_categoriesController");
+const { verifyToken } = require("../controllers/tokenController");
 
 router.get(
-  '/api/product_categories', verifyToken,
-  product_categoryController.getAllProductsCategories,
-)
+  "/api/product_categories",
+  product_categoryController.getAllProductsCategories
+);
 router.get(
-  '/api/product_categories/:id', verifyToken,
-  product_categoryController.getProductCategorie,
-)
+  "/api/product_categories/:id",
+  product_categoryController.getProductCategorie
+);
 router.post(
-  '/api/product_categories', verifyToken,
-  product_categoryController.createProductCategorie,
-)
+  "/api/product_categories",
+  verifyToken,
+  product_categoryController.createProductCategorie
+);
 router.patch(
-  '/api/product_categories/:id', verifyToken,
-  product_categoryController.updateProductCategorie,
-)
+  "/api/product_categories/:id",
+  verifyToken,
+  product_categoryController.updateProductCategorie
+);
 router.delete(
-  '/api/product_categories/:id', verifyToken,
-  product_categoryController.deleteProductCategorie,
-)
+  "/api/product_categories/:id",
+  verifyToken,
+  product_categoryController.deleteProductCategorie
+);
 
-module.exports = router
+module.exports = router;
