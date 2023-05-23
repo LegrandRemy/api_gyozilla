@@ -42,28 +42,42 @@ exports.getToken = async (req, res) => {
         user.password
       );
 
-      if (passwordMatch) {
-        let payload;
-        if (isEmployee) {
-          payload = {
-            lastname: user.lastname,
-            firstname: user.firstname,
-            login: user.login,
-            email: req.body.email,
-            phone: user.phone,
-            role: user.id_roles,
-            franchise: user.id_franchises,
-            createdAt: user.createdAt,
-            password: passwordMatch,
-          };
-        } else {
-          payload = {
-            id: user.id,
-            lastname: user.lastname,
-            firstname: user.firstname,
-            username: req.body.email,
-            password: passwordMatch,
-          };
+            if (passwordMatch) {
+                let payload;
+                if (isEmployee) {
+                    payload = {
+                        lastname: user.lastname,
+                        firstname: user.firstname,
+                        login: user.login,
+                        email: req.body.email,
+                        phone: user.phone,
+                        role: user.id_roles,
+                        franchise: user.id_franchises,
+                        createdAt: user.createdAt,
+                        password: passwordMatch
+                    };
+                } else {
+                    payload = {
+                        id: user.id,
+                        lastname: user.lastname,
+                        firstname: user.firstname,
+                        username: req.body.email,
+                        password: passwordMatch,
+                        fidelityPoints : user.fidelityPoints,
+                    };
+                }
+                
+                const secret = process.env.JWT_SECRET;
+                const options = { expiresIn: '24h' };
+                const token = jwt.sign(payload, secret, options);
+                req.session.token = token;
+                res.status(200).json({ 
+                    message: "Authentification réussi",
+                    token: token
+                });
+            } else {
+                return res.status(400).send({ message: 'Mot de passe incorrect' });
+            }
         }
 
         const secret = process.env.JWT_SECRET;

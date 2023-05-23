@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       Orders.belongsTo(models.Status, {
-        as: 'status',
+        as: 'order_status',
         foreignKey: 'id_status',
       })
       Orders.belongsTo(models.Franchises, {
@@ -21,8 +21,12 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'id_customers',
       })
       Orders.belongsTo(models.OrderTypes, {
-        as: 'orderType',
+        as: 'order_type',
         foreignKey: 'id_order_types',
+      })
+      Orders.hasMany(models.OrderLines, {
+        as: 'order_lines',
+        foreignKey: 'id_orders',
       })
     }
   }
