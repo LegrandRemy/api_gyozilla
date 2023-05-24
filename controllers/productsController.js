@@ -32,7 +32,7 @@ exports.getAllProducts = async (req, res) => {
       where.id_menus = req.query.id_menus
     }
     const products = await Products.findAll({
-      include: ['productCategory'],
+      include: ['productCategory', 'productMenu'],
       where: {
         [Op.and]: [where],
       },
@@ -51,7 +51,7 @@ exports.getProductByCategories = async (req, res) => {
   try {
     const products = await Product_category.findAll({
       where: { id_categories: categoriesId },
-      include: ['productCategory'],
+      include: ['productCategory', 'productMenu'],
     })
     res.status(200).json({
       message: 'ProductsByCat',
