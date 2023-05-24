@@ -19,6 +19,7 @@ const {
   order_linesRoute,
   order_typesRoute,
   hiringRoute,
+  newsRoute,
 } = require('./routes/routes')
 
 const express = require('express')
@@ -28,6 +29,7 @@ const cors = require('cors') //autorise tous les navigateurs
   swaggerUi = require('swagger-ui-express')
 const app = express()
 app.use(cors())
+app.use("/", express.static(__dirname + "/uploads/"))
 const port = 4000
 const session = require('express-session')
 const options = {
@@ -57,7 +59,6 @@ const options = {
   },
   apis: ['./routes/*.js'],
 }
-// const specs = swaggerJsdoc(options)
 const specs = swaggerJsdoc(options)
 
 app.use(express.json())
@@ -89,6 +90,7 @@ app.use(supplier_ordersRoute)
 app.use(order_linesRoute)
 app.use(order_typesRoute)
 app.use(hiringRoute)
+app.use(newsRoute)
 app.get('/', (req, res) => res.send('API Gyozilla'))
 app.listen(port, () =>
   console.log(`Visiter l'API Gyozilla sur http://localhost:${port}/api`),

@@ -38,6 +38,9 @@ module.exports = (sequelize, DataTypes) => {
           notEmpty: true,
         },
       },
+      menu_reference: {
+        type: DataTypes.INTEGER,
+      },
     },
     {
       sequelize,

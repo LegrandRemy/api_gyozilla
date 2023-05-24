@@ -13,9 +13,13 @@
  *         name:
  *           type: string
  *           description: Le nom de le menu
+ *         price:
+ *           type: int
+ *           description: Prix du menu
  *       example:
  *         id: 1
  *         name: "Menu enfant"
+ *         price: 8
  */
 
 /**
@@ -40,6 +44,12 @@
  *           type: string
  *         required: false
  *         description: nom du menu
+ *       - in: query
+ *         name: price
+ *         schema:
+ *           type: int
+ *         required: false
+ *         description: prix du menu
  *     responses:
  *       200:
  *         description: La liste de tous les menus

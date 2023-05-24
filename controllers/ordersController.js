@@ -5,6 +5,7 @@ const _ = require('lodash')
 
 const OrderLines = db['OrderLines'];
 const Products = db['Products'];
+const Menus = db['Menus'];
 
 exports.isOrder_Exist = async (req, res) => {
   const checkIdOrder = await Order.findOne({ where: { id: req.body.email } })
@@ -81,7 +82,11 @@ exports.getOrderByCustomer = async (req, res) => {
           as: 'order_lines',
           include: {
             model: Products,
-            as: 'products'
+            as: 'products',
+            include: {
+              model: Menus,
+              as: 'menu'
+            }
           }
         }
       ]
@@ -113,7 +118,11 @@ exports.getOneOrderByCustomer = async (req, res) => {
           as: 'order_lines',
           include: {
             model: Products,
-            as: 'products'
+            as: 'products',
+            include: {
+              model: Menus,
+              as: 'menu'
+            }
           }
         }
       ]
