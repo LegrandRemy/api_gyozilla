@@ -12,6 +12,9 @@ module.exports = {
       name: {
         type: Sequelize.STRING(50),
       },
+      price: {
+        type: Sequelize.INTEGER,
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

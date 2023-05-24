@@ -8,21 +8,25 @@ module.exports = {
       [
         {
           name: 'Menu Enfant',
+          price: 8,
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
           name: 'Menu Petit Prix',
+          price: 12,
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
           name: 'Menu Découverte',
+          price: 18,
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
           name: 'Menu Gourmand',
+          price: 25,
           createdAt: new Date(),
           updatedAt: new Date(),
         }

@@ -11,6 +11,9 @@ exports.getAllMenus = async (req, res) => {
     if (req.query.name) {
       where.name = req.query.name
     }
+    if (req.query.price) {
+      where.price = req.query.price
+    }
     const menu = await Menu.findAll({
       where: {
         [Op.and]: [where],
