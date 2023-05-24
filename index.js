@@ -29,7 +29,7 @@ const cors = require('cors') //autorise tous les navigateurs
   swaggerUi = require('swagger-ui-express')
 const app = express()
 app.use(cors())
-app.use("/products", express.static(__dirname + "/uploads/products"))
+app.use("/", express.static(__dirname + "/uploads/"))
 const port = 4000
 const session = require('express-session')
 const options = {
