@@ -21,6 +21,12 @@ module.exports = (sequelize, DataTypes) => {
           notEmpty: true,
         },
       },
+      price: {
+        type: DataTypes.INTEGER,
+        validate: {
+          notEmpty: true,
+        },
+      },
     },
     {
       sequelize,

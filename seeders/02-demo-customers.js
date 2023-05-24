@@ -13,6 +13,7 @@ module.exports = {
             '$2a$10$ZsnkVypMltudrypwEWfzD.lqrxIMiAU0dd.H6.8lqf1S/oAXP.r06',
           email: 'rabbit.roger@gmail.com',
           fidelityPoints: 3,
+          is_verified: 1,
           createdAt: new Date(),
           updatedAt: new Date(),
         },

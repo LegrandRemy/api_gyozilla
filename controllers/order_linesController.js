@@ -25,8 +25,10 @@ exports.getAllOrderLines = async (req, res) => {
     if (req.query.quantity) {
       where.quantity = req.query.quantity
     }
+    if (req.query.menu_reference) {
+      where.menu_reference = req.query.menu_reference
+    }
     const orderLine = await OrderLine.findAll({
-      // attributes: ['id_orders', 'id_products'],
       where: {
         [Op.and]: [where],
       },

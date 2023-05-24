@@ -18,6 +18,10 @@ module.exports = {
         type: Sequelize.INTEGER,
       },
       quantity: {
+        allowNull: false,
+        type: Sequelize.INTEGER,
+      },
+      menu_reference: {
         type: Sequelize.INTEGER,
       },
       createdAt: {
