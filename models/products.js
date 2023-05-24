@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'id_product_categories',
       })
       Products.belongsTo(models.Menus, {
-        as: 'productMenu',
+        as: 'menu',
         foreignKey: 'id_menus',
       })
       Products.hasMany(models.OrderLines, {

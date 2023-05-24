@@ -5,6 +5,7 @@ const _ = require('lodash')
 
 const OrderLines = db['OrderLines'];
 const Products = db['Products'];
+const Menus = db['Menus'];
 
 exports.isOrder_Exist = async (req, res) => {
   const checkIdOrder = await Order.findOne({ where: { id: req.body.email } })
@@ -92,6 +93,7 @@ exports.getOrderByCustomer = async (req, res) => {
       data: orders,
     })
   } catch (error) {
+    console.log(error);
     res.status(500).json({
       message: "Impossible de récupérer les commandes de l'utilisateur",
       error: error.message,
