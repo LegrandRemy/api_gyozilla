@@ -58,7 +58,6 @@ const options = {
   },
   apis: ['./routes/*.js'],
 }
-// const specs = swaggerJsdoc(options)
 const specs = swaggerJsdoc(options)
 
 app.use(express.json())
