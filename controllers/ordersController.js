@@ -18,6 +18,9 @@ exports.getAllOrders = async (req, res) => {
     if (req.query.id) {
       where.id = req.query.id
     }
+    if (req.query.id_customers) {
+      where.id_customers = req.query.id_customers
+    }
     if (req.query.status) {
       where.status = req.query.status
     }
