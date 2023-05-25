@@ -103,6 +103,30 @@ exports.getProduct = async (req, res) => {
   }
 }
 
+exports.getLastProducts = async (req, res) => {
+  try {
+    const products = await Products.findAll({
+      attributes: ['id', 'name', 'description', 'image', 'price', 'createdAt'],
+      order: [['createdAt', 'DESC']],
+      limit: 1
+    });
+
+    if (products && products.length > 0) {
+      res.status(200).json(products);
+    } else {
+      res.status(404).json({
+        message: "Aucune produits n'ont été trouvée.",
+      });
+    }
+  } catch (error) {
+    res.status(500).json({
+      message: "Impossible de récupérer les produits.",
+      error: error.message,
+    });
+  }
+}
+
+
 exports.createProduct = async (req, res) => {
   console.log(req.body)
   try {
