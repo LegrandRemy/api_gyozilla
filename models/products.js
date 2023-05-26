@@ -13,15 +13,9 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: "id_product_categories",
       });
       Products.belongsTo(models.Menus, {
-<<<<<<< HEAD
-        as: "productMenu",
+        as: "menu",
         foreignKey: "id_menus",
       });
-=======
-        as: 'menu',
-        foreignKey: 'id_menus',
-      })
->>>>>>> 53fe4601813457f73e2368bf76af693db1ca1acd
       Products.hasMany(models.OrderLines, {
         as: "orderLines",
         foreignKey: "id_products",

@@ -210,11 +210,7 @@ const upload = multer({
   fileType: fileTypeFilter,
 });
 
-<<<<<<< HEAD
-router.get("/api/products/", productController.getAllProducts);
-=======
 router.get("/api/products", productController.getAllProducts);
->>>>>>> 53fe4601813457f73e2368bf76af693db1ca1acd
 router.get(
   "/api/products/category/:categoriesId",
   productController.getProductByCategories
@@ -224,7 +220,6 @@ router.get("/api/products/lastProduct", productController.getLastProducts);
 router.get("/api/products/:id", verifyToken, productController.getProduct);
 router.post(
   "/api/products",
-<<<<<<< HEAD
   verifyToken,
   upload.single("image"),
   productController.createProduct
@@ -233,16 +228,6 @@ router.patch("/api/products/:id", verifyToken, productController.updateProduct);
 router.delete(
   "/api/products/:id",
   verifyToken,
-=======
-  verifyToken,
-  upload.single("image"),
-  productController.createProduct
-);
-router.patch("/api/products/:id", verifyToken, productController.updateProduct);
-router.delete(
-  "/api/products/:id",
-  verifyToken,
->>>>>>> 53fe4601813457f73e2368bf76af693db1ca1acd
   productController.deleteProduct
 );
 
