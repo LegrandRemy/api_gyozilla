@@ -22,7 +22,6 @@ const {
   newsRoute,
 } = require("./routes/routes");
 
-<<<<<<< HEAD
 const express = require("express");
 const cors = require("cors"); //autorise tous les navigateurs
 bodyParser = require("body-parser");
@@ -33,18 +32,6 @@ app.use(cors());
 app.use("/", express.static(__dirname + "/uploads/"));
 const port = 4000;
 const session = require("express-session");
-=======
-const express = require('express')
-const cors = require('cors') //autorise tous les navigateurs
-  bodyParser = require('body-parser')
-  swaggerJsdoc = require('swagger-jsdoc')
-  swaggerUi = require('swagger-ui-express')
-const app = express()
-app.use(cors())
-app.use("/", express.static(__dirname + "/uploads/"))
-const port = 4000
-const session = require('express-session')
->>>>>>> 53fe4601813457f73e2368bf76af693db1ca1acd
 const options = {
   definition: {
     openapi: "3.0.0",
