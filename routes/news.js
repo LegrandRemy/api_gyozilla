@@ -160,6 +160,8 @@ const { verifyToken } = require("../controllers/tokenController");
 
 router.get("/api/news", newController.getAllNews);
 router.get("/api/news/:id", newController.getNew);
+router.get("/api/lastnews", newController.getLastThreeNews);
+
 router.post("/api/news", verifyToken, newController.createNew);
 router.patch("/api/news/:id", verifyToken, newController.updateNew);
 router.delete("/api/news/:id", verifyToken, newController.deleteNew);

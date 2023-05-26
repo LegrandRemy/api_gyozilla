@@ -16,10 +16,14 @@
  *         price:
  *           type: int
  *           description: Prix du menu
+ *         image:
+ *           type: string
+ *           description: Image du menu
  *       example:
  *         id: 1
  *         name: "Menu enfant"
  *         price: 8
+ *         image: "menu/Menu-Enfant.jpg"
  */
 
 /**
@@ -50,6 +54,12 @@
  *           type: int
  *         required: false
  *         description: prix du menu
+ *       - in: query
+ *         name: image
+ *         schema:
+ *           type: string
+ *         required: false
+ *         description: image du menu
  *     responses:
  *       200:
  *         description: La liste de tous les menus

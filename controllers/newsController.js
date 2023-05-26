@@ -54,6 +54,29 @@ exports.getNew = async (req, res) => {
   }
 }
 
+exports.getLastThreeNews = async (req, res) => {
+  try {
+    const news = await News.findAll({
+      attributes: ['id', 'name', 'image', 'description', 'createdAt', 'updatedAt'],
+      order: [['createdAt', 'DESC']],
+      limit: 3
+    });
+
+    if (news && news.length > 0) {
+      res.status(200).json(news);
+    } else {
+      res.status(404).json({
+        message: "Aucune actualité n'a été trouvée.",
+      });
+    }
+  } catch (error) {
+    res.status(500).json({
+      message: "Impossible de récupérer les actualités.",
+      error: error.message,
+    });
+  }
+}
+
 exports.createNew = async (req, res) => {
   try {
     const newsNews = await News.create(req.body)
