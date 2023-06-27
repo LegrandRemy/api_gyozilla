@@ -2,6 +2,7 @@ const {
   tokenRoute,
   rolesRoute,
   customersRoute,
+  contactRoute,
   franchisesRoute,
   suppliersRoute,
   statusRoute,
@@ -74,6 +75,7 @@ app.use(tokenRoute);
 app.use(deliveriesRoute);
 app.use(customersRoute);
 app.use(employeesRoute);
+app.use(contactRoute);
 app.use(authRoute);
 app.use(suppliersRoute);
 app.use(ordersRoute);

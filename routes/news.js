@@ -81,7 +81,7 @@
  *             $ref: '#/components/schemas/news'
  *     responses:
  *       200:
- *         description: Actualité créé.
+ *         description: actualité créée.
  *         content:
  *           application/json:
  *             schema:
