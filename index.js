@@ -2,6 +2,7 @@ const {
   tokenRoute,
   rolesRoute,
   customersRoute,
+  contactRoute,
   franchisesRoute,
   suppliersRoute,
   statusRoute,
@@ -17,6 +18,7 @@ const {
   supplier_ordersRoute,
   order_linesRoute,
   newsRoute,
+  recruitingRoute,
 } = require('./routes/routes')
 
 const express = require('express')
@@ -70,6 +72,7 @@ app.use(
 app.use(tokenRoute)
 app.use(deliveriesRoute)
 app.use(customersRoute)
+app.use(contactRoute)
 app.use(employeesRoute)
 app.use(authRoute)
 app.use(suppliersRoute)
@@ -85,6 +88,7 @@ app.use(product_categoriesRoute)
 app.use(supplier_ordersRoute)
 app.use(order_linesRoute)
 app.use(newsRoute)
+app.use(recruitingRoute)
 app.get('/', (req, res) => res.send('API Gyozilla'))
 app.listen(port, () =>
   console.log(`Visiter l'API Gyozilla sur http://localhost:${port}/api`),
