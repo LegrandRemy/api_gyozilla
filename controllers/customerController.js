@@ -12,16 +12,10 @@ exports.is_exist = async (req, res) => {
   try {
     const customer = await Customers.findOne({ where: { email: email } });
     if (customer) {
-      return res.status(200).json({
-        message: "Utilisateur trouvé",
-      });
-    } else {
-      return res.status(400).json({
-        message: "Utilisateur non trouvé",
-      });
+      return True;
     }
   } catch (err) {
-    return res.status(400).json({ message: "Problème dans la requête" });
+    return res.status(400).json({ message: "Utilisateur non trouvé" });
   }
 };
 
