@@ -42,7 +42,7 @@ exports.forgotPassword = async (req, res) => {
     const secret = process.env.JWT_MAIL;
     const options = { expiresIn: "1h" };
     const token = jwt.sign({ userId: customer.id }, secret, options);
-    const resetUrl = `http://localhost:3000/reset-password?token=${token}`;
+    const resetUrl = `https://api-gyozilla.onrender.com/api/reset-password?token=${token}`;
     const message = {
       from: "contact@gyozilla.com",
       to: customer.email,
@@ -159,9 +159,11 @@ exports.getCustomer = async (req, res) => {
 exports.createCustomer = async (req, res) => {
   //Configuration de nodemailer pour envoyer le mail
   const transporter = nodemailer.createTransport({
-    host: "localhost",
-    port: 1025,
-    secure: false,
+    service: 'gmail',
+    auth: {
+      user: process.env.GMAIL_USER, // Votre nom d'utilisateur pour le service
+      pass: process.env.GMAIL_PASS, // Votre mot de passe pour le service
+    },
   });
   try {
     const checkEmail = req.body.email;
@@ -187,7 +189,7 @@ exports.createCustomer = async (req, res) => {
       const secret = process.env.JWT_MAIL;
       const options = { expiresIn: "1h" };
       const token = jwt.sign({ email: newCustomer.email }, secret, options);
-      const validatedUrl = `http://localhost:3000/verify/${token}`;
+      const validatedUrl = `https://api-gyozilla.onrender.com/api/verify/${token}`;
       const message = {
         from: "contact@gyozilla.com",
         to: newCustomer.email,
