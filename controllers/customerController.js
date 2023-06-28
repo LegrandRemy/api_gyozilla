@@ -6,12 +6,18 @@ const bcrypt = require("bcryptjs");
 const nodemailer = require("nodemailer");
 const jwt = require("jsonwebtoken");
 
-exports.is_exist = async (email) => {
+exports.is_exist = async (req, res) => {
+  const { email } = req.body;
+
   try {
     const customer = await Customers.findOne({ where: { email: email } });
     if (customer) {
       return res.status(200).json({
         message: "Utilisateur trouvé",
+      });
+    } else {
+      return res.status(400).json({
+        message: "Utilisateur non trouvé",
       });
     }
   } catch (err) {
