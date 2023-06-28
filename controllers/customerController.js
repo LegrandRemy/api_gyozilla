@@ -7,7 +7,7 @@ const nodemailer = require("nodemailer");
 const jwt = require("jsonwebtoken");
 
 exports.is_exist = async (req, res) => {
-  const { email } = req.body;
+  const email = req.params.email;
 
   try {
     const customer = await Customers.findOne({ where: { email: email } });
