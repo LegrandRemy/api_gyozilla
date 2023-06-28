@@ -6,22 +6,23 @@ const bcrypt = require("bcryptjs");
 const nodemailer = require("nodemailer");
 const jwt = require("jsonwebtoken");
 
-exports.is_exist = async (email) => {
-  Customers.findOne(
-    {
-      where: {
-        email: email,
+exports.isExist = (email) => {
+  return new Promise((resolve, reject) => {
+    Customers.findOne(
+      {
+        where: {
+          email: email,
+        },
       },
-    },
-    (err, customer) => {
-      if (err) throw err;
-      if (customer) {
-        return true;
-      } else {
-        return false;
+      (err, customer) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(customer !== null);
+        }
       }
-    }
-  );
+    );
+  });
 };
 
 exports.forgotPassword = async (req, res) => {
