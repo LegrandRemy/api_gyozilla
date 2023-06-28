@@ -93,7 +93,7 @@ app.use(hiringRoute)
 app.use(newsRoute)
 app.get('/', (req, res) => res.send('API Gyozilla'))
 app.listen(port, () =>
-  console.log(`Visiter l'API Gyozilla sur http://localhost:${port}/api`),
+  console.log(`Visiter l'API Gyozilla sur ${process.env.URL_API}`),
 )
 app.use('/api', swaggerUi.serve, swaggerUi.setup(specs))
 app.use((req, res, next) => {
