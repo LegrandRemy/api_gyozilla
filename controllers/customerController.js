@@ -6,23 +6,17 @@ const bcrypt = require("bcryptjs");
 const nodemailer = require("nodemailer");
 const jwt = require("jsonwebtoken");
 
-exports.isExist = (email) => {
-  return new Promise((resolve, reject) => {
-    Customers.findOne(
-      {
-        where: {
-          email: email,
-        },
-      },
-      (err, customer) => {
-        if (err) {
-          reject(err);
-        } else {
-          resolve(customer !== null);
-        }
-      }
-    );
-  });
+exports.is_exist = async (email) => {
+  try {
+    const customer = await Customers.findOne({ where: { email: email } });
+    if (customer) {
+      return res.status(200).json({
+        message: "Utilisateur trouvé",
+      });
+    }
+  } catch (err) {
+    return res.status(400).json({ message: "Problème dans la requête" });
+  }
 };
 
 exports.forgotPassword = async (req, res) => {
