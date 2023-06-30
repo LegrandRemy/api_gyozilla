@@ -154,6 +154,101 @@ exports.getAllOrdersByFranchise = async (req, res) => {
   }
 }
 
+exports.getAllOrdersByFranchisePeriod = async (req, res) => {
+  const franchiseId = req.params.franchiseId;
+  const period = req.params.period;
+
+  try {
+    const periodesConfig = {
+      day: {
+        startDate: () => {
+          const startDate = new Date();
+          startDate.setHours(0, 0, 0, 0);
+          return startDate;
+        },
+        endDate: () => {
+          const endDate = new Date();
+          endDate.setHours(23, 59, 59, 999);
+          return endDate;
+        },
+      },
+      week: {
+        startDate: () => {
+          const startDate = new Date();
+          startDate.setDate(startDate.getDate() - startDate.getDay());
+          startDate.setHours(0, 0, 0, 0);
+          return startDate;
+        },
+        endDate: () => {
+          const endDate = new Date();
+          endDate.setDate(endDate.getDate() - endDate.getDay() + 6);
+          endDate.setHours(23, 59, 59, 999);
+          return endDate;
+        },
+      },
+      month: {
+        startDate: () => {
+          const startDate = new Date();
+          startDate.setDate(1);
+          startDate.setHours(0, 0, 0, 0);
+          return startDate;
+        },
+        endDate: () => {
+          const endDate = new Date();
+          endDate.setMonth(endDate.getMonth() + 1);
+          endDate.setDate(0);
+          endDate.setHours(23, 59, 59, 999);
+          return endDate;
+        },
+      },
+      year: {
+        startDate: () => {
+          const startDate = new Date();
+          startDate.setMonth(0);
+          startDate.setDate(1);
+          startDate.setHours(0, 0, 0, 0);
+          return startDate;
+        },
+        endDate: () => {
+          const endDate = new Date();
+          endDate.setMonth(11);
+          endDate.setDate(31);
+          endDate.setHours(23, 59, 59, 999);
+          return endDate;
+        },
+      },
+    };
+
+    if (!(period in periodesConfig)) {
+      return res.status(400).json({
+        message: 'Période non prise en charge',
+      });
+    }
+
+    const startDate = periodesConfig[period].startDate();
+    const endDate = periodesConfig[period].endDate();
+
+    const orders = await Order.findAll({
+      where: {
+        id_franchises: franchiseId,
+        date_order: {
+          [Op.between]: [startDate, endDate],
+        },
+      },
+    });
+
+    res.status(200).json({
+      message: 'getAllOrdersByFranchise',
+      data: orders,
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: "Impossible de récupérer les commandes de la franchise",
+      error: error.message,
+    });
+  }
+};
+
 exports.getOrderByStatus = async (req, res) => {
   const idStatus = req.params.idStatus
   try {
