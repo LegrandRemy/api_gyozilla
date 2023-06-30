@@ -182,7 +182,7 @@ exports.createCustomer = async (req, res) => {
       customer.password = hashedPassword;
     });
 
-    newCustomer = await Customers.create(req.body);
+    const newCustomer = await Customers.create(req.body);
 
     if (newCustomer) {
       const secret = process.env.JWT_MAIL;
