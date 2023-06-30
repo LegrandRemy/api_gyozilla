@@ -24,10 +24,12 @@ exports.is_exist = async (req, res) => {
 
 exports.forgotPassword = async (req, res) => {
   const transporter = nodemailer.createTransport({
-    service: "gmail",
+    host: "smtp.hostinger.com",
+    port: 465,
+    secure: true,
     auth: {
-      user: process.env.GMAIL_USER, // Votre nom d'utilisateur pour le service
-      pass: process.env.GMAIL_PASS, // Votre mot de passe pour le service
+      user: process.env.HOSTINGER_USER,
+      pass: process.env.HOSTINGER_PASS,
     },
   });
 
@@ -160,10 +162,12 @@ exports.getCustomer = async (req, res) => {
 
 exports.createCustomer = async (req, res) => {
   const transporter = nodemailer.createTransport({
-    service: "gmail",
+    host: "smtp.hostinger.com",
+    port: 465,
+    secure: true,
     auth: {
-      user: process.env.GMAIL_USER,
-      pass: process.env.GMAIL_PASS,
+      user: process.env.HOSTINGER_USER,
+      pass: process.env.HOSTINGER_PASS,
     },
   });
   const checkEmail = req.body.email;
