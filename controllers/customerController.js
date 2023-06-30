@@ -44,7 +44,7 @@ exports.forgotPassword = async (req, res) => {
     const secret = process.env.JWT_MAIL;
     const options = { expiresIn: "1h" };
     const token = jwt.sign({ userId: customer.id }, secret, options);
-    const resetUrl = `${process.env.URL_API}/reset-password?token=${token}`;
+    const resetUrl = `${process.env.URL_APP}reset-password?token=${token}`;
     const message = {
       from: "gyozillacontact@gmail.com",
       to: customer.email,
@@ -184,11 +184,14 @@ exports.createCustomer = async (req, res) => {
     });
 
     const newCustomer = await Customers.create(req.body);
+
+    console.log('jarrive')
+
     if (newCustomer) {
       const secret = process.env.JWT_MAIL;
       const options = { expiresIn: "1h" };
       const token = jwt.sign({ email: newCustomer.email }, secret, options);
-      const validatedUrl = `${process.env.URL_API}/verify/${token}`;
+      const validatedUrl = `${process.env.URL_APP}verify/${token}`;
       const message = {
         from: "gyozillacontact@gmail.com",
         to: newCustomer.email,
