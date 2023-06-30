@@ -24,7 +24,7 @@ exports.is_exist = async (req, res) => {
 
 exports.forgotPassword = async (req, res) => {
   const transporter = nodemailer.createTransport({
-    service: 'gmail',
+    service: "gmail",
     auth: {
       user: process.env.GMAIL_USER, // Votre nom d'utilisateur pour le service
       pass: process.env.GMAIL_PASS, // Votre mot de passe pour le service
@@ -160,12 +160,13 @@ exports.getCustomer = async (req, res) => {
 
 exports.createCustomer = async (req, res) => {
   const transporter = nodemailer.createTransport({
-    service: 'gmail',
+    service: "gmail",
     auth: {
       user: process.env.GMAIL_USER,
       pass: process.env.GMAIL_PASS,
     },
   });
+  const newCustomer = null;
 
   try {
     const checkEmail = req.body.email;
@@ -183,43 +184,43 @@ exports.createCustomer = async (req, res) => {
       customer.password = hashedPassword;
     });
 
-    const newCustomer = await Customers.create(req.body);
-
-    console.log('jarrive')
-
-    if (newCustomer) {
-      const secret = process.env.JWT_MAIL;
-      const options = { expiresIn: "1h" };
-      const token = jwt.sign({ email: newCustomer.email }, secret, options);
-      const validatedUrl = `${process.env.URL_APP}verify/${token}`;
-      const message = {
-        from: "gyozillacontact@gmail.com",
-        to: newCustomer.email,
-        subject: "Validation du compte",
-        text: `Bonjour ${newCustomer.firstname}, Veuillez cliquer sur le lien suivant pour valider votre compte afin de vous connecter : ${validatedUrl}`,
-        html: `<p>Bonjour ${newCustomer.firstname},</p><p>Veuillez cliquer sur le lien suivant pour valider votre compte afin de vous connecter :</p><p><a href="${validatedUrl}">${validatedUrl}</a></p>`,
-      };
-
-      transporter.sendMail(message, async (error, info) => {
-        if (error) {
-          console.error(error);
-          return res.status(500).json({
-            message: "Une erreur s'est produite lors de l'envoi de l'e-mail de validation.",
-            error: error.message,
-          });
-        } else {
-          console.log(`E-mail envoyé à ${newCustomer.email}: ${info.response}`);
-          return res.status(201).json({
-            message: "Un e-mail de validation a été envoyé à votre adresse e-mail.",
-            data: newCustomer,
-          });
-        }
-      });
-    }
+    newCustomer = await Customers.create(req.body);
   } catch (error) {
     res.status(500).json({
       message: "Le client n'a pas été créé",
       error: error.message,
+    });
+  }
+
+  if (newCustomer) {
+    const secret = process.env.JWT_MAIL;
+    const options = { expiresIn: "1h" };
+    const token = jwt.sign({ email: newCustomer.email }, secret, options);
+    const validatedUrl = `${process.env.URL_APP}verify/${token}`;
+    const message = {
+      from: "gyozillacontact@gmail.com",
+      to: newCustomer.email,
+      subject: "Validation du compte",
+      text: `Bonjour ${newCustomer.firstname}, Veuillez cliquer sur le lien suivant pour valider votre compte afin de vous connecter : ${validatedUrl}`,
+      html: `<p>Bonjour ${newCustomer.firstname},</p><p>Veuillez cliquer sur le lien suivant pour valider votre compte afin de vous connecter :</p><p><a href="${validatedUrl}">${validatedUrl}</a></p>`,
+    };
+
+    transporter.sendMail(message, async (error, info) => {
+      if (error) {
+        console.error(error);
+        return res.status(500).json({
+          message:
+            "Une erreur s'est produite lors de l'envoi de l'e-mail de validation.",
+          error: error.message,
+        });
+      } else {
+        console.log(`E-mail envoyé à ${newCustomer.email}: ${info.response}`);
+        return res.status(201).json({
+          message:
+            "Un e-mail de validation a été envoyé à votre adresse e-mail.",
+          data: newCustomer,
+        });
+      }
     });
   }
 };
