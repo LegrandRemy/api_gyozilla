@@ -217,7 +217,7 @@ router.get(
 );
 router.get("/api/products/menu/:menuId", productController.getProductByMenu);
 router.get("/api/products/lastProduct", productController.getLastProducts);
-router.get("/api/products/:id", verifyToken, productController.getProduct);
+router.get("/api/products/:id", productController.getProduct);
 router.post(
   "/api/products",
   verifyToken,

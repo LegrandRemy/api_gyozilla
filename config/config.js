@@ -21,5 +21,6 @@ module.exports = {
     database: process.env.USER_DB,
     host: process.env.HOST_DB,
     dialect: 'mysql',
+    port: 5432,
   },
 }

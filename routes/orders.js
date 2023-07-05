@@ -211,6 +211,11 @@ router.get(
   verifyToken,
   orderController.getOrderByStatus,
 )
+router.get(
+  '/api/orders/franchise/:franchiseId/period/:period',
+  verifyToken,
+  orderController.getAllOrdersByFranchisePeriod,
+)
 router.post('/api/orders', verifyToken, orderController.createOrder)
 router.patch('/api/orders/:id', verifyToken, orderController.updateOrder)
 router.delete('/api/orders/:id', verifyToken, orderController.deleteOrder)
