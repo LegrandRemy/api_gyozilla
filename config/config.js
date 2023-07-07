@@ -20,7 +20,7 @@ module.exports = {
     password: process.env.PWD_DB,
     database: process.env.USER_DB,
     host: process.env.HOST_DB,
+    port: process.env.PORT_DB,
     dialect: 'mysql',
-    port: 5432,
   },
 }
