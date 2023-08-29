@@ -112,5 +112,10 @@ router.delete(
   verifyToken,
   ingredientController.deleteIngredient,
 )
+router.patch(
+  '/api/ingredients/:id',
+  verifyToken,
+  ingredientController.updateIngredient,
+)
 
 module.exports = router

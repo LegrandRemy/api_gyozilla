@@ -38,6 +38,7 @@ exports.getToken = async (req, res) => {
                 let payload;
                 if (isEmployee) {
                     payload = {
+                        id: user.id,
                         lastname: user.lastname,
                         firstname: user.firstname,
                         login: user.login,

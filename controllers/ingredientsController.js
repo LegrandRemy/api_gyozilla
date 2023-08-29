@@ -109,3 +109,19 @@ exports.deleteIngredient = async (req, res) => {
     })
   }
 }
+
+exports.updateIngredient = async (req, res) => {
+  try {
+    const updatedIngredient = await Ingredient.update(req.body, {
+      where: {
+        id: req.params.id,
+      },
+    })
+    res.status(200).json({ message: 'Mis à jour', data: updatedIngredient })
+  } catch (error) {
+    res.status(500).json({
+      message: "L'ingrédient n'a pas été mise à jour",
+      error: error.message,
+    })
+  }
+}

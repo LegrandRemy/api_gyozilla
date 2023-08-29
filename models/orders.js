@@ -47,7 +47,7 @@ module.exports = (sequelize, DataTypes) => {
       date_order: {
         type: DataTypes.DATE,
         validate: {
-          notEmpty: true,
+          notEmpty: false,
         },
       },
       total_price: {
