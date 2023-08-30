@@ -51,8 +51,8 @@ exports.getAllEmployees = async (req, res) => {
     const employees = await Employees.findAll({
       where: {
         [Op.and]: [where],
-        include: ['roles'],
       },
+      include: ['roles'],
     })
     res.status(200).json(employees)
   } catch (error) {
@@ -69,6 +69,7 @@ exports.getAllEmployeeByFranchise = async (req, res) => {
   try {
     const employees = await Employees.findAll({
       where: { id_franchises: franchiseId },
+      include: ['roles'],
     })
     res.status(200).json({
       message: 'getAllOrdersByFranchise',
