@@ -97,24 +97,29 @@ exports.getStock = async (req, res) => {
 };
 
 exports.createStock = async (req, res) => {
-  const id_ingredients = req.body.id_ingredients
+  const id_ingredients = req.body.id_ingredients;
+  const id_franchises = req.body.id_franchises;
   try {
     const stockIsExist = await Stock.findOne({
-      where: {id_ingredients: id_ingredients}
-    })
+      where: {
+        id_ingredients: id_ingredients,
+        id_franchises: id_franchises,
+      },
+    });
     if (stockIsExist) {
-      return res.status(400).json({ message: "L\'élément du stock existe déjà." });
+      return res.status(400).json({ message: "L'élément du stock existe déjà." });
     } else {
-      const newStock = await Stock.create(req.body)
-      res.status(201).json({ message: 'created', data: newStock })
+      const newStock = await Stock.create(req.body);
+      res.status(201).json({ message: 'created', data: newStock });
     }
   } catch (error) {
     res.status(500).json({
-      message: "Le stock n'a pas été créée",
+      message: "Le stock n'a pas été créé",
       error: error.message,
     });
   }
 };
+
 
 exports.updateStock = async (req, res) => {
   try {
