@@ -56,21 +56,6 @@ exports.getOrderLine = async (req, res) => {
 
 exports.createOrderLine = async (req, res) => {
   try {
-    const existingOrderLine = await OrderLine.findOne({
-      where: {
-        id_orders: req.body.id_orders,
-        id_products: req.body.id_products,
-        quantity: req.body.quantity,
-        menu_reference: req.body.menu_reference,
-      },
-    });
-
-    if (existingOrderLine) {
-      return res
-        .status(400)
-        .json({ message: "La ligne de commande existe déjà" });
-    }
-
     const newOrderLine = await OrderLine.create(req.body);
     res.status(201).json({ message: "created", data: newOrderLine });
   } catch (error) {
