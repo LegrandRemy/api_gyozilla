@@ -161,6 +161,8 @@ const stockController = require('../controllers/stockController')
 const { verifyToken } = require('../controllers/tokenController')
 
 router.get('/api/stock/', verifyToken, stockController.getAllStocks)
+router.get('/api/stock/franchise/:franchiseId', verifyToken, stockController.getStockByFranchise)
+router.get('/api/stock/ingredient/:ingredientId', verifyToken, stockController.getStockByIdIngredients)
 router.get('/api/stock/:id', verifyToken, stockController.getStock)
 router.post('/api/stock', verifyToken, stockController.createStock)
 router.patch('/api/stock/:id', verifyToken, stockController.updateStock)

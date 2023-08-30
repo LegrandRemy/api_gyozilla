@@ -215,6 +215,7 @@ router.get(
   '/api/products/category/:categoriesId',
   productController.getProductByCategories,
 )
+router.get('/api/products/lastProduct', productController.getLastProducts)
 router.get(
   '/api/products/menu/:menuId',
   productController.getProductByMenu,
@@ -226,7 +227,7 @@ router.post(
   upload.single('image'),
   productController.createProduct,
 )
-router.get('/api/products/lastProduct', productController.getLastProducts)
+
 router.patch('/api/products/:id', verifyToken, productController.updateProduct)
 router.delete('/api/products/:id', verifyToken, productController.deleteProduct)
 

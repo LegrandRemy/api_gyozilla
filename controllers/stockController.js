@@ -1,6 +1,7 @@
 const db = require('../models/index')
 const Stock = db['Stocks']
-// const Franchise = db['Franchises']
+const Ingredients = db['Ingredients']
+const Franchises= db['Franchises']
 const _ = require('lodash')
 const { Op } = require('sequelize')
 
@@ -42,8 +43,8 @@ exports.getStockByIdIngredients = async (req, res, next) => {
       where: { id_ingredients: ingredientId },
       include: [
         {
-          model: Franchise,
-          as: 'franchises',
+          model: Ingredients,
+          as: 'ingredients',
         },
       ],
     })
@@ -59,26 +60,21 @@ exports.getStockByIdIngredients = async (req, res, next) => {
 
 exports.getStockByFranchise = async (req, res, next) => {
   try {
-    const franchiseId = req.params.franchiseId
+    const franchiseId = req.params.franchiseId;
 
-    const stock = await db.Stocks.findAll({
-      where: { id_franchise: franchiseId },
-      include: [
-        {
-          model: db.Ingredient,
-          as: 'ingredients',
-        },
-      ],
-    })
+    const stock = await Stock.findAll({
+      where: { id_franchises: franchiseId },
+      include: ['ingredients']
+    });
 
-    res.status(200).json(stock)
+    res.status(200).json(stock);
   } catch (error) {
     res.status(500).json({
       message: 'Une erreur est survenue.',
       error: error.message,
-    })
+    });
   }
-}
+};
 
 exports.getStock = async (req, res) => {
   try {
@@ -113,37 +109,15 @@ exports.createStock = async (req, res) => {
 
 exports.updateStock = async (req, res) => {
   try {
-    const keys = Object.keys(req.body)
-    const columns = await Stock.describe()
-    const invalidFields = []
-    for (let i = 0; i < keys.length; i++) {
-      if (!columns.hasOwnProperty(keys[i])) {
-        invalidFields.push(keys[i])
-      }
-    }
-    if (invalidFields.length) {
-      return res.status(400).json({
-        message: `Le ou les champs qui n'existent pas : ${invalidFields.join(
-          ', ',
-        )}`,
-      })
-    }
-    const oldStock = await Stock.findByPk(req.params.id)
     const updatedStock = await Stock.update(req.body, {
       where: {
         id: req.params.id,
       },
     })
-    const newStock = await Stock.findByPk(req.params.id)
-    const updatedProperties = _.omitBy(newStock.dataValues, (value, key) =>
-      _.isEqual(value, oldStock.dataValues[key]),
-    )
-    const response = _.omit(updatedProperties, ['updatedAt'])
-
-    res.status(201).json({ message: 'updated', data: response })
+    res.status(200).json({ message: 'Mis à jour', data: updatedStock })
   } catch (error) {
     res.status(500).json({
-      message: "La stock n'a pas été mis à jour",
+      message: "Le stock a été mis à jour",
       error: error.message,
     })
   }

@@ -202,6 +202,11 @@ router.get(
   orderController.getOneOrderByCustomer,
 )
 router.get(
+  '/api/orders/franchise/:franchiseId/period/:period',
+  verifyToken,
+  orderController.getAllOrdersByFranchisePeriod,
+)
+router.get(
   '/api/orders/franchise/:franchiseId',
   verifyToken,
   orderController.getAllOrdersByFranchise,

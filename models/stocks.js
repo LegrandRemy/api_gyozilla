@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
       // association avec la table Franchise avec l'alias "franchise"
       Stocks.belongsTo(models.Franchises, {
         foreignKey: 'id_franchises',
-        as: 'franchise',
+        as: 'franchises'
       })
       // association avec la table Ingredient avec l'alias "ingredient"
       Stocks.belongsTo(models.Ingredients, {
