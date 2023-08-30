@@ -12,7 +12,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
-          name: "Machine",
+          name: "Matériel",
           createdAt: new Date(),
           updatedAt: new Date(),
         },

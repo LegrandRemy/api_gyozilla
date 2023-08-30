@@ -106,6 +106,7 @@ exports.getOneEmployeeByFranchise = async (req, res) => {
   try {
     const employee = await Employees.findAll({
       where: { id_franchises: franchiseId, id: employeeId },
+      include: ['roles'],
     })
     res.status(200).json({
       message: 'getOneEmployeeByFranchise',
