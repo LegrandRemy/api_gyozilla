@@ -134,15 +134,15 @@
  *         description: Le status n'a pas été trouvé.
  */
 
-const express = require('express')
-const router = express.Router()
-const statusController = require('../controllers/statusController')
-const { verifyToken } = require('../controllers/tokenController')
+const express = require("express");
+const router = express.Router();
+const statusController = require("../controllers/statusController");
+const { verifyToken } = require("../controllers/tokenController");
 
-router.get('/api/status', verifyToken, statusController.getAllStatus)
-router.get('/api/status/:id', verifyToken, statusController.getStatus)
-router.post('/api/status', verifyToken, statusController.createStatus)
-router.patch('/api/status/:id', verifyToken, statusController.updateStatus)
-router.delete('/api/status/:id', verifyToken, statusController.deleteStatus)
+router.get("/api/status", verifyToken, statusController.getAllStatus);
+router.get("/api/status/:id", verifyToken, statusController.getStatus);
+router.post("/api/status", verifyToken, statusController.createStatus);
+router.patch("/api/status/:id", verifyToken, statusController.updateStatus);
+router.delete("/api/status/:id", verifyToken, statusController.deleteStatus);
 
-module.exports = router
+module.exports = router;

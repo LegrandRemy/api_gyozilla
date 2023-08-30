@@ -1,47 +1,47 @@
-'use strict'
+"use strict";
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.bulkInsert(
-      'Ingredients',
+      "Ingredients",
       [
         {
-          name: 'Salade',
+          name: "Salade",
           purchasePrice: 40,
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
-          name: 'Tomate',
+          name: "Tomate",
           purchasePrice: 40,
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
-          name: 'Oignons',
+          name: "Oignons",
           purchasePrice: 40,
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
-          name: 'Steack',
+          name: "Steack",
           purchasePrice: 40,
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
-          name: 'Saucisse',
+          name: "Saucisse",
           purchasePrice: 40,
           createdAt: new Date(),
           updatedAt: new Date(),
         },
       ],
-      {},
-    )
+      {}
+    );
   },
 
   async down(queryInterface, Sequelize) {
-    await queryInterface.bulkDelete('Ingredients', null, {})
+    await queryInterface.bulkDelete("Ingredients", null, {});
   },
-}
+};

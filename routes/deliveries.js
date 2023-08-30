@@ -149,35 +149,35 @@
  *         description: La livraison n'a pas été trouvée.
  */
 
-const express = require('express')
-const router = express.Router()
-const deliveriesController = require('../controllers/deliveriesController')
-const { verifyToken } = require('../controllers/tokenController')
+const express = require("express");
+const router = express.Router();
+const deliveriesController = require("../controllers/deliveriesController");
+const { verifyToken } = require("../controllers/tokenController");
 
 router.get(
-  '/api/deliveries/',
+  "/api/deliveries/",
   verifyToken,
-  deliveriesController.getAllDeliveries,
-)
+  deliveriesController.getAllDeliveries
+);
 router.get(
-  '/api/deliveries/:id',
+  "/api/deliveries/:id",
   verifyToken,
-  deliveriesController.getDeliveries,
-)
+  deliveriesController.getDeliveries
+);
 router.post(
-  '/api/deliveries/',
+  "/api/deliveries/",
   verifyToken,
-  deliveriesController.createDeliveries,
-)
+  deliveriesController.createDeliveries
+);
 router.patch(
-  '/api/deliveries/:id',
+  "/api/deliveries/:id",
   verifyToken,
-  deliveriesController.updateDeliveries,
-)
+  deliveriesController.updateDeliveries
+);
 router.delete(
-  '/api/deliveries/:id',
+  "/api/deliveries/:id",
   verifyToken,
-  deliveriesController.deleteDeliveries,
-)
+  deliveriesController.deleteDeliveries
+);
 
-module.exports = router
+module.exports = router;

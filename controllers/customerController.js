@@ -220,7 +220,7 @@ exports.createCustomer = async (req, res) => {
       });
     }
   } catch (error) {
-    console.log(error)
+    console.log(error);
     res.status(500).json({
       message: "Le client n'a pas été créé",
       error: error.message,

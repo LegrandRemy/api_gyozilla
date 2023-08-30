@@ -149,30 +149,15 @@
  *         description: Le recrutement n'a pas été trouvée.
  */
 
-const express = require('express')
-const router = express.Router()
-const hiringController = require('../controllers/hiringController')
-const { verifyToken } = require('../controllers/tokenController')
+const express = require("express");
+const router = express.Router();
+const hiringController = require("../controllers/hiringController");
+const { verifyToken } = require("../controllers/tokenController");
 
-router.get(
-  '/api/hiring/',
-  hiringController.getAllHirings,
-)
-router.get('/api/hiring/:id', hiringController.getHirings)
-router.post(
-  '/api/hiring/',
-  verifyToken,
-  hiringController.createHirings,
-)
-router.patch(
-  '/api/hiring/:id',
-  verifyToken,
-  hiringController.updateHirings,
-)
-router.delete(
-  '/api/hiring/:id',
-  verifyToken,
-  hiringController.deleteHirings,
-)
+router.get("/api/hiring/", hiringController.getAllHirings);
+router.get("/api/hiring/:id", hiringController.getHirings);
+router.post("/api/hiring/", verifyToken, hiringController.createHirings);
+router.patch("/api/hiring/:id", verifyToken, hiringController.updateHirings);
+router.delete("/api/hiring/:id", verifyToken, hiringController.deleteHirings);
 
-module.exports = router
+module.exports = router;

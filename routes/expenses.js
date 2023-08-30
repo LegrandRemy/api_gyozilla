@@ -154,20 +154,24 @@
  *         description: La dépense n'a pas été trouvé.
  */
 
-const express = require('express')
-const router = express.Router()
-const expenseController = require('../controllers/expensesController')
-const { verifyToken } = require('../controllers/tokenController')
+const express = require("express");
+const router = express.Router();
+const expenseController = require("../controllers/expensesController");
+const { verifyToken } = require("../controllers/tokenController");
 
-router.get('/api/expenses', verifyToken, expenseController.getAllExpenses)
-router.get('/api/expenses/:id', verifyToken, expenseController.getExpense)
+router.get("/api/expenses", verifyToken, expenseController.getAllExpenses);
+router.get("/api/expenses/:id", verifyToken, expenseController.getExpense);
 router.get(
-  '/api/expenses/expense_types/:id',
+  "/api/expenses/expense_types/:id",
   verifyToken,
-  expenseController.getExpenseByExpenseType,
-)
-router.post('/api/expenses', verifyToken, expenseController.createExpense)
-router.patch('/api/expenses/:id', verifyToken, expenseController.updateExpense)
-router.delete('/api/expenses/:id', verifyToken, expenseController.deleteExpense)
+  expenseController.getExpenseByExpenseType
+);
+router.post("/api/expenses", verifyToken, expenseController.createExpense);
+router.patch("/api/expenses/:id", verifyToken, expenseController.updateExpense);
+router.delete(
+  "/api/expenses/:id",
+  verifyToken,
+  expenseController.deleteExpense
+);
 
-module.exports = router
+module.exports = router;

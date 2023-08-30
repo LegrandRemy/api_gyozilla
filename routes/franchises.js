@@ -159,30 +159,31 @@
  *         description: La franchise n'a pas été trouvée.
  */
 
-const express = require('express')
-const router = express.Router()
-const franchiseController = require('../controllers/franchisesController')
-const { verifyToken } = require('../controllers/tokenController')
+const express = require("express");
+const router = express.Router();
+const franchiseController = require("../controllers/franchisesController");
+const { verifyToken } = require("../controllers/tokenController");
 
+router.get("/api/franchises/", franchiseController.getAllFranchises);
 router.get(
-  '/api/franchises/',
-  franchiseController.getAllFranchises,
-)
-router.get('/api/franchises/:id', verifyToken, franchiseController.getFranchise)
+  "/api/franchises/:id",
+  verifyToken,
+  franchiseController.getFranchise
+);
 router.post(
-  '/api/franchises/',
+  "/api/franchises/",
   verifyToken,
-  franchiseController.createFranchise,
-)
+  franchiseController.createFranchise
+);
 router.patch(
-  '/api/franchises/:id',
+  "/api/franchises/:id",
   verifyToken,
-  franchiseController.updateFranchise,
-)
+  franchiseController.updateFranchise
+);
 router.delete(
-  '/api/franchises/:id',
+  "/api/franchises/:id",
   verifyToken,
-  franchiseController.deleteFranchise,
-)
+  franchiseController.deleteFranchise
+);
 
-module.exports = router
+module.exports = router;
