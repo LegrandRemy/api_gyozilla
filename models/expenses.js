@@ -1,20 +1,20 @@
 'use strict'
 const { Model } = require('sequelize')
 module.exports = (sequelize, DataTypes) => {
-  class Roles extends Model {
+  class Expenses extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      Roles.hasOne(models.Employees, {
-        as: 'employees',
-        foreignKey: 'id_roles',
-      })
+        Expenses.belongsTo(models.ExpenseTypes, {
+            as: 'expense_type',
+            foreignKey: 'id_expense_types',
+        })
     }
   }
-  Roles.init(
+  Expenses.init(
     {
       name: {
         type: DataTypes.STRING(50),
@@ -22,11 +22,23 @@ module.exports = (sequelize, DataTypes) => {
           notEmpty: true,
         },
       },
+      id_expense_types: {
+        type: DataTypes.INTEGER(),
+        validate: {
+          notEmpty: true,
+        },
+      },
+      amount: {
+        type: DataTypes.INTEGER(),
+        validate: {
+          notEmpty: true,
+        },
+      },
     },
     {
       sequelize,
-      modelName: 'Roles',
+      modelName: 'Expenses',
     },
   )
-  return Roles
+  return Expenses
 }
