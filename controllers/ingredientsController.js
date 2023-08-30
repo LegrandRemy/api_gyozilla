@@ -57,33 +57,12 @@ exports.createIngredient = async (req, res) => {
 
 exports.updateIngredient = async (req, res) => {
   try {
-    const keys = Object.keys(req.body)
-    const columns = await Ingredient.describe()
-    const invalidFields = []
-    for (let i = 0; i < keys.length; i++) {
-      if (!columns.hasOwnProperty(keys[i])) {
-        invalidFields.push(keys[i])
-      }
-    }
-    if (invalidFields.length) {
-      return res.status(400).json({
-        message: `Le ou les champs qui n'existent pas : ${invalidFields.join(
-          ', ',
-        )}`,
-      })
-    }
-    const oldIngredient = await Ingredient.findByPk(req.params.id)
     const updatedIngredient = await Ingredient.update(req.body, {
       where: {
         id: req.params.id,
       },
     })
-    const newIngredient = await Ingredient.findByPk(req.params.id)
-    const updatedProperties = _.omitBy(newIngredient.dataValues, (value, key) =>
-      _.isEqual(value, oldIngredient.dataValues[key]),
-    )
-    const response = _.omit(updatedProperties, ['updatedAt'])
-    res.status(200).json({ message: 'Mis à jour', data: response })
+    res.status(200).json({ message: 'Mis à jour', data: updatedIngredient })
   } catch (error) {
     res.status(500).json({
       message: "L'ingrédient n'a pas été mise à jour",

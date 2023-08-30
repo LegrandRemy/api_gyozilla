@@ -107,6 +107,12 @@ router.post(
   verifyToken,
   ingredientController.createIngredient,
 )
+router.patch(
+  '/api/ingredients/:id',
+  verifyToken,
+  ingredientController.updateIngredient,
+)
+
 router.delete(
   '/api/ingredients/:id',
   verifyToken,
