@@ -4,25 +4,22 @@ const bcrypt = require('bcryptjs')
 const _ = require('lodash')
 const { Op } = require('sequelize')
 
-exports.is_exist = async (id) => {
-  Employees.findOne(
-    {
-      $where: [
-        {
-          id: id,
-        },
-      ],
-    },
-    (err, employee) => {
-      if (err) throw err
-      if (employee) {
-        return true
-      } else {
-        return false
-      }
-    },
-  )
-}
+exports.is_exist = async (req, res) => {
+  const email = req.params.email;
+
+  try {
+    const employee = await Employees.findOne({ where: { email: email } });
+    if (employee) {
+      return res.status(200).json({ message: "true" });
+    }
+    else {
+      return res.status(200).json({ message: "false" });
+    }
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ message: "Erreur serveur" });
+  }
+};
 
 exports.getAllEmployees = async (req, res) => {
   try {
@@ -182,6 +179,9 @@ exports.updateEmployee = async (req, res) => {
           ', ',
         )}`,
       })
+    }
+    if (req.body.hasOwnProperty('password')) {
+      req.body.password = await bcrypt.hash(req.body.password, 10);
     }
     const oldEmployee = await Employees.findByPk(req.params.id)
     const updatedEmployee = await Employees.update(req.body, {

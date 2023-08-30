@@ -30,7 +30,7 @@
  *           description: Type de commande
  *       example:
  *         id: 1
- *         date_order: "2023-11-02"
+ *         date_order: "2023-07-27T11:26:30.667Z"
  *         total_price: 25
  *         id_status: 1
  *         id_franchises: 1
@@ -215,6 +215,11 @@ router.get(
   '/api/orders/status/:idStatus',
   verifyToken,
   orderController.getOrderByStatus,
+)
+router.get(
+  '/api/orders/franchise/:franchiseId/period/:period',
+  verifyToken,
+  orderController.getAllOrdersByFranchisePeriod,
 )
 router.post('/api/orders', verifyToken, orderController.createOrder)
 router.patch('/api/orders/:id', verifyToken, orderController.updateOrder)

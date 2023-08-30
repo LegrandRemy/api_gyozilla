@@ -25,6 +25,7 @@ module.exports = {
         {
           name: 'Nouveau plat signature : "Le Gyozilla Roll, un festival de saveurs enroulées !"',
           image: "news/3.jpg",
+
           description:
             "Nous sommes ravis de vous présenter notre tout nouveau plat signature, le Gyozilla Roll. Ce rouleau délicieux et créatif est préparé avec des ingrédients frais soigneusement sélectionnés tels que le crabe royal, l'avocat crémeux et la sauce spéciale Gyozilla. Laissez-vous séduire par cette explosion de saveurs et offrez à vos papilles une expérience unique.",
           createdAt: new Date(),

@@ -41,7 +41,7 @@ exports.getAllOrders = async (req, res) => {
       where: {
         [Op.and]: [where],
       },
-      include: ['order_type'],
+      include: ["order_type", "order_lines", "customers"],
     })
     res.status(200).json(orders)
   } catch (error) {
@@ -141,6 +141,16 @@ exports.getAllOrdersByFranchise = async (req, res) => {
   try {
     const orders = await Order.findAll({
       where: { id_franchises: franchiseId },
+      include: [
+        "order_status",
+        "order_type",
+        {
+          model: OrderLines,
+          as: "order_lines",
+          include: ["products"],
+        },
+        "customers",
+      ],
     })
     res.status(200).json({
       message: 'getAllOrdersByFranchise',
@@ -153,7 +163,6 @@ exports.getAllOrdersByFranchise = async (req, res) => {
     })
   }
 }
-
 
 exports.getAllOrdersByFranchisePeriod = async (req, res) => {
   const franchiseId = req.params.franchiseId;
@@ -250,7 +259,6 @@ exports.getAllOrdersByFranchisePeriod = async (req, res) => {
   }
 };
 
-
 exports.getOrderByStatus = async (req, res) => {
   const idStatus = req.params.idStatus
   try {
@@ -272,6 +280,9 @@ exports.getOrderByStatus = async (req, res) => {
 
 exports.createOrder = async (req, res) => {
   try {
+    if(req.body.date_order === undefined){
+       req.body.date_order = new Date();
+    }
     const newOrder = await Order.create(req.body)
     res.status(201).json({ message: 'created', data: newOrder })
   } catch (error) {

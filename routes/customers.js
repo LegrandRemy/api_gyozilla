@@ -174,6 +174,7 @@ router.get('/api/customers/', verifyToken, customerController.getAllCustomers)
 router.get('/api/customers/:id', verifyToken, customerController.getCustomer)
 router.post('/api/customers', customerController.createCustomer)
 router.get('/api/customers/verify/:token', customerController.verifyCustomer)
+router.get('/api/customers/exist/:email', customerController.is_exist)
 router.patch(
   '/api/customers/:id',
   verifyToken,
