@@ -31,8 +31,8 @@ exports.getAllOrders = async (req, res) => {
     if (req.query.date_order) {
       where.date_order = req.query.date_order;
     }
-    if (req.query.id_type_oders) {
-      where.id_type_oders = req.query.id_type_oders;
+    if (req.query.id_order_types) {
+      where.id_order_types = req.query.id_order_types;
     }
     const orders = await Order.findAll({
       where: {
@@ -286,7 +286,7 @@ exports.createOrder = async (req, res) => {
         id_status: req.body.id_status,
         id_franchises: req.body.id_franchises,
         date_order: req.body.date_order,
-        id_type_orders: req.body.id_type_orders,
+        id_order_types: req.body.id_order_types,
       },
     });
 
