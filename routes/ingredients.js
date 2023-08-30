@@ -87,41 +87,41 @@
  *         description: L'ingredient n'a pas été trouvé.
  */
 
-const express = require('express')
-const router = express.Router()
-const ingredientController = require('../controllers/ingredientsController')
-const { verifyToken } = require('../controllers/tokenController')
+const express = require("express");
+const router = express.Router();
+const ingredientController = require("../controllers/ingredientsController");
+const { verifyToken } = require("../controllers/tokenController");
 
 router.get(
-  '/api/ingredients/',
+  "/api/ingredients/",
   verifyToken,
-  ingredientController.getAllIngredients,
-)
+  ingredientController.getAllIngredients
+);
 router.get(
-  '/api/ingredients/:id',
+  "/api/ingredients/:id",
   verifyToken,
-  ingredientController.getIngredient,
-)
+  ingredientController.getIngredient
+);
 router.post(
-  '/api/ingredients',
+  "/api/ingredients",
   verifyToken,
-  ingredientController.createIngredient,
-)
+  ingredientController.createIngredient
+);
 router.patch(
-  '/api/ingredients/:id',
+  "/api/ingredients/:id",
   verifyToken,
-  ingredientController.updateIngredient,
-)
+  ingredientController.updateIngredient
+);
 
 router.delete(
-  '/api/ingredients/:id',
+  "/api/ingredients/:id",
   verifyToken,
-  ingredientController.deleteIngredient,
-)
+  ingredientController.deleteIngredient
+);
 router.patch(
-  '/api/ingredients/:id',
+  "/api/ingredients/:id",
   verifyToken,
-  ingredientController.updateIngredient,
-)
+  ingredientController.updateIngredient
+);
 
-module.exports = router
+module.exports = router;

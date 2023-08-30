@@ -183,27 +183,39 @@
  *         description: L'employé n'a pas été trouvé.
  */
 
-const express = require('express')
-const router = express.Router()
-const employeeController = require('../controllers/employeeController')
-const { verifyToken } = require('../controllers/tokenController')
+const express = require("express");
+const router = express.Router();
+const employeeController = require("../controllers/employeeController");
+const { verifyToken } = require("../controllers/tokenController");
 
-router.get('/api/employees/', verifyToken, employeeController.getAllEmployees)
-router.get('/api/employees/:id', verifyToken, employeeController.getEmployee)
-router.get('/api/employees/franchises/:franchiseId', verifyToken, employeeController.getAllEmployeeByFranchise)
-router.get('/api/employees/roles/:roleId', verifyToken, employeeController.getAllEmployeeByRole)
-router.get('/api/employees/:employeeId/franchises/:franchiseId', verifyToken, employeeController.getOneEmployeeByFranchise)
-router.get('/api/employees/exist/:email', employeeController.is_exist)
-router.post('/api/employees/', verifyToken, employeeController.createEmployee)
+router.get("/api/employees/", verifyToken, employeeController.getAllEmployees);
+router.get("/api/employees/:id", verifyToken, employeeController.getEmployee);
+router.get(
+  "/api/employees/franchises/:franchiseId",
+  verifyToken,
+  employeeController.getAllEmployeeByFranchise
+);
+router.get(
+  "/api/employees/roles/:roleId",
+  verifyToken,
+  employeeController.getAllEmployeeByRole
+);
+router.get(
+  "/api/employees/:employeeId/franchises/:franchiseId",
+  verifyToken,
+  employeeController.getOneEmployeeByFranchise
+);
+router.get("/api/employees/exist/:email", employeeController.is_exist);
+router.post("/api/employees/", verifyToken, employeeController.createEmployee);
 router.patch(
-  '/api/employees/:id',
+  "/api/employees/:id",
   verifyToken,
-  employeeController.updateEmployee,
-)
+  employeeController.updateEmployee
+);
 router.delete(
-  '/api/employees/:id',
+  "/api/employees/:id",
   verifyToken,
-  employeeController.deleteEmployee,
-)
+  employeeController.deleteEmployee
+);
 
-module.exports = router
+module.exports = router;

@@ -31,7 +31,6 @@
  *         menu_reference: 180
  */
 
-
 /**
  * @swagger
  * tags:
@@ -166,36 +165,35 @@
  *         description: La commande n'a pas été trouvé.
  */
 
-
-const express = require('express')
-const router = express.Router()
-const orderLinesController = require('../controllers/order_linesController')
-const { verifyToken } = require('../controllers/tokenController')
+const express = require("express");
+const router = express.Router();
+const orderLinesController = require("../controllers/order_linesController");
+const { verifyToken } = require("../controllers/tokenController");
 
 router.get(
-  '/api/order_lines',
+  "/api/order_lines",
   verifyToken,
-  orderLinesController.getAllOrderLines,
-)
+  orderLinesController.getAllOrderLines
+);
 router.get(
-  '/api/order_lines/:id',
+  "/api/order_lines/:id",
   verifyToken,
-  orderLinesController.getOrderLine,
-)
+  orderLinesController.getOrderLine
+);
 router.post(
-  '/api/order_lines',
+  "/api/order_lines",
   verifyToken,
-  orderLinesController.createOrderLine,
-)
+  orderLinesController.createOrderLine
+);
 router.patch(
-  '/api/order_lines/:id',
+  "/api/order_lines/:id",
   verifyToken,
-  orderLinesController.updateOrderLine,
-)
+  orderLinesController.updateOrderLine
+);
 router.delete(
-  '/api/order_lines/:id',
+  "/api/order_lines/:id",
   verifyToken,
-  orderLinesController.deleteOrderLine,
-)
+  orderLinesController.deleteOrderLine
+);
 
-module.exports = router
+module.exports = router;

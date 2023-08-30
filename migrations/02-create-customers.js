@@ -1,8 +1,8 @@
-'use strict'
+"use strict";
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Customers', {
+    await queryInterface.createTable("Customers", {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -23,11 +23,11 @@ module.exports = {
       },
       fidelityPoints: {
         type: Sequelize.INTEGER,
-        defaultValue: 0
+        defaultValue: 0,
       },
       is_verified: {
         type: Sequelize.BOOLEAN,
-        defaultValue: false
+        defaultValue: false,
       },
       createdAt: {
         allowNull: false,
@@ -37,9 +37,9 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE,
       },
-    })
+    });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Customers')
+    await queryInterface.dropTable("Customers");
   },
-}
+};

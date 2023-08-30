@@ -184,45 +184,45 @@
  *         description: La commande n'a pas été trouvé.
  */
 
-const express = require('express')
-const router = express.Router()
-const orderController = require('../controllers/ordersController')
-const { verifyToken } = require('../controllers/tokenController')
+const express = require("express");
+const router = express.Router();
+const orderController = require("../controllers/ordersController");
+const { verifyToken } = require("../controllers/tokenController");
 
-router.get('/api/orders', verifyToken, orderController.getAllOrders)
-router.get('/api/orders/:id', verifyToken, orderController.getOrder)
+router.get("/api/orders", verifyToken, orderController.getAllOrders);
+router.get("/api/orders/:id", verifyToken, orderController.getOrder);
 router.get(
-  '/api/orders/customers/:id',
+  "/api/orders/customers/:id",
   verifyToken,
-  orderController.getOrderByCustomer,
-)
+  orderController.getOrderByCustomer
+);
 router.get(
-  '/api/orders/:orderId/customers/:customerId',
+  "/api/orders/:orderId/customers/:customerId",
   verifyToken,
-  orderController.getOneOrderByCustomer,
-)
+  orderController.getOneOrderByCustomer
+);
 router.get(
-  '/api/orders/franchise/:franchiseId/period/:period',
+  "/api/orders/franchise/:franchiseId/period/:period",
   verifyToken,
-  orderController.getAllOrdersByFranchisePeriod,
-)
+  orderController.getAllOrdersByFranchisePeriod
+);
 router.get(
-  '/api/orders/franchise/:franchiseId',
+  "/api/orders/franchise/:franchiseId",
   verifyToken,
-  orderController.getAllOrdersByFranchise,
-)
+  orderController.getAllOrdersByFranchise
+);
 router.get(
-  '/api/orders/status/:idStatus',
+  "/api/orders/status/:idStatus",
   verifyToken,
-  orderController.getOrderByStatus,
-)
+  orderController.getOrderByStatus
+);
 router.get(
-  '/api/orders/franchise/:franchiseId/period/:period',
+  "/api/orders/franchise/:franchiseId/period/:period",
   verifyToken,
-  orderController.getAllOrdersByFranchisePeriod,
-)
-router.post('/api/orders', verifyToken, orderController.createOrder)
-router.patch('/api/orders/:id', verifyToken, orderController.updateOrder)
-router.delete('/api/orders/:id', verifyToken, orderController.deleteOrder)
+  orderController.getAllOrdersByFranchisePeriod
+);
+router.post("/api/orders", verifyToken, orderController.createOrder);
+router.patch("/api/orders/:id", verifyToken, orderController.updateOrder);
+router.delete("/api/orders/:id", verifyToken, orderController.deleteOrder);
 
-module.exports = router
+module.exports = router;
