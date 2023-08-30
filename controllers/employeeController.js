@@ -51,6 +51,7 @@ exports.getAllEmployees = async (req, res) => {
     const employees = await Employees.findAll({
       where: {
         [Op.and]: [where],
+        include: ['roles'],
       },
     })
     res.status(200).json(employees)
