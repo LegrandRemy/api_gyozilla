@@ -20,6 +20,8 @@ const order_linesRoute = require('./order_lines')
 const order_typesRoute = require('./order_types')
 const hiringRoute = require('./hiring')
 const newsRoute = require('./news')
+const expensesRoute = require('./expenses')
+const expenseTypesRoute = require('./expense_types')
 
 module.exports = {
   tokenRoute,
@@ -43,4 +45,6 @@ module.exports = {
   order_typesRoute,
   hiringRoute,
   newsRoute,
+  expensesRoute,
+  expenseTypesRoute,
 }
