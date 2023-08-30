@@ -19,9 +19,6 @@ exports.getAllOrders = async (req, res) => {
     if (req.query.id) {
       where.id = req.query.id;
     }
-    if (req.query.status) {
-      where.status = req.query.status;
-    }
     if (req.query.total_price) {
       where.total_price = req.query.total_price;
     }
@@ -285,7 +282,6 @@ exports.createOrder = async (req, res) => {
     }
     const existingOrder = await Order.findOne({
       where: {
-        status: req.body.status,
         total_price: req.body.total_price,
         id_status: req.body.id_status,
         id_franchises: req.body.id_franchises,
