@@ -86,6 +86,7 @@ exports.getAllEmployeeByRole = async (req, res) => {
   try {
     const employees = await Employees.findAll({
       where: { id_roles: roleId },
+      include: ['roles'],
     })
     res.status(200).json({
       message: 'getAllEmployeeByRole',
