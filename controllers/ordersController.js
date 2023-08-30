@@ -290,7 +290,7 @@ exports.createOrder = async (req, res) => {
         id_status: req.body.id_status,
         id_franchises: req.body.id_franchises,
         date_order: req.body.date_order,
-        id_type_oders: req.body.id_type_oders,
+        id_type_orders: req.body.id_type_orders,
       },
     });
 
