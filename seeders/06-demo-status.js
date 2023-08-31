@@ -7,12 +7,22 @@ module.exports = {
       "Status",
       [
         {
-          name: "En cours",
+          name: "Paiement en attente",
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
-          name: "Paiement en attente",
+          name: "Payé",
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          name: "En cours de préparation",
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          name: "Préparé",
           createdAt: new Date(),
           updatedAt: new Date(),
         },
