@@ -154,15 +154,15 @@
  *         description: L'évaluation n'a pas été trouvée.
  */
 
-const express = require('express')
-const router = express.Router()
-const ratingsController = require('../controllers/ratingsController')
-const { verifyToken } = require('../controllers/tokenController')
+const express = require("express");
+const router = express.Router();
+const ratingsController = require("../controllers/ratingsController");
+const { verifyToken } = require("../controllers/tokenController");
 
-router.get('/api/ratings/', verifyToken, ratingsController.getAllRatings)
-router.get('/api/ratings/:id', verifyToken, ratingsController.getRating)
-router.post('/api/ratings', verifyToken, ratingsController.createRating)
-router.patch('/api/ratings/:id', verifyToken, ratingsController.updateRating)
-router.delete('/api/ratings/:id', verifyToken, ratingsController.deleteRating)
+router.get("/api/ratings/", verifyToken, ratingsController.getAllRatings);
+router.get("/api/ratings/:id", verifyToken, ratingsController.getRating);
+router.post("/api/ratings", verifyToken, ratingsController.createRating);
+router.patch("/api/ratings/:id", verifyToken, ratingsController.updateRating);
+router.delete("/api/ratings/:id", verifyToken, ratingsController.deleteRating);
 
-module.exports = router
+module.exports = router;

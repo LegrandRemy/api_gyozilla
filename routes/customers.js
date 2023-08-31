@@ -163,26 +163,30 @@
  *         description: Le client n'a pas été trouvé.
  */
 
-const express = require('express')
-const router = express.Router()
-const customerController = require('../controllers/customerController')
-const { verifyToken } = require('../controllers/tokenController')
+const express = require("express");
+const router = express.Router();
+const customerController = require("../controllers/customerController");
+const { verifyToken } = require("../controllers/tokenController");
 
-router.post('/api/customers/forgot-password', customerController.forgotPassword)
-router.post('/api/customers/reset-password', customerController.resetPassword)
-router.get('/api/customers/', verifyToken, customerController.getAllCustomers)
-router.get('/api/customers/:id', verifyToken, customerController.getCustomer)
-router.post('/api/customers', customerController.createCustomer)
-router.get('/api/customers/verify/:token', customerController.verifyCustomer)
+router.post(
+  "/api/customers/forgot-password",
+  customerController.forgotPassword
+);
+router.post("/api/customers/reset-password", customerController.resetPassword);
+router.get("/api/customers/", verifyToken, customerController.getAllCustomers);
+router.get("/api/customers/:id", verifyToken, customerController.getCustomer);
+router.post("/api/customers", customerController.createCustomer);
+router.get("/api/customers/verify/:token", customerController.verifyCustomer);
+router.get("/api/customers/exist/:email", customerController.is_exist);
 router.patch(
-  '/api/customers/:id',
+  "/api/customers/:id",
   verifyToken,
-  customerController.updateUser,
-)
+  customerController.updateCustomer
+);
 router.delete(
-  '/api/customers/:id',
+  "/api/customers/:id",
   verifyToken,
-  customerController.deleteCustomer,
-)
+  customerController.deleteCustomer
+);
 
-module.exports = router
+module.exports = router;
