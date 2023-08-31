@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: "id_ingredients",
         as: "stocks",
       });
-      Ingredients.hasOne(models.UnitOfMeasures, {
+      Ingredients.belongsTo(models.UnitOfMeasures, {
         foreignKey: "id_unitOfMeasure",
         as: "unitofmeasure",
       });

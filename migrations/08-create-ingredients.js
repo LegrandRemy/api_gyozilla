@@ -15,6 +15,9 @@ module.exports = {
       purchasePrice: {
         type: Sequelize.FLOAT(6, 2),
       },
+      id_unitOfMeasure: {
+        type: Sequelize.INTEGER,
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

@@ -21,6 +21,7 @@ exports.getAllIngredients = async (req, res) => {
       where: {
         [Op.and]: [where],
       },
+      include: ['unitofmeasure'],
     });
     res.status(200).json(ingredient);
   } catch (error) {
