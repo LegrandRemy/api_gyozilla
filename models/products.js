@@ -67,6 +67,12 @@ module.exports = (sequelize, DataTypes) => {
           notEmpty: true,
         },
       },
+      status: {
+        type: DataTypes.BOOLEAN,
+        validate: {
+          notEmpty: true,
+        },
+      },
     },
     {
       sequelize,
