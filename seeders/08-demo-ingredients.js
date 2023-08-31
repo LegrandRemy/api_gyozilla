@@ -9,7 +9,7 @@ module.exports = {
         {
           name: "Salade",
           purchasePrice: 40,
-          id_unitOfMeasure: 3
+          id_unitOfMeasure: 3,
           createdAt: new Date(),
           updatedAt: new Date(),
         },
