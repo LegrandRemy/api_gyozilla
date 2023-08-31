@@ -12,6 +12,10 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: "id_ingredients",
         as: "stocks",
       });
+      Ingredients.hasOne(models.UnitOfMeasures, {
+        foreignKey: "id_unitOfMeasure",
+        as: "unitofmeasure",
+      });
     }
   }
   Ingredients.init(
@@ -24,6 +28,12 @@ module.exports = (sequelize, DataTypes) => {
       },
       purchasePrice: {
         type: DataTypes.FLOAT(6, 2),
+        validate: {
+          notEmpty: true,
+        },
+      },
+      id_unitOfMeasures: {
+        type: DataTypes.INTEGER,
         validate: {
           notEmpty: true,
         },
