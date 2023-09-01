@@ -41,6 +41,9 @@ module.exports = (sequelize, DataTypes) => {
       menu_reference: {
         type: DataTypes.INTEGER,
       },
+      status: {
+        type: DataTypes.BOOLEAN,
+      },
     },
     {
       sequelize,
