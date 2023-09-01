@@ -1,32 +1,30 @@
-"use strict";
-const { Model } = require("sequelize");
+'use strict';
+const { Model } = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
-class UnitOfMeasures extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
+  class UnitOfMeasures extends Model {
     static associate(models) {
-    UnitOfMeasures.hasMany(models.Ingredients, {
-        foreignKey: "id_unitOfMeasures",
-        as: "unitofmeasure",
-    });
+      UnitOfMeasures.hasMany(models.Ingredients, {
+        foreignKey: 'id_unitOfMeasures',
+        as: 'ingredients',
+      });
     }
-}
-UnitOfMeasures.init(
+  }
+
+  UnitOfMeasures.init(
     {
-    label: {
+      label: {
         type: DataTypes.STRING(50),
-        validate: {
-        notEmpty: true,
-        },
-    },
+        allowNull: false,
+      },
     },
     {
-    sequelize,
-    modelName: "UnitOfMeasures",
+      sequelize,
+      modelName: 'UnitOfMeasures',
+      timestamps: true, // Activer les horodateurs
+      updatedAt: false, // Désactiver le champ updatedAt si nécessaire
     }
-);
-return UnitOfMeasures;
+  );
+
+  return UnitOfMeasures;
 };

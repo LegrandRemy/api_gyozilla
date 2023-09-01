@@ -1,48 +1,40 @@
-"use strict";
-const { Model } = require("sequelize");
+'use strict';
+const { Model } = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
   class Ingredients extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
     static associate(models) {
       Ingredients.hasMany(models.Stocks, {
-        foreignKey: "id_ingredients",
-        as: "stocks",
+        foreignKey: 'id_ingredients',
+        as: 'stocks',
       });
-      Ingredients.belongsTo(models.UnitOfMeasures, {
-        foreignKey: "id_unitOfMeasure",
-        as: "unitofmeasure",
+      Ingredients.belongsTo(models.UnitOfMeasures, {   // Utilisation de "belongsTo" au lieu de "hasOne"
+        foreignKey: 'id_unitOfMeasures',
+        as: 'unitOfMeasures',
       });
     }
   }
+
   Ingredients.init(
     {
       name: {
         type: DataTypes.STRING(50),
-        validate: {
-          notEmpty: true,
-        },
+        allowNull: false,   // Utilisation de "allowNull" au lieu de "validate"
       },
       purchasePrice: {
         type: DataTypes.FLOAT(6, 2),
-        validate: {
-          notEmpty: true,
-        },
+        allowNull: false,
       },
       id_unitOfMeasures: {
         type: DataTypes.INTEGER,
-        validate: {
-          notEmpty: true,
-        },
+        allowNull: false,
       },
     },
     {
       sequelize,
-      modelName: "Ingredients",
+      modelName: 'Ingredients',
     }
   );
+
   return Ingredients;
 };
