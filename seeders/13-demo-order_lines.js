@@ -1,32 +1,38 @@
-'use strict'
+"use strict";
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.bulkInsert(
-      'OrderTypes',
+      "OrderLines",
       [
         {
-          name: "Click & Collect",
+          quantity: 6,
+          id_orders: 1,
+          id_products: 1,
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
-          name: "Livraison à domicile",
+          quantity: 3,
+          id_orders: 2,
+          id_products: 2,
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
-          name: "Consommation sur place",
+          quantity: 5,
+          id_orders: 2,
+          id_products: 3,
           createdAt: new Date(),
           updatedAt: new Date(),
         },
       ],
-      {},
-    )
+      {}
+    );
   },
 
   async down(queryInterface, Sequelize) {
-    await queryInterface.bulkDelete('OrderTypes', null, {})
+    await queryInterface.bulkDelete("OrderLines", null, {});
   },
-}
+};

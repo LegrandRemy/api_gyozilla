@@ -151,23 +151,23 @@
  *         description: Le fournisseur n'a pas été trouvé.
  */
 
-const express = require('express')
-const router = express.Router()
-const suppliersController = require('../controllers/suppliersController')
-const { verifyToken } = require('../controllers/tokenController')
+const express = require("express");
+const router = express.Router();
+const suppliersController = require("../controllers/suppliersController");
+const { verifyToken } = require("../controllers/tokenController");
 
-router.get('/api/suppliers', verifyToken, suppliersController.getAllSuppliers)
-router.get('/api/suppliers/:id', verifyToken, suppliersController.getSupplier)
-router.post('/api/suppliers', verifyToken, suppliersController.createSupplier)
+router.get("/api/suppliers", verifyToken, suppliersController.getAllSuppliers);
+router.get("/api/suppliers/:id", verifyToken, suppliersController.getSupplier);
+router.post("/api/suppliers", verifyToken, suppliersController.createSupplier);
 router.patch(
-  '/api/suppliers/:id',
+  "/api/suppliers/:id",
   verifyToken,
-  suppliersController.updateSupplier,
-)
+  suppliersController.updateSupplier
+);
 router.delete(
-  '/api/suppliers/:id',
+  "/api/suppliers/:id",
   verifyToken,
-  suppliersController.deleteSupplier,
-)
+  suppliersController.deleteSupplier
+);
 
-module.exports = router
+module.exports = router;

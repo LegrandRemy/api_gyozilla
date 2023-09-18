@@ -48,7 +48,7 @@ exports.forgotPassword = async (req, res) => {
     const token = jwt.sign({ userId: customer.id }, secret, options);
     const resetUrl = `${process.env.URL_APP}reset-password?token=${token}`;
     const message = {
-      from: "gyozillacontact@gmail.com",
+      from: process.env.HOSTINGER_USER,
       to: customer.email,
       subject: "Réinitialisation de mot de passe",
       text: `Bonjour ${customer.firstname}, veuillez cliquer sur le lien suivant pour réinitialiser votre mot de passe : ${resetUrl}`,
@@ -194,7 +194,7 @@ exports.createCustomer = async (req, res) => {
       const token = jwt.sign({ email: newCustomer.email }, secret, options);
       const validatedUrl = `${process.env.URL_APP}verify/${token}`;
       const message = {
-        from: "gyozillacontact@gmail.com",
+        from: process.env.HOSTINGER_USER,
         to: newCustomer.email,
         subject: "Validation du compte",
         text: `Bonjour ${newCustomer.firstname}, Veuillez cliquer sur le lien suivant pour valider votre compte afin de vous connecter : ${validatedUrl}`,
@@ -220,7 +220,7 @@ exports.createCustomer = async (req, res) => {
       });
     }
   } catch (error) {
-    console.log(error)
+    console.log(error);
     res.status(500).json({
       message: "Le client n'a pas été créé",
       error: error.message,

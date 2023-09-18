@@ -1,7 +1,6 @@
 const tokenRoute = require("./token");
 const rolesRoute = require("./roles");
 const customersRoute = require("./customers");
-const contactRoute = require("./contact");
 const franchisesRoute = require("./franchises");
 const suppliersRoute = require("./suppliers");
 const product_categoriesRoute = require("./product_categories");
@@ -20,6 +19,8 @@ const order_linesRoute = require("./order_lines");
 const order_typesRoute = require("./order_types");
 const hiringRoute = require("./hiring");
 const newsRoute = require("./news");
+const expensesRoute = require("./expenses");
+const expenseTypesRoute = require("./expense_types");
 
 module.exports = {
   tokenRoute,
@@ -44,6 +45,6 @@ module.exports = {
   order_typesRoute,
   hiringRoute,
   newsRoute,
+  expensesRoute,
+  expenseTypesRoute,
 };
-
-// "start": "npx sequelize-cli db:drop && npx sequelize-cli db:create && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all && node index.js"

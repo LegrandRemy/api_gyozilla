@@ -1,10 +1,10 @@
-'use strict'
+"use strict";
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.bulkInsert(
-      'Products',
+      "Products",
       [
         {
           name: "Nem",
@@ -52,7 +52,8 @@ module.exports = {
         },
         {
           name: "Maki comcombre",
-          description: "Délicieux maki aux comcombres délicats et juteux avec du fromage",
+          description:
+            "Délicieux maki aux comcombres délicats et juteux avec du fromage",
           image: "products/6.jpg",
           price: 2,
           creation_steps: "1. Préparer une feuille d'algue...",
@@ -239,7 +240,8 @@ module.exports = {
         },
         {
           name: "Crevettes sautées sel et poivre",
-          description: "Délicieuse crevettes sautées simplement au sel et au poivre",
+          description:
+            "Délicieuse crevettes sautées simplement au sel et au poivre",
           image: "products/23.jpg",
           price: 10,
           creation_steps: "",
@@ -338,7 +340,8 @@ module.exports = {
         },
         {
           name: "Brochettes boeuf fromage",
-          description: "Excellente brochettes de boeuf au fromage mariné dans la sauce teriyaki",
+          description:
+            "Excellente brochettes de boeuf au fromage mariné dans la sauce teriyaki",
           image: "products/32.jpg",
           price: 5,
           creation_steps: "",
@@ -360,7 +363,8 @@ module.exports = {
         },
         {
           name: "Porc tonkatsu",
-          description: "Délicieux morceau de porc pané avec sauce tonkatsu maison",
+          description:
+            "Délicieux morceau de porc pané avec sauce tonkatsu maison",
           image: "products/34.jpg",
           price: 10,
           creation_steps: "",
@@ -404,7 +408,8 @@ module.exports = {
         },
         {
           name: "Poulet tonkatsu",
-          description: "Délicieux morceau de poulet pané avec sauce tonkatsu maison",
+          description:
+            "Délicieux morceau de poulet pané avec sauce tonkatsu maison",
           image: "products/38.jpg",
           price: 10,
           creation_steps: "",
@@ -426,7 +431,8 @@ module.exports = {
         },
         {
           name: "Brochettes de boulettes de poulet",
-          description: "Savoureuse brochette aux boulettes de poulet sauce teriyaki",
+          description:
+            "Savoureuse brochette aux boulettes de poulet sauce teriyaki",
           image: "products/40.jpg",
           price: 5,
           creation_steps: "",
@@ -514,7 +520,8 @@ module.exports = {
         },
         {
           name: "Steack haché frites",
-          description: "Incontournable steack frites pour les petits et les grands !",
+          description:
+            "Incontournable steack frites pour les petits et les grands !",
           image: "products/48.jpg",
           price: 7,
           creation_steps: "",
@@ -524,11 +531,11 @@ module.exports = {
           updatedAt: new Date(),
         },
       ],
-      {},
-    )
+      {}
+    );
   },
 
   async down(queryInterface, Sequelize) {
-    await queryInterface.bulkDelete('Products', null, {})
+    await queryInterface.bulkDelete("Products", null, {});
   },
-}
+};

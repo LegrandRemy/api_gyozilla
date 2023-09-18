@@ -18,7 +18,6 @@
  *         name: Click & Collect
  */
 
-
 /**
  * @swagger
  * tags:
@@ -108,29 +107,22 @@
  *         description: Le type de commande n'a pas été trouvé.
  */
 
+const express = require("express");
+const router = express.Router();
+const orderTypesController = require("../controllers/orderTypesController");
+const { verifyToken } = require("../controllers/tokenController");
 
-const express = require('express')
-const router = express.Router()
-const orderTypesController = require('../controllers/orderTypesController')
-const { verifyToken } = require('../controllers/tokenController')
-
-router.get(
-  '/api/order_types',
-  orderTypesController.getAllOrderTypes,
-)
-router.get(
-  '/api/order_types/:id',
-  orderTypesController.getOrderType,
-)
+router.get("/api/order_types", orderTypesController.getAllOrderTypes);
+router.get("/api/order_types/:id", orderTypesController.getOrderType);
 router.post(
-  '/api/order_types',
+  "/api/order_types",
   verifyToken,
-  orderTypesController.createOrderType,
-)
+  orderTypesController.createOrderType
+);
 router.delete(
-  '/api/order_types/:id',
+  "/api/order_types/:id",
   verifyToken,
-  orderTypesController.deleteOrderType,
-)
+  orderTypesController.deleteOrderType
+);
 
-module.exports = router
+module.exports = router;

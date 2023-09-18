@@ -23,6 +23,8 @@ const {
   order_typesRoute,
   hiringRoute,
   newsRoute,
+  expensesRoute,
+  expenseTypesRoute,
 } = require("./routes/routes");
 
 const express = require("express");
@@ -95,9 +97,11 @@ app.use(order_linesRoute);
 app.use(order_typesRoute);
 app.use(hiringRoute);
 app.use(newsRoute);
+app.use(expensesRoute);
+app.use(expenseTypesRoute);
 app.get("/", (req, res) => res.send("API Gyozilla"));
 app.listen(port, () =>
-  console.log(`Visiter l'API Gyozilla sur ${process.env.URL_API}`)
+  console.log(`Visiter l'API Gyozilla sur http://api.gyozilla-restaurants.fr/`)
 );
 app.use("/api", swaggerUi.serve, swaggerUi.setup(specs));
 app.use((req, res, next) => {

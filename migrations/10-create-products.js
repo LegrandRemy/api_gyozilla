@@ -1,39 +1,38 @@
-'use strict'
+"use strict";
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Employees', {
+    await queryInterface.createTable("Products", {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      login: {
+      name: {
+        type: Sequelize.STRING(50),
+      },
+      description: {
+        type: Sequelize.TEXT,
+      },
+      image: {
         type: Sequelize.STRING(100),
       },
-      lastname: {
-        type: Sequelize.STRING(50),
+      price: {
+        type: Sequelize.FLOAT(6, 2),
       },
-      firstname: {
-        type: Sequelize.STRING(50),
+      creation_steps: {
+        type: Sequelize.TEXT,
       },
-      phone: {
-        type: Sequelize.STRING(15),
-      },
-      email: {
-        allowNull: false,
-        type: Sequelize.STRING(50),
-      },
-      password: {
-        type: Sequelize.STRING(160),
-      },
-      id_roles: {
-        allowNull: false,
+      id_product_categories: {
         type: Sequelize.INTEGER,
       },
-      id_franchises: {
+      id_menus: {
         type: Sequelize.INTEGER,
+      },
+      status: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false
       },
       createdAt: {
         allowNull: false,
@@ -43,9 +42,9 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE,
       },
-    })
+    });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Employees')
+    await queryInterface.dropTable("Products");
   },
-}
+};

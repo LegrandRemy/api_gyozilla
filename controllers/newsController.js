@@ -99,11 +99,20 @@ exports.getLastThreeNews = async (req, res) => {
 
 exports.createNew = async (req, res) => {
   try {
-    const newsNews = await News.create(req.body);
-    res.status(201).json({
-      message: "created",
-      data: newsNews,
+    const existingNew = await News.findOne({
+      where: {
+        name: req.body.name,
+        image: req.body.image,
+        description: req.body.description,
+      },
     });
+
+    if (existingNew) {
+      return res.status(400).json({ message: "L'actualité existe déjà" });
+    }
+
+    const newNew = await News.create(req.body);
+    res.status(201).json({ message: "created", data: newNew });
   } catch (error) {
     res.status(500).json({
       message: "L'actualité n'a pas été créée",

@@ -1,45 +1,45 @@
-'use strict'
+"use strict";
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.bulkInsert(
-      'Ratings',
+      "Menus",
       [
         {
-          id_customers: 1,
-          id_products: 1,
-          note: 1,
+          name: "Menu Enfant",
+          price: 8,
+          image: "menu/Menu-Enfant.jpg",
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
-          id_customers: 2,
-          id_products: 1,
-          note: 3,
+          name: "Menu Petit Prix",
+          price: 12,
+          image: "menu/Menu-Petit-Prix.jpg",
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
-          id_customers: 3,
-          id_products: 2,
-          note: 5,
+          name: "Menu Découverte",
+          price: 18,
+          image: "menu/Menu-Decouverte.jpg",
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
-          id_customers: 2,
-          id_products: 2,
-          note: 4,
+          name: "Menu Gourmand",
+          price: 25,
+          image: "menu/Menu-Gourmand.jpg",
           createdAt: new Date(),
           updatedAt: new Date(),
         },
       ],
-      {},
-    )
+      {}
+    );
   },
 
   async down(queryInterface, Sequelize) {
-    await queryInterface.bulkDelete('Ratings', null, {})
+    await queryInterface.bulkDelete("Menus", null, {});
   },
-}
+};

@@ -1,27 +1,21 @@
-'use strict'
+"use strict";
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('OrderLines', {
+    await queryInterface.createTable("Ingredients", {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      id_orders: {
-        allowNull: false,
-        type: Sequelize.INTEGER,
+      name: {
+        type: Sequelize.STRING(50),
       },
-      id_products: {
-        allowNull: false,
-        type: Sequelize.INTEGER,
+      purchasePrice: {
+        type: Sequelize.FLOAT(6, 2),
       },
-      quantity: {
-        allowNull: false,
-        type: Sequelize.INTEGER,
-      },
-      menu_reference: {
+      id_unitOfMeasure: {
         type: Sequelize.INTEGER,
       },
       createdAt: {
@@ -32,9 +26,9 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE,
       },
-    })
+    });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('OrderLines')
+    await queryInterface.dropTable("Ingredients");
   },
-}
+};

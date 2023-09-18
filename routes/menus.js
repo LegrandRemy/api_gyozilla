@@ -124,28 +124,14 @@
  *         description: Le menu n'a pas été trouvé.
  */
 
-const express = require('express')
-const router = express.Router()
-const menuController = require('../controllers/menusController')
-const { verifyToken } = require('../controllers/tokenController')
+const express = require("express");
+const router = express.Router();
+const menuController = require("../controllers/menusController");
+const { verifyToken } = require("../controllers/tokenController");
 
-router.get(
-  '/api/menus/',
-  menuController.getAllMenus,
-)
-router.get(
-  '/api/menus/:id',
-  menuController.getMenu,
-)
-router.post(
-  '/api/menus',
-  verifyToken,
-  menuController.createMenu,
-)
-router.delete(
-  '/api/menus/:id',
-  verifyToken,
-  menuController.deleteMenu,
-)
+router.get("/api/menus/", menuController.getAllMenus);
+router.get("/api/menus/:id", menuController.getMenu);
+router.post("/api/menus", verifyToken, menuController.createMenu);
+router.delete("/api/menus/:id", verifyToken, menuController.deleteMenu);
 
-module.exports = router
+module.exports = router;
