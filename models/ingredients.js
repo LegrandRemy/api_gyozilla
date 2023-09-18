@@ -32,7 +32,7 @@ module.exports = (sequelize, DataTypes) => {
           notEmpty: true,
         },
       },
-      id_unitOfMeasures: {
+      id_unitOfMeasure: {
         type: DataTypes.INTEGER,
         validate: {
           notEmpty: true,

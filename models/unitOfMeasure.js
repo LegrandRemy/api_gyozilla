@@ -9,7 +9,7 @@ class UnitOfMeasures extends Model {
      */
     static associate(models) {
     UnitOfMeasures.hasMany(models.Ingredients, {
-        foreignKey: "id_unitOfMeasures",
+        foreignKey: "id_unitOfMeasure",
         as: "unitofmeasure",
     });
     }
