@@ -8,18 +8,28 @@ module.exports = {
       [
         {
           label: "kg",
+          createdAt: new Date(),
+          updatedAt: new Date(),
         },
         {
           label: "g",
+          createdAt: new Date(),
+          updatedAt: new Date(),
         },
         {
           label: "pc",
+          createdAt: new Date(),
+          updatedAt: new Date(),
         },
         {
           label: "L",
+          createdAt: new Date(),
+          updatedAt: new Date(),
         },
         {
           label: "ml",
+          createdAt: new Date(),
+          updatedAt: new Date(),
         },
       ],
       {}
