@@ -5,12 +5,12 @@ const contactRoute = require('./contact')
 const franchisesRoute = require('./franchises')
 const suppliersRoute = require('./suppliers')
 const product_categoriesRoute = require('./product_categories')
+const productsRoute = require('./products')
 const statusRoute = require('./status')
 const ratingsRoute = require('./ratings')
 const stockRoute = require('./stock')
 const ordersRoute = require('./orders')
 const ingredientsRoute = require('./ingredients')
-const productsRoute = require('./products')
 const employeesRoute = require('./employees')
 const authRoute = require('./auth')
 const deliveriesRoute = require('./deliveries')
@@ -27,9 +27,9 @@ module.exports = {
   franchisesRoute,
   suppliersRoute,
   product_categoriesRoute,
+  productsRoute,
   statusRoute,
   ingredientsRoute,
-  productsRoute,
   ratingsRoute,
   stockRoute,
   ordersRoute,

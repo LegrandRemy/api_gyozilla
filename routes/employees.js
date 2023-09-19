@@ -188,20 +188,29 @@ const router = express.Router()
 const employeeController = require('../controllers/employeeController')
 const { verifyToken } = require('../controllers/tokenController')
 
-router.get('/api/employees/', verifyToken, employeeController.getAllEmployees)
-router.get('/api/employees/:id', verifyToken, employeeController.getEmployee)
-router.get('/api/employees/franchises/:franchiseId', verifyToken, employeeController.getAllEmployeeByFranchise)
-router.get('/api/employees/roles/:roleId', verifyToken, employeeController.getAllEmployeeByRole)
-router.get('/api/employees/:employeeId/franchises/:franchiseId', verifyToken, employeeController.getOneEmployeeByFranchise)
-router.post('/api/employees/', verifyToken, employeeController.createEmployee)
+router.get('/api/employees/', employeeController.getAllEmployees)
+router.get('/api/employees/:id', employeeController.getEmployee)
+router.get(
+  '/api/employees/franchises/:franchiseId',
+  employeeController.getAllEmployeeByFranchise,
+)
+router.get(
+  '/api/employees/roles/:roleId',
+  employeeController.getAllEmployeeByRole,
+)
+router.get(
+  '/api/employees/:employeeId/franchises/:franchiseId',
+  employeeController.getOneEmployeeByFranchise,
+)
+router.post('/api/employees', employeeController.createEmployee)
 router.patch(
   '/api/employees/:id',
-  verifyToken,
+
   employeeController.updateEmployee,
 )
 router.delete(
   '/api/employees/:id',
-  verifyToken,
+
   employeeController.deleteEmployee,
 )
 

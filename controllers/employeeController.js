@@ -55,6 +55,7 @@ exports.getAllEmployees = async (req, res) => {
       where: {
         [Op.and]: [where],
       },
+      include: ['roles'],
     })
     res.status(200).json(employees)
   } catch (error) {
@@ -64,7 +65,6 @@ exports.getAllEmployees = async (req, res) => {
     })
   }
 }
-
 
 exports.getAllEmployeeByFranchise = async (req, res) => {
   const franchiseId = req.params.franchiseId
@@ -78,7 +78,7 @@ exports.getAllEmployeeByFranchise = async (req, res) => {
     })
   } catch (error) {
     res.status(500).json({
-      message: "Impossible de récupérer les employés de la franchise",
+      message: 'Impossible de récupérer les employés de la franchise',
       error: error.message,
     })
   }
@@ -96,7 +96,7 @@ exports.getAllEmployeeByRole = async (req, res) => {
     })
   } catch (error) {
     res.status(500).json({
-      message: "Impossible de récupérer les employés du role en question",
+      message: 'Impossible de récupérer les employés du role en question',
       error: error.message,
     })
   }
@@ -121,7 +121,6 @@ exports.getOneEmployeeByFranchise = async (req, res) => {
   }
 }
 
-
 exports.getEmployee = async (req, res) => {
   try {
     const employee = await Employees.findByPk(req.params.id)
@@ -144,15 +143,16 @@ exports.createEmployee = async (req, res) => {
   try {
     const lastname = req.body.lastname
     const firstname = req.body.firstname
-    const random = Math.floor(Math.random() * 900) + 100;
-    const login = lastname.slice(0,2) + firstname.slice(0,2) + random.toString()
-    const mp = lastname.slice(0,3) + firstname.slice(0,3) + random.toString()
+    const random = Math.floor(Math.random() * 900) + 100
+    const login =
+      lastname.slice(0, 2) + firstname.slice(0, 2) + random.toString()
+    const mp = lastname.slice(0, 3) + firstname.slice(0, 3) + random.toString()
     req.body.login = login
     Employees.beforeCreate(async (employee, options) => {
       employee.password = mp
-      const hashedPassword = await bcrypt.hash(employee.password, 10);
-      employee.password = hashedPassword;
-    });
+      const hashedPassword = await bcrypt.hash(employee.password, 10)
+      employee.password = hashedPassword
+    })
     const newEmployee = await Employees.create(req.body)
     res.status(201).json({
       message: 'created',
