@@ -323,7 +323,9 @@ exports.sendContactEmail = async (req, res) => {
   const { nom, email, message } = req.body;
 
   let transporter = nodemailer.createTransport({
-    service: 'gmail',
+    host: "smtp.hostinger.com",
+    port: 465,
+    secure: true,
     auth: {
       user: process.env.HOSTINGER_USER,
       pass: process.env.HOSTINGER_PASS,
@@ -331,10 +333,10 @@ exports.sendContactEmail = async (req, res) => {
   });
 
   let mailOptions = {
-    from: `${email}`,
+    from: "contact@gyozilla-restaurants.fr",
     to: 'contact@gyozilla-restaurants.fr',
     subject: `Contact de ${nom}`,
-    text: `${message}`,
+    html: `Email: ${email}<br><br>${message}`,
   };
 
   try {
