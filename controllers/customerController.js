@@ -318,3 +318,29 @@ exports.deleteCustomer = async (req, res) => {
     });
   }
 };
+
+exports.sendContactEmail = async (req, res) => {
+  const { nom, email, message } = req.body;
+
+  let transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: process.env.HOSTINGER_USER,
+      pass: process.env.HOSTINGER_PASS,
+    },
+  });
+
+  let mailOptions = {
+    from: `${email}`,
+    to: 'contact@gyozilla-restaurants.fr',
+    subject: `Contact de ${nom}`,
+    text: `${message}`,
+  };
+
+  try {
+    await transporter.sendMail(mailOptions);
+    res.status(200).send('Email envoyé');
+  } catch (error) {
+    res.status(500).send('Erreur lors de l\'envoi de l\'email');
+  }
+};
