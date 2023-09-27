@@ -189,7 +189,7 @@ exports.createCustomer = async (req, res) => {
     const newCustomer = await Customers.create(req.body);
 
     if (newCustomer) {
-      const secret = process.env.JWT_SECRET;
+      const secret = process.env.JWT_MAIL;
       const options = { expiresIn: "1h" };
       const token = jwt.sign({ email: newCustomer.email }, secret, options);
       const validatedUrl = `${process.env.URL_APP}verify/${token}`;
