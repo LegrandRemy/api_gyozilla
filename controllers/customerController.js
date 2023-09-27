@@ -43,7 +43,7 @@ exports.forgotPassword = async (req, res) => {
         .status(400)
         .json({ message: "Aucun utilisateur avec cet e-mail n'a été trouvé." });
     }
-    const secret = process.env.JWT_MAIL;
+    const secret = process.env.JWT_SECRET;
     const options = { expiresIn: "1h" };
     const token = jwt.sign({ userId: customer.id }, secret, options);
     const resetUrl = `${process.env.URL_APP}reset-password?token=${token}`;
@@ -84,7 +84,7 @@ exports.resetPassword = async (req, res) => {
   const { token, password } = req.body;
 
   try {
-    const secret = process.env.JWT_MAIL;
+    const secret = process.env.JWT_SECRET;
     const decodedToken = jwt.verify(token, secret);
 
     const customer = await Customers.findOne({
@@ -189,7 +189,7 @@ exports.createCustomer = async (req, res) => {
     const newCustomer = await Customers.create(req.body);
 
     if (newCustomer) {
-      const secret = process.env.JWT_MAIL;
+      const secret = process.env.JWT_SECRET;
       const options = { expiresIn: "1h" };
       const token = jwt.sign({ email: newCustomer.email }, secret, options);
       const validatedUrl = `${process.env.URL_APP}verify/${token}`;
@@ -231,7 +231,7 @@ exports.createCustomer = async (req, res) => {
 exports.verifyCustomer = async (req, res) => {
   try {
     //On utilise le même token que pour la cration du client
-    const secret = process.env.JWT_MAIL;
+    const secret = process.env.JWT_SECRET;
     //On verifie le token passer dans l'url en params
     const decodedToken = jwt.verify(req.params.token, secret);
     //On cherche le client via le token car à la création on stock l'email utilisé à la création dans le token
