@@ -17,7 +17,7 @@ exports.is_exist = async (req, res) => {
       return res.status(404).json({ message: "Utilisateur non trouvé" });
     }
   } catch (err) {
-    console.error(err); // Log the error
+    console.error(err);
     return res.status(500).json({ message: "Erreur serveur" });
   }
 };
