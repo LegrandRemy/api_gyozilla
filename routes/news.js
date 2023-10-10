@@ -21,7 +21,7 @@
  *       example:
  *         id: 1
  *         name: "Nouvelle ouverture chez Gyozilla"
- *         image: "news/1.jpg"
+ *         image: "news/1.webp"
  *         description: "Venez découvrir tous nos savoureux plats"
  */
 
