@@ -160,6 +160,11 @@ exports.getCustomer = async (req, res) => {
   }
 };
 
+Customers.beforeCreate(async (customer, options) => {
+  const hashedPassword = await bcrypt.hash(customer.password, 10);
+  customer.password = hashedPassword;
+});
+
 exports.createCustomer = async (req, res) => {
   const transporter = nodemailer.createTransport({
     host: "smtp.hostinger.com",
@@ -180,11 +185,6 @@ exports.createCustomer = async (req, res) => {
     if (checkCustomer) {
       return res.status(400).json({ message: "Le mail est déjà utilisé" });
     }
-
-    Customers.beforeCreate(async (customer, options) => {
-      const hashedPassword = await bcrypt.hash(customer.password, 10);
-      customer.password = hashedPassword;
-    });
 
     const newCustomer = await Customers.create(req.body);
 
