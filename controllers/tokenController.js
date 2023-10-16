@@ -58,7 +58,7 @@ exports.getToken = async (req, res) => {
             id: user.id,
             lastname: user.lastname,
             firstname: user.firstname,
-            username: req.body.email,
+            email: req.body.email,
             password: passwordMatch,
             fidelityPoints: user.fidelityPoints,
           };

@@ -34,7 +34,7 @@
  *         id: 1
  *         name: "BigMac"
  *         description: "Onctueux et savoureux"
- *         image: "1.jpg"
+ *         image: "1.webp"
  *         price: 7.80
  *         creation_steps: "Mettre le fromage sur le pain"
  *         id_product_categories: 1

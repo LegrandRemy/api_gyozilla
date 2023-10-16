@@ -17,7 +17,7 @@ exports.is_exist = async (req, res) => {
       return res.status(404).json({ message: "Utilisateur non trouvé" });
     }
   } catch (err) {
-    console.error(err); // Log the error
+    console.error(err);
     return res.status(500).json({ message: "Erreur serveur" });
   }
 };
@@ -43,7 +43,7 @@ exports.forgotPassword = async (req, res) => {
         .status(400)
         .json({ message: "Aucun utilisateur avec cet e-mail n'a été trouvé." });
     }
-    const secret = process.env.JWT_MAIL;
+    const secret = process.env.JWT_SECRET;
     const options = { expiresIn: "1h" };
     const token = jwt.sign({ userId: customer.id }, secret, options);
     const resetUrl = `${process.env.URL_APP}reset-password?token=${token}`;
@@ -84,7 +84,7 @@ exports.resetPassword = async (req, res) => {
   const { token, password } = req.body;
 
   try {
-    const secret = process.env.JWT_MAIL;
+    const secret = process.env.JWT_SECRET;
     const decodedToken = jwt.verify(token, secret);
 
     const customer = await Customers.findOne({
@@ -160,6 +160,11 @@ exports.getCustomer = async (req, res) => {
   }
 };
 
+Customers.beforeCreate(async (customer, options) => {
+  const hashedPassword = await bcrypt.hash(customer.password, 10);
+  customer.password = hashedPassword;
+});
+
 exports.createCustomer = async (req, res) => {
   const transporter = nodemailer.createTransport({
     host: "smtp.hostinger.com",
@@ -181,15 +186,10 @@ exports.createCustomer = async (req, res) => {
       return res.status(400).json({ message: "Le mail est déjà utilisé" });
     }
 
-    Customers.beforeCreate(async (customer, options) => {
-      const hashedPassword = await bcrypt.hash(customer.password, 10);
-      customer.password = hashedPassword;
-    });
-
     const newCustomer = await Customers.create(req.body);
 
     if (newCustomer) {
-      const secret = process.env.JWT_MAIL;
+      const secret = process.env.JWT_SECRET;
       const options = { expiresIn: "1h" };
       const token = jwt.sign({ email: newCustomer.email }, secret, options);
       const validatedUrl = `${process.env.URL_APP}verify/${token}`;
@@ -231,7 +231,7 @@ exports.createCustomer = async (req, res) => {
 exports.verifyCustomer = async (req, res) => {
   try {
     //On utilise le même token que pour la cration du client
-    const secret = process.env.JWT_MAIL;
+    const secret = process.env.JWT_SECRET;
     //On verifie le token passer dans l'url en params
     const decodedToken = jwt.verify(req.params.token, secret);
     //On cherche le client via le token car à la création on stock l'email utilisé à la création dans le token
@@ -316,5 +316,33 @@ exports.deleteCustomer = async (req, res) => {
       message: "Le client n'a pas été supprimé",
       error: error.message,
     });
+  }
+};
+
+exports.sendContactEmail = async (req, res) => {
+  const { nom, email, message } = req.body;
+
+  let transporter = nodemailer.createTransport({
+    host: "smtp.hostinger.com",
+    port: 465,
+    secure: true,
+    auth: {
+      user: process.env.HOSTINGER_USER,
+      pass: process.env.HOSTINGER_PASS,
+    },
+  });
+
+  let mailOptions = {
+    from: "contact@gyozilla-restaurants.fr",
+    to: 'contact@gyozilla-restaurants.fr',
+    subject: `Contact de ${nom}`,
+    html: `Email: ${email}<br><br>${message}`,
+  };
+
+  try {
+    await transporter.sendMail(mailOptions);
+    res.status(200).send('Email envoyé');
+  } catch (error) {
+    res.status(500).send('Erreur lors de l\'envoi de l\'email');
   }
 };

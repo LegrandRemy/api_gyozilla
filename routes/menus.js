@@ -23,7 +23,7 @@
  *         id: 1
  *         name: "Menu enfant"
  *         price: 8
- *         image: "menu/Menu-Enfant.jpg"
+ *         image: "menu/Menu-Enfant.webp"
  */
 
 /**

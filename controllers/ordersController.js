@@ -2,6 +2,9 @@ const { Op } = require("sequelize");
 const db = require("../models/index");
 const Order = db["Orders"];
 const _ = require("lodash");
+const nodemailer = require("nodemailer");
+const { format } = require("date-fns-tz");
+const { utcToZonedTime } = require("date-fns-tz");
 
 const OrderLines = db["OrderLines"];
 const Products = db["Products"];
@@ -357,4 +360,63 @@ exports.deleteOrder = async (req, res) => {
       error: error.message,
     });
   }
+};
+
+exports.sendOrderEmail = async (req, res) => {
+  const transporter = nodemailer.createTransport({
+    host: "smtp.hostinger.com",
+    port: 465,
+    secure: true,
+    auth: {
+      user: process.env.HOSTINGER_USER,
+      pass: process.env.HOSTINGER_PASS,
+    },
+  });
+
+  const orderDetails = req.body;
+
+  const dateOrderUTC = new Date(orderDetails.orderResponse.date_order);
+  const parisTimeZone = "Europe/Paris";
+  const dateOrderParis = utcToZonedTime(dateOrderUTC, parisTimeZone);
+
+  const formattedDate = format(dateOrderParis, "dd/MM/yyyy à HH:mm", {
+    timeZone: parisTimeZone,
+  });
+
+  let emailContent = `<p>Votre commande du ${formattedDate} :</p><ul>`;
+
+  for (const orderLine of orderDetails.orderLines) {
+    if (orderLine.is_menu) {
+      emailContent += `<li>${orderLine.product_quantity} ${orderLine.menu_type} à ${orderLine.product_price}€ : <ul>`;
+      for (const product of orderLine.products) {
+        emailContent += `<li>- ${product.type} ${product.name}</li>`;
+      }
+      emailContent += `</ul></li>`;
+    } else {
+      emailContent += `<li>${orderLine.product_quantity} ${orderLine.product_name} à ${orderLine.product_price}€</li>`;
+    }
+  }
+
+  emailContent += `</ul><p>Pour un total de ${orderDetails.orderResponse.total_price}€</p>`;
+  emailContent += `<p>Vous pourrez suivre l'avancé de votre commande sur votre compte et au restaurant. <br />Merci pour votre commande et bon appétit !</p>`;
+
+  const message = {
+    from: process.env.HOSTINGER_USER,
+    to: orderDetails.userEmail,
+    subject: `Récapitulatif de votre commande du ${formattedDate}`,
+    text: "Récapitulatif de votre commande",
+    html: `<p>Bonjour ${orderDetails.userFirstname},</p><p>${emailContent}</p>`,
+  };
+
+  transporter.sendMail(message, async (error, info) => {
+    if (error) {
+      console.error("Erreur lors de l'envoi de l'e-mail de commande :", error);
+      res
+        .status(500)
+        .json({ error: "Erreur lors de l'envoi de l'e-mail de commande" });
+    } else {
+      console.log(`E-mail envoyé: ${info.response}`);
+      res.status(200).json({ message: "E-mail envoyé avec succès" });
+    }
+  });
 };

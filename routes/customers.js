@@ -188,5 +188,6 @@ router.delete(
   verifyToken,
   customerController.deleteCustomer
 );
+router.post("/api/customers/send-email", customerController.sendContactEmail);
 
 module.exports = router;

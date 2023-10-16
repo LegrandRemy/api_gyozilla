@@ -11,7 +11,7 @@ module.exports = {
           id_franchises: 1,
           date_order: new Date(),
           total_price: 24,
-          id_status: 1,
+          id_status: 2,
           id_order_types: 1,
           createdAt: new Date(),
           updatedAt: new Date(),

@@ -225,4 +225,6 @@ router.post("/api/orders", verifyToken, orderController.createOrder);
 router.patch("/api/orders/:id", verifyToken, orderController.updateOrder);
 router.delete("/api/orders/:id", verifyToken, orderController.deleteOrder);
 
+router.post("/api/send_email", verifyToken, orderController.sendOrderEmail);
+
 module.exports = router;

@@ -101,7 +101,7 @@ app.use(expensesRoute);
 app.use(expenseTypesRoute);
 app.get("/", (req, res) => res.send("API Gyozilla"));
 app.listen(port, () =>
-  console.log(`Visiter l'API Gyozilla sur http://api.gyozilla-restaurants.fr/`)
+  console.log("Visiter l'API Gyozilla sur https://api.gyozilla-restaurants.fr/api/")
 );
 app.use("/api", swaggerUi.serve, swaggerUi.setup(specs));
 app.use((req, res, next) => {
