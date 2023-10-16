@@ -383,19 +383,22 @@ exports.sendOrderEmail = async (req, res) => {
     timeZone: parisTimeZone,
   });
 
-  let emailContent = `Votre commande du ${formattedDate} (Payé)\n`;
+  let emailContent = `Votre commande du ${formattedDate} : \n\n`;
+
   for (const orderLine of orderDetails.orderLines) {
     if (orderLine.is_menu) {
-      emailContent += `- ${orderLine.menu_type}\n`;
+      emailContent += `${orderLine.product_quantity} ${orderLine.menu_type} :\n`;
       for (const product of orderLine.products) {
-        emailContent += `  - ${product.type} ${product.name} à ${product.product_price}€ (${product.product_quantity} ${product.name}(s))\n`;
+        emailContent += `- ${product.type} : ${product.name}\n`;
       }
     } else {
-      emailContent += `- ${orderLine.product_name} à ${orderLine.product_price}€ (${orderLine.product_quantity} ${orderLine.product_name}(s))\n`;
+      emailContent += `${orderLine.product_quantity} ${orderLine.product_name}\n`;
     }
   }
 
-  emailContent += `${orderDetails.orderResponse.id_order_types}, pour un total de ${orderDetails.orderResponse.total_price}€`;
+  emailContent += `\npour un total de ${orderDetails.orderResponse.total_price}€\n\n`;
+  emailContent += `Vous pourrez suivre l'avancé de votre commande sur votre compte et au restaurant.\n`;
+  emailContent += `Merci pour votre commande et bon appétit !`;
 
   const message = {
     from: process.env.HOSTINGER_USER,
