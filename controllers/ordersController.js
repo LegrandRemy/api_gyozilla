@@ -2,6 +2,7 @@ const { Op } = require("sequelize");
 const db = require("../models/index");
 const Order = db["Orders"];
 const _ = require("lodash");
+const nodemailer = require("nodemailer");
 const { format } = require("date-fns-tz");
 
 const OrderLines = db["OrderLines"];
@@ -378,46 +379,45 @@ exports.sendOrderEmail = async (req, res) => {
     timeZone: "Europe/Paris",
   });
 
-  // const groupedOrderLines = {};
-  // const orderLines = orderDetails.orderLines;
-  // orderLines.forEach((line) => {
-  //   const productId = line.id_products;
-  //   if (!groupedOrderLines[productId]) {
-  //     groupedOrderLines[productId] = {
-  //       productName: line.productName,
-  //       quantity: line.quantity,
-  //       menuItems: [],
-  //     };
-  //   } else {
-  //     groupedOrderLines[productId].menuItems.push({
-  //       name: line.productName,
-  //       quantity: line.quantity,
-  //     });
-  //   }
-  // });
+  const groupedOrderLines = {};
+  const orderLines = orderDetails.orderLines;
+  orderLines.forEach((line) => {
+    const productId = line.id_products;
+    if (!groupedOrderLines[productId]) {
+      groupedOrderLines[productId] = {
+        productName: line.productName,
+        quantity: line.quantity,
+        menuItems: [],
+      };
+    } else {
+      groupedOrderLines[productId].menuItems.push({
+        name: line.productName,
+        quantity: line.quantity,
+      });
+    }
+  });
 
-  // let emailContent = `Votre commande du ${dateOrderFrance} (Payé)\n`;
-  // for (const productId in groupedOrderLines) {
-  //   const item = groupedOrderLines[productId];
-  //   emailContent += `${item.productName} à 8€\n`;
-  //   if (item.menuItems.length > 0) {
-  //     emailContent += `- Menu ${item.productName}\n`;
-  //     item.menuItems.forEach((menuItem) => {
-  //       emailContent += `- ${menuItem.name}\n`;
-  //     });
-  //   }
-  //   emailContent += `${item.quantity} ${item.productName}(s)\n`;
-  // }
+  let emailContent = `Votre commande du ${dateOrderFrance} (Payé)\n`;
+  for (const productId in groupedOrderLines) {
+    const item = groupedOrderLines[productId];
+    emailContent += `${item.productName} à 8€\n`;
+    if (item.menuItems.length > 0) {
+      emailContent += `- Menu ${item.productName}\n`;
+      item.menuItems.forEach((menuItem) => {
+        emailContent += `- ${menuItem.name}\n`;
+      });
+    }
+    emailContent += `${item.quantity} ${item.productName}(s)\n`;
+  }
 
-  // emailContent += `${orderDetails.orderResponse.id_order_types}, pour un total de ${orderDetails.orderResponse.total_price}€`;
+  emailContent += `${orderDetails.orderResponse.id_order_types}, pour un total de ${orderDetails.orderResponse.total_price}€`;
 
   const message = {
     from: process.env.HOSTINGER_USER,
     to: orderDetails.userEmail,
     subject: `Récapitulatif de votre commande du ${dateOrderFrance}`,
     text: "Récapitulatif de votre commande",
-    // html: `<p>Bonjour ${orderDetails.userFirstname},</p><p>${emailContent}</p>`,
-    html: `<p>Bonjour ${orderDetails.userFirstname},</p><p>C'est bon !</p>`,
+    html: `<p>Bonjour ${orderDetails.userFirstname},</p><p>${emailContent}</p>`,
   };
 
   transporter.sendMail(message, async (error, info) => {
