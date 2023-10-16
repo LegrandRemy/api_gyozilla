@@ -420,6 +420,12 @@ exports.sendOrderEmail = async (req, res) => {
     html: `<p>Bonjour ${orderDetails.userFirstname},</p><p>C'est bon !</p>`,
   };
 
+  return res.status(200).json({
+    message:
+      "message",
+    error: error.message,
+  });
+
   // transporter.sendMail(message, async (error, info) => {
   //   if (error) {
   //     console.error("Erreur lors de l'envoi de l'e-mail de commande :", error);
