@@ -4,6 +4,7 @@ const Order = db["Orders"];
 const _ = require("lodash");
 const nodemailer = require("nodemailer");
 const { format } = require("date-fns-tz");
+const { utcToZonedTime } = require("date-fns-tz");
 
 const OrderLines = db["OrderLines"];
 const Products = db["Products"];
@@ -375,39 +376,23 @@ exports.sendOrderEmail = async (req, res) => {
   const orderDetails = req.body;
 
   const dateOrderUTC = new Date(orderDetails.orderResponse.date_order);
-  const dateOrderFrance = format(dateOrderUTC, "dd/MM/yyyy à HH:mm", {
-    timeZone: "Europe/Paris",
+  const parisTimeZone = "Europe/Paris";
+  const dateOrderParis = utcToZonedTime(dateOrderUTC, parisTimeZone);
+
+  const formattedDate = format(dateOrderParis, "dd/MM/yyyy à HH:mm", {
+    timeZone: parisTimeZone,
   });
 
-  const groupedOrderLines = {};
-  const orderLines = orderDetails.orderLines;
-  orderLines.forEach((line) => {
-    const productId = line.id_products;
-    if (!groupedOrderLines[productId]) {
-      groupedOrderLines[productId] = {
-        productName: line.productName,
-        quantity: line.quantity,
-        menuItems: [],
-      };
+  let emailContent = `Votre commande du ${formattedDate} (Payé)\n`;
+  for (const orderLine of orderDetails.orderLines) {
+    if (orderLine.is_menu) {
+      emailContent += `- ${orderLine.menu_type}\n`;
+      for (const product of orderLine.products) {
+        emailContent += `  - ${product.type} ${product.name} à ${product.product_price}€ (${product.product_quantity} ${product.name}(s))\n`;
+      }
     } else {
-      groupedOrderLines[productId].menuItems.push({
-        name: line.productName,
-        quantity: line.quantity,
-      });
+      emailContent += `- ${orderLine.product_name} à ${orderLine.product_price}€ (${orderLine.product_quantity} ${orderLine.product_name}(s))\n`;
     }
-  });
-
-  let emailContent = `Votre commande du ${dateOrderFrance} (Payé)\n`;
-  for (const productId in groupedOrderLines) {
-    const item = groupedOrderLines[productId];
-    emailContent += `${item.productName} à 8€\n`;
-    if (item.menuItems.length > 0) {
-      emailContent += `- Menu ${item.productName}\n`;
-      item.menuItems.forEach((menuItem) => {
-        emailContent += `- ${menuItem.name}\n`;
-      });
-    }
-    emailContent += `${item.quantity} ${item.productName}(s)\n`;
   }
 
   emailContent += `${orderDetails.orderResponse.id_order_types}, pour un total de ${orderDetails.orderResponse.total_price}€`;
@@ -415,7 +400,7 @@ exports.sendOrderEmail = async (req, res) => {
   const message = {
     from: process.env.HOSTINGER_USER,
     to: orderDetails.userEmail,
-    subject: `Récapitulatif de votre commande du ${dateOrderFrance}`,
+    subject: `Récapitulatif de votre commande du ${formattedDate}`,
     text: "Récapitulatif de votre commande",
     html: `<p>Bonjour ${orderDetails.userFirstname},</p><p>${emailContent}</p>`,
   };
