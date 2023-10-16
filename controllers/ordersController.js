@@ -416,7 +416,8 @@ exports.sendOrderEmail = async (req, res) => {
     to: orderDetails.userEmail,
     subject: `Récapitulatif de votre commande du ${dateOrderFrance}`,
     text: "Récapitulatif de votre commande",
-    html: `<p>Bonjour ${orderDetails.userFirstname},</p><p>${emailContent}</p>`,
+    // html: `<p>Bonjour ${orderDetails.userFirstname},</p><p>${emailContent}</p>`,
+    html: `<p>Bonjour ${orderDetails.userFirstname},</p><p>C'est bon !</p>`,
   };
 
   transporter.sendMail(message, async (error, info) => {
