@@ -383,21 +383,23 @@ exports.sendOrderEmail = async (req, res) => {
     timeZone: parisTimeZone,
   });
 
-  let emailContent = `<p>Votre commande du ${formattedDate} :</p>`;
+  let emailContent = `<p>Votre commande du ${formattedDate} :</p><ul>`;
 
   for (const orderLine of orderDetails.orderLines) {
     if (orderLine.is_menu) {
-      emailContent += `<p>${orderLine.product_quantity} ${orderLine.menu_type} :\n`;
+      emailContent += `<li>${orderLine.product_quantity} ${orderLine.menu_type} à ${orderLine.price}€ : <ul>`;
       for (const product of orderLine.products) {
-        emailContent += `- ${product.type} : ${product.name}</p>`;
+        emailContent += `<li>- ${product.type} : ${product.name}</li>`;
       }
+      emailContent += `</ul></li>`;
     } else {
-      emailContent += `<p>${orderLine.product_quantity} ${orderLine.product_name}</p>`;
+      emailContent += `<li>${orderLine.product_quantity} ${orderLine.product_name} à ${orderLine.price}€</li>`;
     }
   }
 
-  emailContent += `<p>Pour un total de ${orderDetails.orderResponse.total_price}€</p>`;
-  emailContent += `<p>Vous pourrez suivre l'avancé de votre commande sur votre compte et au restaurant.\nMerci pour votre commande et bon appétit !</p>`;
+  emailContent += `</ul><p>Pour un total de ${orderDetails.orderResponse.total_price}€</p>`;
+  emailContent += `<p>Vous pourrez suivre l'avancé de votre commande sur votre compte et au restaurant.</p>`;
+  emailContent += `<p>Merci pour votre commande et bon appétit !</p>`;
 
   const message = {
     from: process.env.HOSTINGER_USER,
