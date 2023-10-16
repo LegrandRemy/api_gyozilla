@@ -387,9 +387,9 @@ exports.sendOrderEmail = async (req, res) => {
 
   for (const orderLine of orderDetails.orderLines) {
     if (orderLine.is_menu) {
-      emailContent += `<p>${orderLine.product_quantity} ${orderLine.menu_type} :</p>`;
+      emailContent += `<p>${orderLine.product_quantity} ${orderLine.menu_type} :\n`;
       for (const product of orderLine.products) {
-        emailContent += `<p>- ${product.type} : ${product.name}</p>`;
+        emailContent += `- ${product.type} : ${product.name}</p>`;
       }
     } else {
       emailContent += `<p>${orderLine.product_quantity} ${orderLine.product_name}</p>`;
@@ -397,8 +397,7 @@ exports.sendOrderEmail = async (req, res) => {
   }
 
   emailContent += `<p>Pour un total de ${orderDetails.orderResponse.total_price}€</p>`;
-  emailContent += `<p>Vous pourrez suivre l'avancé de votre commande sur votre compte et au restaurant.</p>`;
-  emailContent += `<p>Merci pour votre commande et bon appétit !</p>`;
+  emailContent += `<p>Vous pourrez suivre l'avancé de votre commande sur votre compte et au restaurant.\nMerci pour votre commande et bon appétit !</p>`;
 
   const message = {
     from: process.env.HOSTINGER_USER,
