@@ -378,38 +378,38 @@ exports.sendOrderEmail = async (req, res) => {
     timeZone: "Europe/Paris",
   });
 
-  const groupedOrderLines = {};
-  const orderLines = orderDetails.orderLines;
-  orderLines.forEach((line) => {
-    const productId = line.id_products;
-    if (!groupedOrderLines[productId]) {
-      groupedOrderLines[productId] = {
-        productName: line.productName,
-        quantity: line.quantity,
-        menuItems: [],
-      };
-    } else {
-      groupedOrderLines[productId].menuItems.push({
-        name: line.productName,
-        quantity: line.quantity,
-      });
-    }
-  });
+  // const groupedOrderLines = {};
+  // const orderLines = orderDetails.orderLines;
+  // orderLines.forEach((line) => {
+  //   const productId = line.id_products;
+  //   if (!groupedOrderLines[productId]) {
+  //     groupedOrderLines[productId] = {
+  //       productName: line.productName,
+  //       quantity: line.quantity,
+  //       menuItems: [],
+  //     };
+  //   } else {
+  //     groupedOrderLines[productId].menuItems.push({
+  //       name: line.productName,
+  //       quantity: line.quantity,
+  //     });
+  //   }
+  // });
 
-  let emailContent = `Votre commande du ${dateOrderFrance} (Payé)\n`;
-  for (const productId in groupedOrderLines) {
-    const item = groupedOrderLines[productId];
-    emailContent += `${item.productName} à 8€\n`;
-    if (item.menuItems.length > 0) {
-      emailContent += `- Menu ${item.productName}\n`;
-      item.menuItems.forEach((menuItem) => {
-        emailContent += `- ${menuItem.name}\n`;
-      });
-    }
-    emailContent += `${item.quantity} ${item.productName}(s)\n`;
-  }
+  // let emailContent = `Votre commande du ${dateOrderFrance} (Payé)\n`;
+  // for (const productId in groupedOrderLines) {
+  //   const item = groupedOrderLines[productId];
+  //   emailContent += `${item.productName} à 8€\n`;
+  //   if (item.menuItems.length > 0) {
+  //     emailContent += `- Menu ${item.productName}\n`;
+  //     item.menuItems.forEach((menuItem) => {
+  //       emailContent += `- ${menuItem.name}\n`;
+  //     });
+  //   }
+  //   emailContent += `${item.quantity} ${item.productName}(s)\n`;
+  // }
 
-  emailContent += `${orderDetails.orderResponse.id_order_types}, pour un total de ${orderDetails.orderResponse.total_price}€`;
+  // emailContent += `${orderDetails.orderResponse.id_order_types}, pour un total de ${orderDetails.orderResponse.total_price}€`;
 
   const message = {
     from: process.env.HOSTINGER_USER,
@@ -420,21 +420,15 @@ exports.sendOrderEmail = async (req, res) => {
     html: `<p>Bonjour ${orderDetails.userFirstname},</p><p>C'est bon !</p>`,
   };
 
-  return res.status(201).json({
-    message:
-      "Un e-mail de validation a été envoyé à votre adresse e-mail.",
-    data: message,
+  transporter.sendMail(message, async (error, info) => {
+    if (error) {
+      console.error("Erreur lors de l'envoi de l'e-mail de commande :", error);
+      res
+        .status(500)
+        .json({ error: "Erreur lors de l'envoi de l'e-mail de commande" });
+    } else {
+      console.log(`E-mail envoyé: ${info.response}`);
+      res.status(200).json({ message: "E-mail envoyé avec succès" });
+    }
   });
-
-  // transporter.sendMail(message, async (error, info) => {
-  //   if (error) {
-  //     console.error("Erreur lors de l'envoi de l'e-mail de commande :", error);
-  //     res
-  //       .status(500)
-  //       .json({ error: "Erreur lors de l'envoi de l'e-mail de commande" });
-  //   } else {
-  //     console.log(`E-mail envoyé: ${info.response}`);
-  //     res.status(200).json({ message: "E-mail envoyé avec succès" });
-  //   }
-  // });
 };
