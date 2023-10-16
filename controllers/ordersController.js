@@ -361,72 +361,73 @@ exports.deleteOrder = async (req, res) => {
 };
 
 exports.sendOrderEmail = async (req, res) => {
-  try {
+  const transporter = nodemailer.createTransport({
+    host: "smtp.hostinger.com",
+    port: 465,
+    secure: true,
+    auth: {
+      user: process.env.HOSTINGER_USER,
+      pass: process.env.HOSTINGER_PASS,
+    },
+  });
 
-    const transporter = nodemailer.createTransport({
-      host: "smtp.hostinger.com",
-      port: 465,
-      secure: true,
-      auth: {
-        user: process.env.HOSTINGER_USER,
-        pass: process.env.HOSTINGER_PASS,
-      },
-    });
+  const orderDetails = req.body;
 
-    const orderDetails = req.body;
+  const dateOrderUTC = new Date(orderDetails.orderResponse.date_order);
+  const dateOrderFrance = format(dateOrderUTC, "dd/MM/yyyy à HH:mm", {
+    timeZone: "Europe/Paris",
+  });
 
-    const dateOrderUTC = new Date(orderDetails.orderResponse.date_order);
-    const dateOrderFrance = format(dateOrderUTC, "dd/MM/yyyy à HH:mm", {
-      timeZone: "Europe/Paris",
-    });
-
-    const groupedOrderLines = {};
-    const orderLines = orderDetails.orderLines;
-    orderLines.forEach(line => {
-      const productId = line.id_products;
-      if (!groupedOrderLines[productId]) {
-        groupedOrderLines[productId] = {
-          productName: line.productName,
-          quantity: line.quantity,
-          menuItems: [],
-        };
-      } else {
-        groupedOrderLines[productId].menuItems.push({
-          name: line.productName,
-          quantity: line.quantity,
-        });
-      }
-    });
-
-    let emailContent = `Votre commande du ${dateOrderFrance} (Payé)\n`;
-    for (const productId in groupedOrderLines) {
-      const item = groupedOrderLines[productId];
-      emailContent += `${item.productName} à 8€\n`;
-      if (item.menuItems.length > 0) {
-        emailContent += `- Menu ${item.productName}\n`;
-        item.menuItems.forEach(menuItem => {
-          emailContent += `- ${menuItem.name}\n`;
-        });
-      }
-      emailContent += `${item.quantity} ${item.productName}(s)\n`;
+  const groupedOrderLines = {};
+  const orderLines = orderDetails.orderLines;
+  orderLines.forEach((line) => {
+    const productId = line.id_products;
+    if (!groupedOrderLines[productId]) {
+      groupedOrderLines[productId] = {
+        productName: line.productName,
+        quantity: line.quantity,
+        menuItems: [],
+      };
+    } else {
+      groupedOrderLines[productId].menuItems.push({
+        name: line.productName,
+        quantity: line.quantity,
+      });
     }
-    
-    emailContent += `${orderDetails.orderResponse.id_order_types}, pour un total de ${orderDetails.orderResponse.total_price}€`;
+  });
 
-    const message = {
-      from: process.env.HOSTINGER_USER,
-      to: orderDetails.userEmail,
-      subject: `Récapitulatif de votre commande du ${dateOrderFrance}`,
-      text: "Récapitulatif de votre commande",
-      html: `<p>Bonjour ${orderDetails.userFirstname},</p><p>${emailContent}</p>`,
-    };
-
-    const info = await transporter.sendMail(message);
-    console.log(`E-mail envoyé: ${info.response}`);    
-
-    res.status(200).json({ message: "E-mail envoyé avec succès" });
-  } catch (error) {
-    console.error("Erreur lors de l'envoi de l'e-mail de commande :", error);
-    res.status(500).json({ error: "Erreur lors de l'envoi de l'e-mail de commande" });
+  let emailContent = `Votre commande du ${dateOrderFrance} (Payé)\n`;
+  for (const productId in groupedOrderLines) {
+    const item = groupedOrderLines[productId];
+    emailContent += `${item.productName} à 8€\n`;
+    if (item.menuItems.length > 0) {
+      emailContent += `- Menu ${item.productName}\n`;
+      item.menuItems.forEach((menuItem) => {
+        emailContent += `- ${menuItem.name}\n`;
+      });
+    }
+    emailContent += `${item.quantity} ${item.productName}(s)\n`;
   }
+
+  emailContent += `${orderDetails.orderResponse.id_order_types}, pour un total de ${orderDetails.orderResponse.total_price}€`;
+
+  const message = {
+    from: process.env.HOSTINGER_USER,
+    to: orderDetails.userEmail,
+    subject: `Récapitulatif de votre commande du ${dateOrderFrance}`,
+    text: "Récapitulatif de votre commande",
+    html: `<p>Bonjour ${orderDetails.userFirstname},</p><p>${emailContent}</p>`,
+  };
+
+  transporter.sendMail(message, async (error, info) => {
+    if (error) {
+      console.error("Erreur lors de l'envoi de l'e-mail de commande :", error);
+      res
+        .status(500)
+        .json({ error: "Erreur lors de l'envoi de l'e-mail de commande" });
+    } else {
+      console.log(`E-mail envoyé: ${info.response}`);
+      res.status(200).json({ message: "E-mail envoyé avec succès" });
+    }
+  });
 };
