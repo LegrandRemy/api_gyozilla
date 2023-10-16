@@ -383,7 +383,7 @@ exports.sendOrderEmail = async (req, res) => {
     timeZone: parisTimeZone,
   });
 
-  let emailContent = `<p>Votre commande du ${formattedDate} :</p><br><br>`;
+  let emailContent = `<p>Votre commande du ${formattedDate} :</p>`;
 
   for (const orderLine of orderDetails.orderLines) {
     if (orderLine.is_menu) {
