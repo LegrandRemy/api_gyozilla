@@ -420,10 +420,10 @@ exports.sendOrderEmail = async (req, res) => {
     html: `<p>Bonjour ${orderDetails.userFirstname},</p><p>C'est bon !</p>`,
   };
 
-  return res.status(200).json({
+  return res.status(201).json({
     message:
-      "message",
-    error: error.message,
+      "Un e-mail de validation a été envoyé à votre adresse e-mail.",
+    data: message,
   });
 
   // transporter.sendMail(message, async (error, info) => {
