@@ -393,7 +393,7 @@ exports.sendOrderEmail = async (req, res) => {
       }
       emailContent += `</ul></li>`;
     } else {
-      emailContent += `<li>${orderLine.product_quantity} ${orderLine.product_name} à ${orderLine.price}€</li>`;
+      emailContent += `<li>${orderLine.product_quantity} ${orderLine.product_name} à ${orderLine.product_price}€</li>`;
     }
   }
 
