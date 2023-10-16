@@ -420,15 +420,15 @@ exports.sendOrderEmail = async (req, res) => {
     html: `<p>Bonjour ${orderDetails.userFirstname},</p><p>C'est bon !</p>`,
   };
 
-  transporter.sendMail(message, async (error, info) => {
-    if (error) {
-      console.error("Erreur lors de l'envoi de l'e-mail de commande :", error);
-      res
-        .status(500)
-        .json({ error: "Erreur lors de l'envoi de l'e-mail de commande" });
-    } else {
-      console.log(`E-mail envoyé: ${info.response}`);
-      res.status(200).json({ message: "E-mail envoyé avec succès" });
-    }
-  });
+  // transporter.sendMail(message, async (error, info) => {
+  //   if (error) {
+  //     console.error("Erreur lors de l'envoi de l'e-mail de commande :", error);
+  //     res
+  //       .status(500)
+  //       .json({ error: "Erreur lors de l'envoi de l'e-mail de commande" });
+  //   } else {
+  //     console.log(`E-mail envoyé: ${info.response}`);
+  //     res.status(200).json({ message: "E-mail envoyé avec succès" });
+  //   }
+  // });
 };
