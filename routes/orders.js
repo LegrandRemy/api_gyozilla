@@ -25,13 +25,17 @@
  *         id_customers:
  *           type: string
  *           description: Client de la commande
+ *         id_order_types:
+ *           type: string
+ *           description: Type de commande
  *       example:
  *         id: 1
- *         date_order: 15/02/2023
- *         total_price: 25€
+ *         date_order: "2023-07-27T11:26:30.667Z"
+ *         total_price: 25
  *         id_status: 1
  *         id_franchises: 1
  *         id_customers: 1
+ *         id_order_types: 1
  */
 
 /**
@@ -82,6 +86,12 @@
  *           type: integer
  *         required: false
  *         description: Id utilisateur de la commande
+ *       - in: query
+ *         name: id_order_types
+ *         schema:
+ *           type: integer
+ *         required: false
+ *         description: Type de commande
  *     responses:
  *       200:
  *         description: La liste de toutes les commandes
@@ -174,25 +184,47 @@
  *         description: La commande n'a pas été trouvé.
  */
 
-const express = require('express')
-const router = express.Router()
-const orderController = require('../controllers/ordersController')
-const { verifyToken } = require('../controllers/tokenController')
+const express = require("express");
+const router = express.Router();
+const orderController = require("../controllers/ordersController");
+const { verifyToken } = require("../controllers/tokenController");
 
-router.get('/api/orders', verifyToken, orderController.getAllOrders)
-router.get('/api/orders/:id', verifyToken, orderController.getOrder)
+router.get("/api/orders", verifyToken, orderController.getAllOrders);
+router.get("/api/orders/:id", verifyToken, orderController.getOrder);
 router.get(
-  '/api/orders/customers/:id',
+  "/api/orders/customers/:id",
   verifyToken,
-  orderController.getOrderByCustomer,
-)
+  orderController.getOrderByCustomer
+);
 router.get(
-  '/api/orders/status/:idStatus',
+  "/api/orders/:orderId/customers/:customerId",
   verifyToken,
-  orderController.getOrderByStatus,
-)
-router.post('/api/orders', verifyToken, orderController.createOrder)
-router.patch('/api/orders/:id', verifyToken, orderController.updateOrder)
-router.delete('/api/orders/:id', verifyToken, orderController.deleteOrder)
+  orderController.getOneOrderByCustomer
+);
+router.get(
+  "/api/orders/franchise/:franchiseId/period/:period",
+  verifyToken,
+  orderController.getAllOrdersByFranchisePeriod
+);
+router.get(
+  "/api/orders/franchise/:franchiseId",
+  verifyToken,
+  orderController.getAllOrdersByFranchise
+);
+router.get(
+  "/api/orders/status/:idStatus",
+  verifyToken,
+  orderController.getOrderByStatus
+);
+router.get(
+  "/api/orders/franchise/:franchiseId/period/:period",
+  verifyToken,
+  orderController.getAllOrdersByFranchisePeriod
+);
+router.post("/api/orders", verifyToken, orderController.createOrder);
+router.patch("/api/orders/:id", verifyToken, orderController.updateOrder);
+router.delete("/api/orders/:id", verifyToken, orderController.deleteOrder);
 
-module.exports = router
+router.post("/api/send_email", verifyToken, orderController.sendOrderEmail);
+
+module.exports = router;

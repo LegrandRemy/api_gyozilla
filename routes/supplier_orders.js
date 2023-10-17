@@ -25,7 +25,7 @@
  *
  *       example:
  *         id: 1
- *         date_order: 2023-11-02
+ *         date_order: "2023-11-02"
  *         total_price: 100
  *         id_suppliers: 1
  *         id_franchises: 1
@@ -108,7 +108,7 @@
  *       - in: path
  *         name: id
  *         schema:
- *           type: int
+ *           type: string
  *         required: true
  *         description: Commande du fournisseur par l'id
  *     responses:
@@ -127,7 +127,7 @@
  *      - in: path
  *        name: id
  *        schema:
- *          type: int
+ *          type: string
  *        required: true
  *        description: id de la commande du fournisseur
  *    requestBody:
@@ -154,7 +154,7 @@
  *       - in: path
  *         name: id
  *         schema:
- *           type: int
+ *           type: string
  *         required: true
  *         description: id de la commande du fournisseur
  *
@@ -165,29 +165,35 @@
  *         description: La commande du fournisseur n'a pas été trouvée.
  */
 
-const express = require('express')
-const router = express.Router()
-const supplier_ordersController = require('../controllers/supplier_ordersController')
+const express = require("express");
+const router = express.Router();
+const supplier_ordersController = require("../controllers/supplier_ordersController");
+const { verifyToken } = require("../controllers/tokenController");
 
 router.get(
-  '/api/supplier_orders',
-  supplier_ordersController.getAllSupplierOrders,
-)
+  "/api/supplier_orders",
+  verifyToken,
+  supplier_ordersController.getAllSupplierOrders
+);
 router.get(
-  '/api/supplier_orders/:id',
-  supplier_ordersController.getSupplierOrder,
-)
+  "/api/supplier_orders/:id",
+  verifyToken,
+  supplier_ordersController.getSupplierOrder
+);
 router.post(
-  '/api/supplier_orders',
-  supplier_ordersController.createSupplierOrder,
-)
+  "/api/supplier_orders",
+  verifyToken,
+  supplier_ordersController.createSupplierOrder
+);
 router.patch(
-  '/api/supplier_orders/:id',
-  supplier_ordersController.updateSupplierOrder,
-)
+  "/api/supplier_orders/:id",
+  verifyToken,
+  supplier_ordersController.updateSupplierOrder
+);
 router.delete(
-  '/api/supplier_orders/:id',
-  supplier_ordersController.deleteSupplierOrder,
-)
+  "/api/supplier_orders/:id",
+  verifyToken,
+  supplier_ordersController.deleteSupplierOrder
+);
 
-module.exports = router
+module.exports = router;

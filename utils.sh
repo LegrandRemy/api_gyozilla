@@ -16,7 +16,7 @@
 # npx sequelize-cli model:generate --name Products_Orders --attributes id_products:integer,id_orders:integer
 # npx sequelize-cli model:generate --name Orders --attributes status:string,payement_at:string,price:string,id_steps:integer,id_users:integer
 
-# npx sequelize-cli model:generate --name Users --attributes lastname:string,firstname:string,email:string,phone:string,address:string,zipcode:string,city:string,hiring_date:date,salary:string,fidelitypoints:string,id_contract_types:integer,id_roles:integer
+# npx sequelize-cli model:generate --name Users --attributes lastname:string,firstname:string,email:string,phone:string,address:string,zipcode:string,city:string,hiring_date:date,salary:string,fidelityPoints:string,id_contract_types:integer,id_roles:integer
 
 
 # npx sequelize-cli model:generate --name Roles --attributes name:string
@@ -26,7 +26,7 @@
 # npx sequelize-cli model:generate --name Suppliers --attributes name:string,address:string,phone:string
 # npx sequelize-cli model:generate --name Orders --attributes id_customers:integer,id_franchises:integer,date_order:date,total_price:integer,id_status:string
 # npx sequelize-cli model:generate --name OrderLines --attributes id_orders:integer,id_products:integer,quantity:integer
-npx sequelize-cli model:generate --name Ingredients --attributes name:string,quantity:string,purchasePrice:float
+npx sequelize-cli model:generate --name Ingredients --attributes name:string,purchasePrice:float
 npx sequelize-cli model:generate --name Products --attributes name:string,description:text,photo:string,price:float,creation_steps:text,id_product_categories:integer
 # npx sequelize-cli model:generate --name ProductCategories --attributes name:string
 # npx sequelize-cli model:generate --name Status --attributes name:string

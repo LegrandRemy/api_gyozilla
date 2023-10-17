@@ -1,5 +1,5 @@
-'use strict'
-const { Model } = require('sequelize')
+"use strict";
+const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Orders extends Model {
     /**
@@ -9,17 +9,25 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       Orders.belongsTo(models.Status, {
-        as: 'status',
-        foreignKey: 'id_status',
-      })
+        as: "order_status",
+        foreignKey: "id_status",
+      });
       Orders.belongsTo(models.Franchises, {
-        as: 'franchises',
-        foreignKey: 'id_franchises',
-      })
+        as: "franchises",
+        foreignKey: "id_franchises",
+      });
       Orders.belongsTo(models.Customers, {
-        as: 'customers',
-        foreignKey: 'id_customers',
-      })
+        as: "customers",
+        foreignKey: "id_customers",
+      });
+      Orders.belongsTo(models.OrderTypes, {
+        as: "order_type",
+        foreignKey: "id_order_types",
+      });
+      Orders.hasMany(models.OrderLines, {
+        as: "order_lines",
+        foreignKey: "id_orders",
+      });
     }
   }
   Orders.init(
@@ -39,7 +47,7 @@ module.exports = (sequelize, DataTypes) => {
       date_order: {
         type: DataTypes.DATE,
         validate: {
-          notEmpty: true,
+          notEmpty: false,
         },
       },
       total_price: {
@@ -54,11 +62,17 @@ module.exports = (sequelize, DataTypes) => {
           notEmpty: true,
         },
       },
+      id_order_types: {
+        type: DataTypes.INTEGER,
+        validate: {
+          notEmpty: true,
+        },
+      },
     },
     {
       sequelize,
-      modelName: 'Orders',
-    },
-  )
-  return Orders
-}
+      modelName: "Orders",
+    }
+  );
+  return Orders;
+};

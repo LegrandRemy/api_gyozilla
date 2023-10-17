@@ -31,11 +31,11 @@
  *           description: ID du role de l'employé
  *       example:
  *         id: 1
- *         lastname: Leveque
- *         firstname: Marcus
- *         phone: 0680313131
- *         email: marcus.leveque@gmail.com
- *         password: ab123456
+ *         lastname: "Leveque"
+ *         firstname: "Marcus"
+ *         phone: "0680313131"
+ *         email: "marcus.leveque@gmail.com"
+ *         password: "ab123456"
  *         id_franchises: 3
  *         id_roles: 1
  */
@@ -146,7 +146,7 @@
  *      - in: path
  *        name: id
  *        schema:
- *          type: int
+ *          type: string
  *        required: false
  *        description: id de l'employé
  *    requestBody:
@@ -173,7 +173,7 @@
  *       - in: path
  *         name: id
  *         schema:
- *           type: int
+ *           type: string
  *         required: false
  *         description: id de l'employé
  *     responses:
@@ -183,23 +183,39 @@
  *         description: L'employé n'a pas été trouvé.
  */
 
-const express = require('express')
-const router = express.Router()
-const employeeController = require('../controllers/employeeController')
-const { verifyToken } = require('../controllers/tokenController')
+const express = require("express");
+const router = express.Router();
+const employeeController = require("../controllers/employeeController");
+const { verifyToken } = require("../controllers/tokenController");
 
-router.get('/api/employees/', verifyToken, employeeController.getAllEmployees)
-router.get('/api/employees/:id', verifyToken, employeeController.getEmployee)
-router.post('/api/employees/', verifyToken, employeeController.createEmployee)
+router.get("/api/employees/", verifyToken, employeeController.getAllEmployees);
+router.get("/api/employees/:id", verifyToken, employeeController.getEmployee);
+router.get(
+  "/api/employees/franchises/:franchiseId",
+  verifyToken,
+  employeeController.getAllEmployeeByFranchise
+);
+router.get(
+  "/api/employees/roles/:roleId",
+  verifyToken,
+  employeeController.getAllEmployeeByRole
+);
+router.get(
+  "/api/employees/:employeeId/franchises/:franchiseId",
+  verifyToken,
+  employeeController.getOneEmployeeByFranchise
+);
+router.get("/api/employees/exist/:email", employeeController.is_exist);
+router.post("/api/employees/", verifyToken, employeeController.createEmployee);
 router.patch(
-  '/api/employees/:id',
+  "/api/employees/:id",
   verifyToken,
-  employeeController.updateEmployee,
-)
+  employeeController.updateEmployee
+);
 router.delete(
-  '/api/employees/:id',
+  "/api/employees/:id",
   verifyToken,
-  employeeController.deleteEmployee,
-)
+  employeeController.deleteEmployee
+);
 
-module.exports = router
+module.exports = router;

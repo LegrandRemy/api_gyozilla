@@ -5,7 +5,7 @@
  *     token:
  *       type: object
  *       required:
- *         - 
+ *         -
  *       properties:
  *         email:
  *           type: string
@@ -14,8 +14,8 @@
  *           type: string
  *           description: Mot de passe de l'utilisateur
  *       example:
- *         email: Robert
- *         password: LePlusFort
+ *         email: "Robert"
+ *         password: "LePlusFort"
  */
 
 /**
@@ -52,10 +52,10 @@
  *         description: Une erreur est survenue.
  */
 
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const tokenController = require('../controllers/tokenController');
+const tokenController = require("../controllers/tokenController");
 
-router.post('/api/token/', tokenController.getToken);
+router.post("/api/token/", tokenController.getToken);
 
 module.exports = router;

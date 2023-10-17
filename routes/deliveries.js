@@ -19,9 +19,9 @@
  *           description: Nom du transporteur
  *       example:
  *         id: 1
- *         id_suppliers_order: 1
- *         delivery_date: 2023-02-20
- *         carrier_name: transport ducobu
+ *         id_suppliers_orders: 1
+ *         delivery_date: "2023-02-20"
+ *         carrier_name: "transport ducobu"
  */
 
 /**
@@ -51,7 +51,7 @@
  *         schema:
  *           type: string
  *         required: false
- *         description: datede livraison
+ *         description: date de livraison
  *       - in: query
  *         name: carrier_name
  *         schema:
@@ -112,7 +112,7 @@
  *      - in: path
  *        name: id
  *        schema:
- *          type: int
+ *          type: string
  *        required: false
  *        description: id de la livraison
  *    requestBody:
@@ -139,7 +139,7 @@
  *       - in: path
  *         name: id
  *         schema:
- *           type: int
+ *           type: string
  *         required: false
  *         description: id de la livraison
  *     responses:
@@ -149,35 +149,35 @@
  *         description: La livraison n'a pas été trouvée.
  */
 
-const express = require('express')
-const router = express.Router()
-const deliveriesController = require('../controllers/deliveriesController')
-const { verifyToken } = require('../controllers/tokenController')
+const express = require("express");
+const router = express.Router();
+const deliveriesController = require("../controllers/deliveriesController");
+const { verifyToken } = require("../controllers/tokenController");
 
 router.get(
-  '/api/deliveries/',
+  "/api/deliveries/",
   verifyToken,
-  deliveriesController.getAllDeliveries,
-)
+  deliveriesController.getAllDeliveries
+);
 router.get(
-  '/api/deliveries/:id',
+  "/api/deliveries/:id",
   verifyToken,
-  deliveriesController.getDeliveries,
-)
+  deliveriesController.getDeliveries
+);
 router.post(
-  '/api/deliveries/',
+  "/api/deliveries/",
   verifyToken,
-  deliveriesController.createDeliveries,
-)
+  deliveriesController.createDeliveries
+);
 router.patch(
-  '/api/deliveries/:id',
+  "/api/deliveries/:id",
   verifyToken,
-  deliveriesController.updateDeliveries,
-)
+  deliveriesController.updateDeliveries
+);
 router.delete(
-  '/api/deliveries/:id',
+  "/api/deliveries/:id",
   verifyToken,
-  deliveriesController.deleteDeliveries,
-)
+  deliveriesController.deleteDeliveries
+);
 
-module.exports = router
+module.exports = router;
