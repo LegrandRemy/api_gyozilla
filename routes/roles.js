@@ -15,7 +15,7 @@
  *           description: Le role d'un employé
  *       example:
  *         id: 1
- *         type: Cuisinier
+ *         name: "Cuisinier"
  */
 
 /**
@@ -69,7 +69,7 @@
  *       - in: path
  *         name: id
  *         schema:
- *           type: int
+ *           type: string
  *         required: true
  *         description: id du role
  *     responses:
@@ -79,14 +79,14 @@
  *         description: Le role n'a pas été trouvé.
  */
 
-const express = require('express')
-const router = express.Router()
-const roleController = require('../controllers/rolesController')
-const { verifyToken } = require('../controllers/tokenController')
+const express = require("express");
+const router = express.Router();
+const roleController = require("../controllers/rolesController");
+const { verifyToken } = require("../controllers/tokenController");
 
-router.get('/api/roles/', verifyToken, roleController.getAllRoles)
-router.get('/api/roles/:id', verifyToken, roleController.getRole)
-router.post('/api/roles', verifyToken, roleController.createRole)
-router.delete('/api/roles/:id', verifyToken, roleController.deleteRole)
+router.get("/api/roles/", verifyToken, roleController.getAllRoles);
+router.get("/api/roles/:id", verifyToken, roleController.getRole);
+router.post("/api/roles", verifyToken, roleController.createRole);
+router.delete("/api/roles/:id", verifyToken, roleController.deleteRole);
 
-module.exports = router
+module.exports = router;

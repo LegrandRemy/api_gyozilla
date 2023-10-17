@@ -1,5 +1,5 @@
-'use strict'
-const { Model } = require('sequelize')
+"use strict";
+const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Franchises extends Model {
     /**
@@ -9,13 +9,13 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       Franchises.hasMany(models.Stocks, {
-        as: 'stocks',
-        foreignKey: 'id_franchises',
-      })
+        as: "stocks",
+        foreignKey: "id_franchises",
+      });
       Franchises.hasMany(models.Orders, {
-        as: 'franchises',
-        foreignKey: 'id_franchises',
-      })
+        as: "orders",
+        foreignKey: "id_franchises",
+      });
     }
   }
   Franchises.init(
@@ -39,11 +39,17 @@ module.exports = (sequelize, DataTypes) => {
           matches: /^\+?\d{10,}$/,
         },
       },
+      geography: {
+        type: DataTypes.STRING(50),
+        validate: {
+          notEmpty: true,
+        },
+      },
     },
     {
       sequelize,
-      modelName: 'Franchises',
-    },
-  )
-  return Franchises
-}
+      modelName: "Franchises",
+    }
+  );
+  return Franchises;
+};

@@ -23,7 +23,7 @@
  *       example:
  *         id: 1
  *         id_franchises: 1
- *         id-ingredients: 1
+ *         id_ingredients: 1
  *         quantity: 50
  *
  */
@@ -118,7 +118,7 @@
  *      - in: path
  *        name: id
  *        schema:
- *          type: int
+ *          type: string
  *        required: false
  *        description: id du stock
  *    requestBody:
@@ -145,7 +145,7 @@
  *       - in: path
  *         name: id
  *         schema:
- *           type: int
+ *           type: string
  *         required: false
  *         description: id du stock
  *     responses:
@@ -155,15 +155,25 @@
  *         description: Le stock n'a pas été trouvé.
  */
 
-const express = require('express')
-const router = express.Router()
-const stockController = require('../controllers/stockController')
-const { verifyToken } = require('../controllers/tokenController')
+const express = require("express");
+const router = express.Router();
+const stockController = require("../controllers/stockController");
+const { verifyToken } = require("../controllers/tokenController");
 
-router.get('/api/stock/', verifyToken, stockController.getAllStocks)
-router.get('/api/stock/:id', verifyToken, stockController.getStock)
-router.post('/api/stock', verifyToken, stockController.createStock)
-router.patch('/api/stock/:id', verifyToken, stockController.updateStock)
-router.delete('/api/stock/:id', verifyToken, stockController.deleteStock)
+router.get("/api/stock/", verifyToken, stockController.getAllStocks);
+router.get(
+  "/api/stock/franchise/:franchiseId",
+  verifyToken,
+  stockController.getStockByFranchise
+);
+router.get(
+  "/api/stock/ingredient/:ingredientId",
+  verifyToken,
+  stockController.getStockByIdIngredients
+);
+router.get("/api/stock/:id", verifyToken, stockController.getStock);
+router.post("/api/stock", verifyToken, stockController.createStock);
+router.patch("/api/stock/:id", verifyToken, stockController.updateStock);
+router.delete("/api/stock/:id", verifyToken, stockController.deleteStock);
 
-module.exports = router
+module.exports = router;

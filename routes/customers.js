@@ -25,11 +25,11 @@
  *           description: Points de fidélité du client
  *       example:
  *         id: 1
- *         lastname: Robert
- *         firstname: Jean
- *         email: robert.jean@gmail.com
- *         password: abc123456
- *         fidelitypoints: 50
+ *         lastname: "Robert"
+ *         firstname: "Jean"
+ *         email: "robert.jean@gmail.com"
+ *         password: "abc123456"
+ *         fidelityPoints: 50
  */
 
 /**
@@ -67,7 +67,7 @@
  *         required: false
  *         description: Email du client
  *       - in: query
- *         name: fidelitypoints
+ *         name: fidelityPoints
  *         schema:
  *           type: string
  *         required: false
@@ -126,7 +126,7 @@
  *      - in: path
  *        name: id
  *        schema:
- *          type: int
+ *          type: string
  *        required: false
  *        description: id du client
  *    requestBody:
@@ -153,7 +153,7 @@
  *       - in: path
  *         name: id
  *         schema:
- *           type: int
+ *           type: string
  *         required: false
  *         description: id du client
  *     responses:
@@ -163,23 +163,31 @@
  *         description: Le client n'a pas été trouvé.
  */
 
-const express = require('express')
-const router = express.Router()
-const customerController = require('../controllers/customerController')
-const { verifyToken } = require('../controllers/tokenController')
+const express = require("express");
+const router = express.Router();
+const customerController = require("../controllers/customerController");
+const { verifyToken } = require("../controllers/tokenController");
 
-router.get('/api/customers/', verifyToken, customerController.getAllCustomers)
-router.get('/api/customers/:id', verifyToken, customerController.getCustomer)
-router.post('/api/customers/', verifyToken, customerController.createCustomer)
+router.post(
+  "/api/customers/forgot-password",
+  customerController.forgotPassword
+);
+router.post("/api/customers/reset-password", customerController.resetPassword);
+router.get("/api/customers/", verifyToken, customerController.getAllCustomers);
+router.get("/api/customers/:id", verifyToken, customerController.getCustomer);
+router.post("/api/customers", customerController.createCustomer);
+router.get("/api/customers/verify/:token", customerController.verifyCustomer);
+router.get("/api/customers/exist/:email", customerController.is_exist);
 router.patch(
-  '/api/customers/:id',
+  "/api/customers/:id",
   verifyToken,
-  customerController.updateCustomer,
-)
+  customerController.updateCustomer
+);
 router.delete(
-  '/api/customers/:id',
+  "/api/customers/:id",
   verifyToken,
-  customerController.deleteCustomer,
-)
+  customerController.deleteCustomer
+);
+router.post("/api/customers/send-email", customerController.sendContactEmail);
 
-module.exports = router
+module.exports = router;
